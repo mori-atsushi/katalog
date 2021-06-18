@@ -1,2 +1,2 @@
 rootProject.name = "Katalog"
-include ':app'
+include(":app")
