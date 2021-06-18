@@ -1,2 +1,3 @@
 rootProject.name = "Katalog"
-include(":app")
+include(":katalog")
+include(":samples:android-sample")
