@@ -40,6 +40,19 @@ object Deps {
         }
 
         const val annotation = "androidx.annotation:annotation:${Versions.Androidx.annotation}"
+
+        object Test {
+            const val core =
+                "androidx.test:core-ktx:${Versions.Androidx.Test.core}"
+            const val runner =
+                "androidx.test:runner:${Versions.Androidx.Test.runner}"
+            const val rules =
+                "androidx.test:rules:${Versions.Androidx.Test.rules}"
+            const val junit =
+                "androidx.test.ext:junit-ktx:${Versions.Androidx.Test.junit}"
+            const val truth =
+                "androidx.test.ext:truth:${Versions.Androidx.Test.truth}"
+        }
     }
 
     const val material = "com.google.android.material:material:${Versions.material}"

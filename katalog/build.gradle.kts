@@ -53,4 +53,10 @@ dependencies {
     implementation(Deps.Androidx.annotation)
 
     implementation(Deps.material)
+
+    testImplementation(Deps.Androidx.Test.core)
+    testImplementation(Deps.Androidx.Test.runner)
+    testImplementation(Deps.Androidx.Test.rules)
+    testImplementation(Deps.Androidx.Test.junit)
+    testImplementation(Deps.Androidx.Test.truth)
 }
