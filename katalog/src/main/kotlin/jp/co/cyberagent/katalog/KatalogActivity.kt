@@ -5,7 +5,7 @@ import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import jp.co.cyberagent.katalog.compose.App
 
-class CatalogActivity : AppCompatActivity() {
+class KatalogActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {

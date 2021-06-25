@@ -25,16 +25,16 @@ import jp.co.cyberagent.katalog.compose.page.GroupPage
 import jp.co.cyberagent.katalog.compose.page.TopPage
 import jp.co.cyberagent.katalog.compose.res.materialColors
 import jp.co.cyberagent.katalog.compose.util.FragmentManagerProvider
-import jp.co.cyberagent.katalog.domain.Catalog
+import jp.co.cyberagent.katalog.domain.Katalog
 
 @Composable
 internal fun App(
     window: Window,
     fragmentManager: FragmentManager,
-    viewModel: CatalogViewModel = viewModel()
+    viewModel: KatalogViewModel = viewModel()
 ) {
     val darkTheme = isSystemInDarkTheme()
-    val catalog = viewModel.catalog.collectAsState()
+    val catalog = viewModel.katalog.collectAsState()
 
     FragmentManagerProvider(fragmentManager) {
         MaterialTheme(
@@ -45,7 +45,7 @@ internal fun App(
                 darkTheme = darkTheme
             )
             MainContent(
-                catalog = catalog.value
+                katalog = catalog.value
             )
         }
     }
@@ -64,11 +64,11 @@ private fun AppWindow(
 }
 
 @Composable
-private fun MainContent(catalog: Catalog?) {
+private fun MainContent(katalog: Katalog?) {
     val navController = rememberNavController<NavDestination>(NavDestination.Top)
     Column {
         TopAppBar(
-            title = { Text(text = catalog?.title.orEmpty()) },
+            title = { Text(text = katalog?.title.orEmpty()) },
             elevation = 0.dp
         )
         NavRoot(navController) {
@@ -78,7 +78,7 @@ private fun MainContent(catalog: Catalog?) {
                 when (it) {
                     is NavDestination.Top -> {
                         TopPage(
-                            catalog = catalog,
+                            katalog = katalog,
                             navController = navController
                         )
                     }

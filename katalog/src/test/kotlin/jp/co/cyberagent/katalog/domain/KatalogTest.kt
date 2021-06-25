@@ -9,10 +9,10 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 
 @RunWith(JUnit4::class)
-class CatalogTest {
+class KatalogTest {
     @Test
     fun create() {
-        Catalog.register {
+        Katalog.register {
             title = "title"
             group("group1") {
                 group("group1-1") {
@@ -36,7 +36,7 @@ class CatalogTest {
                 View(it)
             }
         }
-        val catalog = Catalog.create()
+        val catalog = Katalog.create()
         assertThat(catalog.title).isEqualTo("title")
         assertThat(catalog.items).hasSize(3)
         catalog.items[0].also {
@@ -70,11 +70,11 @@ class CatalogTest {
                 View(it)
             }
         }
-        Catalog.register {
+        Katalog.register {
             group(group1, group2)
         }
 
-        val catalog = Catalog.create()
+        val catalog = Katalog.create()
         assertThat(catalog.items).hasSize(2)
         catalog.items[0].also {
             assertThat(it.name).isEqualTo("group1")
@@ -90,10 +90,10 @@ class CatalogTest {
 
     @Test
     fun create_notSet() {
-        Catalog.register {
+        Katalog.register {
             // no op
         }
-        val catalog = Catalog.create()
+        val catalog = Katalog.create()
         assertThat(catalog.title).isEqualTo("UI Catalog")
         assertThat(catalog.items).isEmpty()
     }

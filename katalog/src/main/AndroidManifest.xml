@@ -7,7 +7,7 @@
         android:supportsRtl="false"
         tools:replace="android:supportsRtl">
         <activity
-            android:name=".CatalogActivity"
+            android:name=".KatalogActivity"
             android:exported="true"
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
     </application>
