@@ -13,24 +13,22 @@ internal fun materialColors(
     return if (darkTheme) darkColor else lightColor
 }
 
+private val lightColorBg = Color.White
+private val lightColorTxt = Color(0xFF000000)
 private val lightUpperColorBg = Color(0xFFeeeeee)
-private val lightUpperColorTxt = Color(0xFF000000)
+private val darkColorBg = Color(0xFF121212)
+private val darkColorTxt = Color.White
 private val darkUpperColorBg = Color(0xFF333333)
-private val darkUpperColorTxt = Color(0xFFFFFFFF)
-private val lightIconColor = Color(0xFF444444)
-private val darkIconColor = Color(0xFFBBBBBB)
 
 private val lightColor = lightColors(
-    primary = lightUpperColorBg,
-    onPrimary = lightUpperColorTxt,
     surface = lightUpperColorBg,
-    onSurface = lightUpperColorTxt,
-    onSecondary = lightIconColor
+    onSurface = lightColorTxt,
+    background = lightColorBg,
+    onBackground = lightColorTxt
 )
 private val darkColor = darkColors(
-    primary = darkUpperColorBg,
-    onPrimary = darkUpperColorTxt,
     surface = darkUpperColorBg,
-    onSurface = darkUpperColorTxt,
-    onSecondary = darkIconColor
+    onSurface = darkColorTxt,
+    background = darkColorBg,
+    onBackground = darkColorTxt
 )

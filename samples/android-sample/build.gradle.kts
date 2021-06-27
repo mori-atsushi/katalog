@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
+    id("kotlin-kapt")
 }
 
 android {
@@ -16,7 +17,11 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-
+    buildFeatures {
+        dataBinding = true
+        viewBinding = true
+        compose = true
+    }
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
@@ -33,13 +38,33 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    composeOptions {
+        kotlinCompilerVersion = Versions.composeKotlinCompiler
+        kotlinCompilerExtensionVersion = Versions.Androidx.compose
+    }
     sourceSets {
         getByName("main").java.srcDir("src/main/kotlin")
+        getByName("test").java.srcDir("src/test/kotlin")
+        getByName("androidTest").java.srcDir("src/androidTest/kotlin")
     }
 }
 
 dependencies {
-    implementation(kotlin("stdlib"))
-
     implementation(project(":katalog"))
+
+    implementation(kotlin("stdlib"))
+    implementation(Deps.KotlinX.Coroutines.android)
+
+    implementation(Deps.Androidx.Activity.ktx)
+    implementation(Deps.Androidx.Activity.compose)
+    implementation(Deps.Androidx.Fragment.ktx)
+
+    implementation(Deps.Androidx.Compose.ui)
+    implementation(Deps.Androidx.Compose.uiTooling)
+    implementation(Deps.Androidx.Compose.foundation)
+    implementation(Deps.Androidx.Compose.material)
+    implementation(Deps.Androidx.Compose.materialIconsCore)
+    implementation(Deps.Androidx.Compose.materialIconExtended)
+
+    implementation(Deps.material)
 }

@@ -85,7 +85,7 @@ private fun Cell(
                 .fillMaxWidth()
                 .aspectRatio(1F)
                 .clip(RoundedCornerShape(defaultCornerRadius))
-                .background(MaterialTheme.colors.primary),
+                .background(MaterialTheme.colors.surface),
         ) {
             when (item) {
                 is CatalogItem.Component -> {
@@ -127,7 +127,7 @@ private fun GroupCell(
         Icon(
             modifier = Modifier.size(size),
             painter = painterResource(R.drawable.catalog_icon_folder),
-            tint = MaterialTheme.colors.onSecondary,
+            tint = MaterialTheme.colors.onBackground.copy(alpha = 0.6F),
             contentDescription = null
         )
     }

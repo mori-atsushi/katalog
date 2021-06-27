@@ -65,7 +65,7 @@ private fun ComponentRow(
             .aspectRatio(16.0F / 9.0F)
             .padding(horizontal = defaultPadding)
             .clip(RoundedCornerShape(defaultCornerRadius))
-            .background(MaterialTheme.colors.primary),
+            .background(MaterialTheme.colors.surface),
         definition = component.definition
     )
 }
@@ -86,6 +86,6 @@ private fun ItemTitle(name: String) {
 private fun ItemDivider() {
     Divider(
         modifier = Modifier.padding(top = defaultPadding),
-        color = MaterialTheme.colors.primary
+        color = MaterialTheme.colors.surface
     )
 }
