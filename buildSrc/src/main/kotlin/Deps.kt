@@ -28,6 +28,10 @@ object Deps {
                 "androidx.compose.foundation:foundation:${Versions.Androidx.compose}"
             const val material =
                 "androidx.compose.material:material:${Versions.Androidx.compose}"
+            const val materialIconsCore =
+                "androidx.compose.material:material-icons-core:${Versions.Androidx.compose}"
+            const val materialIconExtended =
+                "androidx.compose.material:material-icons-extended:${Versions.Androidx.compose}"
             const val activity =
                 "androidx.activity:activity-compose:${Versions.Androidx.activity}"
         }

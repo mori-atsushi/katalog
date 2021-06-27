@@ -63,6 +63,8 @@ dependencies {
     implementation(Deps.Androidx.Compose.uiTooling)
     implementation(Deps.Androidx.Compose.foundation)
     implementation(Deps.Androidx.Compose.material)
+    implementation(Deps.Androidx.Compose.materialIconsCore)
+    implementation(Deps.Androidx.Compose.materialIconExtended)
 
     implementation(Deps.material)
 }
