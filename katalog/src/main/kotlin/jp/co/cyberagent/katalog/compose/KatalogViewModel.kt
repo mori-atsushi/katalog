@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import jp.co.cyberagent.katalog.compose.navigation.NavController
 import jp.co.cyberagent.katalog.compose.navigation.NavDestination
+import jp.co.cyberagent.katalog.domain.CatalogItem
 import jp.co.cyberagent.katalog.domain.Katalog
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -20,6 +21,17 @@ internal class KatalogViewModel : ViewModel() {
         viewModelScope.launch(Dispatchers.Default) {
             val catalog = Katalog.create()
             _katalog.value = catalog
+        }
+    }
+
+    fun handleClick(item: CatalogItem) {
+        when (item) {
+            is CatalogItem.Group -> {
+                navController.push(NavDestination.Group(item))
+            }
+            is CatalogItem.Component -> {
+                // TODO: Implement to show Component Preview
+            }
         }
     }
 }

@@ -81,13 +81,13 @@ private fun MainContent(viewModel: KatalogViewModel) {
                     is NavDestination.Top -> {
                         TopPage(
                             katalog = katalog,
-                            navController = navController
+                            onClick = viewModel::handleClick
                         )
                     }
                     is NavDestination.Group -> {
                         GroupPage(
                             group = it.group,
-                            navController = navController
+                            onClick = viewModel::handleClick
                         )
                     }
                 }
