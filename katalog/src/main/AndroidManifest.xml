@@ -3,9 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="jp.co.cyberagent.katalog">
 
-    <application
-        android:supportsRtl="false"
-        tools:replace="android:supportsRtl">
+    <application>
         <activity
             android:name=".KatalogActivity"
             android:exported="true"
