@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.State
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
@@ -25,13 +26,13 @@ internal fun <T : Fragment> FragmentToCompose(
     onCreateView: FragmentOnCreateListener<T>,
     definition: FragmentDefinition<T>
 ) {
-    val view = fragmentViewState(
+    val view by fragmentViewState(
         definition = definition,
         onCreateView = onCreateView
     )
     FragmentContainerView(
         layoutParams = layoutParams,
-        view = view.value
+        view = view
     )
 }
 

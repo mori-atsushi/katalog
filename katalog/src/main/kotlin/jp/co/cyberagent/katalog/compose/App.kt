@@ -11,6 +11,7 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.material.primarySurface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
@@ -34,7 +35,7 @@ internal fun App(
     viewModel: KatalogViewModel = viewModel()
 ) {
     val darkTheme = isSystemInDarkTheme()
-    val catalog = viewModel.katalog.collectAsState()
+    val catalog by viewModel.katalog.collectAsState()
 
     FragmentManagerProvider(fragmentManager) {
         MaterialTheme(
@@ -45,7 +46,7 @@ internal fun App(
                 darkTheme = darkTheme
             )
             MainContent(
-                katalog = catalog.value
+                katalog = catalog
             )
         }
     }
