@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
-import androidx.compose.material.primarySurface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -58,7 +57,7 @@ private fun AppWindow(
     darkTheme: Boolean
 ) {
     val view = LocalView.current
-    window.statusBarColor = MaterialTheme.colors.primarySurface.toArgb()
+    window.statusBarColor = MaterialTheme.colors.surface.toArgb()
     val controller = WindowInsetsControllerCompat(window, view)
     controller.isAppearanceLightNavigationBars = !darkTheme
     controller.isAppearanceLightStatusBars = !darkTheme
@@ -70,7 +69,9 @@ private fun MainContent(katalog: Katalog?) {
     Column {
         TopAppBar(
             title = { Text(text = katalog?.title.orEmpty()) },
-            elevation = 0.dp
+            elevation = 0.dp,
+            backgroundColor = MaterialTheme.colors.surface,
+            contentColor = MaterialTheme.colors.onSurface
         )
         NavRoot(navController) {
             Box(

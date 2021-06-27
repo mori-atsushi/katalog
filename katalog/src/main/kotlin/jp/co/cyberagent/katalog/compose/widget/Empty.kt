@@ -19,7 +19,7 @@ internal fun Empty() {
             .padding(horizontal = defaultPadding, vertical = 24.dp),
         text = "🚧 Empty 🚧",
         textAlign = TextAlign.Center,
-        color = MaterialTheme.colors.onSecondary,
+        color = MaterialTheme.colors.onBackground.copy(alpha = 0.6F),
         fontSize = 24.sp
     )
 }
