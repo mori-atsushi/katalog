@@ -20,12 +20,10 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.viewmodel.compose.viewModel
 import jp.co.cyberagent.katalog.compose.navigation.NavDestination
 import jp.co.cyberagent.katalog.compose.navigation.NavRoot
-import jp.co.cyberagent.katalog.compose.navigation.rememberNavController
 import jp.co.cyberagent.katalog.compose.page.GroupPage
 import jp.co.cyberagent.katalog.compose.page.TopPage
 import jp.co.cyberagent.katalog.compose.res.materialColors
 import jp.co.cyberagent.katalog.compose.util.FragmentManagerProvider
-import jp.co.cyberagent.katalog.domain.Katalog
 
 @Composable
 internal fun App(
@@ -45,7 +43,7 @@ internal fun App(
                 darkTheme = darkTheme
             )
             MainContent(
-                katalog = catalog
+                viewModel = viewModel
             )
         }
     }
@@ -64,8 +62,10 @@ private fun AppWindow(
 }
 
 @Composable
-private fun MainContent(katalog: Katalog?) {
-    val navController = rememberNavController<NavDestination>(NavDestination.Top)
+private fun MainContent(viewModel: KatalogViewModel) {
+    val katalog by viewModel.katalog.collectAsState()
+    val navController = viewModel.navController
+
     Column {
         TopAppBar(
             title = { Text(text = katalog?.title.orEmpty()) },
