@@ -27,6 +27,7 @@ internal fun PreviewPage(
     ) {
         Preview(
             modifier = Modifier.fillMaxSize(),
+            clickable = true,
             definition = component.definition
         )
     }
