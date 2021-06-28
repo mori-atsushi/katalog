@@ -7,6 +7,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import jp.co.cyberagent.katalog.compose.KatalogViewModel
+import jp.co.cyberagent.katalog.compose.util.BackPressedEffect
 import jp.co.cyberagent.katalog.compose.widget.Preview
 import jp.co.cyberagent.katalog.domain.CatalogItem
 
@@ -15,6 +16,10 @@ internal fun PreviewPage(
     viewModel: KatalogViewModel,
     component: CatalogItem.Component
 ) {
+    BackPressedEffect(component) {
+        viewModel.closePreview()
+        true
+    }
     Box(
         modifier = Modifier
             .fillMaxSize()

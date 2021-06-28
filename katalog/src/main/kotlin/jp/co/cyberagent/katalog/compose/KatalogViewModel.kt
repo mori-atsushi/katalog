@@ -37,4 +37,8 @@ internal class KatalogViewModel : ViewModel() {
             }
         }
     }
+
+    fun closePreview() {
+        _selectedComponent.value = null
+    }
 }
