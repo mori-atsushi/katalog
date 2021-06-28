@@ -6,6 +6,7 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.saveable.SaveableStateHolder
 import androidx.compose.runtime.saveable.rememberSaveableStateHolder
+import jp.co.cyberagent.katalog.compose.util.BackPressedEffect
 
 @Composable
 internal fun <T> NavRoot(
@@ -14,6 +15,11 @@ internal fun <T> NavRoot(
 ) {
     val current by navController.current
     val saveableStateHolder = rememberSaveableStateHolder()
+
+    BackPressedEffect(Unit) {
+        navController.back()
+    }
+
     Crossfade(current) {
         NavChild(
             navController = navController,

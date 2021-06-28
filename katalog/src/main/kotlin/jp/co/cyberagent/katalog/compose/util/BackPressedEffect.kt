@@ -1,32 +1,25 @@
-package jp.co.cyberagent.katalog.compose.navigation
+package jp.co.cyberagent.katalog.compose.util
 
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalLifecycleOwner
 
 @Composable
-internal fun <T> rememberNavController(startDestination: T): NavController<T> {
-    val navController = remember { NavController(startDestination) }
-    BackPressedEffect(navController)
-    return navController
-}
-
-@Composable
-private fun <T> BackPressedEffect(
-    navController: NavController<T>
+internal fun BackPressedEffect(
+    key: Any,
+    onBackPressed: () -> Boolean
 ) {
     val backDispatcherOwner = checkNotNull(LocalOnBackPressedDispatcherOwner.current) {
         "require LocalOnBackPressedDispatcherOwner.current"
     }
     val lifecycleOwner = LocalLifecycleOwner.current
-    DisposableEffect(backDispatcherOwner, lifecycleOwner) {
+    DisposableEffect(key, backDispatcherOwner, lifecycleOwner) {
         val backPressedDispatcher = backDispatcherOwner.onBackPressedDispatcher
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                val backed = navController.back()
+                val backed = onBackPressed()
                 if (!backed) {
                     isEnabled = false
                     backPressedDispatcher.onBackPressed()
