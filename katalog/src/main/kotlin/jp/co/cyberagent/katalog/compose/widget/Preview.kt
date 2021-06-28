@@ -21,7 +21,7 @@ fun Preview(
     BoxWithConstraints(
         modifier = modifier
     ) {
-        val size = 1.0F / 0.5F
+        val size = 1.0F / scale
         val width = (this.maxWidth.value * size).dp
         val height = (this.maxHeight.value * size).dp
         Box(

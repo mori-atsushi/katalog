@@ -15,6 +15,9 @@ internal class KatalogViewModel : ViewModel() {
     private val _katalog = MutableStateFlow<Katalog?>(null)
     val katalog: StateFlow<Katalog?> = _katalog
 
+    private val _selectedComponent = MutableStateFlow<CatalogItem.Component?>(null)
+    val selectedComponent: StateFlow<CatalogItem.Component?> = _selectedComponent
+
     val navController = NavController<NavDestination>(NavDestination.Top)
 
     init {
@@ -30,7 +33,7 @@ internal class KatalogViewModel : ViewModel() {
                 navController.push(NavDestination.Group(item))
             }
             is CatalogItem.Component -> {
-                // TODO: Implement to show Component Preview
+                _selectedComponent.value = item
             }
         }
     }
