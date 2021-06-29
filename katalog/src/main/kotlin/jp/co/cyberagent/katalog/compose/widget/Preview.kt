@@ -16,12 +16,13 @@ import androidx.compose.ui.unit.dp
 fun Preview(
     modifier: Modifier = Modifier,
     scale: Float = 1.0F,
+    clickable: Boolean = false,
     definition: @Composable () -> Unit
 ) {
     BoxWithConstraints(
         modifier = modifier
     ) {
-        val size = 1.0F / 0.5F
+        val size = 1.0F / scale
         val width = (this.maxWidth.value * size).dp
         val height = (this.maxHeight.value * size).dp
         Box(
@@ -34,10 +35,12 @@ fun Preview(
             definition()
         }
         // click mask
-        Box(
-            modifier = Modifier
-                .pointerInput(Unit) { }
-                .fillMaxSize()
-        )
+        if (!clickable) {
+            Box(
+                modifier = Modifier
+                    .pointerInput(Unit) { }
+                    .fillMaxSize()
+            )
+        }
     }
 }
