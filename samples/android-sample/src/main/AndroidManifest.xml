@@ -3,9 +3,10 @@
     package="jp.co.cyberagent.katalog.android_sample">
 
     <application
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:name=".SampleApp"
-        android:supportsRtl="false"
-        android:allowBackup="true">
+        android:label="Katalog Sample">
         <activity
             android:name="jp.co.cyberagent.katalog.KatalogActivity"
             android:exported="true">
