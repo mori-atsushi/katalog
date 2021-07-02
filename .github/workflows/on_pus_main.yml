@@ -45,30 +45,6 @@ jobs:
             buildSrc/src/**/*.kt
             **/gradle.properties
             gradle/**
-      - uses: dev-drprasad/delete-tag-and-release@v0.2.0
-        with:
-          delete_release: true
-          tag_name: snapshot
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - uses: actions/create-release@v1
-        id: create_release
-        with:
-          tag_name: snapshot
-          release_name: snapshot
-          body: |
-            This is a snapshot release.
-            If you want to use this library, please download the aar file.
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - uses: actions/upload-release-asset@v1
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: katalog/build/outputs/aar/katalog-release.aar
-          asset_name: katalog-snapshot.aar
-          asset_content_type: application/octet-stream
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   lint:
     name: Lint
     runs-on: ubuntu-latest
