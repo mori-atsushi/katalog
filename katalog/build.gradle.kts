@@ -2,6 +2,7 @@ plugins {
     id("com.android.library")
     id("kotlin-android")
     id("kotlin-kapt")
+    `maven-publish`
 }
 
 android {
@@ -62,4 +63,38 @@ dependencies {
     testImplementation(Deps.Androidx.Test.rules)
     testImplementation(Deps.Androidx.Test.junit)
     testImplementation(Deps.Androidx.Test.truth)
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "co.jp.cyberagent.katalog"
+            artifactId = "katalog"
+            version = "0.0.1-SNAPSHOT"
+            artifact("$buildDir/outputs/aar/katalog-release.aar")
+
+            pom.withXml {
+                val dependenciesNode = asNode().appendNode("dependencies")
+
+                project.configurations.implementation.get().allDependencies.forEach {
+                    val dependencyNode = dependenciesNode.appendNode("dependency")
+                    dependencyNode.appendNode("groupId", it.group)
+                    dependencyNode.appendNode("artifactId", it.name)
+                    dependencyNode.appendNode("version", it.version)
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/cyberagent-zemi/katalog")
+            credentials {
+                username = project.findProperty("gpr.user") as? String
+                    ?: System.getenv("GITHUB_USERNAME")
+                password = project.findProperty("gpr.token") as? String
+                    ?: System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
 }
