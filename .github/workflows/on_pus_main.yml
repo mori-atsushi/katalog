@@ -20,9 +20,25 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: 11
+      - name: Set outputs
+        id: vars
+        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
       - uses: eskatos/gradle-command-action@v1
         with:
           arguments: :katalog:assembleRelease
+          dependencies-cache-key: |
+            **/*.gradle
+            **/*.gradle.kts
+            buildSrc/src/**/*.kt
+            **/gradle.properties
+            gradle/**
+      - uses: eskatos/gradle-command-action@v1
+        env:
+          GITHUB_USERNAME: ${{ env.GITHUB_ACTOR }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GIT_COMMIT_HASH: ${{ steps.vars.outputs.sha_short }}
+        with:
+          arguments: :katalog:publish
           dependencies-cache-key: |
             **/*.gradle
             **/*.gradle.kts
