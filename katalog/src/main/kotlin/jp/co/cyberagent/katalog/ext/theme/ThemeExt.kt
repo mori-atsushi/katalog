@@ -1,6 +1,6 @@
 package jp.co.cyberagent.katalog.ext.theme
 
-import androidx.compose.runtime.Composable
+import jp.co.cyberagent.katalog.ext.ExtensionPreviewWrapper
 import jp.co.cyberagent.katalog.ext.KatalogExt
 
 internal class ThemeExt(
@@ -8,13 +8,12 @@ internal class ThemeExt(
 ) : KatalogExt() {
     override val name: String = "Theme"
 
-    @Composable
-    override fun PreviewWrapper(content: () -> Unit) {
+    override val previewWrapper: ExtensionPreviewWrapper = {
         val theme = theme
         if (theme != null) {
-            theme { content() }
+            theme { it() }
         } else {
-            content()
+            it()
         }
     }
 }
