@@ -1,9 +1,8 @@
 package jp.co.cyberagent.katalog.ext
 
-abstract class KatalogExt {
-    abstract val name: String
+interface KatalogExt {
+    val name: String
 
-    open val previewWrapper: ExtensionPreviewWrapper = {
-        it()
-    }
+    val wrapper: ExtensionWrapper
+        get() = { it() }
 }

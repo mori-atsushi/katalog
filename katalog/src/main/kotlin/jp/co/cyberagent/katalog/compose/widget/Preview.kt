@@ -23,7 +23,7 @@ fun Preview(
 ) {
     val katalog = LocalKatalog.current
     Box(modifier = modifier) {
-        ExtensionsWrapper(katalog.extensions) {
+        ExtensionsWrappers(katalog.extensions) {
             Scaler(scale) {
                 definition()
                 ClickMask(!clickable)
@@ -33,7 +33,7 @@ fun Preview(
 }
 
 @Composable
-private fun ExtensionsWrapper(
+private fun ExtensionsWrappers(
     extensions: List<KatalogExt>,
     content: @Composable () -> Unit
 ) {
@@ -41,8 +41,8 @@ private fun ExtensionsWrapper(
         content()
         return
     }
-    ExtensionsWrapper(extensions.dropLast(1)) {
-        extensions.last().previewWrapper {
+    ExtensionsWrappers(extensions.dropLast(1)) {
+        extensions.last().wrapper {
             content()
         }
     }
