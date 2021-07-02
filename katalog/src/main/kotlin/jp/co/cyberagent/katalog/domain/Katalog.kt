@@ -1,10 +1,12 @@
 package jp.co.cyberagent.katalog.domain
 
 import jp.co.cyberagent.katalog.dsl.KatalogDefinition
+import jp.co.cyberagent.katalog.ext.KatalogExt
 
 internal data class Katalog(
     val title: String,
-    val items: List<CatalogItem>
+    val items: List<CatalogItem>,
+    val extensions: List<KatalogExt>
 ) {
     companion object {
         private var definition: KatalogDefinition? = null

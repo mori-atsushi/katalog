@@ -15,6 +15,7 @@ internal class KatalogScopeImpl : KatalogScope() {
     private val groupScope: GroupScopeImpl = GroupScopeImpl(
         paramsFactory = paramsFactory
     )
+    private val extensions = mutableListOf<KatalogExt>()
 
     override var title: String = DEFAULT_TITLE
     override var themeResId: Int? = null
@@ -36,7 +37,7 @@ internal class KatalogScopeImpl : KatalogScope() {
     }
 
     override fun addExtension(ext: KatalogExt) {
-        // TODO: Impl
+        extensions.add(ext)
     }
 
     fun build(): Katalog {
@@ -46,7 +47,8 @@ internal class KatalogScopeImpl : KatalogScope() {
         paramsFactory.setCatalogParams(params)
         return Katalog(
             title = title,
-            items = groupScope.items
+            items = groupScope.items,
+            extensions = extensions
         )
     }
 }
