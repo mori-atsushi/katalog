@@ -14,7 +14,30 @@ Katalog may be made breaking changes in the future.
 ## Getting Started
 ### step1: Add the dependency.
 
-`// TODO: write`
+Add GitHub Packages repository to your build.gradle file.
+Set your `GITHUB_USERNAME` and `GITHUB_TOKEN`.
+
+```kotlin
+repositories {
+    maven {
+        name = "GitHubPackages"
+        url = uri("https://maven.pkg.github.com/cyberagent-zemi/katalog")
+        credentials {
+            username = `GITHUB_USERNAME`
+            password = `GITHUB_TOKEN`
+        }
+    }
+}
+```
+
+Add the package dependencies to your build.gradle file.
+Please check `LATEST_VERSION` from [here](https://github.com/cyberagent-zemi/katalog/packages/879910).
+
+```kotlin
+dependencies {
+    implementation("co.jp.cyberagent.katalog:katalog:`LATEST_VERSION`")
+}
+```
 
 ### step2: Register the UI component in the Catalog.
 
