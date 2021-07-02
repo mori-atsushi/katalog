@@ -4,6 +4,7 @@ import jp.co.cyberagent.katalog.dsl.ComposeDefinition
 import jp.co.cyberagent.katalog.dsl.Group
 import jp.co.cyberagent.katalog.dsl.GroupDefinition
 import jp.co.cyberagent.katalog.dsl.KatalogScope
+import jp.co.cyberagent.katalog.ext.KatalogExt
 
 internal class KatalogScopeImpl : KatalogScope() {
     companion object {
@@ -32,6 +33,10 @@ internal class KatalogScopeImpl : KatalogScope() {
 
     override fun getParamsFactory(): ParamsFactory {
         return paramsFactory
+    }
+
+    override fun addExtension(ext: KatalogExt) {
+        // TODO: Impl
     }
 
     fun build(): Katalog {
