@@ -68,9 +68,11 @@ dependencies {
 publishing {
     publications {
         create<MavenPublication>("maven") {
+            val commitHash = project.findProperty("commit_hash") as? String
+                ?: System.getenv("GIT_COMMIT_HASH")
             groupId = "co.jp.cyberagent.katalog"
             artifactId = "katalog"
-            version = "0.0.1-SNAPSHOT"
+            version = "${Constants.version}-$commitHash-SNAPSHOT"
             artifact("$buildDir/outputs/aar/katalog-release.aar")
 
             pom.withXml {
