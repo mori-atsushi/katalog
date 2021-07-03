@@ -48,7 +48,7 @@ internal class KatalogScopeImpl : KatalogScope() {
         return Katalog(
             title = title,
             items = groupScope.items,
-            extensions = extensions
+            extensions = Extensions(extensions)
         )
     }
 }

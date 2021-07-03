@@ -12,7 +12,7 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
 import jp.co.cyberagent.katalog.compose.util.LocalKatalog
-import jp.co.cyberagent.katalog.ext.KatalogExt
+import jp.co.cyberagent.katalog.ext.ExtComponentWrapper
 
 @Composable
 fun Preview(
@@ -22,8 +22,9 @@ fun Preview(
     definition: @Composable () -> Unit
 ) {
     val katalog = LocalKatalog.current
+    val componentWrappers = katalog.extensions.componentWrappers
     Box(modifier = modifier) {
-        ExtensionsWrappers(katalog.extensions) {
+        ExtensionsWrappers(componentWrappers) {
             Scaler(scale) {
                 definition()
                 ClickMask(!clickable)
@@ -34,15 +35,15 @@ fun Preview(
 
 @Composable
 private fun ExtensionsWrappers(
-    extensions: List<KatalogExt>,
+    componentWrappers: List<ExtComponentWrapper>,
     content: @Composable () -> Unit
 ) {
-    if (extensions.isEmpty()) {
+    if (componentWrappers.isEmpty()) {
         content()
         return
     }
-    ExtensionsWrappers(extensions.dropLast(1)) {
-        extensions.last().wrapper {
+    ExtensionsWrappers(componentWrappers.dropLast(1)) {
+        componentWrappers.last().invoke {
             content()
         }
     }
