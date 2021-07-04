@@ -1,6 +1,10 @@
 package jp.co.cyberagent.katalog.compose.navigation
 
-import androidx.compose.animation.Crossfade
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.ContentTransform
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
@@ -20,7 +24,7 @@ internal fun <T> NavRoot(
         navController.back()
     }
 
-    Crossfade(current) {
+    AnimatedPage(current) {
         NavChild(
             navController = navController,
             state = it,
@@ -46,5 +50,33 @@ private fun <T> NavChild(
     }
     saveableStateHolder.SaveableStateProvider(state.key) {
         component(state.destination)
+    }
+}
+
+@OptIn(ExperimentalAnimationApi::class)
+@Composable
+private fun <T> AnimatedPage(
+    targetState: NavState<T>,
+    content: @Composable (state: NavState<T>) -> Unit
+) {
+    AnimatedContent(
+        targetState = targetState,
+        transitionSpec = {
+            if (targetState.index > initialState.index) {
+                ContentTransform(
+                    targetContentEnter = slideInHorizontally({ it }),
+                    initialContentExit = slideOutHorizontally({ -it / 5 }),
+                    targetContentZIndex = targetState.index.toFloat()
+                )
+            } else {
+                ContentTransform(
+                    targetContentEnter = slideInHorizontally({ -it / 5 }),
+                    initialContentExit = slideOutHorizontally({ it }),
+                    targetContentZIndex = targetState.index.toFloat()
+                )
+            }
+        }
+    ) {
+        content(it)
     }
 }
