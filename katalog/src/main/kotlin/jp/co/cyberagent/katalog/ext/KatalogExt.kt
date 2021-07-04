@@ -5,4 +5,7 @@ interface KatalogExt {
 
     val componentWrapper: ExtComponentWrapper?
         get() = null
+
+    val rootWrapper: ExtRootWrapper?
+        get() = null
 }
