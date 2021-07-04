@@ -4,6 +4,7 @@ import jp.co.cyberagent.katalog.dsl.ComposeDefinition
 import jp.co.cyberagent.katalog.dsl.Group
 import jp.co.cyberagent.katalog.dsl.GroupDefinition
 import jp.co.cyberagent.katalog.dsl.KatalogScope
+import jp.co.cyberagent.katalog.ext.KatalogExt
 
 internal class KatalogScopeImpl : KatalogScope() {
     companion object {
@@ -14,6 +15,7 @@ internal class KatalogScopeImpl : KatalogScope() {
     private val groupScope: GroupScopeImpl = GroupScopeImpl(
         paramsFactory = paramsFactory
     )
+    private val extensions = mutableListOf<KatalogExt>()
 
     override var title: String = DEFAULT_TITLE
     override var themeResId: Int? = null
@@ -34,6 +36,10 @@ internal class KatalogScopeImpl : KatalogScope() {
         return paramsFactory
     }
 
+    override fun addExtension(ext: KatalogExt) {
+        extensions.add(ext)
+    }
+
     fun build(): Katalog {
         val params = Params(
             themeResId = themeResId
@@ -41,7 +47,8 @@ internal class KatalogScopeImpl : KatalogScope() {
         paramsFactory.setCatalogParams(params)
         return Katalog(
             title = title,
-            items = groupScope.items
+            items = groupScope.items,
+            extensions = Extensions(extensions)
         )
     }
 }

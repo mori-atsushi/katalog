@@ -15,6 +15,7 @@ import jp.co.cyberagent.katalog.compose.page.DiscoveryPage
 import jp.co.cyberagent.katalog.compose.page.PreviewPage
 import jp.co.cyberagent.katalog.compose.res.materialColors
 import jp.co.cyberagent.katalog.compose.util.FragmentManagerProvider
+import jp.co.cyberagent.katalog.compose.util.KatalogLocalProvider
 import jp.co.cyberagent.katalog.compose.widget.ModalVisibility
 
 @Composable
@@ -55,16 +56,20 @@ private fun AppWindow(
 @Composable
 private fun MainContent(viewModel: KatalogViewModel) {
     val selectedComponent by viewModel.selectedComponent.collectAsState()
+    val katalog by viewModel.katalog.collectAsState()
+    val katalogValue = katalog ?: return
 
-    DiscoveryPage(
-        viewModel = viewModel
-    )
-    ModalVisibility(
-        value = selectedComponent
-    ) {
-        PreviewPage(
-            viewModel = viewModel,
-            component = it
+    KatalogLocalProvider(katalogValue) {
+        DiscoveryPage(
+            viewModel = viewModel
         )
+        ModalVisibility(
+            value = selectedComponent
+        ) {
+            PreviewPage(
+                viewModel = viewModel,
+                component = it
+            )
+        }
     }
 }
