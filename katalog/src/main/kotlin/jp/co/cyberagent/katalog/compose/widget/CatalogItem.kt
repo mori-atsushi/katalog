@@ -20,7 +20,7 @@ fun CatalogItemWrapper(
         modifier
             .clip(shape)
             .border(
-                width = 1.dp,
+                width = 1.5.dp,
                 color = MaterialTheme.colors.surface,
                 shape = shape
             )
