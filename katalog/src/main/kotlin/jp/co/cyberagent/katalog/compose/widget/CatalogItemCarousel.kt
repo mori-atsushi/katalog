@@ -89,16 +89,10 @@ private fun Cell(
         ) {
             when (item) {
                 is CatalogItem.Component -> {
-                    ComponentCell(
-                        component = item,
-                        onClick = onClick
-                    )
+                    ComponentCell(component = item)
                 }
                 is CatalogItem.Group -> {
-                    GroupCell(
-                        group = item,
-                        onClick = onClick
-                    )
+                    GroupCell()
                 }
             }
         }
@@ -115,10 +109,7 @@ private fun Cell(
 }
 
 @Composable
-private fun GroupCell(
-    group: CatalogItem.Group,
-    onClick: () -> Unit
-) {
+private fun GroupCell() {
     BoxWithConstraints(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
@@ -135,12 +126,14 @@ private fun GroupCell(
 
 @Composable
 private fun ComponentCell(
-    component: CatalogItem.Component,
-    onClick: () -> Unit
+    component: CatalogItem.Component
 ) {
-    Preview(
-        modifier = Modifier.fillMaxSize(),
-        scale = 0.5F,
-        definition = component.definition
-    )
+    CatalogItemWrapper(
+        modifier = Modifier.fillMaxSize()
+    ) {
+        Preview(
+            scale = 0.5F,
+            definition = component.definition
+        )
+    }
 }
