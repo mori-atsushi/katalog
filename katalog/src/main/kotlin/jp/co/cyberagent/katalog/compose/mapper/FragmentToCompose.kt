@@ -14,14 +14,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentContainerView
 import androidx.fragment.app.commitNow
 import jp.co.cyberagent.katalog.compose.util.LocalFragmentManager
-import jp.co.cyberagent.katalog.domain.ParamsFactory
 import jp.co.cyberagent.katalog.dsl.FragmentDefinition
 import jp.co.cyberagent.katalog.dsl.FragmentOnCreateListener
 import jp.co.cyberagent.katalog.util.UUIDWrapper
 
 @Composable
 internal fun <T : Fragment> FragmentToCompose(
-    paramsFactory: ParamsFactory,
     layoutParams: ViewGroup.LayoutParams? = null,
     onCreateView: FragmentOnCreateListener<T>,
     definition: FragmentDefinition<T>

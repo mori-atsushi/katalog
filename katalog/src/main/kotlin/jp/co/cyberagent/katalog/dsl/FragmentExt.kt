@@ -27,10 +27,8 @@ internal fun <T : Fragment> GroupScope.fragment(
     definition: FragmentDefinition<T>
 ) {
     val displayName = name ?: clazz.simpleName ?: ""
-    val paramsFactory = getParamsFactory()
     compose(displayName) {
         FragmentToCompose(
-            paramsFactory = paramsFactory,
             layoutParams = layoutParams,
             onCreateView = onCreateView,
             definition = definition
