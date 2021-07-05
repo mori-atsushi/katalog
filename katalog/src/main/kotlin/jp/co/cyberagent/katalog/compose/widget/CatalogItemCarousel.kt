@@ -1,6 +1,5 @@
 package jp.co.cyberagent.katalog.compose.widget
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -84,21 +83,14 @@ private fun Cell(
             Modifier
                 .fillMaxWidth()
                 .aspectRatio(1F)
-                .clip(RoundedCornerShape(defaultCornerRadius))
-                .background(MaterialTheme.colors.surface),
+                .clip(RoundedCornerShape(defaultCornerRadius)),
         ) {
             when (item) {
                 is CatalogItem.Component -> {
-                    ComponentCell(
-                        component = item,
-                        onClick = onClick
-                    )
+                    ComponentCell(component = item)
                 }
                 is CatalogItem.Group -> {
-                    GroupCell(
-                        group = item,
-                        onClick = onClick
-                    )
+                    GroupCell()
                 }
             }
         }
@@ -115,32 +107,35 @@ private fun Cell(
 }
 
 @Composable
-private fun GroupCell(
-    group: CatalogItem.Group,
-    onClick: () -> Unit
-) {
-    BoxWithConstraints(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
+private fun GroupCell() {
+    CatalogItemWrapper(
+        modifier = Modifier.fillMaxSize()
     ) {
-        val size = (maxWidth.value / 2.4).dp
-        Icon(
-            modifier = Modifier.size(size),
-            painter = painterResource(R.drawable.catalog_icon_folder),
-            tint = MaterialTheme.colors.onBackground.copy(alpha = 0.6F),
-            contentDescription = null
-        )
+        BoxWithConstraints(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            val size = (maxWidth.value / 2.4).dp
+            Icon(
+                modifier = Modifier.size(size),
+                painter = painterResource(R.drawable.catalog_icon_folder),
+                tint = MaterialTheme.colors.onBackground.copy(alpha = 0.6F),
+                contentDescription = null
+            )
+        }
     }
 }
 
 @Composable
 private fun ComponentCell(
-    component: CatalogItem.Component,
-    onClick: () -> Unit
+    component: CatalogItem.Component
 ) {
-    Preview(
-        modifier = Modifier.fillMaxSize(),
-        scale = 0.5F,
-        definition = component.definition
-    )
+    CatalogItemWrapper(
+        modifier = Modifier.fillMaxSize()
+    ) {
+        Preview(
+            scale = 0.5F,
+            definition = component.definition
+        )
+    }
 }

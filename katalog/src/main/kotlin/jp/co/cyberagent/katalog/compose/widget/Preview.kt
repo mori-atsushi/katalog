@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.foundation.layout.requiredWidth
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,7 +25,10 @@ fun Preview(
 ) {
     val katalog = LocalKatalog.current
     val componentWrappers = katalog.extensions.componentWrappers
-    Box(modifier = modifier) {
+    Surface(
+        modifier = modifier,
+        color = MaterialTheme.colors.background
+    ) {
         ExtensionsWrappers(componentWrappers) {
             Scaler(scale) {
                 definition()
