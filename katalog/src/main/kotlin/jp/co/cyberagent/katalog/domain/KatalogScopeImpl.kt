@@ -1,18 +1,18 @@
 package jp.co.cyberagent.katalog.domain
 
 import jp.co.cyberagent.katalog.dsl.ComposeDefinition
+import jp.co.cyberagent.katalog.dsl.ExtensionDefinition
 import jp.co.cyberagent.katalog.dsl.Group
 import jp.co.cyberagent.katalog.dsl.GroupDefinition
 import jp.co.cyberagent.katalog.dsl.KatalogScope
-import jp.co.cyberagent.katalog.ext.KatalogExt
 
 internal class KatalogScopeImpl : KatalogScope {
     companion object {
         private const val DEFAULT_TITLE = "UI Catalog"
     }
 
-    private val groupScope: GroupScopeImpl = GroupScopeImpl()
-    private val extensions = mutableListOf<KatalogExt>()
+    private val groupScope = GroupScopeImpl()
+    private val extensionScope = ExtensionScopeImpl()
 
     override var title: String = DEFAULT_TITLE
 
@@ -28,15 +28,15 @@ internal class KatalogScopeImpl : KatalogScope {
         groupScope.compose(name, definition)
     }
 
-    override fun addExtension(ext: KatalogExt) {
-        extensions.add(ext)
+    override fun extension(definition: ExtensionDefinition) {
+        extensionScope.definition()
     }
 
     fun build(): Katalog {
         return Katalog(
             title = title,
             items = groupScope.items,
-            extensions = Extensions(extensions)
+            extensions = extensionScope.build()
         )
     }
 }
