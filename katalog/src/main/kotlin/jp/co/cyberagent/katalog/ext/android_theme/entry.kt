@@ -4,5 +4,5 @@ import androidx.annotation.StyleRes
 import jp.co.cyberagent.katalog.dsl.ExtensionScope
 
 fun ExtensionScope.setThemeResId(@StyleRes resId: Int) {
-    add(AndroidThemeExt(resId))
+    add(createAndroidThemeExt(resId))
 }
