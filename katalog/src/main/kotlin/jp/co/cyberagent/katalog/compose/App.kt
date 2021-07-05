@@ -17,6 +17,7 @@ import jp.co.cyberagent.katalog.compose.res.materialColors
 import jp.co.cyberagent.katalog.compose.util.FragmentManagerProvider
 import jp.co.cyberagent.katalog.compose.util.KatalogLocalProvider
 import jp.co.cyberagent.katalog.compose.widget.ModalVisibility
+import jp.co.cyberagent.katalog.ext.ExtRootWrapper
 
 @Composable
 internal fun App(
@@ -58,18 +59,37 @@ private fun MainContent(viewModel: KatalogViewModel) {
     val selectedComponent by viewModel.selectedComponent.collectAsState()
     val katalog by viewModel.katalog.collectAsState()
     val katalogValue = katalog ?: return
+    val rootWrappers = katalogValue.extensions.rootWrappers
 
     KatalogLocalProvider(katalogValue) {
-        DiscoveryPage(
-            viewModel = viewModel
-        )
-        ModalVisibility(
-            value = selectedComponent
-        ) {
-            PreviewPage(
-                viewModel = viewModel,
-                component = it
+        ExtRootWrappers(rootWrappers) {
+            DiscoveryPage(
+                viewModel = viewModel
             )
+            ModalVisibility(
+                value = selectedComponent
+            ) {
+                PreviewPage(
+                    viewModel = viewModel,
+                    component = it
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun ExtRootWrappers(
+    rootWrappers: List<ExtRootWrapper>,
+    content: @Composable () -> Unit
+) {
+    if (rootWrappers.isEmpty()) {
+        content()
+        return
+    }
+    ExtRootWrappers(rootWrappers.dropLast(1)) {
+        rootWrappers.last().invoke {
+            content()
         }
     }
 }

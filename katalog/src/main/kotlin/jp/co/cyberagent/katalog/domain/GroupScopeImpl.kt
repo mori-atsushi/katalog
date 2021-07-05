@@ -5,17 +5,14 @@ import jp.co.cyberagent.katalog.dsl.Group
 import jp.co.cyberagent.katalog.dsl.GroupDefinition
 import jp.co.cyberagent.katalog.dsl.GroupScope
 
-internal class GroupScopeImpl(
-    private val paramsFactory: ParamsFactory
-) : GroupScope() {
+internal class GroupScopeImpl : GroupScope {
     private var _items = mutableListOf<CatalogItem>()
     val items: List<CatalogItem> get() = _items
 
     override fun group(name: String, definition: GroupDefinition) {
         val item = Mapper.dslToModel(
             name = name,
-            definition = definition,
-            paramsFactory = paramsFactory
+            definition = definition
         )
         _items.add(item)
     }
@@ -32,9 +29,5 @@ internal class GroupScopeImpl(
     ) {
         val item = Mapper.dslToModel(name, definition)
         _items.add(item)
-    }
-
-    override fun getParamsFactory(): ParamsFactory {
-        return paramsFactory
     }
 }

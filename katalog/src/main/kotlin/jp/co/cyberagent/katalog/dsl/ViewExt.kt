@@ -41,8 +41,7 @@ internal fun <T : View> GroupScope.view(
     definition: ViewDefinition<T>
 ) {
     val displayName = name ?: clazz.simpleName ?: ""
-    val paramsFactory = getParamsFactory()
     compose(displayName) {
-        ViewToCompose(paramsFactory, layoutParams, definition)
+        ViewToCompose(layoutParams, definition)
     }
 }

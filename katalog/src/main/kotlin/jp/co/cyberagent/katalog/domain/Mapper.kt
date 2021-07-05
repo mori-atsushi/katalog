@@ -13,10 +13,9 @@ internal object Mapper {
 
     fun dslToModel(
         name: String,
-        definition: GroupDefinition,
-        paramsFactory: ParamsFactory
+        definition: GroupDefinition
     ): CatalogItem.Group {
-        val groupScope = GroupScopeImpl(paramsFactory)
+        val groupScope = GroupScopeImpl()
         definition.invoke(groupScope)
         return CatalogItem.Group(
             name = name,

@@ -28,8 +28,7 @@ internal fun <T : ViewBinding> GroupScope.binding(
     update: BindingUpdateDefinition<T> = {}
 ) {
     val displayName = name ?: clazz.simpleName ?: ""
-    val paramsFactory = getParamsFactory()
     compose(displayName) {
-        BindingToCompose(factory, paramsFactory, layoutParams, update)
+        BindingToCompose(factory, layoutParams, update)
     }
 }
