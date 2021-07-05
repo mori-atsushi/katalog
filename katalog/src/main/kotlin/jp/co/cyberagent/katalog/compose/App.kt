@@ -17,6 +17,7 @@ import jp.co.cyberagent.katalog.compose.res.materialColors
 import jp.co.cyberagent.katalog.compose.util.FragmentManagerProvider
 import jp.co.cyberagent.katalog.compose.util.KatalogLocalProvider
 import jp.co.cyberagent.katalog.compose.widget.ModalVisibility
+import jp.co.cyberagent.katalog.domain.ExtRootWrapperScopeImpl
 import jp.co.cyberagent.katalog.ext.ExtRootWrapper
 
 @Composable
@@ -88,8 +89,8 @@ private fun ExtRootWrappers(
         return
     }
     ExtRootWrappers(rootWrappers.dropLast(1)) {
-        rootWrappers.last().invoke {
-            content()
-        }
+        val scope = ExtRootWrapperScopeImpl(content)
+        val wrapper = rootWrappers.last()
+        scope.wrapper()
     }
 }
