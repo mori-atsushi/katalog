@@ -10,7 +10,7 @@ internal fun createAndroidThemeExt(
     builder.setRootWrapper {
         val themeSelected = rememberThemeSelected(themeResId)
         if (themeSelected) {
-            it()
+            content()
         }
     }
     return builder.build()

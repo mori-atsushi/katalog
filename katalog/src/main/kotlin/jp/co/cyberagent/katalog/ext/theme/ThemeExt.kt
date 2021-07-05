@@ -7,7 +7,7 @@ internal fun createThemeExt(
 ): KatalogExt {
     val builder = KatalogExt.Builder("Theme")
     builder.setComponentWrapper {
-        theme { it() }
+        theme { content() }
     }
     return builder.build()
 }
