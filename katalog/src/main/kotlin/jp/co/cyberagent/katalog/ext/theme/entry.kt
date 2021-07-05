@@ -1,7 +1,7 @@
 package jp.co.cyberagent.katalog.ext.theme
 
-import jp.co.cyberagent.katalog.dsl.KatalogScope
+import jp.co.cyberagent.katalog.dsl.ExtensionScope
 
-fun KatalogScope.theme(theme: ThemeDefinition) {
-    addExtension(ThemeExt(theme))
+fun ExtensionScope.theme(theme: ThemeDefinition) {
+    add(ThemeExt(theme))
 }
