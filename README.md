@@ -25,8 +25,9 @@ class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        startKatalog {
+        registerKatalog(
             title = "My App Catalog"
+        ) {
             compose("UI Component") {
                 Text(text = "Hello, World")
             }
@@ -38,9 +39,9 @@ class MyApplication : Application() {
 Can group by using `group` function.
 
 ```kotlin
-startKatalog {
+registerKatalog(
     title = "My App Catalog"
-    
+) {
     group("Group 1") {
         compose("UI Component") {
             /* ... */
