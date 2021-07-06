@@ -12,8 +12,10 @@ import org.junit.runners.JUnit4
 class KatalogTest {
     @Test
     fun create() {
-        Katalog.register {
-            title = "title"
+        Katalog.register(
+            title = "title",
+            extensions = emptyList()
+        ) {
             group("group1") {
                 group("group1-1") {
                     view("view1-1-1") {
@@ -70,7 +72,10 @@ class KatalogTest {
                 View(it)
             }
         }
-        Katalog.register {
+        Katalog.register(
+            title = "title",
+            extensions = emptyList()
+        ) {
             group(group1, group2)
         }
 
@@ -90,11 +95,13 @@ class KatalogTest {
 
     @Test
     fun create_notSet() {
-        Katalog.register {
+        Katalog.register(
+            title = "title",
+            extensions = emptyList()
+        ) {
             // no op
         }
         val catalog = Katalog.create()
-        assertThat(catalog.title).isEqualTo("UI Catalog")
         assertThat(catalog.items).isEmpty()
     }
 }
