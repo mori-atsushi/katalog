@@ -11,12 +11,18 @@ internal class ExtensionBuilderImpl(
     private var componentWrapper: ExtComponentWrapper? = null
     private var rootWrapper: ExtRootWrapper? = null
 
-    override fun setComponentWrapper(wrapper: ExtComponentWrapper) {
+    override fun setComponentWrapper(
+        wrapper: ExtComponentWrapper
+    ): ExtensionBuilder {
         this.componentWrapper = wrapper
+        return this
     }
 
-    override fun setRootWrapper(wrapper: ExtRootWrapper) {
+    override fun setRootWrapper(
+        wrapper: ExtRootWrapper
+    ): ExtensionBuilder {
         this.rootWrapper = wrapper
+        return this
     }
 
     override fun build(): KatalogExt {
