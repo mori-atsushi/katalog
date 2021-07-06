@@ -1,6 +1,7 @@
 package jp.co.cyberagent.katalog.domain
 
-import jp.co.cyberagent.katalog.dsl.KatalogDefinition
+import jp.co.cyberagent.katalog.dsl.GroupDefinition
+import jp.co.cyberagent.katalog.ext.KatalogExt
 
 internal data class Katalog(
     val title: String,
@@ -10,13 +11,21 @@ internal data class Katalog(
     companion object {
         private var definition: KatalogDefinition? = null
 
-        fun register(definition: KatalogDefinition) {
-            this.definition = definition
+        fun register(
+            title: String,
+            extensions: List<KatalogExt>,
+            groupDefinition: GroupDefinition
+        ) {
+            this.definition = KatalogDefinition(
+                title = title,
+                extensions = extensions,
+                groupDefinition = groupDefinition
+            )
         }
 
         fun create(): Katalog {
             val definition = definition ?: throw IllegalStateException("require call register")
-            return Mapper.dslToModel(definition)
+            return definition.build()
         }
     }
 }
