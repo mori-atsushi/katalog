@@ -7,7 +7,7 @@ internal fun createAndroidThemeExt(
     @StyleRes themeResId: Int
 ): KatalogExt {
     val builder = KatalogExt.Builder("AndroidTheme")
-    builder.setRootWrapper {
+    builder.setRootWrapper { content ->
         val themeSelected = rememberThemeSelected(themeResId)
         if (themeSelected) {
             content()

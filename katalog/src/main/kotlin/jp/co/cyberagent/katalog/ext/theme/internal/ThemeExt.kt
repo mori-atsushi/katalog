@@ -7,9 +7,10 @@ internal fun createThemeExt(
     theme: ThemeDefinition
 ): KatalogExt {
     val builder = KatalogExt.Builder("Theme")
-    builder.setComponentWrapper {
-        val scope = ThemeExtScopeImpl(content)
-        scope.theme()
+    builder.setComponentWrapper { content ->
+        theme {
+            content()
+        }
     }
     return builder.build()
 }

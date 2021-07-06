@@ -14,7 +14,6 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
 import jp.co.cyberagent.katalog.compose.util.LocalKatalog
-import jp.co.cyberagent.katalog.domain.ExtComponentWrapperScopeImpl
 import jp.co.cyberagent.katalog.ext.ExtComponentWrapper
 
 @Composable
@@ -49,9 +48,9 @@ private fun ExtensionsWrappers(
         return
     }
     ExtensionsWrappers(componentWrappers.dropLast(1)) {
-        val scope = ExtComponentWrapperScopeImpl(content)
-        val wrapper = componentWrappers.last()
-        scope.wrapper()
+        componentWrappers.last().invoke {
+            content()
+        }
     }
 }
 
