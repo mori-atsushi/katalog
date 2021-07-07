@@ -1,18 +1,12 @@
 package jp.co.cyberagent.katalog.ext.android_theme
 
 import androidx.annotation.StyleRes
-import jp.co.cyberagent.katalog.ext.ExtRootWrapper
 import jp.co.cyberagent.katalog.ext.KatalogExt
+import jp.co.cyberagent.katalog.ext.android_theme.internal.createAndroidThemeExt
 
-internal class AndroidThemeExt(
-    @StyleRes private val themeResId: Int
-) : KatalogExt {
-    override val name: String = "Android Theme"
-
-    override val rootWrapper: ExtRootWrapper = {
-        val themeSelected = rememberThemeSelected(themeResId)
-        if (themeSelected) {
-            it()
-        }
-    }
+@Suppress("FunctionName")
+fun AndroidThemeExt(
+    @StyleRes themeResId: Int
+): KatalogExt {
+    return createAndroidThemeExt(themeResId)
 }
