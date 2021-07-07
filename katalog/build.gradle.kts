@@ -25,6 +25,7 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+        freeCompilerArgs = freeCompilerArgs + "-Xexplicit-api=strict"
     }
     composeOptions {
         kotlinCompilerVersion = Versions.composeKotlinCompiler
