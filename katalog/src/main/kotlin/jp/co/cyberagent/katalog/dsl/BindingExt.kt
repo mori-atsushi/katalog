@@ -7,10 +7,10 @@ import androidx.viewbinding.ViewBinding
 import jp.co.cyberagent.katalog.compose.mapper.BindingToCompose
 import kotlin.reflect.KClass
 
-typealias BindingFactoryDefinition<T> = (LayoutInflater, ViewGroup?, Boolean) -> T
-typealias BindingUpdateDefinition<T> = T.(Context) -> Unit
+public typealias BindingFactoryDefinition<T> = (LayoutInflater, ViewGroup?, Boolean) -> T
+public typealias BindingUpdateDefinition<T> = T.(Context) -> Unit
 
-inline fun <reified T : ViewBinding> GroupScope.binding(
+public inline fun <reified T : ViewBinding> GroupScope.binding(
     noinline factory: BindingFactoryDefinition<T>,
     name: String? = null,
     layoutParams: ViewGroup.LayoutParams = WRAP_WIDTH_WRAP_HEIGHT,
