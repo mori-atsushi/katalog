@@ -65,6 +65,11 @@ dependencies {
     testImplementation(Deps.Androidx.Test.truth)
 }
 
+val sourceJar by tasks.creating(Jar::class) {
+    from(android.sourceSets.getByName("main").java.srcDirs)
+    archiveClassifier.set("sources")
+}
+
 publishing {
     publications {
         create<MavenPublication>("maven") {
@@ -73,6 +78,7 @@ publishing {
             groupId = "co.jp.cyberagent.katalog"
             artifactId = "katalog"
             version = "${Constants.version}-$commitHash-SNAPSHOT"
+            artifact(sourceJar)
             artifact("$buildDir/outputs/aar/katalog-release.aar")
 
             pom.withXml {
