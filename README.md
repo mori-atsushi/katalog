@@ -31,11 +31,11 @@ repositories {
 ```
 
 Add the package dependencies to your build.gradle file.
-Please check `LATEST_VERSION` from [here](https://github.com/cyberagent-zemi/katalog/packages/879910).
+Please check `LATEST_VERSION` from [here](https://github.com/cyberagent-zemi/katalog/packages/886303).
 
 ```kotlin
 dependencies {
-    implementation("co.jp.cyberagent.katalog:katalog:`LATEST_VERSION`")
+    implementation("co.jp.cyberagent.katalog:katalog-android:`LATEST_VERSION`")
 }
 ```
 

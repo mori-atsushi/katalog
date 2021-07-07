@@ -76,7 +76,7 @@ publishing {
             val commitHash = project.findProperty("commit_hash") as? String
                 ?: System.getenv("GIT_COMMIT_HASH")
             groupId = "co.jp.cyberagent.katalog"
-            artifactId = "katalog"
+            artifactId = "katalog-android"
             version = "${Constants.version}-$commitHash-SNAPSHOT"
             artifact(sourceJar)
             artifact("$buildDir/outputs/aar/katalog-release.aar")
