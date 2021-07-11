@@ -2,8 +2,8 @@ package jp.co.cyberagent.katalog.dsl
 
 import androidx.compose.runtime.Composable
 
-typealias GroupDefinition = GroupScope.() -> Unit
-typealias ComposeDefinition = @Composable () -> Unit
+public typealias GroupDefinition = GroupScope.() -> Unit
+public typealias ComposeDefinition = @Composable () -> Unit
 
 @DslMarker
-annotation class CatalogDslMarker
+internal annotation class CatalogDslMarker

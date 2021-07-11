@@ -10,7 +10,7 @@ internal val LocalFragmentManager = staticCompositionLocalOf<FragmentManager> {
 }
 
 @Composable
-fun FragmentManagerProvider(
+internal fun FragmentManagerProvider(
     fragmentManager: FragmentManager,
     content: @Composable () -> Unit
 ) {

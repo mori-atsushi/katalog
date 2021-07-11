@@ -6,26 +6,26 @@ import android.view.ViewGroup
 import jp.co.cyberagent.katalog.compose.mapper.ViewToCompose
 import kotlin.reflect.KClass
 
-typealias ViewDefinition<T> = (context: Context) -> T
+public typealias ViewDefinition<T> = (context: Context) -> T
 
-val WRAP_WIDTH_WRAP_HEIGHT = ViewGroup.LayoutParams(
+public val WRAP_WIDTH_WRAP_HEIGHT: ViewGroup.LayoutParams = ViewGroup.LayoutParams(
     ViewGroup.LayoutParams.WRAP_CONTENT,
     ViewGroup.LayoutParams.WRAP_CONTENT
 )
-val WRAP_WIDTH_MATCH_HEIGHT = ViewGroup.LayoutParams(
+public val WRAP_WIDTH_MATCH_HEIGHT: ViewGroup.LayoutParams = ViewGroup.LayoutParams(
     ViewGroup.LayoutParams.WRAP_CONTENT,
     ViewGroup.LayoutParams.MATCH_PARENT
 )
-val MATCH_WIDTH_WRAP_HEIGHT = ViewGroup.LayoutParams(
+public val MATCH_WIDTH_WRAP_HEIGHT: ViewGroup.LayoutParams = ViewGroup.LayoutParams(
     ViewGroup.LayoutParams.MATCH_PARENT,
     ViewGroup.LayoutParams.WRAP_CONTENT
 )
-val MATCH_WIDTH_MATCH_HEIGHT = ViewGroup.LayoutParams(
+public val MATCH_WIDTH_MATCH_HEIGHT: ViewGroup.LayoutParams = ViewGroup.LayoutParams(
     ViewGroup.LayoutParams.MATCH_PARENT,
     ViewGroup.LayoutParams.MATCH_PARENT
 )
 
-inline fun <reified T : View> GroupScope.view(
+public inline fun <reified T : View> GroupScope.view(
     name: String? = null,
     layoutParams: ViewGroup.LayoutParams = WRAP_WIDTH_WRAP_HEIGHT,
     noinline definition: ViewDefinition<T>

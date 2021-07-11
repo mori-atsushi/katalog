@@ -17,7 +17,7 @@ import jp.co.cyberagent.katalog.compose.util.LocalKatalog
 import jp.co.cyberagent.katalog.ext.ExtComponentWrapper
 
 @Composable
-fun Preview(
+internal fun Preview(
     modifier: Modifier = Modifier,
     scale: Float = 1.0F,
     clickable: Boolean = false,

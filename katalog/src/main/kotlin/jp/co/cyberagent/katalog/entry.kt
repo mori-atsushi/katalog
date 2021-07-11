@@ -7,7 +7,7 @@ import jp.co.cyberagent.katalog.ext.KatalogExt
 
 private const val DEFAULT_TITLE = "Katalog"
 
-fun registerKatalog(
+public fun registerKatalog(
     title: String = DEFAULT_TITLE,
     extensions: List<KatalogExt> = emptyList(),
     groupDefinition: GroupDefinition
@@ -15,6 +15,6 @@ fun registerKatalog(
     Katalog.register(title, extensions, groupDefinition)
 }
 
-fun group(name: String, definition: GroupDefinition): Group {
+public fun group(name: String, definition: GroupDefinition): Group {
     return Group(name, definition)
 }

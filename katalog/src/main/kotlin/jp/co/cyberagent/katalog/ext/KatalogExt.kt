@@ -2,18 +2,18 @@ package jp.co.cyberagent.katalog.ext
 
 import jp.co.cyberagent.katalog.domain.ExtensionBuilderImpl
 
-interface KatalogExt {
-    companion object {
+public interface KatalogExt {
+    public companion object {
         @Suppress("FunctionName")
-        fun Builder(name: String): ExtensionBuilder =
+        public fun Builder(name: String): ExtensionBuilder =
             ExtensionBuilderImpl(name)
     }
 
-    val name: String
+    public val name: String
 
-    val componentWrapper: ExtComponentWrapper?
+    public val componentWrapper: ExtComponentWrapper?
         get() = null
 
-    val rootWrapper: ExtRootWrapper?
+    public val rootWrapper: ExtRootWrapper?
         get() = null
 }

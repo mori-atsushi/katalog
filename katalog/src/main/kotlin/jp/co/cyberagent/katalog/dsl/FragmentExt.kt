@@ -6,10 +6,10 @@ import androidx.fragment.app.Fragment
 import jp.co.cyberagent.katalog.compose.mapper.FragmentToCompose
 import kotlin.reflect.KClass
 
-typealias FragmentDefinition<T> = (context: Context) -> T
-typealias FragmentOnCreateListener<T> = (fragment: T) -> Unit
+public typealias FragmentDefinition<T> = (context: Context) -> T
+public typealias FragmentOnCreateListener<T> = (fragment: T) -> Unit
 
-inline fun <reified T : Fragment> GroupScope.fragment(
+public inline fun <reified T : Fragment> GroupScope.fragment(
     name: String? = null,
     layoutParams: ViewGroup.LayoutParams = MATCH_WIDTH_MATCH_HEIGHT,
     noinline onCreateView: FragmentOnCreateListener<T> = {},

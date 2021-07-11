@@ -1,6 +1,6 @@
 package jp.co.cyberagent.katalog.dsl
 
-class Group(
+public class Group(
     internal val name: String,
     internal val definition: GroupDefinition
 )

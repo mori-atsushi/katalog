@@ -11,7 +11,7 @@ import androidx.compose.ui.unit.dp
 import jp.co.cyberagent.katalog.compose.res.defaultCornerRadius
 
 @Composable
-fun CatalogItemWrapper(
+internal fun CatalogItemWrapper(
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit
 ) {
