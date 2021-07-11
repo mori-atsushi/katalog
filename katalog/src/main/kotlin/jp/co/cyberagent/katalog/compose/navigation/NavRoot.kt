@@ -15,7 +15,7 @@ import jp.co.cyberagent.katalog.compose.util.BackPressedEffect
 @Composable
 internal fun <T> NavRoot(
     navController: NavController<T>,
-    component: @Composable (T) -> Unit
+    component: @Composable (NavState<T>) -> Unit
 ) {
     val current by navController.current
     val saveableStateHolder = rememberSaveableStateHolder()
@@ -39,7 +39,7 @@ private fun <T> NavChild(
     navController: NavController<T>,
     state: NavState<T>,
     saveableStateHolder: SaveableStateHolder,
-    component: @Composable (T) -> Unit
+    component: @Composable (NavState<T>) -> Unit
 ) {
     DisposableEffect(state) {
         onDispose {
@@ -49,7 +49,7 @@ private fun <T> NavChild(
         }
     }
     saveableStateHolder.SaveableStateProvider(state.key) {
-        component(state.destination)
+        component(state)
     }
 }
 
