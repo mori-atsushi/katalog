@@ -13,5 +13,10 @@ internal fun createAndroidThemeExt(
             content()
         }
     }
+    builder.setComponentWrapper { content ->
+        Background {
+            content()
+        }
+    }
     return builder.build()
 }
