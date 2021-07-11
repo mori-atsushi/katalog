@@ -33,4 +33,3 @@ private fun rememberActivity(): Activity? {
     val context = LocalContext.current
     return remember(context) { context.findActivity() }
 }
-

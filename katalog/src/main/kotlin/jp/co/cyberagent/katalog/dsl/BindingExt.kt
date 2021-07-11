@@ -1,6 +1,5 @@
 package jp.co.cyberagent.katalog.dsl
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
@@ -8,7 +7,7 @@ import jp.co.cyberagent.katalog.compose.mapper.BindingToCompose
 import kotlin.reflect.KClass
 
 public typealias BindingFactoryDefinition<T> = (LayoutInflater, ViewGroup?, Boolean) -> T
-public typealias BindingUpdateDefinition<T> = T.(Context) -> Unit
+public typealias BindingUpdateDefinition<T> = ViewDefinitionScope.(T) -> Unit
 
 public inline fun <reified T : ViewBinding> GroupScope.binding(
     noinline factory: BindingFactoryDefinition<T>,

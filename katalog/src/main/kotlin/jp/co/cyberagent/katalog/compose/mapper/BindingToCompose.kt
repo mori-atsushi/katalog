@@ -16,7 +16,7 @@ internal fun <T : ViewBinding> BindingToCompose(
     ViewToCompose(layoutParams) {
         val inflater = LayoutInflater.from(context)
         val binding = factory.invoke(inflater, null, false)
-        update.invoke(binding, context)
+        update.invoke(this, binding)
         binding.root
     }
 }
