@@ -6,6 +6,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import jp.co.cyberagent.katalog.compose.util.rememberIsTop
 import jp.co.cyberagent.katalog.compose.widget.CatalogItemList
@@ -19,7 +20,7 @@ internal fun TopPage(
     onChangeIsTop: (Boolean) -> Unit = {}
 ) {
     val lazyListState = rememberLazyListState()
-    val isTop = lazyListState.rememberIsTop()
+    val isTop by lazyListState.rememberIsTop()
     LaunchedEffect(isTop) {
         onChangeIsTop(isTop)
     }
