@@ -23,6 +23,6 @@ object Versions {
         }
     }
 
-    const val material = "1.3.0"
+    const val material = "1.4.0"
     const val ktlint = "0.41.0"
 }
