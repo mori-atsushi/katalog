@@ -7,6 +7,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -27,11 +28,17 @@ internal fun DiscoveryPage(
     var isScrollTop by remember {
         mutableStateOf(true)
     }
+    val title by derivedStateOf {
+        when (val destination = navController.current.value.destination) {
+            is NavDestination.Group -> destination.group.name
+            is NavDestination.Top -> katalog?.title.orEmpty()
+        }
+    }
 
     Scaffold(
         topBar = {
             DiscoveryTopAppBar(
-                title = katalog?.title.orEmpty(),
+                title = title,
                 isPageTop = isPageTop,
                 isScrollTop = isScrollTop,
                 onClickBack = { navController.back() }
