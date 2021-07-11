@@ -6,15 +6,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import jp.co.cyberagent.katalog.compose.KatalogViewModel
 import jp.co.cyberagent.katalog.compose.util.BackPressedEffect
+import jp.co.cyberagent.katalog.compose.widget.KatalogTopAppBar
 import jp.co.cyberagent.katalog.compose.widget.Preview
 import jp.co.cyberagent.katalog.domain.CatalogItem
 
@@ -49,10 +47,8 @@ private fun PreviewTopAppBar(
     name: String,
     onClickClose: () -> Unit
 ) {
-    TopAppBar(
-        title = { Text(name) },
-        backgroundColor = MaterialTheme.colors.surface,
-        contentColor = MaterialTheme.colors.onSurface,
+    KatalogTopAppBar(
+        title = name,
         navigationIcon = {
             IconButton(onClick = onClickClose) {
                 Icon(
@@ -60,7 +56,6 @@ private fun PreviewTopAppBar(
                     contentDescription = "close"
                 )
             }
-        },
-        elevation = 0.dp
+        }
     )
 }

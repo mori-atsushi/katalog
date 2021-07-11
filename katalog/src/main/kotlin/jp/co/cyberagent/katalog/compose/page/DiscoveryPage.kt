@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -12,6 +11,7 @@ import androidx.compose.ui.unit.dp
 import jp.co.cyberagent.katalog.compose.KatalogViewModel
 import jp.co.cyberagent.katalog.compose.navigation.NavDestination
 import jp.co.cyberagent.katalog.compose.navigation.NavRoot
+import jp.co.cyberagent.katalog.compose.widget.KatalogTopAppBar
 
 @Composable
 internal fun DiscoveryPage(
@@ -22,11 +22,8 @@ internal fun DiscoveryPage(
 
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = { Text(text = katalog?.title.orEmpty()) },
-                elevation = 0.dp,
-                backgroundColor = MaterialTheme.colors.surface,
-                contentColor = MaterialTheme.colors.onSurface
+            KatalogTopAppBar(
+                title = katalog?.title.orEmpty()
             )
         }
     ) {
