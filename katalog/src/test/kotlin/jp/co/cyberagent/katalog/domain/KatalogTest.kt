@@ -19,23 +19,23 @@ internal class KatalogTest {
             group("group1") {
                 group("group1-1") {
                     view("view1-1-1") {
-                        View(it)
+                        View(context)
                     }
                 }
                 view("view1-1") {
-                    View(it)
+                    View(context)
                 }
             }
             group("group2") {
                 view("view2-1") {
-                    View(it)
+                    View(context)
                 }
                 view("view2-2") {
-                    View(it)
+                    View(context)
                 }
             }
             view("view1") {
-                View(it)
+                View(context)
             }
         }
         val catalog = Katalog.create()
@@ -61,15 +61,15 @@ internal class KatalogTest {
     fun create_group() {
         val group1 = group("group1") {
             view("view1-1") {
-                View(it)
+                View(context)
             }
             view("view1-2") {
-                View(it)
+                View(context)
             }
         }
         val group2 = group("group2") {
             view("view2-1") {
-                View(it)
+                View(context)
             }
         }
         Katalog.register(
