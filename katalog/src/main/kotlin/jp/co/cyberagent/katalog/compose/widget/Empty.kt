@@ -40,5 +40,4 @@ internal fun Empty() {
             fontSize = 16.sp
         )
     }
-
 }
