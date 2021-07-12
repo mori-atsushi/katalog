@@ -3,7 +3,7 @@ object Versions {
     const val composeKotlinCompiler = "1.5.10"
 
     object KotlinX {
-        const val coroutines = "1.5.0"
+        const val coroutines = "1.5.1"
     }
 
     object Androidx {
@@ -23,6 +23,6 @@ object Versions {
         }
     }
 
-    const val material = "1.3.0"
+    const val material = "1.4.0"
     const val ktlint = "0.41.0"
 }
