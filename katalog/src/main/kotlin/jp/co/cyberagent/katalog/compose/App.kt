@@ -48,7 +48,7 @@ private fun AppWindow(
     darkTheme: Boolean
 ) {
     val view = LocalView.current
-    window.statusBarColor = MaterialTheme.colors.surface.toArgb()
+    window.statusBarColor = MaterialTheme.colors.background.toArgb()
     val controller = WindowInsetsControllerCompat(window, view)
     controller.isAppearanceLightNavigationBars = !darkTheme
     controller.isAppearanceLightStatusBars = !darkTheme
