@@ -32,13 +32,13 @@ val viewMaterialGroup = group("View Material") {
             name = "Bottom navigation",
             layoutParams = MATCH_WIDTH_WRAP_HEIGHT
         ) {
-            getSampleBottomNavigation(it)
+            getSampleBottomNavigation(context)
         }
         view(
             name = "Bottom navigation with badges",
             layoutParams = MATCH_WIDTH_WRAP_HEIGHT
         ) {
-            getSampleBottomNavigationWithBadges(it)
+            getSampleBottomNavigationWithBadges(context)
         }
     }
 }

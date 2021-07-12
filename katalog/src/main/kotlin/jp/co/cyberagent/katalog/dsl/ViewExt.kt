@@ -1,12 +1,11 @@
 package jp.co.cyberagent.katalog.dsl
 
-import android.content.Context
 import android.view.View
 import android.view.ViewGroup
 import jp.co.cyberagent.katalog.compose.mapper.ViewToCompose
 import kotlin.reflect.KClass
 
-public typealias ViewDefinition<T> = (context: Context) -> T
+public typealias ViewDefinition<T> = ViewDefinitionScope.() -> T
 
 public val WRAP_WIDTH_WRAP_HEIGHT: ViewGroup.LayoutParams = ViewGroup.LayoutParams(
     ViewGroup.LayoutParams.WRAP_CONTENT,

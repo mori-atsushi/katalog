@@ -11,9 +11,10 @@ internal fun <T : View> ViewToCompose(
     layoutParams: ViewGroup.LayoutParams? = null,
     definition: ViewDefinition<T>
 ) {
+    val scope = rememberViewDefinitionScope()
     AndroidView(
-        factory = { context ->
-            val view = definition.invoke(context)
+        factory = {
+            val view = definition.invoke(scope)
             if (layoutParams != null) {
                 view.layoutParams = layoutParams
             }

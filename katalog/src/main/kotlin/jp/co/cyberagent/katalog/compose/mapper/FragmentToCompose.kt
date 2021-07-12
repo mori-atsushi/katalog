@@ -8,7 +8,6 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentContainerView
@@ -40,16 +39,16 @@ private fun <T : Fragment> fragmentViewState(
     onCreateView: FragmentOnCreateListener<T>
 ): State<View?> {
     val fragmentManager = LocalFragmentManager.current
-    val context = LocalContext.current
     val view = remember { mutableStateOf<View?>(null) }
+    val scope = rememberViewDefinitionScope()
     DisposableEffect(definition) {
         val tag = UUIDWrapper.getString()
-        val fragment = definition.invoke(context)
+        val fragment = definition.invoke(scope)
         fragmentManager.commitNow(true) {
             add(fragment, tag)
         }
         view.value = fragment.view
-        onCreateView.invoke(fragment)
+        onCreateView.invoke(scope, fragment)
         onDispose {
             fragmentManager.commitNow(true) {
                 remove(fragment)
