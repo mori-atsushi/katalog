@@ -2,14 +2,24 @@ package jp.co.cyberagent.katalog.compose.widget
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Divider
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowForward
+import androidx.compose.material.icons.filled.Folder
+import androidx.compose.material.icons.filled.PushPin
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import jp.co.cyberagent.katalog.compose.res.defaultPadding
@@ -20,12 +30,19 @@ internal fun CatalogItemRow(
     item: CatalogItem,
     onClick: (CatalogItem) -> Unit
 ) {
+    val icon = when (item) {
+        is CatalogItem.Component -> Icons.Filled.PushPin
+        is CatalogItem.Group -> Icons.Filled.Folder
+    }
     Column(
         modifier = Modifier
             .clickable(onClick = { onClick(item) })
             .fillMaxWidth()
     ) {
-        ItemTitle(name = item.name)
+        ItemTitle(
+            name = item.name,
+            icon = icon
+        )
         when (item) {
             is CatalogItem.Component -> ComponentRow(
                 component = item
@@ -68,15 +85,37 @@ private fun ComponentRow(
 }
 
 @Composable
-private fun ItemTitle(name: String) {
-    Text(
-        text = name,
+private fun ItemTitle(
+    name: String,
+    icon: ImageVector
+) {
+    Row(
         modifier = Modifier
-            .padding(top = defaultPadding, bottom = 12.dp)
-            .padding(horizontal = defaultPadding),
-        color = MaterialTheme.colors.onBackground,
-        fontSize = 16.sp
-    )
+            .padding(vertical = 14.dp, horizontal = defaultPadding),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Icon(
+            imageVector = icon,
+            contentDescription = "More",
+            tint = MaterialTheme.colors.onBackground.copy(alpha = 0.7F)
+        )
+        Text(
+            text = name,
+            modifier = Modifier
+                .weight(1F)
+                .padding(horizontal = 8.dp),
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+            color = MaterialTheme.colors.onBackground.copy(alpha = 0.8F),
+            fontSize = 16.sp,
+            fontWeight = FontWeight.Medium
+        )
+        Icon(
+            imageVector = Icons.Filled.ArrowForward,
+            contentDescription = "More",
+            tint = MaterialTheme.colors.onBackground.copy(alpha = 0.7F)
+        )
+    }
 }
 
 @Composable
