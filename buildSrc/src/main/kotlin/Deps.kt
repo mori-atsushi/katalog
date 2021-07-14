@@ -7,6 +7,11 @@ object Deps {
     }
 
     object Androidx {
+        object Core {
+            const val ktx =
+                "androidx.core:core-ktx:${Versions.Androidx.ktx}"
+        }
+
         object Activity {
             const val ktx =
                 "androidx.activity:activity-ktx:${Versions.Androidx.activity}"

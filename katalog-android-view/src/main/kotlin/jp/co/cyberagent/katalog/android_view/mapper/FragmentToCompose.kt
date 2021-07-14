@@ -13,9 +13,9 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentContainerView
 import androidx.fragment.app.commitNow
+import jp.co.cyberagent.katalog.android_view.util.findFragmentManager
 import jp.co.cyberagent.katalog.dsl.FragmentDefinition
 import jp.co.cyberagent.katalog.dsl.FragmentOnCreateListener
-import jp.co.cyberagent.katalog.android_view.util.findFragmentManager
 import java.util.UUID
 
 @Composable

@@ -6,9 +6,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.LifecycleOwner
-import jp.co.cyberagent.katalog.dsl.ViewDefinitionScope
 import jp.co.cyberagent.katalog.android_view.util.findActivity
 import jp.co.cyberagent.katalog.android_view.util.rememberLifecycleOwner
+import jp.co.cyberagent.katalog.dsl.ViewDefinitionScope
 
 @Composable
 internal fun rememberViewDefinitionScope(): ViewDefinitionScope {

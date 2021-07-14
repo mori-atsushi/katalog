@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/exntensions" />
+            <option value="$PROJECT_DIR$/exntensions/android_theme" />
             <option value="$PROJECT_DIR$/exntensions/theme" />
             <option value="$PROJECT_DIR$/katalog" />
             <option value="$PROJECT_DIR$/katalog-android-view" />

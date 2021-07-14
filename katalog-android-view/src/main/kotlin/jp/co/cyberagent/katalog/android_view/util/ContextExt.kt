@@ -18,4 +18,3 @@ internal inline fun <reified T : Activity> Context.findActivity(): T? {
 internal fun Context.findFragmentManager(): FragmentManager? {
     return findActivity<FragmentActivity>()?.supportFragmentManager
 }
-

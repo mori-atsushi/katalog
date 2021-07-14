@@ -43,6 +43,7 @@ dependencies {
     implementation(kotlin("stdlib"))
     implementation(Deps.KotlinX.Coroutines.android)
 
+    implementation(Deps.Androidx.Core.ktx)
     implementation(Deps.Androidx.Activity.ktx)
     implementation(Deps.Androidx.Activity.compose)
 

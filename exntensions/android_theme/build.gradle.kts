@@ -1,14 +1,12 @@
 plugins {
     id("com.android.library")
     id("kotlin-android")
-    id("kotlin-kapt")
     `maven-publish`
 }
 
 android {
     compileSdk = Constants.compileSdk
     buildToolsVersion = Constants.buildToolsVersion
-
     defaultConfig {
         minSdk = Constants.minSdk
         targetSdk = Constants.targetSdk
@@ -16,8 +14,6 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     buildFeatures {
-        dataBinding = true
-        viewBinding = true
         compose = true
     }
     compileOptions {
@@ -27,7 +23,8 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
         freeCompilerArgs = freeCompilerArgs + listOf(
-            "-Xexplicit-api=strict"
+            "-Xexplicit-api=strict",
+            "-Xopt-in=kotlin.RequiresOptIn"
         )
     }
     composeOptions {
@@ -42,18 +39,15 @@ android {
 }
 
 dependencies {
+    implementation(kotlin("stdlib"))
     implementation(project(":katalog"))
 
-    implementation(kotlin("stdlib"))
+    implementation(Deps.Androidx.Compose.ui)
+    implementation(Deps.Androidx.Compose.uiTooling)
+    implementation(Deps.Androidx.Compose.foundation)
+    implementation(Deps.Androidx.Compose.material)
 
     implementation(Deps.Androidx.Core.ktx)
-    implementation(Deps.Androidx.Activity.ktx)
-    implementation(Deps.Androidx.Fragment.ktx)
-
-    implementation(Deps.Androidx.Lifecycle.runtime)
-    implementation(Deps.Androidx.Lifecycle.compose)
-
-    implementation(Deps.Androidx.annotation)
 
     testImplementation(Deps.Androidx.Test.core)
     testImplementation(Deps.Androidx.Test.runner)
