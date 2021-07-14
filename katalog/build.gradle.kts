@@ -1,7 +1,6 @@
 plugins {
     id("com.android.library")
     id("kotlin-android")
-    id("kotlin-kapt")
     `maven-publish`
 }
 
@@ -16,8 +15,6 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     buildFeatures {
-        dataBinding = true
-        viewBinding = true
         compose = true
     }
     compileOptions {
@@ -48,7 +45,6 @@ dependencies {
 
     implementation(Deps.Androidx.Activity.ktx)
     implementation(Deps.Androidx.Activity.compose)
-    implementation(Deps.Androidx.Fragment.ktx)
 
     implementation(Deps.Androidx.Compose.ui)
     implementation(Deps.Androidx.Compose.uiTooling)
