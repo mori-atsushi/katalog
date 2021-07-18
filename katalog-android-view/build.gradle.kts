@@ -61,3 +61,9 @@ dependencies {
     testImplementation(Deps.Androidx.Test.junit)
     testImplementation(Deps.Androidx.Test.truth)
 }
+
+ext {
+    set("releaseArtifact", "katalog-android-view")
+}
+
+apply(from = "$rootDir/config/publish.gradle")

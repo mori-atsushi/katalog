@@ -55,3 +55,9 @@ dependencies {
     testImplementation(Deps.Androidx.Test.junit)
     testImplementation(Deps.Androidx.Test.truth)
 }
+
+ext {
+    set("releaseArtifact", "katalog-ext-android-theme")
+}
+
+apply(from = "$rootDir/config/publish.gradle")
