@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://cyberagent-zemi.github.io/katalog/blog</id>
+    <id>https://crispy-waddle-c753833a.pages.github.io/blog</id>
     <title>Katalog Blog</title>
     <updated>2019-05-30T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://cyberagent-zemi.github.io/katalog/blog"/>
+    <link rel="alternate" href="https://crispy-waddle-c753833a.pages.github.io/blog"/>
     <subtitle>Katalog Blog</subtitle>
-    <icon>https://cyberagent-zemi.github.io/katalog/img/favicon.ico</icon>
+    <icon>https://crispy-waddle-c753833a.pages.github.io/img/favicon.ico</icon>
     <entry>
         <title type="html"><![CDATA[Welcome]]></title>
         <id>welcome</id>
-        <link href="https://cyberagent-zemi.github.io/katalog/blog/welcome"/>
+        <link href="https://crispy-waddle-c753833a.pages.github.io/blog/welcome"/>
         <updated>2019-05-30T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Blog features are powered by the blog plugin. Simply add files to the blog directory. It supports tags as well!]]></summary>
     </entry>
     <entry>
         <title type="html"><![CDATA[Hello]]></title>
         <id>hello-world</id>
-        <link href="https://cyberagent-zemi.github.io/katalog/blog/hello-world"/>
+        <link href="https://crispy-waddle-c753833a.pages.github.io/blog/hello-world"/>
         <updated>2019-05-29T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Welcome to this blog. This blog is created with Docusaurus 2.]]></summary>
     </entry>
     <entry>
         <title type="html"><![CDATA[Hola]]></title>
         <id>hola</id>
-        <link href="https://cyberagent-zemi.github.io/katalog/blog/hola"/>
+        <link href="https://crispy-waddle-c753833a.pages.github.io/blog/hola"/>
         <updated>2019-05-28T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet]]></summary>
     </entry>
