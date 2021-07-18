@@ -25,7 +25,7 @@ jobs:
         run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
       - uses: eskatos/gradle-command-action@v1
         with:
-          arguments: :katalog:assembleRelease
+          arguments: assembleRelease
           dependencies-cache-key: |
             **/*.gradle
             **/*.gradle.kts
@@ -38,7 +38,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GIT_COMMIT_HASH: ${{ steps.vars.outputs.sha_short }}
         with:
-          arguments: :katalog:publish
+          arguments: publish
           dependencies-cache-key: |
             **/*.gradle
             **/*.gradle.kts
