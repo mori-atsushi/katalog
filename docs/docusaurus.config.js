@@ -5,8 +5,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 module.exports = {
   title: 'Katalog',
   tagline: 'Dinosaurs are cool',
-  url: 'https://cyberagent-zemi.github.io',
-  baseUrl: '/katalog/',
+  url: 'https://crispy-waddle-c753833a.pages.github.io/',
+  baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
