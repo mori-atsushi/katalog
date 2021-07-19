@@ -3,7 +3,7 @@ package jp.co.cyberagent.katalog.dsl
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
-import jp.co.cyberagent.katalog.compose.mapper.BindingToCompose
+import jp.co.cyberagent.katalog.android_view.mapper.BindingToCompose
 import kotlin.reflect.KClass
 
 public typealias BindingFactoryDefinition<T> = (LayoutInflater, ViewGroup?, Boolean) -> T

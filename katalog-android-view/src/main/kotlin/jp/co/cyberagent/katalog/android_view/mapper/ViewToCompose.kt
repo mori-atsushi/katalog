@@ -1,4 +1,4 @@
-package jp.co.cyberagent.katalog.compose.mapper
+package jp.co.cyberagent.katalog.android_view.mapper
 
 import android.view.View
 import android.view.ViewGroup

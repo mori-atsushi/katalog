@@ -9,12 +9,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowInsetsControllerCompat
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.viewmodel.compose.viewModel
 import jp.co.cyberagent.katalog.compose.page.DiscoveryPage
 import jp.co.cyberagent.katalog.compose.page.PreviewPage
 import jp.co.cyberagent.katalog.compose.res.materialColors
-import jp.co.cyberagent.katalog.compose.util.FragmentManagerProvider
 import jp.co.cyberagent.katalog.compose.util.KatalogLocalProvider
 import jp.co.cyberagent.katalog.compose.widget.ModalVisibility
 import jp.co.cyberagent.katalog.ext.ExtRootWrapper
@@ -22,23 +20,20 @@ import jp.co.cyberagent.katalog.ext.ExtRootWrapper
 @Composable
 internal fun App(
     window: Window,
-    fragmentManager: FragmentManager,
     viewModel: KatalogViewModel = viewModel()
 ) {
     val darkTheme = isSystemInDarkTheme()
 
-    FragmentManagerProvider(fragmentManager) {
-        MaterialTheme(
-            colors = materialColors(darkTheme)
-        ) {
-            AppWindow(
-                window = window,
-                darkTheme = darkTheme
-            )
-            MainContent(
-                viewModel = viewModel
-            )
-        }
+    MaterialTheme(
+        colors = materialColors(darkTheme)
+    ) {
+        AppWindow(
+            window = window,
+            darkTheme = darkTheme
+        )
+        MainContent(
+            viewModel = viewModel
+        )
     }
 }
 

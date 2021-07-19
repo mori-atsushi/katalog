@@ -7,6 +7,11 @@ object Deps {
     }
 
     object Androidx {
+        object Core {
+            const val ktx =
+                "androidx.core:core-ktx:${Versions.Androidx.ktx}"
+        }
+
         object Activity {
             const val ktx =
                 "androidx.activity:activity-ktx:${Versions.Androidx.activity}"
@@ -39,6 +44,8 @@ object Deps {
         object Lifecycle {
             const val viewModel =
                 "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.Androidx.lifecycle}"
+            const val runtime =
+                "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.Androidx.lifecycle}"
             const val compose =
                 "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.Androidx.lifecycleCompose}"
         }

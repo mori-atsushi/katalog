@@ -1,8 +1,6 @@
 package jp.co.cyberagent.katalog.domain
 
-import android.view.View
 import com.google.common.truth.Truth.assertThat
-import jp.co.cyberagent.katalog.dsl.view
 import jp.co.cyberagent.katalog.group
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -18,24 +16,19 @@ internal class KatalogTest {
         ) {
             group("group1") {
                 group("group1-1") {
-                    view("view1-1-1") {
-                        View(context)
+                    compose("view1-1-1") {
                     }
                 }
-                view("view1-1") {
-                    View(context)
+                compose("view1-1") {
                 }
             }
             group("group2") {
-                view("view2-1") {
-                    View(context)
+                compose("view2-1") {
                 }
-                view("view2-2") {
-                    View(context)
+                compose("view2-2") {
                 }
             }
-            view("view1") {
-                View(context)
+            compose("view1") {
             }
         }
         val catalog = Katalog.create()
@@ -60,16 +53,13 @@ internal class KatalogTest {
     @Test
     fun create_group() {
         val group1 = group("group1") {
-            view("view1-1") {
-                View(context)
+            compose("view1-1") {
             }
-            view("view1-2") {
-                View(context)
+            compose("view1-2") {
             }
         }
         val group2 = group("group2") {
-            view("view2-1") {
-                View(context)
+            compose("view2-1") {
             }
         }
         Katalog.register(

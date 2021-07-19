@@ -1,35 +1,20 @@
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("kotlin-android")
-    id("kotlin-kapt")
+    `maven-publish`
 }
 
 android {
     compileSdk = Constants.compileSdk
     buildToolsVersion = Constants.buildToolsVersion
-
     defaultConfig {
-        applicationId = "jp.co.cyberagent.katalog.android_sample"
         minSdk = Constants.minSdk
         targetSdk = Constants.targetSdk
-        versionCode = 1
-        versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     buildFeatures {
-        dataBinding = true
-        viewBinding = true
         compose = true
-    }
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -37,6 +22,10 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+        freeCompilerArgs = freeCompilerArgs + listOf(
+            "-Xexplicit-api=strict",
+            "-Xopt-in=kotlin.RequiresOptIn"
+        )
     }
     composeOptions {
         kotlinCompilerVersion = Versions.composeKotlinCompiler
@@ -50,22 +39,23 @@ android {
 }
 
 dependencies {
-    implementation(project(":katalog"))
-    implementation(project(":katalog-android-view"))
-
     implementation(kotlin("stdlib"))
-    implementation(Deps.KotlinX.Coroutines.android)
-
-    implementation(Deps.Androidx.Activity.ktx)
-    implementation(Deps.Androidx.Activity.compose)
-    implementation(Deps.Androidx.Fragment.ktx)
+    implementation(project(":katalog"))
 
     implementation(Deps.Androidx.Compose.ui)
     implementation(Deps.Androidx.Compose.uiTooling)
     implementation(Deps.Androidx.Compose.foundation)
     implementation(Deps.Androidx.Compose.material)
-    implementation(Deps.Androidx.Compose.materialIconsCore)
-    implementation(Deps.Androidx.Compose.materialIconExtended)
 
-    implementation(Deps.material)
+    testImplementation(Deps.Androidx.Test.core)
+    testImplementation(Deps.Androidx.Test.runner)
+    testImplementation(Deps.Androidx.Test.rules)
+    testImplementation(Deps.Androidx.Test.junit)
+    testImplementation(Deps.Androidx.Test.truth)
 }
+
+ext {
+    set("releaseArtifact", "katalog-ext-theme")
+}
+
+apply(from = "$rootDir/config/publish.gradle")
