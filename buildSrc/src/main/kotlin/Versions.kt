@@ -8,9 +8,9 @@ object Versions {
 
     object Androidx {
         const val ktx = "1.6.0"
-        const val activity = "1.3.0-rc01"
+        const val activity = "1.3.0-rc02"
         const val fragment = "1.3.5"
-        const val compose = "1.0.0-rc01"
+        const val compose = "1.0.0-rc02"
         const val lifecycle = "2.3.1"
         const val lifecycleCompose = "1.0.0-alpha07"
         const val annotation = "1.2.0"
