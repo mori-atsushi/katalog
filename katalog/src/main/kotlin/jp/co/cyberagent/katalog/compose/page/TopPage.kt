@@ -6,19 +6,19 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import jp.co.cyberagent.katalog.compose.KatalogViewModel
 import jp.co.cyberagent.katalog.compose.util.rememberIsTop
 import jp.co.cyberagent.katalog.compose.widget.CatalogItemList
-import jp.co.cyberagent.katalog.domain.CatalogItem
-import jp.co.cyberagent.katalog.domain.Katalog
 
 @Composable
 internal fun TopPage(
-    katalog: Katalog?,
-    onClick: (CatalogItem) -> Unit,
+    viewModel: KatalogViewModel,
     onChangeIsTop: (Boolean) -> Unit = {}
 ) {
+    val katalog by viewModel.katalog.collectAsState()
     val lazyListState = rememberLazyListState()
     val isTop by lazyListState.rememberIsTop()
     LaunchedEffect(isTop) {
@@ -28,10 +28,11 @@ internal fun TopPage(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colors.background
     ) {
-        if (katalog != null) {
+        katalog?.let {
             CatalogItemList(
-                list = katalog.items,
-                onClick = onClick,
+                list = it.items,
+                extensions = it.extensions,
+                onClick = viewModel::handleClick,
                 lazyListState = lazyListState
             )
         }

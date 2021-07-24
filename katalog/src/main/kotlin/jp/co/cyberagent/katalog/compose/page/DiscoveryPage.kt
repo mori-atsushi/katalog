@@ -16,7 +16,6 @@ import jp.co.cyberagent.katalog.compose.KatalogViewModel
 import jp.co.cyberagent.katalog.compose.navigation.NavDestination
 import jp.co.cyberagent.katalog.compose.navigation.NavRoot
 import jp.co.cyberagent.katalog.compose.widget.KatalogTopAppBar
-import jp.co.cyberagent.katalog.domain.Katalog
 
 @Composable
 internal fun DiscoveryPage(
@@ -48,7 +47,6 @@ internal fun DiscoveryPage(
         NavRoot(navController) { state ->
             DiscoveryPageSelector(
                 destination = state.destination,
-                katalog = katalog,
                 viewModel = viewModel,
                 onChangeIsTop = {
                     if (navController.current.value == state) {
@@ -88,22 +86,20 @@ private fun DiscoveryTopAppBar(
 @Composable
 private fun DiscoveryPageSelector(
     destination: NavDestination,
-    katalog: Katalog?,
     viewModel: KatalogViewModel,
     onChangeIsTop: (Boolean) -> Unit
 ) {
     when (destination) {
         is NavDestination.Top -> {
             TopPage(
-                katalog = katalog,
-                onClick = viewModel::handleClick,
+                viewModel = viewModel,
                 onChangeIsTop = onChangeIsTop
             )
         }
         is NavDestination.Group -> {
             GroupPage(
+                viewModel = viewModel,
                 group = destination.group,
-                onClick = viewModel::handleClick,
                 onChangeIsTop = onChangeIsTop
             )
         }

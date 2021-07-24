@@ -9,6 +9,8 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import jp.co.cyberagent.katalog.compose.KatalogViewModel
 import jp.co.cyberagent.katalog.compose.util.BackPressedEffect
@@ -21,6 +23,8 @@ internal fun PreviewPage(
     viewModel: KatalogViewModel,
     component: CatalogItem.Component
 ) {
+    val katalog by viewModel.katalog.collectAsState()
+    val extensions = katalog?.extensions ?: return
     BackPressedEffect(component) {
         viewModel.closePreview()
         true
@@ -35,6 +39,7 @@ internal fun PreviewPage(
             onClickClose = viewModel::closePreview
         )
         Preview(
+            extensions = extensions,
             modifier = Modifier.fillMaxSize(),
             clickable = true,
             definition = component.definition
