@@ -13,7 +13,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import jp.co.cyberagent.katalog.compose.page.DiscoveryPage
 import jp.co.cyberagent.katalog.compose.page.PreviewPage
 import jp.co.cyberagent.katalog.compose.res.materialColors
-import jp.co.cyberagent.katalog.compose.util.KatalogLocalProvider
 import jp.co.cyberagent.katalog.compose.widget.ModalVisibility
 import jp.co.cyberagent.katalog.ext.ExtRootWrapper
 
@@ -56,19 +55,17 @@ private fun MainContent(viewModel: KatalogViewModel) {
     val katalogValue = katalog ?: return
     val rootWrappers = katalogValue.extensions.rootWrappers
 
-    KatalogLocalProvider(katalogValue) {
-        ExtRootWrappers(rootWrappers) {
-            DiscoveryPage(
-                viewModel = viewModel
+    ExtRootWrappers(rootWrappers) {
+        DiscoveryPage(
+            viewModel = viewModel
+        )
+        ModalVisibility(
+            value = selectedComponent
+        ) {
+            PreviewPage(
+                viewModel = viewModel,
+                component = it
             )
-            ModalVisibility(
-                value = selectedComponent
-            ) {
-                PreviewPage(
-                    viewModel = viewModel,
-                    component = it
-                )
-            }
         }
     }
 }
