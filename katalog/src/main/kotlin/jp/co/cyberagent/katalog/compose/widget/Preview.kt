@@ -13,18 +13,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
-import jp.co.cyberagent.katalog.compose.util.LocalKatalog
+import jp.co.cyberagent.katalog.domain.Extensions
 import jp.co.cyberagent.katalog.ext.ExtComponentWrapper
 
 @Composable
 internal fun Preview(
+    extensions: Extensions,
     modifier: Modifier = Modifier,
     scale: Float = 1.0F,
     clickable: Boolean = false,
     definition: @Composable () -> Unit
 ) {
-    val katalog = LocalKatalog.current
-    val componentWrappers = katalog.extensions.componentWrappers
+    val componentWrappers = extensions.componentWrappers
     Surface(
         modifier = modifier,
         color = MaterialTheme.colors.background

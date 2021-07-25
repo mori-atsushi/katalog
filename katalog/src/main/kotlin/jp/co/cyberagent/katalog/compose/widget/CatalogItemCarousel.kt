@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.sp
 import jp.co.cyberagent.katalog.compose.res.defaultCornerRadius
 import jp.co.cyberagent.katalog.compose.res.defaultPadding
 import jp.co.cyberagent.katalog.domain.CatalogItem
+import jp.co.cyberagent.katalog.domain.Extensions
 import kotlin.math.ceil
 
 private val spacing = 10.dp
@@ -37,6 +38,7 @@ private const val CONTENT_NUM = 2.05F
 @Composable
 internal fun CatalogItemCarousel(
     list: List<CatalogItem>,
+    extensions: Extensions,
     onClick: (CatalogItem) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -61,7 +63,8 @@ internal fun CatalogItemCarousel(
                         .padding(end = paddingEnd)
                         .width(cellWidth),
                     item = it,
-                    onClick = { onClick(it) }
+                    onClick = { onClick(it) },
+                    extensions = extensions
                 )
             }
         }
@@ -70,6 +73,7 @@ internal fun CatalogItemCarousel(
 
 @Composable
 private fun Cell(
+    extensions: Extensions,
     item: CatalogItem,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
@@ -87,7 +91,10 @@ private fun Cell(
         ) {
             when (item) {
                 is CatalogItem.Component -> {
-                    ComponentCell(component = item)
+                    ComponentCell(
+                        extensions = extensions,
+                        component = item
+                    )
                 }
                 is CatalogItem.Group -> {
                     GroupCell()
@@ -128,6 +135,7 @@ private fun GroupCell() {
 
 @Composable
 private fun ComponentCell(
+    extensions: Extensions,
     component: CatalogItem.Component
 ) {
     CatalogItemWrapper(
@@ -135,7 +143,8 @@ private fun ComponentCell(
     ) {
         Preview(
             scale = 0.5F,
-            definition = component.definition
+            definition = component.definition,
+            extensions = extensions
         )
     }
 }
