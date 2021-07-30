@@ -3,6 +3,7 @@ package jp.co.cyberagent.katalog.android_view.mapper
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.compose.runtime.Composable
+import androidx.databinding.ViewDataBinding
 import androidx.viewbinding.ViewBinding
 import jp.co.cyberagent.katalog.dsl.BindingFactoryDefinition
 import jp.co.cyberagent.katalog.dsl.BindingUpdateDefinition
@@ -17,6 +18,9 @@ internal fun <T : ViewBinding> BindingToCompose(
         val inflater = LayoutInflater.from(context)
         val binding = factory.invoke(inflater, null, false)
         update.invoke(this, binding)
+        if (binding is ViewDataBinding) {
+            binding.executePendingBindings()
+        }
         binding.root
     }
 }
