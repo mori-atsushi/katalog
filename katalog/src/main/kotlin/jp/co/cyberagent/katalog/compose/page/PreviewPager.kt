@@ -13,7 +13,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import jp.co.cyberagent.katalog.compose.KatalogViewModel
-import jp.co.cyberagent.katalog.compose.util.BackPressedEffect
 import jp.co.cyberagent.katalog.compose.widget.KatalogTopAppBar
 import jp.co.cyberagent.katalog.compose.widget.Preview
 import jp.co.cyberagent.katalog.domain.CatalogItem
@@ -25,10 +24,6 @@ internal fun PreviewPage(
 ) {
     val katalog by viewModel.katalog.collectAsState()
     val extensions = katalog?.extensions ?: return
-    BackPressedEffect(component) {
-        viewModel.closePreview()
-        true
-    }
     Column(
         modifier = Modifier
             .fillMaxSize()
