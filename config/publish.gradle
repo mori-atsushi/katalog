@@ -23,7 +23,7 @@ afterEvaluate {
                         def dependenciesNode = asNode().appendNode("dependencies")
 
                         project.configurations.implementation.allDependencies.forEach {
-                            if (it.group != null || it.name != null || it.version != null || it.name == "unspecified") return
+                            if (it.version == "unspecified") return
 
                             def dependencyNode = dependenciesNode.appendNode("dependency")
                             dependencyNode.appendNode("groupId", it.group)
