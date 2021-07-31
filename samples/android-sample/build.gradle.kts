@@ -39,7 +39,6 @@ android {
         jvmTarget = "1.8"
     }
     composeOptions {
-        kotlinCompilerVersion = Versions.composeKotlinCompiler
         kotlinCompilerExtensionVersion = Versions.Androidx.compose
     }
     sourceSets {
