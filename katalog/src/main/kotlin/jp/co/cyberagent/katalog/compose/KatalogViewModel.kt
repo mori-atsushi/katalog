@@ -38,6 +38,15 @@ internal class KatalogViewModel : ViewModel() {
         }
     }
 
+    fun handleBackPress(): Boolean {
+        return if (_selectedComponent.value != null) {
+            _selectedComponent.value = null
+            true
+        } else {
+            navController.back()
+        }
+    }
+
     fun closePreview() {
         _selectedComponent.value = null
     }
