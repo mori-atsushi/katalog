@@ -29,7 +29,6 @@ android {
         )
     }
     composeOptions {
-        kotlinCompilerVersion = Versions.composeKotlinCompiler
         kotlinCompilerExtensionVersion = Versions.Androidx.compose
     }
     sourceSets {
