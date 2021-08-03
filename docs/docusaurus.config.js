@@ -3,7 +3,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: 'Katalog',
+  title: 'Katalog - A UI Catalog Library made with Jetpack Compose',
   tagline: 'A UI Catalog Library made with Jetpack Compose',
   url: 'https://crispy-waddle-c753833a.pages.github.io/',
   baseUrl: '/',
