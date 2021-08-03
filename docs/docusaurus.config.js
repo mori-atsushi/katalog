@@ -4,7 +4,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title: 'Katalog',
-  tagline: 'Dinosaurs are cool',
+  tagline: 'A UI Catalog Library made with Jetpack Compose',
   url: 'https://crispy-waddle-c753833a.pages.github.io/',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -15,9 +15,9 @@ module.exports = {
   trailingSlash: false,
   themeConfig: {
     navbar: {
-      title: 'My Site',
+      title: 'Katalog',
       logo: {
-        alt: 'My Site Logo',
+        alt: 'Katalog Logo',
         src: 'img/logo.svg',
       },
       items: [
@@ -25,7 +25,13 @@ module.exports = {
           type: 'doc',
           docId: 'intro',
           position: 'left',
-          label: 'Tutorial',
+          label: 'Getting Started',
+        },
+        {
+          type: 'doc',
+          docId: 'intro',
+          position: 'left',
+          label: 'Documentation',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
@@ -42,26 +48,22 @@ module.exports = {
           title: 'Docs',
           items: [
             {
-              label: 'Tutorial',
+              label: 'Getting Started',
+              to: '/docs/intro',
+            },
+            {
+              label: 'Documentation',
               to: '/docs/intro',
             },
           ],
         },
         {
-          title: 'Community',
+          title: 'Blog',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
-            {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
-            },
-            {
-              label: 'Twitter',
-              href: 'https://twitter.com/docusaurus',
-            },
+              label: 'Welcome',
+              to: '/blog/welcome',
+            }
           ],
         },
         {
@@ -73,12 +75,12 @@ module.exports = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/cyberagent-zemi/katalog',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Katalog. Built with Docusaurus.`,
     },
     prism: {
       theme: lightCodeTheme,
