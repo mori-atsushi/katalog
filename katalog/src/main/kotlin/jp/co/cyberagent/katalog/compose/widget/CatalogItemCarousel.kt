@@ -31,9 +31,11 @@ import jp.co.cyberagent.katalog.compose.res.defaultPadding
 import jp.co.cyberagent.katalog.domain.CatalogItem
 import jp.co.cyberagent.katalog.domain.Extensions
 import kotlin.math.ceil
+import kotlin.math.floor
+import kotlin.math.max
 
 private val spacing = 10.dp
-private const val CONTENT_NUM = 2.05F
+private val cellMinWidth = 200.dp
 
 @Composable
 internal fun CatalogItemCarousel(
@@ -49,9 +51,10 @@ internal fun CatalogItemCarousel(
     BoxWithConstraints(
         modifier = modifier
     ) {
-        val spacingNum = (ceil(CONTENT_NUM).toInt() - 1)
-        val contentWidth = maxWidth - defaultPadding * 2 - spacing * spacingNum
-        val cellWidth = (contentWidth.value / CONTENT_NUM).dp
+        val layoutWidth = maxWidth - defaultPadding * 2
+        val contentNum = max(floor(layoutWidth / cellMinWidth), 2F) + 0.05F
+        val spacingNum = (ceil(contentNum).toInt() - 1)
+        val cellWidth = (layoutWidth - spacing * spacingNum) / contentNum
         LazyRow(
             contentPadding = PaddingValues(horizontal = defaultPadding)
         ) {
