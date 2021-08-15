@@ -1,5 +1,5 @@
 object Versions {
-    const val kotlin = "1.5.10"
+    const val kotlin = "1.5.21"
 
     object KotlinX {
         const val coroutines = "1.5.1"
@@ -7,9 +7,9 @@ object Versions {
 
     object Androidx {
         const val ktx = "1.6.0"
-        const val activity = "1.3.0"
+        const val activity = "1.3.1"
         const val fragment = "1.3.6"
-        const val compose = "1.0.0"
+        const val compose = "1.0.1"
         const val lifecycle = "2.3.1"
         const val lifecycleCompose = "1.0.0-alpha07"
         const val annotation = "1.2.0"
@@ -24,5 +24,5 @@ object Versions {
     }
 
     const val material = "1.4.0"
-    const val ktlint = "0.41.0"
+    const val ktlint = "0.42.1"
 }
