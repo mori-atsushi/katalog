@@ -28,10 +28,12 @@ internal fun <T : Fragment> FragmentToCompose(
         definition = definition,
         onCreateView = onCreateView
     )
-    FragmentContainerView(
-        layoutParams = layoutParams,
-        view = view
-    )
+    view?.let {
+        FragmentContainerView(
+            layoutParams = layoutParams,
+            view = it
+        )
+    }
 }
 
 @Composable
@@ -65,7 +67,7 @@ private fun <T : Fragment> fragmentViewState(
 @Composable
 private fun FragmentContainerView(
     layoutParams: ViewGroup.LayoutParams? = null,
-    view: View?
+    view: View
 ) {
     AndroidView(
         factory = {
@@ -73,13 +75,8 @@ private fun FragmentContainerView(
             if (layoutParams != null) {
                 container.layoutParams = layoutParams
             }
+            container.addView(view)
             container
-        },
-        update = {
-            if (view != null) {
-                it.removeAllViews()
-                it.addView(view)
-            }
         }
     )
 }

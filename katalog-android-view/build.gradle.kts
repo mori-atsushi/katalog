@@ -49,6 +49,11 @@ dependencies {
     implementation(Deps.Androidx.Activity.ktx)
     implementation(Deps.Androidx.Fragment.ktx)
 
+    implementation(Deps.Androidx.Compose.ui)
+    implementation(Deps.Androidx.Compose.uiTooling)
+    implementation(Deps.Androidx.Compose.foundation)
+    implementation(Deps.Androidx.Compose.material)
+
     implementation(Deps.Androidx.Lifecycle.runtime)
     implementation(Deps.Androidx.Lifecycle.compose)
 
