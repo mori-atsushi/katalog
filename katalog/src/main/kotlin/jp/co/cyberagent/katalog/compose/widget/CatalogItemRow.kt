@@ -1,11 +1,13 @@
 package jp.co.cyberagent.katalog.compose.widget
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -79,16 +81,25 @@ private fun ComponentRow(
     component: CatalogItem.Component,
     extensions: Extensions
 ) {
-    CatalogItemWrapper(
+    BoxWithConstraints(
         modifier = Modifier
-            .fillMaxWidth()
-            .aspectRatio(16.0F / 9.0F)
             .padding(horizontal = defaultPadding)
     ) {
-        Preview(
-            definition = component.definition,
-            extensions = extensions
-        )
+        val width = if (maxWidth > 600.dp) {
+            420.dp
+        } else {
+            maxWidth
+        }
+        CatalogItemWrapper(
+            modifier = Modifier
+                .width(width)
+                .aspectRatio(16.0F / 9.0F)
+        ) {
+            Preview(
+                definition = component.definition,
+                extensions = extensions
+            )
+        }
     }
 }
 
