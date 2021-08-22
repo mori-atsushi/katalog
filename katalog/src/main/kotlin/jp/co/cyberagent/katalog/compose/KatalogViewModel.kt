@@ -7,14 +7,20 @@ import jp.co.cyberagent.katalog.compose.navigation.NavDestination
 import jp.co.cyberagent.katalog.domain.CatalogItem
 import jp.co.cyberagent.katalog.domain.Katalog
 import jp.co.cyberagent.katalog.domain.KatalogContainer
+import jp.co.cyberagent.katalog.domain.NotRegisteredException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-internal class KatalogViewModel : ViewModel() {
+internal class KatalogViewModel(
+    private val container: KatalogContainer = KatalogContainer.instance
+) : ViewModel() {
     private val _katalog = MutableStateFlow<Katalog?>(null)
     val katalog: StateFlow<Katalog?> = _katalog
+
+    private val _errorMessage = MutableStateFlow<String?>(null)
+    val errorMessage: StateFlow<String?> = _errorMessage
 
     private val _selectedComponent = MutableStateFlow<CatalogItem.Component?>(null)
     val selectedComponent: StateFlow<CatalogItem.Component?> = _selectedComponent
@@ -23,8 +29,14 @@ internal class KatalogViewModel : ViewModel() {
 
     init {
         viewModelScope.launch(Dispatchers.Default) {
-            val catalog = KatalogContainer.instance.create()
-            _katalog.value = catalog
+            try {
+                val katalog = container.create()
+                _katalog.value = katalog
+            } catch (e: NotRegisteredException) {
+                _errorMessage.value = "Please call registerKatalog method."
+            } catch (e: Throwable) {
+                _errorMessage.value = "Unknown error: $e"
+            }
         }
     }
 

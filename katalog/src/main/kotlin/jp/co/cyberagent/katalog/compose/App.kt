@@ -14,6 +14,7 @@ import jp.co.cyberagent.katalog.compose.page.DiscoveryPage
 import jp.co.cyberagent.katalog.compose.page.PreviewPage
 import jp.co.cyberagent.katalog.compose.res.materialColors
 import jp.co.cyberagent.katalog.compose.util.BackPressedEffect
+import jp.co.cyberagent.katalog.compose.widget.ErrorMessage
 import jp.co.cyberagent.katalog.compose.widget.ModalVisibility
 import jp.co.cyberagent.katalog.ext.ExtRootWrapper
 
@@ -56,6 +57,12 @@ private fun AppWindow(
 @Composable
 private fun MainContent(viewModel: KatalogViewModel) {
     val selectedComponent by viewModel.selectedComponent.collectAsState()
+    val errorMessage by viewModel.errorMessage.collectAsState()
+    errorMessage?.let {
+        ErrorMessage(text = it)
+        return
+    }
+
     val katalog by viewModel.katalog.collectAsState()
     val katalogValue = katalog ?: return
     val rootWrappers = katalogValue.extensions.rootWrappers
