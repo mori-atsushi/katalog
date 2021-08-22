@@ -6,6 +6,7 @@ import jp.co.cyberagent.katalog.compose.navigation.NavController
 import jp.co.cyberagent.katalog.compose.navigation.NavDestination
 import jp.co.cyberagent.katalog.domain.CatalogItem
 import jp.co.cyberagent.katalog.domain.Katalog
+import jp.co.cyberagent.katalog.domain.KatalogContainer
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -22,7 +23,7 @@ internal class KatalogViewModel : ViewModel() {
 
     init {
         viewModelScope.launch(Dispatchers.Default) {
-            val catalog = Katalog.create()
+            val catalog = KatalogContainer.instance.create()
             _katalog.value = catalog
         }
     }
