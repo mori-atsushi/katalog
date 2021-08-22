@@ -22,14 +22,13 @@ module.exports = {
       },
       items: [
         {
-          type: 'doc',
-          docId: 'intro',
+          to: 'docs/getting-started',
           position: 'left',
           label: 'Getting Started',
         },
         {
-          type: 'doc',
-          docId: 'intro',
+          to: 'docs/main/register',
+          activeBasePath: 'docs/main',
           position: 'left',
           label: 'Documentation',
         },
