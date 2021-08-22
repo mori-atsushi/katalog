@@ -27,7 +27,7 @@ module.exports = {
           label: 'Getting Started',
         },
         {
-          to: 'docs/main/register',
+          to: 'docs/main/introduction',
           activeBasePath: 'docs/main',
           position: 'left',
           label: 'Documentation',
@@ -52,7 +52,11 @@ module.exports = {
             },
             {
               label: 'Documentation',
-              to: '/docs/main/register',
+              to: '/docs/main/introduction',
+            },
+            {
+              label: 'Extensions',
+              to: '/docs/main/extensions/compose-theme',
             },
           ],
         },
@@ -95,13 +99,13 @@ module.exports = {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/',
+            'https://github.com/cyberagent-zemi/katalog/edit/main/docs/',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/blog/',
+            'https://github.com/cyberagent-zemi/katalog/edit/main/docs/blog/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
