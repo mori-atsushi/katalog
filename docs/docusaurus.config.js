@@ -48,11 +48,11 @@ module.exports = {
           items: [
             {
               label: 'Getting Started',
-              to: '/docs/intro',
+              to: '/docs/getting-started',
             },
             {
               label: 'Documentation',
-              to: '/docs/intro',
+              to: '/docs/main/register',
             },
           ],
         },
@@ -84,6 +84,7 @@ module.exports = {
     prism: {
       theme: lightCodeTheme,
       darkTheme: darkCodeTheme,
+      additionalLanguages: ['kotlin'],
     },
   },
   presets: [
