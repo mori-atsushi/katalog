@@ -1,0 +1,60 @@
+---
+sidebar_position: 3
+---
+
+import { Preview } from "/src/widgets/Preview"
+
+# Jetpack Compose
+
+## Examples
+
+<Preview
+    imageUrl="/img/docs/jetpack-compose.png"
+    width={1080}
+    height={2280} >
+
+Use the `compose` method to add a `Composable` to Katalog.
+
+```kotlin
+compose("Text") {
+    Text(text = "Hello, World")
+}
+```
+
+</Preview>
+
+<Preview
+    imageUrl="/img/docs/jetpack-compose-state.gif"
+    width={1080}
+    height={2280} >
+
+You can use state in the `compose`.
+
+```kotlin
+compose("MyComponent") {
+    var boolean by remember {
+        mutableStateOf(true)
+    }
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = if (boolean) "Hello" else "World"
+        )
+        Button(
+            onClick = { boolean = !boolean }
+        ) {
+            Text(text = "Toggle")
+        }
+    }
+}
+```
+
+</Preview>
+
+## Parameters
+
+name|description
+:--|:--
+name|The UI Component name.
+definition|Composable function.
