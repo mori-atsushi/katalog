@@ -7,12 +7,12 @@ Katalog may be made breaking changes in the future.
 ```
 
 ## Features
-* Made with [Jetpack Compose](https://developer.android.com/jetpack/compose) and can preview Composable.
-* Can easily register UI components using a `DSL`, and group them.
-* Supports [Android View](https://developer.android.com/reference/android/view/View), [DataBinding](https://developer.android.com/topic/libraries/data-binding), [ViewBinding](https://developer.android.com/topic/libraries/view-binding) and [Fragment](https://developer.android.com/guide/components/fragments).
+* It is made with  [Jetpack Compose](https://developer.android.com/jetpack/compose) and You can preview Composable.
+* You can easily register and group UI components using the `DSL`.
+* It supports [Android View](https://developer.android.com/reference/android/view/View), [DataBinding](https://developer.android.com/topic/libraries/data-binding), [ViewBinding](https://developer.android.com/topic/libraries/view-binding) and [Fragment](https://developer.android.com/guide/components/fragments).
 
-## Getting Started
-### step1: Add the dependency.
+# Getting Started
+## step1: Add the dependency
 
 Add GitHub Packages repository to your build.gradle file.
 Set your `GITHUB_USERNAME` and `GITHUB_TOKEN`.
@@ -39,9 +39,10 @@ dependencies {
 }
 ```
 
-### step2: Register the UI component in the Catalog.
+## step2: Register the UI component
 
-Just run `startKatalog` function in your application.
+Just run the `startKatalog` function in your application.
+To register a `Composable`, use the `compose` function.
 
 ```kotlin
 class MyApplication : Application() {
@@ -59,7 +60,7 @@ class MyApplication : Application() {
 }
 ```
 
-Can group by using `group` function.
+You can use the `group` function to group components.
 
 ```kotlin
 registerKatalog(
@@ -77,7 +78,7 @@ registerKatalog(
 }
 ```
 
-Group can also be assigned to a variable.
+The `group` can also be assigned to a variable.
 
 ```kotlin
 val group1 = group("Group 1") {
@@ -92,9 +93,9 @@ startKatalog {
 }
 ```
 
-### step3: Start Catalog Activity
+## step3: Start Catalog Activity
 
-Start KatalogActivity from your debug menu.
+Start `KatalogActivity` from your debug menu.
 
 ```kotlin
 KatalogActivity.start(activity)

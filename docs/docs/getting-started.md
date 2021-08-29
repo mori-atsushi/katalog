@@ -31,7 +31,8 @@ dependencies {
 
 ## step2: Register the UI component
 
-Just run `startKatalog` function in your application.
+Just run the `startKatalog` function in your application.
+To register a `Composable`, use the `compose` function.
 
 ```kotlin
 class MyApplication : Application() {
@@ -49,7 +50,7 @@ class MyApplication : Application() {
 }
 ```
 
-Can group by using `group` function.
+You can use the `group` function to group components.
 
 ```kotlin
 registerKatalog(
@@ -67,7 +68,7 @@ registerKatalog(
 }
 ```
 
-Group can also be assigned to a variable.
+The `group` can also be assigned to a variable.
 
 ```kotlin
 val group1 = group("Group 1") {
@@ -84,7 +85,7 @@ startKatalog {
 
 ## step3: Start Catalog Activity
 
-Start KatalogActivity from your debug menu.
+Start `KatalogActivity` from your debug menu.
 
 ```kotlin
 KatalogActivity.start(activity)

@@ -15,7 +15,7 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/intro">
+            to="/docs/getting-started">
             Getting Started
           </Link>
         </div>
@@ -32,9 +32,9 @@ function HomepageContent() {
           <div className={clsx('col col--7', styles.features)}>
             <h2>Features</h2>
             <ul>
-              <li>Made with <code>Jetpack Compose</code> and can preview <code>Composable</code>.</li>
-              <li>Can easily register UI components using a <code>DSL</code>, and group them.</li>
-              <li>Supports <code>Android View</code>, <code>DataBinding</code>, <code>ViewBinding</code> and <code>Fragment</code>.</li>
+              <li>It is made with <code>Jetpack Compose</code> and you can preview <code>Composable</code>.</li>
+              <li>You can easily register and group UI components using the <code>DSL</code>.</li>
+              <li>It supports <code>Android View</code>, <code>DataBinding</code>, <code>ViewBinding</code> and <code>Fragment</code>.</li>
             </ul>
           </div>
           <ul className={clsx('col col--5', styles.images)}>
