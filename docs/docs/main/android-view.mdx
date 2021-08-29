@@ -1,0 +1,125 @@
+---
+sidebar_position: 4
+---
+
+import { Preview } from "/src/widgets/Preview"
+
+# Android View
+
+## Setup
+Add the `katalog-android-view` package.
+
+```kotlin
+dependencies {
+    implementation("co.jp.cyberagent.katalog:katalog-android:`LATEST_VERSION`")
+    implementation("co.jp.cyberagent.katalog:katalog-android-view:`LATEST_VERSION`")
+}
+```
+
+
+## Examples
+
+<Preview
+    imageUrl="/img/docs/android-view.png"
+    width={1080}
+    height={2280} >
+
+Use the `view` method to add a `Android View` to Katalog.
+`Context` is available within the lambda function.
+If you omit the `name`, the class name will be used.
+
+```kotlin
+view(
+    name = "TextView"
+) {
+    TextView(context).apply {
+        text = "Hello, World"
+    }
+}
+```
+
+</Preview>
+
+<Preview
+    imageUrl="/img/docs/android-view-match.png"
+    width={1080}
+    height={2280} >
+
+By default, `wrap_content` is used for both width and height.
+You can change the size of the View by setting the `layoutParams`.
+
+```kotlin
+view(
+    name = "TextView",
+    layoutParams = MATCH_WIDTH_MATCH_HEIGHT
+) {
+    TextView(context).apply {
+        setBackgroundColor(Color.RED)
+        text = "Hello, World"
+    }
+}
+```
+
+The following four options are available.
+* `WARP_WIDTH_WRAP_HEIGHT` - It is default.
+* `MATCH_WIDTH_WRAP_HEIGHT`
+* `WRAP_HEIGHT_MATCH_HEIGHT`
+* `MATCH_WIDTH_MATCH_HEIGHT`
+
+</Preview>
+
+<Preview
+    imageUrl="/img/docs/android-view-size.png"
+    width={1080}
+    height={2280} >
+
+You can also specify a number directly.
+Note that the value is in pixels.
+
+```kotlin
+view(
+    name = "TextView",
+    layoutParams = ViewGroup.LayoutParams(600, 300)
+) {
+    TextView(context).apply {
+        setBackgroundColor(Color.RED)
+        text = "Hello, World"
+    }
+}
+```
+
+</Preview>
+
+<Preview
+    imageUrl="/img/docs/android-view-livedata.gif"
+    width={1080}
+    height={2280} >
+
+You can use the `LifecycleOwner` to observe a `LiveData` or `Flow`.
+
+```kotlin
+view(
+    name = "Counter"
+) {
+    val liveData = MutableLiveData(0)
+    val view = TextView(context)
+    liveData.observe(lifecycleOwner) {
+        view.text = it.toString()
+    }
+    view.setOnClickListener {
+        liveData.value = (liveData.value!! + 1) % 10
+    }
+    view
+}
+```
+
+</Preview>
+
+
+## Parameters
+
+name|description
+:--|:--
+name|The UI Component name. If you omit this, the class name will be used.
+layoutParams|Specifies the size of the View. By default, `wrap_content` is used for both width and height.
+definition|Create an instance of View. Inside the lambda expression, you can access `activity`, `context`, and `lifecycleOwner`.
