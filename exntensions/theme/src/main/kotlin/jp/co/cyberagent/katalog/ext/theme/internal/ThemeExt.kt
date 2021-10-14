@@ -1,5 +1,6 @@
 package jp.co.cyberagent.katalog.ext.theme.internal
 
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import jp.co.cyberagent.katalog.ext.ExperimentalKatalogExtApi
 import jp.co.cyberagent.katalog.ext.KatalogExt
@@ -12,7 +13,10 @@ internal fun createThemeExt(
     val builder = KatalogExt.Builder("Theme")
     builder.setComponentWrapper { content ->
         theme {
-            Surface(content = content)
+            Surface(
+                color = MaterialTheme.colors.background,
+                content = content
+            )
         }
     }
     return builder.build()
