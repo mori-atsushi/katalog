@@ -1,0 +1,54 @@
+---
+sidebar_position: 2
+---
+import { Preview } from "/src/widgets/Preview"
+
+# Android Theme
+There is the extension to change the Android Theme for Android View, DataBinding/ViewBinding, Fragment.
+
+## Setup
+Add the `katalog-ext-android-theme` package.
+The `katalog-android-view` package is required to use Android View, DataBinding/ViewBinding and Fragment too.
+
+```kotlin
+dependencies {
+    implementation("co.jp.cyberagent.katalog:katalog-android:`LATEST_VERSION`")
+    implementation("co.jp.cyberagent.katalog:katalog-android-view:`LATEST_VERSION`")
+    implementation("co.jp.cyberagent.katalog:katalog-ext-android-theme:`LATEST_VERSION`")
+}
+```
+
+## Examples
+<Preview
+    imageUrl="/img/docs/android-theme.png"
+    width={1080}
+    height={2280} >
+
+Can set the Material Theme when registering.
+The background color will be the value specified by `android:colorBackground`.
+
+```xml title="res/values/styles.xml"
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="MyTheme" parent="@style/Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:colorBackground">#FF0000</item>
+    </style>
+</resources>
+```
+```kotlin
+registerKatalog(
+    title = "Android Sample",
+    extensions = listOf(
+        AndroidThemeExt(R.style.MyTheme)
+    )
+) {
+    view("Text View") {
+        TextView(context).apply {
+            text = "Hello, World"
+        }
+    }
+}
+```
+
+</Preview>
