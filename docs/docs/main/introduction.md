@@ -10,7 +10,7 @@ When implementing complex UIs, you need to be aware of various things such as om
 The UI Catalog can be build UIs separately from the logic, so it is easy to reproduce hard-to-reach states and edge cases.
 It will be useful for reuse UIs by organizing and managing UI components.
 
-The UI Catalog is a powerful help for your development.
+The UI Catalog will powerfully help for your development.
 
 ## Features of Katalog
 

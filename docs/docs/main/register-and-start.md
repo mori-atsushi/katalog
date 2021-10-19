@@ -3,7 +3,7 @@ sidebar_position: 2
 ---
 # Register and Start
 ## Register Katalog
-Just run `startKatalog` function in your application.
+Just run `registerKatalog` function in your application.
 
 ```kotlin
 class MyApplication : Application() {
@@ -83,7 +83,7 @@ val group1 = group("Group 1") {
 val group2 = group("Group 2") {
     /* ... */
 }
-startKatalog {
+registerKatalog {
     title = "My App Catalog"
     group(group1, group2)
 }
