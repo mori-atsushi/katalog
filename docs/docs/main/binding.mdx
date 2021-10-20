@@ -1,0 +1,226 @@
+---
+sidebar_position: 5
+---
+
+import { Preview } from "/src/widgets/Preview"
+
+# DataBinding / ViewBinding
+
+## Setup
+Add the `katalog-android-view` package.
+
+```kotlin
+dependencies {
+    implementation("co.jp.cyberagent.katalog:katalog-android:`LATEST_VERSION`")
+    implementation("co.jp.cyberagent.katalog:katalog-android-view:`LATEST_VERSION`")
+}
+```
+
+## Examples
+<Preview
+    imageUrl="/img/docs/binding.png"
+    width={1080}
+    height={2280} >
+
+To add a `DataBinding` / `ViewBinding`, use the `binding` method.
+Pass an `inflate` method reference to the `factory` parameter.
+If you omit the `name`, the Binding class name will be used.
+
+```xml title="res/layout/sample.xml"
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_gravity="center"
+        android:text="Hello, World"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</FrameLayout>
+```
+
+```kotlin
+binding(
+    factory = SampleBinding::inflate,
+    name = "Binding Sample"
+)
+```
+
+</Preview>
+
+<Preview
+    imageUrl="/img/docs/binding-match.png"
+    width={1080}
+    height={2280} >
+
+
+By default, `wrap_content` is used for both width and height.
+You can change the size of the View by setting the `layoutParams`.
+
+```xml title="res/layout/sample.xml"
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#FF0000"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_gravity="center"
+        android:text="Hello, World"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</FrameLayout>
+```
+```kotlin
+binding(
+    factory = SampleBinding::inflate,
+    name = "Binding Sample",
+    layoutParams = MATCH_WIDTH_WRAP_HEIGHT
+)
+```
+
+The following four options are available.
+* `WARP_WIDTH_WRAP_HEIGHT` - It is default.
+* `MATCH_WIDTH_WRAP_HEIGHT`
+* `WRAP_WIDTH_WRAP_HEIGHT`
+* `MATCH_WIDTH_MATCH_HEIGHT`
+
+</Preview>
+
+<Preview
+    imageUrl="/img/docs/binding-size.png"
+    width={1080}
+    height={2280} >
+
+You can also specify a number directly.
+Note that the value is in pixels.
+
+```xml title="res/layout/sample.xml"
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#FF0000"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_gravity="center"
+        android:text="Hello, World"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</FrameLayout>
+```
+```kotlin
+binding(
+    factory = SampleBinding::inflate,
+    name = "Binding Sample",
+    layoutParams = ViewGroup.LayoutParams(600, 300)
+)
+```
+
+</Preview>
+
+<Preview
+    imageUrl="/img/docs/binding.png"
+    width={1080}
+    height={2280} >
+
+The Binding parameters can be set in the lambda expression.
+
+```xml title="res/layout/sample.xml"
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="text"
+            type="String" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_gravity="center"
+            android:text="@{text}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+</layout>
+```
+```kotlin
+binding(
+    factory = SampleBinding::inflate,
+    name = "Binding Sample"
+) { binding ->
+    binding.text = "Hello, World"
+}
+```
+
+</Preview>
+
+<Preview
+    imageUrl="/img/docs/android-view-livedata.gif"
+    width={1080}
+    height={2280} >
+
+It is also possible to use `LiveData` and `StateFlow` in `DataBinding`.
+Don't forget to pass the `LifecycleOwner` to the Binding class.
+
+```kotlin title="SampleViewModel.kt"
+class SampleViewModel {
+    private val _count = MutableLiveData(0)
+    val count: LiveData<Int> = _count
+
+    fun handleClick() {
+        _count.value = (_count.value!! + 1) % 10
+    }
+}
+```
+```xml title="res/layout/sample.xml"
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="jp.co.cyberagent.katalog.android_sample.SampleViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:onClick="@{() -> viewModel.handleClick()}"
+            android:layout_gravity="center"
+            android:text="@{viewModel.count.toString()}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+</layout>
+```
+```kotlin
+binding(
+    factory = SampleBinding::inflate,
+    name = "Counter"
+) { binding ->
+    binding.viewModel = SampleViewModel()
+    binding.lifecycleOwner = lifecycleOwner
+}
+```
+
+</Preview>
+
+## Parameters
+
+name|description
+:--|:--
+factory|Passes a reference to the Binding's inflation method.
+name|The UI Component name. If you omit this, the Binding class name will be used.
+layoutParams|Specifies the size of the View. By default, `wrap_content` is used for both width and height.
+update|Set the Binding parameters. Inside the lambda expression, you can access `activity`, `context`, and `lifecycleOwner`. This is optional.

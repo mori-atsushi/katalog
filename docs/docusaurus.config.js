@@ -3,8 +3,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: 'Katalog',
-  tagline: 'Dinosaurs are cool',
+  title: 'Katalog - A UI Catalog Library made with Jetpack Compose',
+  tagline: 'A UI Catalog Library made with Jetpack Compose',
   url: 'https://crispy-waddle-c753833a.pages.github.io/',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -15,17 +15,22 @@ module.exports = {
   trailingSlash: false,
   themeConfig: {
     navbar: {
-      title: 'My Site',
+      title: 'Katalog',
       logo: {
-        alt: 'My Site Logo',
+        alt: 'Katalog Logo',
         src: 'img/logo.svg',
       },
       items: [
         {
-          type: 'doc',
-          docId: 'intro',
+          to: 'docs/getting-started',
           position: 'left',
-          label: 'Tutorial',
+          label: 'Getting Started',
+        },
+        {
+          to: 'docs/main/introduction',
+          activeBasePath: 'docs/main',
+          position: 'left',
+          label: 'Documentation',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
@@ -42,26 +47,26 @@ module.exports = {
           title: 'Docs',
           items: [
             {
-              label: 'Tutorial',
-              to: '/docs/intro',
+              label: 'Getting Started',
+              to: '/docs/getting-started',
+            },
+            {
+              label: 'Documentation',
+              to: '/docs/main/introduction',
+            },
+            {
+              label: 'Extensions',
+              to: '/docs/main/extensions/compose-theme',
             },
           ],
         },
         {
-          title: 'Community',
+          title: 'Blog',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
-            {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
-            },
-            {
-              label: 'Twitter',
-              href: 'https://twitter.com/docusaurus',
-            },
+              label: 'Welcome',
+              to: '/blog/welcome',
+            }
           ],
         },
         {
@@ -73,16 +78,17 @@ module.exports = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/cyberagent-zemi/katalog',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Katalog. Built with Docusaurus.`,
     },
     prism: {
       theme: lightCodeTheme,
       darkTheme: darkCodeTheme,
+      additionalLanguages: ['kotlin'],
     },
   },
   presets: [
@@ -93,13 +99,13 @@ module.exports = {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/',
+            'https://github.com/cyberagent-zemi/katalog/edit/main/docs/',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/blog/',
+            'https://github.com/cyberagent-zemi/katalog/edit/main/docs/blog/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),

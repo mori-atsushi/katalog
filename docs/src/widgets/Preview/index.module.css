@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.code {
+    flex-grow: 1;
+    flex-shrink: 0;
+    width: 320px;
+}
+
+.img {
+    flex-grow: 0;
+    width: 320px;
+    border: 1px solid black;
+    height: auto;
+    display: block;
+}

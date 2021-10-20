@@ -1,0 +1,50 @@
+---
+sidebar_position: 1
+---
+
+import { Preview } from "/src/widgets/Preview"
+
+# Compose Theme
+There is the extension to change the Compose Theme.
+
+## Setup
+Add the `katalog-ext-theme` package.
+
+```kotlin
+dependencies {
+    implementation("co.jp.cyberagent.katalog:katalog-android:`LATEST_VERSION`")
+    implementation("co.jp.cyberagent.katalog:katalog-ext-theme:`LATEST_VERSION`")
+}
+```
+
+## Examples
+<Preview
+    imageUrl="/img/docs/compose-theme.png"
+    width={1080}
+    height={2280} >
+
+You can set the Material Theme when calling `registerKatalog`.
+The `background` color will be applied automatically.
+Don't forget to set the `content`.
+
+```kotlin
+registerKatalog(
+    title = "Android Sample",
+    extensions = listOf(
+        ThemeExt { content ->
+            MaterialTheme(
+                colors = MaterialTheme.colors.copy(
+                    background = Color.Red
+                ),
+                content = content
+            )
+        }
+    )
+) {
+    compose("Text") {
+        Text(text = "Hello, World")
+    }
+}
+```
+
+</Preview>
