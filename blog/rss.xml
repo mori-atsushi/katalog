@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0">
     <channel>
-        <title>Katalog Blog</title>
+        <title>Katalog - A UI Catalog Library made with Jetpack Compose Blog</title>
         <link>https://crispy-waddle-c753833a.pages.github.io/blog</link>
-        <description>Katalog Blog</description>
+        <description>Katalog - A UI Catalog Library made with Jetpack Compose Blog</description>
         <lastBuildDate>Thu, 30 May 2019 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
