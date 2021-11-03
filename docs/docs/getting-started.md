@@ -60,6 +60,11 @@ class MyApplication : Application() {
 
 </Preview>
 
+<Preview
+    imageUrl="/img/docs/group.png"
+    width={1080}
+    height={2280} >
+
 You can use the `group` function to group components.
 
 ```kotlin
@@ -92,6 +97,8 @@ registerKatalog {
     group(group1, group2)
 }
 ```
+
+</Preview>
 
 ## step3: Start Catalog Activity
 
