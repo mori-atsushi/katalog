@@ -1,8 +1,9 @@
----
-sidebar_position: 1
----
-# What is Katalog?
-Katalog is a UI Catalog Library made with Jetpack Compose.
+import { Preview } from '/src/widgets/Preview';
+import TopHeader from './Header';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<TopHeader />
 
 ## Why using the UI Catalog?
 When implementing complex UIs, you need to be aware of various things such as omissions and degradation.
@@ -14,32 +15,72 @@ The UI Catalog will powerfully help for your development.
 
 ## Features of Katalog
 
+<Preview
+    imageUrl="/img/docs/start.png"
+    width={1080}
+    height={2280} >
+
 It is made with `Jetpack Compose` and you can preview `Composable`.
 You can easily register and group UI components using the `DSL` , as shown below.
 
 ```kotlin
-registerKatalog(
-    title = "My App Catalog"
-) {
-    compose("UI Component") {
-        Text(text = "Hello, World")
-    }
+class MyApplication : Application() {
+    override fun onCreate() {
+        super.onCreate()
 
-    group("Group 1") {
-        compose("UI Component 1") {
-            /* ... */
-        }
-
-        compose("UI Component 2") {
-            /* ... */
+        registerKatalog(
+            title = "My App Catalog"
+        ) {
+            compose("UI Component") {
+                Text(text = "Hello, World")
+            }
         }
     }
 }
 ```
+
+</Preview>
+
 In addition to [Composable](/docs/main/jetpack-compose), the following UI components are supported
+
 * [Android View](/docs/main/android-view)
 * [DataBinding / ViewBinding](/docs/main/binding)
 * [Fragment](/docs/main/fragment)
+
+<Tabs>
+<TabItem value="Android View" label="Android View" default>
+
+```kotlin
+view(
+    name = "TextView"
+) {
+    TextView(context).apply {
+        text = "Hello, World"
+    }
+}
+```
+
+</TabItem>
+<TabItem value="DataBinding / ViewBinding" label="DataBinding / ViewBinding">
+
+```kotlin
+binding(
+    factory = SampleBinding::inflate,
+    name = "Binding Sample"
+)
+```
+
+</TabItem>
+<TabItem value="Fragment" label="Fragment">
+
+```kotlin
+fragment {
+    SampleFragment()
+}
+```
+
+</TabItem>
+</Tabs>
 
 ### Extensions
 Katalog provides additional features as Extensions.

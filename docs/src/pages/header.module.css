@@ -1,0 +1,38 @@
+.headerContainer {
+  align-items: center;
+  padding: 60px 0;
+}
+
+.headerTitle {
+  margin: 0 0 60px;
+}
+
+.headerTitle h1 {
+  font-size: 50px;
+}
+
+.headerTitle p {
+  margin: 20px 0 60px;
+}
+
+.button {
+  display: inline-block;
+  background: var(--ifm-color-primary);
+  border-radius: 1000px;
+  border: none;
+  width: 100%;
+  font-size: 24px;
+  color: #FFFFFF;
+  transition: opacity 0.2s;
+}
+
+@media (min-width: 440px) {
+  .button {
+    width: auto;
+  }
+}
+
+.button:hover {
+  color: #FFFFFF;
+  opacity: 0.8;
+}

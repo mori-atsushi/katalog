@@ -1,6 +1,9 @@
 ---
 sidebar_position: 1
 ---
+
+import { Preview } from '/src/widgets/Preview';
+
 # Getting Started
 ## step1: Add the dependency
 
@@ -31,6 +34,11 @@ dependencies {
 
 ## step2: Register the UI component
 
+<Preview
+    imageUrl="/img/docs/start.png"
+    width={1080}
+    height={2280} >
+
 Just run the `registerKatalog` function in your application.
 To register a `Composable`, use the `compose` function.
 
@@ -49,6 +57,13 @@ class MyApplication : Application() {
     }
 }
 ```
+
+</Preview>
+
+<Preview
+    imageUrl="/img/docs/group.png"
+    width={1080}
+    height={2280} >
 
 You can use the `group` function to group components.
 
@@ -82,6 +97,8 @@ registerKatalog {
     group(group1, group2)
 }
 ```
+
+</Preview>
 
 ## step3: Start Catalog Activity
 

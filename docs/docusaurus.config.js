@@ -28,7 +28,7 @@ module.exports = {
           label: 'Getting Started',
         },
         {
-          to: 'docs/main/introduction',
+          to: 'docs/main/register-and-start',
           activeBasePath: 'docs/main',
           position: 'left',
           label: 'Documentation',
@@ -53,7 +53,7 @@ module.exports = {
             },
             {
               label: 'Documentation',
-              to: '/docs/main/introduction',
+              to: '/docs/main/register-and-start',
             },
             {
               label: 'Extensions',
