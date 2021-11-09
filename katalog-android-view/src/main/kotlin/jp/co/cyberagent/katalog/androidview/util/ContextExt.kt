@@ -1,4 +1,4 @@
-package jp.co.cyberagent.katalog.android_view.util
+package jp.co.cyberagent.katalog.androidview.util
 
 import android.app.Activity
 import android.content.Context

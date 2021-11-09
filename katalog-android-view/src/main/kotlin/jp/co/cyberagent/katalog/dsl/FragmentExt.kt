@@ -2,7 +2,7 @@ package jp.co.cyberagent.katalog.dsl
 
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import jp.co.cyberagent.katalog.android_view.mapper.FragmentToCompose
+import jp.co.cyberagent.katalog.androidview.mapper.FragmentToCompose
 import kotlin.reflect.KClass
 
 public typealias FragmentDefinition<T> = ViewDefinitionScope.() -> T

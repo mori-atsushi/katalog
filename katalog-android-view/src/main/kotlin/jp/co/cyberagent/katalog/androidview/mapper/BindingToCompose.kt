@@ -1,4 +1,4 @@
-package jp.co.cyberagent.katalog.android_view.mapper
+package jp.co.cyberagent.katalog.androidview.mapper
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

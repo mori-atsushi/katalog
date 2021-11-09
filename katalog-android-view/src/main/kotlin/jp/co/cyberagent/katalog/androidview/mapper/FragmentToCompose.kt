@@ -1,4 +1,4 @@
-package jp.co.cyberagent.katalog.android_view.mapper
+package jp.co.cyberagent.katalog.androidview.mapper
 
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +13,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentContainerView
 import androidx.fragment.app.commitNow
-import jp.co.cyberagent.katalog.android_view.util.findFragmentManager
+import jp.co.cyberagent.katalog.androidview.util.findFragmentManager
 import jp.co.cyberagent.katalog.dsl.FragmentDefinition
 import jp.co.cyberagent.katalog.dsl.FragmentOnCreateListener
 import java.util.UUID

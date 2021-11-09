@@ -2,7 +2,7 @@ package jp.co.cyberagent.katalog.dsl
 
 import android.view.View
 import android.view.ViewGroup
-import jp.co.cyberagent.katalog.android_view.mapper.ViewToCompose
+import jp.co.cyberagent.katalog.androidview.mapper.ViewToCompose
 import kotlin.reflect.KClass
 
 public typealias ViewDefinition<T> = ViewDefinitionScope.() -> T
