@@ -67,7 +67,7 @@ dependencies {
 }
 
 ext {
-    set("releaseArtifact", "katalog-android-view")
+    set("releaseArtifact", "katalog-androidview")
 }
 
 apply(from = "$rootDir/config/publish.gradle")

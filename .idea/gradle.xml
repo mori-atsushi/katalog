@@ -16,7 +16,7 @@
             <option value="$PROJECT_DIR$/extensions/android-theme" />
             <option value="$PROJECT_DIR$/extensions/theme" />
             <option value="$PROJECT_DIR$/katalog" />
-            <option value="$PROJECT_DIR$/katalog-android-view" />
+            <option value="$PROJECT_DIR$/katalog-androidview" />
             <option value="$PROJECT_DIR$/samples" />
             <option value="$PROJECT_DIR$/samples/android-sample" />
           </set>
