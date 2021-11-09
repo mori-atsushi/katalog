@@ -38,7 +38,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":katalog-androidview"))
     implementation(kotlin("stdlib"))
     implementation(project(":katalog"))
 

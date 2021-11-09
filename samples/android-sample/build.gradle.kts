@@ -50,6 +50,7 @@ android {
 
 dependencies {
     implementation(project(":katalog"))
+    implementation(project(":katalog-androidview"))
 
     implementation(kotlin("stdlib"))
     implementation(Deps.KotlinX.Coroutines.android)
