@@ -1,4 +1,4 @@
-package jp.co.cyberagent.katalog.ext.android_theme.internal
+package jp.co.cyberagent.katalog.ext.androidtheme.internal
 
 import androidx.annotation.StyleRes
 import jp.co.cyberagent.katalog.ext.ExperimentalKatalogExtApi

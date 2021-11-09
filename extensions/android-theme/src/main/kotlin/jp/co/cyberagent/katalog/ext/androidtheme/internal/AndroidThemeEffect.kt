@@ -1,4 +1,4 @@
-package jp.co.cyberagent.katalog.ext.android_theme.internal
+package jp.co.cyberagent.katalog.ext.androidtheme.internal
 
 import android.app.Activity
 import androidx.annotation.StyleRes

@@ -1,8 +1,8 @@
-package jp.co.cyberagent.katalog.ext.android_theme
+package jp.co.cyberagent.katalog.ext.androidtheme
 
 import androidx.annotation.StyleRes
 import jp.co.cyberagent.katalog.ext.KatalogExt
-import jp.co.cyberagent.katalog.ext.android_theme.internal.createAndroidThemeExt
+import jp.co.cyberagent.katalog.ext.androidtheme.internal.createAndroidThemeExt
 
 @Suppress("FunctionName")
 public fun AndroidThemeExt(
