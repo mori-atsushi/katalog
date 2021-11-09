@@ -56,7 +56,7 @@ dependencies {
 }
 
 ext {
-    set("releaseArtifact", "katalog-ext-android-theme")
+    set("releaseArtifact", "katalog-ext-androidtheme")
 }
 
 apply(from = "$rootDir/config/publish.gradle")
