@@ -18,7 +18,7 @@
             <option value="$PROJECT_DIR$/katalog" />
             <option value="$PROJECT_DIR$/katalog-androidview" />
             <option value="$PROJECT_DIR$/samples" />
-            <option value="$PROJECT_DIR$/samples/android-sample" />
+            <option value="$PROJECT_DIR$/samples/androidapp" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
