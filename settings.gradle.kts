@@ -1,6 +1,6 @@
 rootProject.name = "Katalog"
 include(":katalog")
-include(":katalog-android-view")
+include(":katalog-androidview")
 include(":extensions:theme")
-include(":extensions:android-theme")
-include(":samples:android-sample")
+include(":extensions:androidtheme")
+include(":samples:androidapp")
