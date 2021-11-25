@@ -3,7 +3,8 @@ name: "on push main"
 on:
   push:
     branches:
-      - main
+      - 'master'
+      - '0.1.0-beta'
   workflow_dispatch:
 
 env:

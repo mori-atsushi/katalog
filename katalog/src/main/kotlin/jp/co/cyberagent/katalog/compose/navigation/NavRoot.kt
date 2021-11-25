@@ -59,14 +59,14 @@ private fun <T> AnimatedPage(
         transitionSpec = {
             if (targetState.index > initialState.index) {
                 ContentTransform(
-                    targetContentEnter = slideInHorizontally({ it }),
-                    initialContentExit = slideOutHorizontally({ -it / 5 }),
+                    targetContentEnter = slideInHorizontally(initialOffsetX = { it }),
+                    initialContentExit = slideOutHorizontally(targetOffsetX = { -it / 5 }),
                     targetContentZIndex = targetState.index.toFloat()
                 )
             } else {
                 ContentTransform(
-                    targetContentEnter = slideInHorizontally({ -it / 5 }),
-                    initialContentExit = slideOutHorizontally({ it }),
+                    targetContentEnter = slideInHorizontally(initialOffsetX = { -it / 5 }),
+                    initialContentExit = slideOutHorizontally(targetOffsetX = { it }),
                     targetContentZIndex = targetState.index.toFloat()
                 )
             }
