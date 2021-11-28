@@ -1,6 +1,6 @@
-<img src="./docs/static/img/logo.svg" width="84px" />
+<img src="./docs/static/img/logo-clip.svg" width="84px"/>
 
-<strong style="font-size: 50px; line-height: 64px;">Katalog</strong>
+# Katalog
 
 A UI Catalog Library made with Jetpack Compose
 
