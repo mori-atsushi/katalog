@@ -1,18 +1,23 @@
-# Katalog - A UI Catalog Library made with [Jetpack Compose](https://developer.android.com/jetpack/compose)
+<img src="./docs/static/img/logo.svg" width="84px" />
 
-**🚧 This project is in progress 🚧**
-```text
-I welcome your contributions and feedback.
-Katalog may be made breaking changes in the future.
-```
+<strong style="font-size: 50px; line-height: 64px;">Katalog</strong>
+
+A UI Catalog Library made with Jetpack Compose
+
+<br />
+
+<img src="./docs/static/img/header-img.png" width="320px" align="right" />
 
 ## Features
+
 * It is made with  [Jetpack Compose](https://developer.android.com/jetpack/compose) and You can preview Composable.
 * You can easily register and group UI components using the `DSL`.
 * It supports [Android View](https://developer.android.com/reference/android/view/View), [DataBinding](https://developer.android.com/topic/libraries/data-binding), [ViewBinding](https://developer.android.com/topic/libraries/view-binding) and [Fragment](https://developer.android.com/guide/components/fragments).
 
-# Getting Started
-## step1: Add the dependency
+<br clear="all" />
+
+## Getting Started
+### step1: Add the dependency
 
 Add GitHub Packages repository to your build.gradle file.
 Set your `GITHUB_USERNAME` and `GITHUB_TOKEN`.
@@ -39,7 +44,7 @@ dependencies {
 }
 ```
 
-## step2: Register the UI component
+### step2: Register the UI component
 
 Just run the `registerKatalog` function in your application.
 To register a `Composable`, use the `compose` function.
@@ -93,13 +98,16 @@ registerKatalog {
 }
 ```
 
-## step3: Start Catalog Activity
+### step3: Start Catalog Activity
 
 Start `KatalogActivity` from your debug menu.
 
 ```kotlin
 KatalogActivity.start(activity)
 ```
+
+### You want to know more?
+Please check the [Full Documents](https://cyberagent-zemi.github.io/katalog).
 
 ## Ideas
 * Search function.
