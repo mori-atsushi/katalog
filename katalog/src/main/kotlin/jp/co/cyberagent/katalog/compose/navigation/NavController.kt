@@ -16,7 +16,12 @@ internal class NavController<T>(startDestination: T) {
         _backStack.size <= 1
     }
 
+    private var isTransitioning = false
+
     fun push(destination: T) {
+        if (isTransitioning) return
+        isTransitioning = true
+
         val state = NavState.of(destination, _backStack.size)
         _backStack.add(state)
         _current.value = state
@@ -32,5 +37,9 @@ internal class NavController<T>(startDestination: T) {
 
     fun hasState(state: NavState<T>): Boolean {
         return state.index <= _backStack.lastIndex
+    }
+
+    fun handleCompleteTransition() {
+        isTransitioning = false
     }
 }

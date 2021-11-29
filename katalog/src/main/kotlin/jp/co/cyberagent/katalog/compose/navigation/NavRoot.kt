@@ -7,6 +7,7 @@ import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.saveable.SaveableStateHolder
 import androidx.compose.runtime.saveable.rememberSaveableStateHolder
@@ -19,7 +20,10 @@ internal fun <T> NavRoot(
     val current by navController.current
     val saveableStateHolder = rememberSaveableStateHolder()
 
-    AnimatedPage(current) {
+    AnimatedPage(
+        targetState = current,
+        onComplete = navController::handleCompleteTransition
+    ) {
         NavChild(
             navController = navController,
             state = it,
@@ -52,6 +56,7 @@ private fun <T> NavChild(
 @Composable
 private fun <T> AnimatedPage(
     targetState: NavState<T>,
+    onComplete: () -> Unit = {},
     content: @Composable (state: NavState<T>) -> Unit
 ) {
     AnimatedContent(
@@ -72,6 +77,11 @@ private fun <T> AnimatedPage(
             }
         }
     ) {
+        LaunchedEffect(transition.currentState) {
+            if (transition.currentState == transition.targetState) {
+                onComplete()
+            }
+        }
         content(it)
     }
 }

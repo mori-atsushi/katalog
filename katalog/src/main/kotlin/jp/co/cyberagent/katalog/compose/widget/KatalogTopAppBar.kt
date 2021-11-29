@@ -1,6 +1,7 @@
 package jp.co.cyberagent.katalog.compose.widget
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.Crossfade
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -23,19 +24,23 @@ internal fun KatalogTopAppBar(
     navigationIcon: @Composable (() -> Unit)? = null,
 ) {
     Box {
-        TopAppBar(
-            title = {
-                Text(
-                    text = title,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                )
-            },
-            elevation = 0.dp,
-            backgroundColor = MaterialTheme.colors.background,
-            contentColor = MaterialTheme.colors.onBackground,
-            navigationIcon = navigationIcon
-        )
+        Crossfade(
+            targetState = (title to navigationIcon)
+        ) { (title, navigationIcon) ->
+            TopAppBar(
+                title = {
+                    Text(
+                        text = title,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                    )
+                },
+                elevation = 0.dp,
+                backgroundColor = MaterialTheme.colors.background,
+                contentColor = MaterialTheme.colors.onBackground,
+                navigationIcon = navigationIcon
+            )
+        }
         AnimatedVisibility(
             visible = isVisibleDivider,
             modifier = Modifier.align(Alignment.BottomCenter),
