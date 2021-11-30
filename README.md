@@ -113,8 +113,7 @@ Please check the [Full Documents](https://cyberagent-zemi.github.io/katalog).
 * Search function.
 * Combine with Screenshot Test.
 * Provide some Addons.
-* Support [Compose for Desktop](https://www.jetbrains.com/lp/compose/).
-* Support [Compose for Web](https://compose-web.ui.pages.jetbrains.team/).
+* Support [Compose Multiplatform](https://www.jetbrains.com/lp/compose-mpp).
 
 ## License
 ```
