@@ -10,7 +10,7 @@ A UI Catalog Library made with Jetpack Compose
 
 ## Features
 
-* It is made with  [Jetpack Compose](https://developer.android.com/jetpack/compose) and You can preview Composable.
+* It is made with  [Jetpack Compose](https://developer.android.com/jetpack/compose) and you can preview Composable.
 * You can easily register and group UI components using the `DSL`.
 * It supports [Android View](https://developer.android.com/reference/android/view/View), [DataBinding](https://developer.android.com/topic/libraries/data-binding), [ViewBinding](https://developer.android.com/topic/libraries/view-binding) and [Fragment](https://developer.android.com/guide/components/fragments).
 
