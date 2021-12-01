@@ -34,7 +34,7 @@ module.exports = {
           label: 'Documentation',
         },
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/cyberagent-zemi/katalog',
           label: 'GitHub',
           position: 'right',
         },
