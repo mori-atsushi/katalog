@@ -33,9 +33,8 @@ module.exports = {
           position: 'left',
           label: 'Documentation',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/cyberagent-zemi/katalog',
           label: 'GitHub',
           position: 'right',
         },
@@ -62,21 +61,8 @@ module.exports = {
           ],
         },
         {
-          title: 'Blog',
-          items: [
-            {
-              label: 'Welcome',
-              to: '/blog/welcome',
-            }
-          ],
-        },
-        {
           title: 'More',
           items: [
-            {
-              label: 'Blog',
-              to: '/blog',
-            },
             {
               label: 'GitHub',
               href: 'https://github.com/cyberagent-zemi/katalog',
@@ -101,12 +87,6 @@ module.exports = {
           // Please change this to your repo.
           editUrl:
             'https://github.com/cyberagent-zemi/katalog/edit/main/docs/',
-        },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/cyberagent-zemi/katalog/edit/main/docs/blog/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
