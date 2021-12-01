@@ -1,7 +1,7 @@
 plugins {
     id("com.android.library")
     id("kotlin-android")
-    `maven-publish`
+    id("com.vanniktech.maven.publish")
 }
 
 android {
@@ -66,9 +66,3 @@ dependencies {
     testImplementation(Deps.Androidx.Test.junit)
     testImplementation(Deps.Androidx.Test.truth)
 }
-
-ext {
-    set("releaseArtifact", "katalog-android")
-}
-
-apply(from = "$rootDir/config/publish.gradle")
