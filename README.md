@@ -19,28 +19,21 @@ A UI Catalog Library made with Jetpack Compose
 ## Getting Started
 ### step1: Add the dependency
 
-Add GitHub Packages repository to your build.gradle file.
-Set your `GITHUB_USERNAME` and `GITHUB_TOKEN`.
+Add Maven Central repository to your build.gradle file if you haven't already.
 
 ```kotlin
 repositories {
-    maven {
-        name = "GitHubPackages"
-        url = uri("https://maven.pkg.github.com/cyberagent-zemi/katalog")
-        credentials {
-            username = `GITHUB_USERNAME`
-            password = `GITHUB_TOKEN`
-        }
-    }
+    mavenCentral()
 }
 ```
 
 Add the package dependencies to your build.gradle file.
-Please check `LATEST_VERSION` from [here](https://github.com/cyberagent-zemi/katalog/packages/886303).
 
 ```kotlin
 dependencies {
-    implementation("co.jp.cyberagent.katalog:katalog-android:`LATEST_VERSION`")
+    implementation("jp.co.cyberagent.katalog:katalog:1.0.0")
+    // If you are using compose 1.1.0-beta04
+    // implementation("jp.co.cyberagent.katalog:katalog:1.1.0-beta01")
 }
 ```
 

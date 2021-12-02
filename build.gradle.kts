@@ -10,6 +10,10 @@ buildscript {
     }
 }
 
+plugins {
+    id("com.vanniktech.maven.publish") version "0.18.0"
+}
+
 allprojects {
     repositories {
         google()
@@ -24,8 +28,4 @@ subprojects {
         google()
         mavenCentral()
     }
-}
-
-tasks.register("clean", Delete::class) {
-    delete(rootProject.buildDir)
 }
