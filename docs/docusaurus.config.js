@@ -5,7 +5,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 module.exports = {
   title: 'Katalog - A UI Catalog Library made with Jetpack Compose',
   tagline: 'A UI Catalog Library made with Jetpack Compose',
-  url: 'https://crispy-waddle-c753833a.pages.github.io',
+  url: 'https://cyberagent-zemi.github.io/katalog',
   baseUrl: '/katalog/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
