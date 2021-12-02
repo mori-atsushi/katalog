@@ -2,7 +2,8 @@
 sidebar_position: 4
 ---
 
-import { Preview } from "/src/widgets/Preview"
+import { Preview } from "/src/widgets/Preview";
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Android View
 
@@ -20,7 +21,7 @@ dependencies {
 ## Examples
 
 <Preview
-    imageUrl="/img/docs/android-view.png"
+    imageUrl={useBaseUrl('/img/docs/android-view.png')}
     width={1080}
     height={2280} >
 
@@ -41,7 +42,7 @@ view(
 </Preview>
 
 <Preview
-    imageUrl="/img/docs/android-view-match.png"
+    imageUrl={useBaseUrl('/img/docs/android-view-match.png')}
     width={1080}
     height={2280} >
 
@@ -69,7 +70,7 @@ The following four options are available.
 </Preview>
 
 <Preview
-    imageUrl="/img/docs/android-view-size.png"
+    imageUrl={useBaseUrl('/img/docs/android-view-size.png')}
     width={1080}
     height={2280} >
 
@@ -91,7 +92,7 @@ view(
 </Preview>
 
 <Preview
-    imageUrl="/img/docs/android-view-livedata.gif"
+    imageUrl={useBaseUrl('/img/docs/android-view-livedata.gif')}
     width={1080}
     height={2280} >
 

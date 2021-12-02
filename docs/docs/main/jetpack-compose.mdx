@@ -3,13 +3,14 @@ sidebar_position: 3
 ---
 
 import { Preview } from "/src/widgets/Preview"
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Jetpack Compose
 
 ## Examples
 
 <Preview
-    imageUrl="/img/docs/jetpack-compose.png"
+    imageUrl={useBaseUrl('/img/docs/jetpack-compose.png')}
     width={1080}
     height={2280} >
 
@@ -24,7 +25,7 @@ compose("Text") {
 </Preview>
 
 <Preview
-    imageUrl="/img/docs/jetpack-compose-state.gif"
+    imageUrl={useBaseUrl('/img/docs/jetpack-compose-state.gif')}
     width={1080}
     height={2280} >
 

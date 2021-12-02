@@ -3,6 +3,7 @@ sidebar_position: 5
 ---
 
 import { Preview } from "/src/widgets/Preview"
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # DataBinding / ViewBinding
 
@@ -18,7 +19,7 @@ dependencies {
 
 ## Examples
 <Preview
-    imageUrl="/img/docs/binding.png"
+    imageUrl={useBaseUrl('/img/docs/binding.png')}
     width={1080}
     height={2280} >
 
@@ -51,7 +52,7 @@ binding(
 </Preview>
 
 <Preview
-    imageUrl="/img/docs/binding-match.png"
+    imageUrl={useBaseUrl('/img/docs/binding-match.png')}
     width={1080}
     height={2280} >
 
@@ -90,7 +91,7 @@ The following four options are available.
 </Preview>
 
 <Preview
-    imageUrl="/img/docs/binding-size.png"
+    imageUrl={useBaseUrl('/img/docs/binding-size.png')}
     width={1080}
     height={2280} >
 
@@ -122,7 +123,7 @@ binding(
 </Preview>
 
 <Preview
-    imageUrl="/img/docs/binding.png"
+    imageUrl={useBaseUrl('/img/docs/binding.png')}
     width={1080}
     height={2280} >
 
@@ -163,7 +164,7 @@ binding(
 </Preview>
 
 <Preview
-    imageUrl="/img/docs/android-view-livedata.gif"
+    imageUrl={useBaseUrl('/img/docs/android-view-livedata.gif')}
     width={1080}
     height={2280} >
 
