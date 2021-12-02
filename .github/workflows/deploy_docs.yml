@@ -1,0 +1,32 @@
+name: "deploy docs"
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy_docs:
+    name: Deploy Docs
+    runs-on: ubuntu-18.04
+    defaults:
+      run:
+        working-directory: docs
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '16'
+      - name: git config
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+      - name: cache
+        uses: actions/cache@v2
+        with:
+          path: docs/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - run: yarn install
+      - run: yarn deploy
+        env:
+          GIT_USER: ${{ github.actor }}:${{ github.token }}
