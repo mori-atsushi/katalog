@@ -19,9 +19,9 @@ Add the package dependencies to your build.gradle file.
 
 ```kotlin
 dependencies {
-    implementation("co.jp.cyberagent.katalog:katalog-android:1.0.0")
+    implementation("jp.co.cyberagent.katalog:katalog:1.0.0")
     // If you are using compose 1.1.0-beta04
-    // implementation("co.jp.cyberagent.katalog:katalog-android:1.1.0-beta01")
+    // implementation("jp.co.cyberagent.katalog:katalog:1.1.0-beta01")
 }
 ```
 
