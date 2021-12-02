@@ -8,7 +8,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 # Getting Started
 ## step1: Add the dependency
 
-Add Maven Central repository to your build.gradle file if you haven't already.
+Add Maven Central repository to your `build.gradle`.
 
 ```kotlin
 repositories {
@@ -16,7 +16,7 @@ repositories {
 }
 ```
 
-Add the package dependencies to your build.gradle file.
+Add the package dependencies to your `build.gradle`.
 
 ```kotlin
 dependencies {
