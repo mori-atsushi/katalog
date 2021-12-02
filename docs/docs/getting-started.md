@@ -3,6 +3,7 @@ sidebar_position: 1
 ---
 
 import { Preview } from '/src/widgets/Preview';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Getting Started
 ## step1: Add the dependency
@@ -28,7 +29,7 @@ dependencies {
 ## step2: Register the UI component
 
 <Preview
-    imageUrl="/img/docs/start.png"
+    imageUrl={useBaseUrl('/img/docs/start.png')}
     width={1080}
     height={2280} >
 
@@ -54,7 +55,7 @@ class MyApplication : Application() {
 </Preview>
 
 <Preview
-    imageUrl="/img/docs/group.png"
+    imageUrl={useBaseUrl('/img/docs/group.png')}
     width={1080}
     height={2280} >
 

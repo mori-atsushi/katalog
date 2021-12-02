@@ -2,7 +2,8 @@
 sidebar_position: 1
 ---
 
-import { Preview } from "/src/widgets/Preview"
+import { Preview } from "/src/widgets/Preview";
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Compose Theme
 There is the extension to change the Compose Theme.
@@ -19,7 +20,7 @@ dependencies {
 
 ## Examples
 <Preview
-    imageUrl="/img/docs/compose-theme.png"
+    imageUrl={useBaseUrl('/img/docs/compose-theme.png')}
     width={1080}
     height={2280} >
 

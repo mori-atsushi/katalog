@@ -1,4 +1,5 @@
 import { Preview } from '/src/widgets/Preview';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import TopHeader from './Header';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -16,7 +17,7 @@ The UI Catalog will powerfully help for your development.
 ## Features of Katalog
 
 <Preview
-    imageUrl="/img/docs/start.png"
+    imageUrl={useBaseUrl('/img/docs/start.png')}
     width={1080}
     height={2280} >
 

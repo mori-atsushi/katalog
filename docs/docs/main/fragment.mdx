@@ -3,6 +3,7 @@ sidebar_position: 6
 ---
 
 import { Preview } from "/src/widgets/Preview"
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Fragment
 
@@ -18,7 +19,7 @@ dependencies {
 
 ## Examples
 <Preview
-    imageUrl="/img/docs/fragment.png"
+    imageUrl={useBaseUrl('/img/docs/fragment.png')}
     width={1080}
     height={2280} >
 
@@ -65,7 +66,7 @@ You can change the size of the View by setting the `layoutParams`.
 </Preview>
 
 <Preview
-    imageUrl="/img/docs/fragment-update.png"
+    imageUrl={useBaseUrl('/img/docs/fragment-update.png')}
     width={1080}
     height={2280} >
 

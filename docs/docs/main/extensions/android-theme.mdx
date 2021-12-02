@@ -1,7 +1,8 @@
 ---
 sidebar_position: 2
 ---
-import { Preview } from "/src/widgets/Preview"
+import { Preview } from "/src/widgets/Preview";
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Android Theme
 There is the extension to change the Android Theme for Android View, DataBinding/ViewBinding, Fragment.
@@ -20,7 +21,7 @@ dependencies {
 
 ## Examples
 <Preview
-    imageUrl="/img/docs/android-theme.png"
+    imageUrl={useBaseUrl('/img/docs/android-theme.png')}
     width={1080}
     height={2280} >
 
