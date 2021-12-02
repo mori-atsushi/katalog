@@ -2,7 +2,7 @@ plugins {
     id("com.android.library")
     id("kotlin-android")
     id("kotlin-kapt")
-    `maven-publish`
+    id("com.vanniktech.maven.publish")
 }
 
 android {
@@ -65,9 +65,3 @@ dependencies {
     testImplementation(Deps.Androidx.Test.junit)
     testImplementation(Deps.Androidx.Test.truth)
 }
-
-ext {
-    set("releaseArtifact", "katalog-androidview")
-}
-
-apply(from = "$rootDir/config/publish.gradle")

@@ -36,7 +36,7 @@ Katalog can be used only in debug build by setting as follows:
 ```kotlin title="build.gradle"
 dependencies {
     // Use only in debug build
-    debugImplementation("co.jp.cyberagent.katalog:katalog-android:`LATEST_VERSION`")
+    debugImplementation("jp.co.cyberagent.katalog:katalog:`LATEST_VERSION`")
 }
 ```
 ```kotlin title="src/debug/DebugApplication.kt"
