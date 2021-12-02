@@ -2,6 +2,9 @@ package jp.co.cyberagent.katalog.compose.widget
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.VisibilityThreshold
+import androidx.compose.animation.core.spring
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideIn
@@ -23,10 +26,27 @@ internal fun <T : Any> ModalVisibility(
     val offset: (fullSize: IntSize) -> IntOffset = {
         IntOffset(0, it.height / 3)
     }
+    val fadeAnimationSpec = spring<Float>(
+        stiffness = Spring.StiffnessMedium
+    )
+    val slideAnimationSpec = spring(
+        stiffness = Spring.StiffnessMedium,
+        visibilityThreshold = IntOffset.VisibilityThreshold
+    )
     AnimatedVisibility(
         visible = value != null,
-        enter = fadeIn() + slideIn(initialOffset = offset),
-        exit = fadeOut() + slideOut(targetOffset = offset)
+        enter = fadeIn(
+            animationSpec = fadeAnimationSpec
+        ) + slideIn(
+            initialOffset = offset,
+            animationSpec = slideAnimationSpec
+        ),
+        exit = fadeOut(
+            animationSpec = fadeAnimationSpec
+        ) + slideOut(
+            targetOffset = offset,
+            animationSpec = slideAnimationSpec
+        )
     ) {
         var cache by remember {
             mutableStateOf(value)

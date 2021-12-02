@@ -3,6 +3,9 @@ package jp.co.cyberagent.katalog.compose.navigation
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.ContentTransform
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.VisibilityThreshold
+import androidx.compose.animation.core.spring
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.Composable
@@ -11,6 +14,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.saveable.SaveableStateHolder
 import androidx.compose.runtime.saveable.rememberSaveableStateHolder
+import androidx.compose.ui.unit.IntOffset
 
 @Composable
 internal fun <T> NavRoot(
@@ -59,19 +63,35 @@ private fun <T> AnimatedPage(
     onComplete: () -> Unit = {},
     content: @Composable (state: NavState<T>) -> Unit
 ) {
+    val animationSpec = spring(
+        stiffness = Spring.StiffnessMedium,
+        visibilityThreshold = IntOffset.VisibilityThreshold
+    )
     AnimatedContent(
         targetState = targetState,
         transitionSpec = {
             if (targetState.index > initialState.index) {
                 ContentTransform(
-                    targetContentEnter = slideInHorizontally({ it }),
-                    initialContentExit = slideOutHorizontally({ -it / 5 }),
+                    targetContentEnter = slideInHorizontally(
+                        initialOffsetX = { it },
+                        animationSpec = animationSpec
+                    ),
+                    initialContentExit = slideOutHorizontally(
+                        targetOffsetX = { -it / 5 },
+                        animationSpec = animationSpec
+                    ),
                     targetContentZIndex = targetState.index.toFloat()
                 )
             } else {
                 ContentTransform(
-                    targetContentEnter = slideInHorizontally({ -it / 5 }),
-                    initialContentExit = slideOutHorizontally({ it }),
+                    targetContentEnter = slideInHorizontally(
+                        initialOffsetX = { -it / 5 },
+                        animationSpec = animationSpec
+                    ),
+                    initialContentExit = slideOutHorizontally(
+                        targetOffsetX = { it },
+                        animationSpec = animationSpec
+                    ),
                     targetContentZIndex = targetState.index.toFloat()
                 )
             }
