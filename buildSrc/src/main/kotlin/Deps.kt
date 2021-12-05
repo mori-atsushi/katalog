@@ -47,7 +47,7 @@ object Deps {
             const val runtime =
                 "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.Androidx.lifecycle}"
             const val compose =
-                "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.Androidx.lifecycleCompose}"
+                "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.Androidx.lifecycle}"
         }
 
         const val annotation = "androidx.annotation:annotation:${Versions.Androidx.annotation}"
