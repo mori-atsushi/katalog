@@ -8,11 +8,10 @@ object Versions {
     object Androidx {
         const val ktx = "1.7.0"
         const val activity = "1.4.0"
-        const val fragment = "1.3.6"
-        const val compose = "1.0.4"
+        const val fragment = "1.4.0"
+        const val compose = "1.0.5"
         const val lifecycle = "2.4.0"
-        const val lifecycleCompose = "1.0.0-alpha07"
-        const val annotation = "1.2.0"
+        const val annotation = "1.3.0"
 
         object Test {
             const val core = "1.4.0"
@@ -24,5 +23,5 @@ object Versions {
     }
 
     const val material = "1.4.0"
-    const val ktlint = "0.42.1"
+    const val ktlint = "0.43.2"
 }
