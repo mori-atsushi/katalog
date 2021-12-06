@@ -33,7 +33,7 @@ Add the package dependencies to your `build.gradle`.
 dependencies {
     implementation("jp.co.cyberagent.katalog:katalog:1.0.1")
     // If you are using compose 1.1.0-beta04
-    // implementation("jp.co.cyberagent.katalog:katalog:1.1.0-beta02")
+    // implementation("jp.co.cyberagent.katalog:katalog:1.1.0-beta03")
 }
 ```
 
