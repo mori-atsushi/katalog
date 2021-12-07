@@ -24,13 +24,20 @@ internal class CatalogItemIdentifier(
     val id: String = buildString {
         (parents + name).forEach {
             append("/")
-            append(it)
+            append(escape(it))
         }
         if (count > 0) {
             append("(")
             append(count + 1)
             append(")")
         }
+    }
+
+    private fun escape(value: String): String {
+        return value.replace("%", "%25")
+            .replace("(", "%28")
+            .replace(")", "%29")
+            .replace("/", "%2F")
     }
 
     override fun toString(): String {

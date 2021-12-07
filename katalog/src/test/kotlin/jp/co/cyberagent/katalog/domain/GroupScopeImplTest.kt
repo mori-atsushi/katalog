@@ -65,4 +65,29 @@ internal class GroupScopeImplTest {
         val item3 = target.items[2]
         assertThat(item3.id).isEqualTo("/Text(3)")
     }
+
+    @Test
+    fun id_duplicate_escaped() {
+        val definition: GroupDefinition = {
+            group("Parent") {
+                compose("Item") {
+                    Text("sample1")
+                }
+            }
+            compose("Parent/Item") {
+                Text("sample2")
+            }
+            compose("Parent%2FItem") {
+                Text("sample3")
+            }
+        }
+        val target = GroupScopeImpl()
+        target.definition()
+        val item1 = (target.items[0] as CatalogItem.Group).items[0]
+        assertThat(item1.id).isEqualTo("/Parent/Item")
+        val item2 = target.items[1]
+        assertThat(item2.id).isEqualTo("/Parent%2FItem")
+        val item3 = target.items[2]
+        assertThat(item3.id).isEqualTo("/Parent%252FItem")
+    }
 }
