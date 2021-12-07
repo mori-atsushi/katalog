@@ -3,15 +3,21 @@ package jp.co.cyberagent.katalog.domain
 import androidx.compose.runtime.Composable
 
 internal sealed class CatalogItem {
-    abstract val name: String
+    abstract val identifier: CatalogItemIdentifier
 
     data class Group(
-        override val name: String,
+        override val identifier: CatalogItemIdentifier,
         val items: List<CatalogItem>
     ) : CatalogItem()
 
     data class Component(
-        override val name: String,
+        override val identifier: CatalogItemIdentifier,
         val definition: @Composable () -> Unit
     ) : CatalogItem()
+
+    val name: String
+        get() = identifier.name
+
+    val id: String
+        get() = identifier.id
 }

@@ -5,12 +5,14 @@ import jp.co.cyberagent.katalog.dsl.Group
 import jp.co.cyberagent.katalog.dsl.GroupDefinition
 import jp.co.cyberagent.katalog.dsl.GroupScope
 
-internal class GroupScopeImpl : GroupScope {
+internal class GroupScopeImpl(
+    private val parentIdentifier: CatalogItemIdentifier? = null
+) : GroupScope {
     private var _items = mutableListOf<CatalogItem>()
     val items: List<CatalogItem> get() = _items
 
     override fun group(name: String, definition: GroupDefinition) {
-        val item = Mapper.dslToModel(
+        val item = dslToModel(
             name = name,
             definition = definition
         )
@@ -27,7 +29,38 @@ internal class GroupScopeImpl : GroupScope {
         name: String,
         definition: ComposeDefinition
     ) {
-        val item = Mapper.dslToModel(name, definition)
+        val item = dslToModel(name, definition)
         _items.add(item)
+    }
+
+    private fun dslToModel(
+        name: String,
+        definition: GroupDefinition
+    ): CatalogItem.Group {
+        val identifier = createIdentifier(name)
+        val groupScope = GroupScopeImpl(identifier)
+        definition.invoke(groupScope)
+        return CatalogItem.Group(
+            identifier = identifier,
+            items = groupScope.items
+        )
+    }
+
+    private fun dslToModel(
+        name: String,
+        definition: ComposeDefinition
+    ): CatalogItem.Component {
+        val identifier = createIdentifier(name)
+        return CatalogItem.Component(
+            identifier = identifier,
+            definition = definition
+        )
+    }
+
+    private fun createIdentifier(name: String): CatalogItemIdentifier {
+        return CatalogItemIdentifier.of(
+            parent = parentIdentifier,
+            name = name
+        )
     }
 }
