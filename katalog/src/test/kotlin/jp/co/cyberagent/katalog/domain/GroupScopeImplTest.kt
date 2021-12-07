@@ -42,4 +42,27 @@ internal class GroupScopeImplTest {
         val item3 = item2.items.first()
         assertThat(item3.id).isEqualTo("/Group1/Group2/Text")
     }
+
+    @Test
+    fun id_duplicate() {
+        val definition: GroupDefinition = {
+            compose("Text") {
+                Text("sample1")
+            }
+            compose("Text") {
+                Text("sample2")
+            }
+            compose("Text") {
+                Text("sample3")
+            }
+        }
+        val target = GroupScopeImpl()
+        target.definition()
+        val item1 = target.items[0]
+        assertThat(item1.id).isEqualTo("/Text")
+        val item2 = target.items[1]
+        assertThat(item2.id).isEqualTo("/Text(2)")
+        val item3 = target.items[2]
+        assertThat(item3.id).isEqualTo("/Text(3)")
+    }
 }

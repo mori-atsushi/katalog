@@ -60,7 +60,10 @@ internal class GroupScopeImpl(
     private fun createIdentifier(name: String): CatalogItemIdentifier {
         return CatalogItemIdentifier.of(
             parent = parentIdentifier,
-            name = name
+            name = name,
+            count = items.count {
+                it.name == name
+            }
         )
     }
 }
