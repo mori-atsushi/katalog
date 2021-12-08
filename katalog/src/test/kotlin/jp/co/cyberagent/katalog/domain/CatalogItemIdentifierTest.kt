@@ -8,6 +8,66 @@ import org.junit.runners.JUnit4
 @RunWith(JUnit4::class)
 internal class CatalogItemIdentifierTest {
     @Test
+    fun ofOrNull() {
+        val target = "/Group1/Group2/Item"
+        val actual = CatalogItemIdentifier.ofOrNull(target)
+        val expected = CatalogItemIdentifier(
+            parents = listOf("Group1", "Group2"),
+            name = "Item",
+            count = 0
+        )
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun ofOrNull_withCount() {
+        val target = "/Group1/Group2/Item(2)"
+        val actual = CatalogItemIdentifier.ofOrNull(target)
+        val expected = CatalogItemIdentifier(
+            parents = listOf("Group1", "Group2"),
+            name = "Item",
+            count = 1
+        )
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun ofOrNull_escapeSlash() {
+        val target = "/Parent%2FItem"
+        val actual = CatalogItemIdentifier.ofOrNull(target)
+        val expected = CatalogItemIdentifier(
+            parents = listOf(),
+            name = "Parent/Item",
+            count = 0
+        )
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun ofOrNull_escapeParentheses() {
+        val target = "/Item%282%29"
+        val actual = CatalogItemIdentifier.ofOrNull(target)
+        val expected = CatalogItemIdentifier(
+            parents = listOf(),
+            name = "Item(2)",
+            count = 0
+        )
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun ofOrNull_escapePercent() {
+        val target = "/Parent%252FItem"
+        val actual = CatalogItemIdentifier.ofOrNull(target)
+        val expected = CatalogItemIdentifier(
+            parents = listOf(),
+            name = "Parent%2FItem",
+            count = 0
+        )
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
     fun id() {
         val target = CatalogItemIdentifier(
             parents = listOf("Group1", "Group2"),

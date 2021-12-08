@@ -19,25 +19,58 @@ internal class CatalogItemIdentifier(
                 count = count
             )
         }
+
+        fun ofOrNull(id: String): CatalogItemIdentifier? {
+            val values = id.split("/")
+                .filterNot { it.isEmpty() }
+            if (values.isEmpty()) {
+                return null
+            }
+            val parents = values.dropLast(1).map { decode(it) }
+            val last = values.last()
+            val numRegex = Regex("""\((\d)\)$""")
+            val name = decode(numRegex.replace(last, ""))
+            val num = numRegex.find(last)?.value
+                ?.getOrNull(1)
+                ?.digitToIntOrNull()
+            val count = num?.let { it - 1 } ?: 0
+            return CatalogItemIdentifier(
+                parents = parents,
+                name = name,
+                count = count
+            )
+        }
+
+        private val encodeList = listOf(
+            "%" to "%25",
+            "(" to "%28",
+            ")" to "%29",
+            "/" to "%2F"
+        )
+
+        private fun encode(value: String): String {
+            return encodeList.fold(value) { aac, it ->
+                aac.replace(it.first, it.second)
+            }
+        }
+
+        private fun decode(value: String): String {
+            return encodeList.reversed().fold(value) { aac, it ->
+                aac.replace(it.second, it.first)
+            }
+        }
     }
 
     val id: String = buildString {
         (parents + name).forEach {
             append("/")
-            append(escape(it))
+            append(encode(it))
         }
         if (count > 0) {
             append("(")
             append(count + 1)
             append(")")
         }
-    }
-
-    private fun escape(value: String): String {
-        return value.replace("%", "%25")
-            .replace("(", "%28")
-            .replace(")", "%29")
-            .replace("/", "%2F")
     }
 
     override fun toString(): String {
