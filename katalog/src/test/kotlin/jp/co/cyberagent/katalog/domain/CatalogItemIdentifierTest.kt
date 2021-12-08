@@ -141,4 +141,52 @@ internal class CatalogItemIdentifierTest {
         assertThat(target1.id).isEqualTo("/Parent%2FItem")
         assertThat(target2.id).isEqualTo("/Parent%252FItem")
     }
+
+    @Test
+    fun equals_true() {
+        val target1 = CatalogItemIdentifier(
+            parents = listOf("Group1", "Group2"),
+            name = "Item",
+            count = 0
+        )
+        val target2 = CatalogItemIdentifier(
+            parents = listOf("Group1", "Group2"),
+            name = "Item",
+            count = 0
+        )
+        val actual = target1 == target2
+        assertThat(actual).isTrue()
+    }
+
+    @Test
+    fun equals_false() {
+        val target1 = CatalogItemIdentifier(
+            parents = listOf("Group1", "Group2"),
+            name = "Item",
+            count = 0
+        )
+        val target2 = CatalogItemIdentifier(
+            parents = listOf("Group1", "Group2"),
+            name = "Item",
+            count = 1
+        )
+        val actual = target1 == target2
+        assertThat(actual).isFalse()
+    }
+
+    @Test
+    fun equals_ignoreCount() {
+        val target1 = CatalogItemIdentifier(
+            parents = listOf("Group1", "Group2"),
+            name = "Item",
+            count = 0
+        )
+        val target2 = CatalogItemIdentifier(
+            parents = listOf("Group1", "Group2"),
+            name = "Item",
+            count = 1
+        )
+        val actual = target1.equals(target2, ignoreCount = true)
+        assertThat(actual).isTrue()
+    }
 }

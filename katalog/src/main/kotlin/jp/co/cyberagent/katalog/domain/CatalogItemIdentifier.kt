@@ -78,7 +78,18 @@ internal class CatalogItemIdentifier(
     }
 
     override fun equals(other: Any?): Boolean {
-        return other is CatalogItemIdentifier && other.id == this.id
+        return other is CatalogItemIdentifier && equals(other, false)
+    }
+
+    fun equals(
+        other: CatalogItemIdentifier,
+        ignoreCount: Boolean = false
+    ): Boolean {
+        return if (ignoreCount) {
+            other.name == name && other.parents == parents
+        } else {
+            other.id == this.id
+        }
     }
 
     override fun hashCode(): Int {
