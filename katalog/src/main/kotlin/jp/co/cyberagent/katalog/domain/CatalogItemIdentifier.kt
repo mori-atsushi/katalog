@@ -21,11 +21,9 @@ internal class CatalogItemIdentifier(
         }
 
         fun ofOrNull(id: String): CatalogItemIdentifier? {
-            val values = id.split("/")
-                .filterNot { it.isEmpty() }
-            if (values.isEmpty()) {
-                return null
-            }
+            if (!id.startsWith("/")) return null
+            val values = id.split("/").filterNot { it.isEmpty() }
+            if (values.isEmpty()) return null
             val parents = values.dropLast(1).map { decode(it) }
             val last = values.last()
             val numRegex = Regex("""\((\d)\)$""")

@@ -68,6 +68,22 @@ internal class CatalogItemIdentifierTest {
     }
 
     @Test
+    fun ofOrNull_invalid() {
+        val target = "invalid"
+        val actual = CatalogItemIdentifier.ofOrNull(target)
+        val expected = null
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun ofOrNull_empty() {
+        val target = ""
+        val actual = CatalogItemIdentifier.ofOrNull(target)
+        val expected = null
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
     fun id() {
         val target = CatalogItemIdentifier(
             parents = listOf("Group1", "Group2"),
