@@ -119,6 +119,24 @@ internal class KatalogTest {
     }
 
     @Test
+    fun findItemById_withCount_group() {
+        val target = dummyKatalog {
+            group("Group") {
+                compose("Item1") {
+                    Text("Sample")
+                }
+            }
+            group("Group") {
+                compose("Item2") {
+                    Text("Sample")
+                }
+            }
+        }
+        val actual = target.findItemById("/Group(2)/Item2")
+        assertThat(actual?.id).isEqualTo("/Group(2)/Item2")
+    }
+
+    @Test
     fun findItemById_ignoreCount() {
         val target = dummyKatalog {
             group("Group1") {
@@ -131,6 +149,19 @@ internal class KatalogTest {
         }
         val actual = target.findItemById("/Group1/Group2/Item(2)", ignoreCount = true)
         assertThat(actual?.id).isEqualTo("/Group1/Group2/Item")
+    }
+
+    @Test
+    fun findItemById_ignoreCount_group() {
+        val target = dummyKatalog {
+            group("Group") {
+                compose("Item") {
+                    Text("Sample")
+                }
+            }
+        }
+        val actual = target.findItemById("/Group(2)/Item", ignoreCount = true)
+        assertThat(actual?.id).isEqualTo("/Group/Item")
     }
 
     @Test
@@ -152,5 +183,57 @@ internal class KatalogTest {
             ignoreCount = true
         )
         assertThat(actual?.id).isEqualTo("/Group1/Group2/Item(2)")
+    }
+
+    @Test
+    fun findItemById_ignoreCount_group_exist() {
+        val target = dummyKatalog {
+            group("Group") {
+                compose("Item") {
+                    Text("Sample")
+                }
+            }
+            group("Group") {
+                compose("Item") {
+                    Text("Sample")
+                }
+            }
+        }
+        val actual = target.findItemById("/Group(2)/Item", ignoreCount = true)
+        assertThat(actual?.id).isEqualTo("/Group(2)/Item")
+    }
+
+    @Test
+    fun findItemById_ignoreCount_nested1() {
+        val target = dummyKatalog {
+            group("Group") {
+                compose("Item") {
+                    Text("Sample")
+                }
+            }
+            group("Group") {
+                compose("Item") {
+                    Text("Sample")
+                }
+            }
+        }
+        val actual = target.findItemById("/Group(2)/Item(2)", ignoreCount = true)
+        assertThat(actual?.id).isEqualTo("/Group(2)/Item")
+    }
+
+    @Test
+    fun findItemById_ignoreCount_nested2() {
+        val target = dummyKatalog {
+            group("Group") {
+                compose("Item") {
+                    Text("Sample")
+                }
+                compose("Item") {
+                    Text("Sample")
+                }
+            }
+        }
+        val actual = target.findItemById("/Group(2)/Item(2)", ignoreCount = true)
+        assertThat(actual?.id).isEqualTo("/Group/Item(2)")
     }
 }

@@ -67,6 +67,35 @@ internal class GroupScopeImplTest {
     }
 
     @Test
+    fun id_duplicateGroup() {
+        val definition: GroupDefinition = {
+            group("Group") {
+                compose("Text") {
+                    Text("sample1")
+                }
+            }
+            group("Group") {
+                compose("Text") {
+                    Text("sample2")
+                }
+            }
+            group("Group") {
+                compose("Text") {
+                    Text("sample3")
+                }
+            }
+        }
+        val target = GroupScopeImpl()
+        target.definition()
+        val item1 = (target.items[0] as CatalogItem.Group).items[0]
+        assertThat(item1.id).isEqualTo("/Group/Text")
+        val item2 = (target.items[1] as CatalogItem.Group).items[0]
+        assertThat(item2.id).isEqualTo("/Group(2)/Text")
+        val item3 = (target.items[2] as CatalogItem.Group).items[0]
+        assertThat(item3.id).isEqualTo("/Group(3)/Text")
+    }
+
+    @Test
     fun id_duplicate_escaped() {
         val definition: GroupDefinition = {
             group("Parent") {

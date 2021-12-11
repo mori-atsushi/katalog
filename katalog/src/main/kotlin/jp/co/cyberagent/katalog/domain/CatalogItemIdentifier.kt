@@ -1,7 +1,7 @@
 package jp.co.cyberagent.katalog.domain
 
 internal class CatalogItemIdentifier(
-    val parents: List<String>,
+    val parents: List<CatalogItemIdentifier>,
     val name: String,
     val count: Int
 ) {
@@ -13,7 +13,7 @@ internal class CatalogItemIdentifier(
         ): CatalogItemIdentifier {
             return CatalogItemIdentifier(
                 parents = parent?.let {
-                    it.parents + it.name
+                    it.parents + it
                 }.orEmpty(),
                 name = name,
                 count = count
@@ -22,21 +22,24 @@ internal class CatalogItemIdentifier(
 
         fun ofOrNull(id: String): CatalogItemIdentifier? {
             if (!id.startsWith("/")) return null
+
             val values = id.split("/").filterNot { it.isEmpty() }
             if (values.isEmpty()) return null
-            val parents = values.dropLast(1).map { decode(it) }
-            val last = values.last()
+
             val numRegex = Regex("""\((\d)\)$""")
-            val name = decode(numRegex.replace(last, ""))
-            val num = numRegex.find(last)?.value
-                ?.getOrNull(1)
-                ?.digitToIntOrNull()
-            val count = num?.let { it - 1 } ?: 0
-            return CatalogItemIdentifier(
-                parents = parents,
-                name = name,
-                count = count
-            )
+            val list = values.fold(emptyList<CatalogItemIdentifier>()) { acc, it ->
+                val name = decode(numRegex.replace(it, ""))
+                val num = numRegex.find(it)?.value
+                    ?.getOrNull(1)
+                    ?.digitToIntOrNull()
+                val count = num?.let { it - 1 } ?: 0
+                acc + CatalogItemIdentifier(
+                    parents = acc,
+                    name = name,
+                    count = count
+                )
+            }
+            return list.lastOrNull()
         }
 
         private val encodeList = listOf(
@@ -59,15 +62,15 @@ internal class CatalogItemIdentifier(
         }
     }
 
-    val id: String = buildString {
-        (parents + name).forEach {
+    val id: String = (parents + this).joinToString(separator = "") {
+        buildString {
             append("/")
-            append(encode(it))
-        }
-        if (count > 0) {
-            append("(")
-            append(count + 1)
-            append(")")
+            append(encode(it.name))
+            if (it.count > 0) {
+                append("(")
+                append(it.count + 1)
+                append(")")
+            }
         }
     }
 
@@ -76,18 +79,7 @@ internal class CatalogItemIdentifier(
     }
 
     override fun equals(other: Any?): Boolean {
-        return other is CatalogItemIdentifier && equals(other, false)
-    }
-
-    fun equals(
-        other: CatalogItemIdentifier,
-        ignoreCount: Boolean = false
-    ): Boolean {
-        return if (ignoreCount) {
-            other.name == name && other.parents == parents
-        } else {
-            other.id == this.id
-        }
+        return other is CatalogItemIdentifier && other.id == this.id
     }
 
     override fun hashCode(): Int {

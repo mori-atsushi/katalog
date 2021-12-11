@@ -11,8 +11,19 @@ internal class CatalogItemIdentifierTest {
     fun ofOrNull() {
         val target = "/Group1/Group2/Item"
         val actual = CatalogItemIdentifier.ofOrNull(target)
+
+        val parent1 = CatalogItemIdentifier(
+            parents = emptyList(),
+            name = "Group1",
+            count = 0
+        )
+        val parent2 = CatalogItemIdentifier(
+            parents = listOf(parent1),
+            name = "Group2",
+            count = 0
+        )
         val expected = CatalogItemIdentifier(
-            parents = listOf("Group1", "Group2"),
+            parents = listOf(parent1, parent2),
             name = "Item",
             count = 0
         )
@@ -21,23 +32,39 @@ internal class CatalogItemIdentifierTest {
 
     @Test
     fun ofOrNull_withCount() {
-        val target = "/Group1/Group2/Item(2)"
+        val target = "/Group1/Group2(2)/Item(3)"
         val actual = CatalogItemIdentifier.ofOrNull(target)
-        val expected = CatalogItemIdentifier(
-            parents = listOf("Group1", "Group2"),
-            name = "Item",
+
+        val parent1 = CatalogItemIdentifier(
+            parents = emptyList(),
+            name = "Group1",
+            count = 0
+        )
+        val parent2 = CatalogItemIdentifier(
+            parents = listOf(parent1),
+            name = "Group2",
             count = 1
+        )
+        val expected = CatalogItemIdentifier(
+            parents = listOf(parent1, parent2),
+            name = "Item",
+            count = 2
         )
         assertThat(actual).isEqualTo(expected)
     }
 
     @Test
     fun ofOrNull_escapeSlash() {
-        val target = "/Parent%2FItem"
+        val target = "/Group1/Group2%2FItem"
         val actual = CatalogItemIdentifier.ofOrNull(target)
+        val parent = CatalogItemIdentifier(
+            parents = emptyList(),
+            name = "Group1",
+            count = 0
+        )
         val expected = CatalogItemIdentifier(
-            parents = listOf(),
-            name = "Parent/Item",
+            parents = listOf(parent),
+            name = "Group2/Item",
             count = 0
         )
         assertThat(actual).isEqualTo(expected)
@@ -45,10 +72,15 @@ internal class CatalogItemIdentifierTest {
 
     @Test
     fun ofOrNull_escapeParentheses() {
-        val target = "/Item%282%29"
+        val target = "/Group(2)/Item%282%29"
         val actual = CatalogItemIdentifier.ofOrNull(target)
+        val parent = CatalogItemIdentifier(
+            parents = emptyList(),
+            name = "Group",
+            count = 1
+        )
         val expected = CatalogItemIdentifier(
-            parents = listOf(),
+            parents = listOf(parent),
             name = "Item(2)",
             count = 0
         )
@@ -85,8 +117,18 @@ internal class CatalogItemIdentifierTest {
 
     @Test
     fun id() {
+        val parent1 = CatalogItemIdentifier(
+            parents = emptyList(),
+            name = "Group1",
+            count = 0
+        )
+        val parent2 = CatalogItemIdentifier(
+            parents = listOf(parent1),
+            name = "Group2",
+            count = 0
+        )
         val target = CatalogItemIdentifier(
-            parents = listOf("Group1", "Group2"),
+            parents = listOf(parent1, parent2),
             name = "Item",
             count = 0
         )
@@ -97,25 +139,40 @@ internal class CatalogItemIdentifierTest {
 
     @Test
     fun id_withCount() {
-        val target = CatalogItemIdentifier(
-            parents = listOf("Group1", "Group2"),
-            name = "Item",
+        val parent1 = CatalogItemIdentifier(
+            parents = emptyList(),
+            name = "Group1",
+            count = 0
+        )
+        val parent2 = CatalogItemIdentifier(
+            parents = listOf(parent1),
+            name = "Group2",
             count = 1
         )
+        val target = CatalogItemIdentifier(
+            parents = listOf(parent1, parent2),
+            name = "Item",
+            count = 2
+        )
         val actual = target.id
-        val expected = "/Group1/Group2/Item(2)"
+        val expected = "/Group1/Group2(2)/Item(3)"
         assertThat(actual).isEqualTo(expected)
     }
 
     @Test
     fun id_escapeSlash() {
+        val parent = CatalogItemIdentifier(
+            parents = emptyList(),
+            name = "Parent",
+            count = 0
+        )
         val target1 = CatalogItemIdentifier(
-            parents = listOf("Parent"),
+            parents = listOf(parent),
             name = "Item",
             count = 0
         )
         val target2 = CatalogItemIdentifier(
-            parents = listOf(),
+            parents = emptyList(),
             name = "Parent/Item",
             count = 0
         )
@@ -160,13 +217,23 @@ internal class CatalogItemIdentifierTest {
 
     @Test
     fun equals_true() {
+        val parent1 = CatalogItemIdentifier(
+            parents = emptyList(),
+            name = "Group1",
+            count = 0
+        )
+        val parent2 = CatalogItemIdentifier(
+            parents = listOf(parent1),
+            name = "Group2",
+            count = 0
+        )
         val target1 = CatalogItemIdentifier(
-            parents = listOf("Group1", "Group2"),
+            parents = listOf(parent1, parent2),
             name = "Item",
             count = 0
         )
         val target2 = CatalogItemIdentifier(
-            parents = listOf("Group1", "Group2"),
+            parents = listOf(parent1, parent2),
             name = "Item",
             count = 0
         )
@@ -176,33 +243,27 @@ internal class CatalogItemIdentifierTest {
 
     @Test
     fun equals_false() {
+        val parent1 = CatalogItemIdentifier(
+            parents = emptyList(),
+            name = "Group1",
+            count = 0
+        )
+        val parent2 = CatalogItemIdentifier(
+            parents = listOf(parent1),
+            name = "Group2",
+            count = 0
+        )
         val target1 = CatalogItemIdentifier(
-            parents = listOf("Group1", "Group2"),
+            parents = listOf(parent1, parent2),
             name = "Item",
             count = 0
         )
         val target2 = CatalogItemIdentifier(
-            parents = listOf("Group1", "Group2"),
+            parents = listOf(parent1, parent2),
             name = "Item",
             count = 1
         )
         val actual = target1 == target2
         assertThat(actual).isFalse()
-    }
-
-    @Test
-    fun equals_ignoreCount() {
-        val target1 = CatalogItemIdentifier(
-            parents = listOf("Group1", "Group2"),
-            name = "Item",
-            count = 0
-        )
-        val target2 = CatalogItemIdentifier(
-            parents = listOf("Group1", "Group2"),
-            name = "Item",
-            count = 1
-        )
-        val actual = target1.equals(target2, ignoreCount = true)
-        assertThat(actual).isTrue()
     }
 }
