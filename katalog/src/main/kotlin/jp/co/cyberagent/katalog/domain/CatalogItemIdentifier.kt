@@ -23,7 +23,7 @@ internal class CatalogItemIdentifier(
         fun ofOrNull(id: String): CatalogItemIdentifier? {
             if (!id.startsWith("/")) return null
 
-            val values = id.split("/").filterNot { it.isEmpty() }
+            val values = id.removePrefix("/").split("/")
             if (values.isEmpty()) return null
 
             val numRegex = Regex("""\((\d)\)$""")

@@ -54,6 +54,24 @@ internal class CatalogItemIdentifierTest {
     }
 
     @Test
+    fun ofOrNull_emptyName() {
+        val target = "//"
+        val actual = CatalogItemIdentifier.ofOrNull(target)
+
+        val parent = CatalogItemIdentifier(
+            parents = emptyList(),
+            name = "",
+            count = 0
+        )
+        val expected = CatalogItemIdentifier(
+            parents = listOf(parent),
+            name = "",
+            count = 0
+        )
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
     fun ofOrNull_escapeSlash() {
         val target = "/Group1/Group2%2FItem"
         val actual = CatalogItemIdentifier.ofOrNull(target)
@@ -156,6 +174,23 @@ internal class CatalogItemIdentifierTest {
         )
         val actual = target.id
         val expected = "/Group1/Group2(2)/Item(3)"
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun id_emptyName() {
+        val parent = CatalogItemIdentifier(
+            parents = emptyList(),
+            name = "",
+            count = 0
+        )
+        val target = CatalogItemIdentifier(
+            parents = listOf(parent),
+            name = "",
+            count = 0
+        )
+        val actual = target.id
+        val expected = "//"
         assertThat(actual).isEqualTo(expected)
     }
 
