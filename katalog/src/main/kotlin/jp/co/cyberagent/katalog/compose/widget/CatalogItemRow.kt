@@ -15,7 +15,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.Folder
-import androidx.compose.material.icons.filled.PushPin
+import androidx.compose.material.icons.filled.Widgets
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -35,7 +35,7 @@ internal fun CatalogItemRow(
     onClick: (CatalogItem) -> Unit
 ) {
     val icon = when (item) {
-        is CatalogItem.Component -> Icons.Filled.PushPin
+        is CatalogItem.Component -> Icons.Filled.Widgets
         is CatalogItem.Group -> Icons.Filled.Folder
     }
     Column(
