@@ -10,10 +10,10 @@ internal fun createAndroidThemeExt(
 ): KatalogExt {
     val builder = KatalogExt.Builder("AndroidTheme")
     builder.setRootWrapper { content ->
-        val themeSelected = rememberThemeSelected(themeResId)
-        if (themeSelected) {
-            content()
-        }
+        ContextTheme(
+            themeResId = themeResId,
+            content = content
+        )
     }
     builder.setComponentWrapper { content ->
         Background {
