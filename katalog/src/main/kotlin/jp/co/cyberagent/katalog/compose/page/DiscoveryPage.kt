@@ -26,12 +26,12 @@ internal fun DiscoveryPage(
     navController: NavController<DiscoveryDestination>,
     onClickItem: (item: CatalogItem) -> Unit
 ) {
-    val isPageTop by navController.isTop
+    val isPageTop = navController.isTop
     var isScrollTop by remember {
         mutableStateOf(true)
     }
     val title by derivedStateOf {
-        when (val destination = navController.current.value.destination) {
+        when (val destination = navController.current.destination) {
             is DiscoveryDestination.Group -> destination.group.name
             is DiscoveryDestination.Top -> katalog.title
         }
@@ -52,7 +52,7 @@ internal fun DiscoveryPage(
                 destination = state.destination,
                 katalog = katalog,
                 onChangeIsTop = {
-                    if (navController.current.value == state) {
+                    if (navController.current == state) {
                         isScrollTop = it
                     }
                 },

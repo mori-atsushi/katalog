@@ -47,7 +47,7 @@ internal class KatalogViewModel(
     fun handleClick(item: CatalogItem) {
         when (item) {
             is CatalogItem.Group -> {
-                val currentDestination = navController.current.value.destination
+                val currentDestination = navController.current.destination
                 val nextChildDestination = DiscoveryDestination.Group(item)
                 if (currentDestination is MainDestination.Discovery) {
                     currentDestination.childNavController.push(nextChildDestination)

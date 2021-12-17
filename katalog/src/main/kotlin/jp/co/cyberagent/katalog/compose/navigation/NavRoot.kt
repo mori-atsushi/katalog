@@ -8,7 +8,6 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.saveable.SaveableStateHolder
 import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 
@@ -19,7 +18,6 @@ internal fun <T : NavDestination> NavRoot(
     transitionSpec: AnimatedContentScope<NavState<T>>.() -> ContentTransform = NavAnimation.createSlideSpec(),
     component: @Composable (NavState<T>) -> Unit
 ) {
-    val current by navController.current
     val saveableStateHolder = rememberSaveableStateHolder()
 
     BackHandler {
@@ -27,7 +25,7 @@ internal fun <T : NavDestination> NavRoot(
     }
 
     AnimatedPage(
-        targetState = current,
+        targetState = navController.current,
         transitionSpec = transitionSpec,
         onComplete = navController::handleCompleteTransition
     ) {

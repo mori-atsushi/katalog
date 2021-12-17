@@ -1,21 +1,21 @@
 package jp.co.cyberagent.katalog.compose.navigation
 
-import androidx.compose.runtime.State
 import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
 
 internal class NavController<T : NavDestination>(
     startDestination: T
 ) {
-    private val _current = mutableStateOf(
-        NavState.of(startDestination, 0)
-    )
-    private val _backStack = mutableStateListOf(_current.value)
-    val current: State<NavState<T>> = _current
+    private val _backStack = mutableStateListOf(NavState.of(startDestination, 0))
+    val current: NavState<T> by derivedStateOf {
+        _backStack.last()
+    }
 
-    val isTop: State<Boolean> = derivedStateOf {
-        _backStack.size <= 1
+    val isTop: Boolean by derivedStateOf {
+        if (_backStack.size > 1) return@derivedStateOf false
+        val childNavController = current.destination.childNavController
+        childNavController == null || childNavController.isTop
     }
 
     private var isTransitioning = false
@@ -26,23 +26,24 @@ internal class NavController<T : NavDestination>(
 
         val state = NavState.of(destination, _backStack.size)
         _backStack.add(state)
-        _current.value = state
     }
 
     fun back(): Boolean {
-        val childNavController = current.value.destination.childNavController
+        if (isTop) return false
+
+        val childNavController = current.destination.childNavController
         if (childNavController != null && childNavController.back()) {
             return true
         }
 
-        if (isTop.value) return false
         _backStack.removeLast()
-        _current.value = _backStack.last()
         return true
     }
 
     fun hasState(state: NavState<T>): Boolean {
-        return state.index <= _backStack.lastIndex
+        return _backStack.any {
+            it.key == state.key
+        }
     }
 
     fun handleCompleteTransition() {
