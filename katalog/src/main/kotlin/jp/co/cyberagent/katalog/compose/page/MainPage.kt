@@ -11,8 +11,7 @@ import jp.co.cyberagent.katalog.domain.Katalog
 internal fun MainPage(
     katalog: Katalog,
     navController: NavController<MainDestination>,
-    onClickItem: (item: CatalogItem) -> Unit,
-    onClickClose: () -> Unit
+    onClickItem: (item: CatalogItem) -> Unit
 ) {
     NavRoot(navController) { state ->
         when (state.destination) {
@@ -27,7 +26,7 @@ internal fun MainPage(
                 PreviewPage(
                     component = state.destination.component,
                     extensions = katalog.extensions,
-                    onClickClose = onClickClose
+                    onClickClose = navController::back
                 )
             }
         }

@@ -66,15 +66,4 @@ internal class KatalogViewModel(
             }
         }
     }
-
-    fun handleBackPress(): Boolean {
-        return navController.back()
-    }
-
-    fun closePreview() {
-        val currentDestination = navController.current.value.destination
-        if (currentDestination is MainDestination.Preview) {
-            navController.back()
-        }
-    }
 }

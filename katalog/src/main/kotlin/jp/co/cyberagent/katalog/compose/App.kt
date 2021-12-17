@@ -12,7 +12,6 @@ import androidx.core.view.WindowInsetsControllerCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
 import jp.co.cyberagent.katalog.compose.page.MainPage
 import jp.co.cyberagent.katalog.compose.res.materialColors
-import jp.co.cyberagent.katalog.compose.util.BackPressedEffect
 import jp.co.cyberagent.katalog.compose.widget.ErrorMessage
 import jp.co.cyberagent.katalog.ext.ExtRootWrapper
 
@@ -22,10 +21,6 @@ internal fun App(
     viewModel: KatalogViewModel = viewModel()
 ) {
     val darkTheme = isSystemInDarkTheme()
-
-    BackPressedEffect(Unit) {
-        viewModel.handleBackPress()
-    }
 
     MaterialTheme(
         colors = materialColors(darkTheme)
@@ -68,8 +63,7 @@ private fun MainContent(viewModel: KatalogViewModel) {
         MainPage(
             katalog = katalogValue,
             navController = viewModel.navController,
-            onClickItem = viewModel::handleClick,
-            onClickClose = viewModel::closePreview
+            onClickItem = viewModel::handleClick
         )
     }
 }
