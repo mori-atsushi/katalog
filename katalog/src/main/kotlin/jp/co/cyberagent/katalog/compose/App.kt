@@ -69,14 +69,17 @@ private fun MainContent(viewModel: KatalogViewModel) {
 
     ExtRootWrappers(rootWrappers) {
         DiscoveryPage(
-            viewModel = viewModel
+            katalog = katalogValue,
+            navController = viewModel.navController,
+            onClickItem = viewModel::handleClick
         )
         ModalVisibility(
             value = selectedComponent
         ) {
             PreviewPage(
-                viewModel = viewModel,
-                component = it
+                component = it,
+                extensions = katalogValue.extensions,
+                onClickClose = viewModel::closePreview
             )
         }
     }
