@@ -54,14 +54,14 @@ internal object NavAnimation {
         }
     }
 
-    private const val upExpandingMills = 250
-    private const val upCollapsingMills = 200
+    private const val upExpandingMills = 200
+    private const val upCollapsingMills = 150
 
     fun <T> createUpSpec(): AnimatedContentScope<NavState<T>>.() -> ContentTransform = {
         if (targetState.index > initialState.index) {
             ContentTransform(
                 targetContentEnter = slideInVertically(
-                    initialOffsetY = { it },
+                    initialOffsetY = { it / 3 },
                     animationSpec = tween(upExpandingMills, easing = LinearOutSlowInEasing)
                 ) + fadeIn(
                     animationSpec = tween(upExpandingMills, easing = LinearOutSlowInEasing)
@@ -75,7 +75,7 @@ internal object NavAnimation {
             ContentTransform(
                 targetContentEnter = EnterTransition.None,
                 initialContentExit = slideOutVertically(
-                    targetOffsetY = { it },
+                    targetOffsetY = { it / 3 },
                     animationSpec = tween(upCollapsingMills, easing = FastOutLinearInEasing)
                 ) + fadeOut(
                     animationSpec = tween(upCollapsingMills, easing = FastOutLinearInEasing)
