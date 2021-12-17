@@ -2,7 +2,7 @@ package jp.co.cyberagent.katalog.compose.navigation
 
 import jp.co.cyberagent.katalog.domain.CatalogItem
 
-internal sealed class DiscoveryDestination {
+internal sealed class DiscoveryDestination : NavDestination {
     object Top : DiscoveryDestination()
 
     data class Group(

@@ -5,7 +5,9 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 
-internal class NavController<T>(startDestination: T) {
+internal class NavController<T : NavDestination>(
+    startDestination: T
+) {
     private val _current = mutableStateOf(
         NavState.of(startDestination, 0)
     )
@@ -28,8 +30,12 @@ internal class NavController<T>(startDestination: T) {
     }
 
     fun back(): Boolean {
-        if (isTop.value) return false
+        val childNavController = current.value.destination.childNavController
+        if (childNavController != null && childNavController.back()) {
+            return true
+        }
 
+        if (isTop.value) return false
         _backStack.removeLast()
         _current.value = _backStack.last()
         return true

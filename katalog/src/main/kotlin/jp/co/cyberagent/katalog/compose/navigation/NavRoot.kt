@@ -13,7 +13,7 @@ import androidx.compose.runtime.saveable.SaveableStateHolder
 import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 
 @Composable
-internal fun <T> NavRoot(
+internal fun <T : NavDestination> NavRoot(
     navController: NavController<T>,
     component: @Composable (NavState<T>) -> Unit
 ) {
@@ -34,7 +34,7 @@ internal fun <T> NavRoot(
 }
 
 @Composable
-private fun <T> NavChild(
+private fun <T : NavDestination> NavChild(
     navController: NavController<T>,
     state: NavState<T>,
     saveableStateHolder: SaveableStateHolder,

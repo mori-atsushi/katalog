@@ -2,9 +2,9 @@ package jp.co.cyberagent.katalog.compose.navigation
 
 import jp.co.cyberagent.katalog.domain.CatalogItem
 
-internal sealed class MainDestination {
+internal sealed class MainDestination : NavDestination {
     data class Discovery(
-        val childNavController: NavController<DiscoveryDestination>
+        override val childNavController: NavController<DiscoveryDestination>
     ) : MainDestination()
 
     data class Preview(
