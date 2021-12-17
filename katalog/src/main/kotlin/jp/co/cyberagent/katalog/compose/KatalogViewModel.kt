@@ -2,9 +2,9 @@ package jp.co.cyberagent.katalog.compose
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import jp.co.cyberagent.katalog.compose.navigation.NavController
 import jp.co.cyberagent.katalog.compose.navigation.DiscoveryDestination
 import jp.co.cyberagent.katalog.compose.navigation.MainDestination
+import jp.co.cyberagent.katalog.compose.navigation.NavController
 import jp.co.cyberagent.katalog.domain.CatalogItem
 import jp.co.cyberagent.katalog.domain.Katalog
 import jp.co.cyberagent.katalog.domain.KatalogContainer

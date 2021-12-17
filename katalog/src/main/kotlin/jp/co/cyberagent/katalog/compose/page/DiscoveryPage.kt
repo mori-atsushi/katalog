@@ -1,5 +1,6 @@
 package jp.co.cyberagent.katalog.compose.page
 
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
@@ -11,13 +12,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import jp.co.cyberagent.katalog.compose.navigation.NavController
 import jp.co.cyberagent.katalog.compose.navigation.DiscoveryDestination
+import jp.co.cyberagent.katalog.compose.navigation.NavController
 import jp.co.cyberagent.katalog.compose.navigation.NavRoot
 import jp.co.cyberagent.katalog.compose.widget.KatalogTopAppBar
 import jp.co.cyberagent.katalog.domain.CatalogItem
 import jp.co.cyberagent.katalog.domain.Katalog
 
+@OptIn(ExperimentalAnimationApi::class)
 @Composable
 internal fun DiscoveryPage(
     katalog: Katalog,
