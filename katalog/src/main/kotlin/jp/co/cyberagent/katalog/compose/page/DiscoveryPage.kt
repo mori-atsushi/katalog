@@ -12,7 +12,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import jp.co.cyberagent.katalog.compose.navigation.NavController
-import jp.co.cyberagent.katalog.compose.navigation.NavDestination
+import jp.co.cyberagent.katalog.compose.navigation.DiscoveryDestination
 import jp.co.cyberagent.katalog.compose.navigation.NavRoot
 import jp.co.cyberagent.katalog.compose.widget.KatalogTopAppBar
 import jp.co.cyberagent.katalog.domain.CatalogItem
@@ -21,7 +21,7 @@ import jp.co.cyberagent.katalog.domain.Katalog
 @Composable
 internal fun DiscoveryPage(
     katalog: Katalog,
-    navController: NavController<NavDestination>,
+    navController: NavController<DiscoveryDestination>,
     onClickItem: (item: CatalogItem) -> Unit
 ) {
     val isPageTop by navController.isTop
@@ -30,8 +30,8 @@ internal fun DiscoveryPage(
     }
     val title by derivedStateOf {
         when (val destination = navController.current.value.destination) {
-            is NavDestination.Group -> destination.group.name
-            is NavDestination.Top -> katalog.title
+            is DiscoveryDestination.Group -> destination.group.name
+            is DiscoveryDestination.Top -> katalog.title
         }
     }
 
@@ -87,20 +87,20 @@ private fun DiscoveryTopAppBar(
 
 @Composable
 private fun DiscoveryPageSelector(
-    destination: NavDestination,
+    destination: DiscoveryDestination,
     katalog: Katalog,
     onChangeIsTop: (Boolean) -> Unit,
     onClickItem: (item: CatalogItem) -> Unit
 ) {
     when (destination) {
-        is NavDestination.Top -> {
+        is DiscoveryDestination.Top -> {
             TopPage(
                 katalog = katalog,
                 onChangeIsTop = onChangeIsTop,
                 onClickItem = onClickItem
             )
         }
-        is NavDestination.Group -> {
+        is DiscoveryDestination.Group -> {
             GroupPage(
                 katalog = katalog,
                 group = destination.group,
