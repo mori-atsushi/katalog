@@ -1,6 +1,7 @@
 package jp.co.cyberagent.katalog.compose
 
 import android.view.Window
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -57,12 +58,17 @@ private fun MainContent(viewModel: KatalogViewModel) {
 
     val katalog by viewModel.katalog.collectAsState()
     val katalogValue = katalog ?: return
+    val navController = viewModel.navController
     val rootWrappers = katalogValue.extensions.rootWrappers
+
+    BackHandler(!navController.isTop) {
+        navController.back()
+    }
 
     ExtRootWrappers(rootWrappers) {
         MainPage(
             katalog = katalogValue,
-            navController = viewModel.navController,
+            navController = navController,
             onClickItem = viewModel::handleClick
         )
     }

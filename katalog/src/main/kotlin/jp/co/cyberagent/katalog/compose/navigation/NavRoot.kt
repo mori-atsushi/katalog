@@ -1,6 +1,5 @@
 package jp.co.cyberagent.katalog.compose.navigation
 
-import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedContentScope
 import androidx.compose.animation.ContentTransform
@@ -19,10 +18,6 @@ internal fun <T : NavDestination> NavRoot(
     component: @Composable (NavState<T>) -> Unit
 ) {
     val saveableStateHolder = rememberSaveableStateHolder()
-
-    BackHandler {
-        navController.back()
-    }
 
     AnimatedPage(
         targetState = navController.current,
