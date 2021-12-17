@@ -10,12 +10,10 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
-import jp.co.cyberagent.katalog.compose.page.DiscoveryPage
-import jp.co.cyberagent.katalog.compose.page.PreviewPage
+import jp.co.cyberagent.katalog.compose.page.MainPage
 import jp.co.cyberagent.katalog.compose.res.materialColors
 import jp.co.cyberagent.katalog.compose.util.BackPressedEffect
 import jp.co.cyberagent.katalog.compose.widget.ErrorMessage
-import jp.co.cyberagent.katalog.compose.widget.ModalVisibility
 import jp.co.cyberagent.katalog.ext.ExtRootWrapper
 
 @Composable
@@ -56,7 +54,6 @@ private fun AppWindow(
 
 @Composable
 private fun MainContent(viewModel: KatalogViewModel) {
-    val selectedComponent by viewModel.selectedComponent.collectAsState()
     val errorMessage by viewModel.errorMessage.collectAsState()
     errorMessage?.let {
         ErrorMessage(text = it)
@@ -68,20 +65,12 @@ private fun MainContent(viewModel: KatalogViewModel) {
     val rootWrappers = katalogValue.extensions.rootWrappers
 
     ExtRootWrappers(rootWrappers) {
-        DiscoveryPage(
+        MainPage(
             katalog = katalogValue,
             navController = viewModel.navController,
-            onClickItem = viewModel::handleClick
+            onClickItem = viewModel::handleClick,
+            onClickClose = viewModel::closePreview
         )
-        ModalVisibility(
-            value = selectedComponent
-        ) {
-            PreviewPage(
-                component = it,
-                extensions = katalogValue.extensions,
-                onClickClose = viewModel::closePreview
-            )
-        }
     }
 }
 

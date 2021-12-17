@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import jp.co.cyberagent.katalog.compose.navigation.NavController
 import jp.co.cyberagent.katalog.compose.navigation.DiscoveryDestination
+import jp.co.cyberagent.katalog.compose.navigation.MainDestination
 import jp.co.cyberagent.katalog.domain.CatalogItem
 import jp.co.cyberagent.katalog.domain.Katalog
 import jp.co.cyberagent.katalog.domain.KatalogContainer
@@ -16,16 +17,19 @@ import kotlinx.coroutines.launch
 internal class KatalogViewModel(
     private val container: KatalogContainer = KatalogContainer.instance
 ) : ViewModel() {
+    companion object {
+        val initialDestination = MainDestination.Discovery(
+            childNavController = NavController(DiscoveryDestination.Top)
+        )
+    }
+
     private val _katalog = MutableStateFlow<Katalog?>(null)
     val katalog: StateFlow<Katalog?> = _katalog
 
     private val _errorMessage = MutableStateFlow<String?>(null)
     val errorMessage: StateFlow<String?> = _errorMessage
 
-    private val _selectedComponent = MutableStateFlow<CatalogItem.Component?>(null)
-    val selectedComponent: StateFlow<CatalogItem.Component?> = _selectedComponent
-
-    val navController = NavController<DiscoveryDestination>(DiscoveryDestination.Top)
+    val navController: NavController<MainDestination> = NavController(initialDestination)
 
     init {
         viewModelScope.launch(Dispatchers.Default) {
@@ -43,24 +47,34 @@ internal class KatalogViewModel(
     fun handleClick(item: CatalogItem) {
         when (item) {
             is CatalogItem.Group -> {
-                navController.push(DiscoveryDestination.Group(item))
+                val currentDestination = navController.current.value.destination
+                val nextChildDestination = DiscoveryDestination.Group(item)
+                if (currentDestination is MainDestination.Discovery) {
+                    currentDestination.childNavController.push(nextChildDestination)
+                } else {
+                    val nextDestination = MainDestination.Discovery(
+                        childNavController = NavController(nextChildDestination)
+                    )
+                    navController.push(nextDestination)
+                }
             }
             is CatalogItem.Component -> {
-                _selectedComponent.value = item
+                val nextDestination = MainDestination.Preview(
+                    component = item
+                )
+                navController.push(nextDestination)
             }
         }
     }
 
     fun handleBackPress(): Boolean {
-        return if (_selectedComponent.value != null) {
-            _selectedComponent.value = null
-            true
-        } else {
-            navController.back()
-        }
+        return navController.back()
     }
 
     fun closePreview() {
-        _selectedComponent.value = null
+        val currentDestination = navController.current.value.destination
+        if (currentDestination is MainDestination.Preview) {
+            navController.back()
+        }
     }
 }
