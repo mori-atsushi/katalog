@@ -2,12 +2,17 @@ package jp.co.cyberagent.katalog.compose.navigation
 
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import jp.co.cyberagent.katalog.domain.Katalog
 import jp.co.cyberagent.katalog.ext.ExperimentalKatalogExtApi
 import jp.co.cyberagent.katalog.ext.ExtNavState
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.first
 
 @OptIn(ExperimentalKatalogExtApi::class)
 internal class ExtNavStateImpl(
-    private val navController: NavController<MainDestination>
+    private val navController: NavController<MainDestination>,
+    private val katalog: StateFlow<Katalog?>
 ) : ExtNavState {
     override val current: String by derivedStateOf {
         backStack.last()
@@ -17,6 +22,11 @@ internal class ExtNavStateImpl(
     }
 
     override suspend fun navigateTo(destination: String): Boolean {
+        val item = getKatalog().findItemById(destination, ignoreCount = true)
+        if (item != null) {
+            navController.navigateTo(item)
+            return true
+        }
         return false
     }
 
@@ -44,5 +54,9 @@ internal class ExtNavStateImpl(
                 is DiscoveryDestination.Top -> "/"
             }
         }
+    }
+
+    private suspend fun getKatalog(): Katalog {
+        return katalog.filterNotNull().first()
     }
 }
