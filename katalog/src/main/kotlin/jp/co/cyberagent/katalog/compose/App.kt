@@ -14,6 +14,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import jp.co.cyberagent.katalog.compose.page.MainPage
 import jp.co.cyberagent.katalog.compose.res.materialColors
 import jp.co.cyberagent.katalog.compose.widget.ErrorMessage
+import jp.co.cyberagent.katalog.domain.Extensions
+import jp.co.cyberagent.katalog.ext.ExperimentalKatalogExtApi
 import jp.co.cyberagent.katalog.ext.ExtRootWrapper
 
 @Composable
@@ -48,6 +50,7 @@ private fun AppWindow(
     controller.isAppearanceLightStatusBars = !darkTheme
 }
 
+@OptIn(ExperimentalKatalogExtApi::class)
 @Composable
 private fun MainContent(viewModel: KatalogViewModel) {
     val errorMessage by viewModel.errorMessage.collectAsState()
@@ -59,13 +62,15 @@ private fun MainContent(viewModel: KatalogViewModel) {
     val katalog by viewModel.katalog.collectAsState()
     val katalogValue = katalog ?: return
     val navController = viewModel.navController
-    val rootWrappers = katalogValue.extensions.rootWrappers
 
     BackHandler(!navController.isTop) {
         navController.back()
     }
 
-    ExtRootWrappers(rootWrappers) {
+    ExtRootWrappers(
+        rootWrappers = katalogValue.extensions.rootWrappers,
+        extensions = katalogValue.extensions
+    ) {
         MainPage(
             katalog = katalogValue,
             navController = navController,
@@ -74,17 +79,23 @@ private fun MainContent(viewModel: KatalogViewModel) {
     }
 }
 
+@ExperimentalKatalogExtApi
 @Composable
 private fun ExtRootWrappers(
     rootWrappers: List<ExtRootWrapper>,
+    extensions: Extensions,
     content: @Composable () -> Unit
 ) {
     if (rootWrappers.isEmpty()) {
         content()
         return
     }
-    ExtRootWrappers(rootWrappers.dropLast(1)) {
-        rootWrappers.last().invoke {
+    ExtRootWrappers(
+        rootWrappers = rootWrappers.dropLast(1),
+        extensions = extensions
+    ) {
+        val target = rootWrappers.last()
+        extensions.wrapperScope.target {
             content()
         }
     }

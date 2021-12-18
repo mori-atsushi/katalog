@@ -14,8 +14,10 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
 import jp.co.cyberagent.katalog.domain.Extensions
+import jp.co.cyberagent.katalog.ext.ExperimentalKatalogExtApi
 import jp.co.cyberagent.katalog.ext.ExtComponentWrapper
 
+@OptIn(ExperimentalKatalogExtApi::class)
 @Composable
 internal fun Preview(
     extensions: Extensions,
@@ -29,7 +31,10 @@ internal fun Preview(
         modifier = modifier,
         color = MaterialTheme.colors.background
     ) {
-        ExtensionsWrappers(componentWrappers) {
+        ExtensionsWrappers(
+            componentWrappers = componentWrappers,
+            extensions = extensions
+        ) {
             Scaler(scale) {
                 definition()
                 ClickMask(!clickable)
@@ -38,17 +43,23 @@ internal fun Preview(
     }
 }
 
+@ExperimentalKatalogExtApi
 @Composable
 private fun ExtensionsWrappers(
     componentWrappers: List<ExtComponentWrapper>,
+    extensions: Extensions,
     content: @Composable () -> Unit
 ) {
     if (componentWrappers.isEmpty()) {
         content()
         return
     }
-    ExtensionsWrappers(componentWrappers.dropLast(1)) {
-        componentWrappers.last().invoke {
+    ExtensionsWrappers(
+        componentWrappers = componentWrappers.dropLast(1),
+        extensions = extensions
+    ) {
+        val target = componentWrappers.last()
+        extensions.wrapperScope.target {
             content()
         }
     }
