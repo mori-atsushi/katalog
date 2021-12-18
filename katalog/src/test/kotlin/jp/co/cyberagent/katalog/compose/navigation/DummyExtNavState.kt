@@ -14,7 +14,7 @@ internal class DummyExtNavState : ExtNavState {
         return false
     }
 
-    override suspend fun restore(current: String, backStack: List<String>): Boolean {
+    override suspend fun restore(backStack: List<String>): Boolean {
         return false
     }
 }

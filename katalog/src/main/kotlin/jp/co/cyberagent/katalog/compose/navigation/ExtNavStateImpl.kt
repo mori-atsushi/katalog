@@ -2,6 +2,7 @@ package jp.co.cyberagent.katalog.compose.navigation
 
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import jp.co.cyberagent.katalog.domain.CatalogItemIdentifier
 import jp.co.cyberagent.katalog.domain.Katalog
 import jp.co.cyberagent.katalog.ext.ExperimentalKatalogExtApi
 import jp.co.cyberagent.katalog.ext.ExtNavState
@@ -30,8 +31,9 @@ internal class ExtNavStateImpl(
         return false
     }
 
-    override suspend fun restore(current: String, backStack: List<String>): Boolean {
-        return false
+    override suspend fun restore(backStack: List<String>): Boolean {
+        val katalog = getKatalog()
+        return navController.restore(katalog, backStack)
     }
 
     private fun getBackStack(navController: NavController<MainDestination>): List<String> {
@@ -51,7 +53,7 @@ internal class ExtNavStateImpl(
         return navController.backStack.map {
             when (val childDestination = it.destination) {
                 is DiscoveryDestination.Group -> childDestination.group.id
-                is DiscoveryDestination.Top -> "/"
+                is DiscoveryDestination.Top -> CatalogItemIdentifier.rootId
             }
         }
     }

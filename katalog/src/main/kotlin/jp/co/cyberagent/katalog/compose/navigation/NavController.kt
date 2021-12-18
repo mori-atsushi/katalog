@@ -30,6 +30,14 @@ internal class NavController<T : NavDestination>(
         _backStack.add(state)
     }
 
+    fun restore(backStack: List<T>) {
+        _backStack.clear()
+        backStack.forEach {
+            val state = NavState.of(it, _backStack.size)
+            _backStack.add(state)
+        }
+    }
+
     fun back(): Boolean {
         if (isTop) return false
 
