@@ -4,6 +4,13 @@ import jp.co.cyberagent.katalog.domain.CatalogItem
 import jp.co.cyberagent.katalog.domain.CatalogItemIdentifier
 import jp.co.cyberagent.katalog.domain.Katalog
 
+internal fun createMainNavController(): NavController<MainDestination> {
+    val initialDestination = MainDestination.Discovery(
+        childNavController = NavController(DiscoveryDestination.Top)
+    )
+    return NavController(initialDestination)
+}
+
 internal fun NavController<MainDestination>.navigateTo(
     katalog: Katalog,
     id: String

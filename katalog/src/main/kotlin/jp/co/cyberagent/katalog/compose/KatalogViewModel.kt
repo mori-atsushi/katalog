@@ -2,10 +2,10 @@ package jp.co.cyberagent.katalog.compose
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import jp.co.cyberagent.katalog.compose.navigation.DiscoveryDestination
 import jp.co.cyberagent.katalog.compose.navigation.ExtNavStateImpl
 import jp.co.cyberagent.katalog.compose.navigation.MainDestination
 import jp.co.cyberagent.katalog.compose.navigation.NavController
+import jp.co.cyberagent.katalog.compose.navigation.createMainNavController
 import jp.co.cyberagent.katalog.compose.navigation.navigateTo
 import jp.co.cyberagent.katalog.domain.CatalogItem
 import jp.co.cyberagent.katalog.domain.Katalog
@@ -22,19 +22,15 @@ import kotlinx.coroutines.launch
 internal class KatalogViewModel(
     private val container: KatalogContainer = KatalogContainer.instance
 ) : ViewModel() {
-    companion object {
-        val initialDestination = MainDestination.Discovery(
-            childNavController = NavController(DiscoveryDestination.Top)
-        )
-    }
-
     private val _katalog = MutableStateFlow<Katalog?>(null)
     val katalog: StateFlow<Katalog?> = _katalog
 
     private val _errorMessage = MutableStateFlow<String?>(null)
     val errorMessage: StateFlow<String?> = _errorMessage
 
-    val navController: NavController<MainDestination> = NavController(initialDestination)
+    val navController: NavController<MainDestination> =
+        createMainNavController()
+
     private val extNavState: ExtNavState = ExtNavStateImpl(
         navController = navController,
         katalog = katalog
