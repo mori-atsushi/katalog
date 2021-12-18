@@ -4,6 +4,15 @@ import jp.co.cyberagent.katalog.domain.CatalogItem
 import jp.co.cyberagent.katalog.domain.CatalogItemIdentifier
 import jp.co.cyberagent.katalog.domain.Katalog
 
+internal fun NavController<MainDestination>.navigateTo(
+    katalog: Katalog,
+    id: String
+): Boolean {
+    val item = katalog.findItemById(id, ignoreCount = true) ?: return false
+    navigateTo(item)
+    return true
+}
+
 internal fun NavController<MainDestination>.navigateTo(item: CatalogItem) {
     when (item) {
         is CatalogItem.Group -> {

@@ -23,17 +23,11 @@ internal class ExtNavStateImpl(
     }
 
     override suspend fun navigateTo(destination: String): Boolean {
-        val item = getKatalog().findItemById(destination, ignoreCount = true)
-        if (item != null) {
-            navController.navigateTo(item)
-            return true
-        }
-        return false
+        return navController.navigateTo(getKatalog(), destination)
     }
 
     override suspend fun restore(backStack: List<String>): Boolean {
-        val katalog = getKatalog()
-        return navController.restore(katalog, backStack)
+        return navController.restore(getKatalog(), backStack)
     }
 
     private fun getBackStack(navController: NavController<MainDestination>): List<String> {
