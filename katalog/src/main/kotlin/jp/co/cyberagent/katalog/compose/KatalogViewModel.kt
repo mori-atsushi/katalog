@@ -34,12 +34,7 @@ internal class KatalogViewModel(
     val errorMessage: StateFlow<String?> = _errorMessage
 
     val navController: NavController<MainDestination> = NavController(initialDestination)
-    val extNavState: ExtNavState = ExtNavStateImpl(
-        current = "/",
-        backStack = listOf("/"),
-        navigateTo = { false },
-        restore = { _, _ -> false }
-    )
+    private val extNavState: ExtNavState = ExtNavStateImpl(navController)
 
     init {
         viewModelScope.launch(Dispatchers.Default) {
