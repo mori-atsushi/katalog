@@ -1,8 +1,11 @@
 package jp.co.cyberagent.katalog.domain
 
+import jp.co.cyberagent.katalog.compose.navigation.DummyExtNavState
 import jp.co.cyberagent.katalog.dsl.GroupDefinition
+import jp.co.cyberagent.katalog.ext.ExperimentalKatalogExtApi
 import jp.co.cyberagent.katalog.ext.KatalogExt
 
+@OptIn(ExperimentalKatalogExtApi::class)
 internal fun dummyKatalog(
     title: String = "",
     extensions: List<KatalogExt> = emptyList(),
@@ -14,5 +17,5 @@ internal fun dummyKatalog(
         extensions = extensions,
         groupDefinition = groupDefinition
     )
-    return container.create()
+    return container.create(DummyExtNavState())
 }

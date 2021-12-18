@@ -1,12 +1,15 @@
 package jp.co.cyberagent.katalog.domain
 
 import com.google.common.truth.Truth.assertThat
+import jp.co.cyberagent.katalog.compose.navigation.DummyExtNavState
+import jp.co.cyberagent.katalog.ext.ExperimentalKatalogExtApi
 import jp.co.cyberagent.katalog.group
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 
+@OptIn(ExperimentalKatalogExtApi::class)
 @RunWith(JUnit4::class)
 internal class KatalogContainerTest {
     private lateinit var target: KatalogContainer
@@ -39,7 +42,7 @@ internal class KatalogContainerTest {
             compose("view1") {
             }
         }
-        val katalog = target.create()
+        val katalog = target.create(DummyExtNavState())
         assertThat(katalog.title).isEqualTo("title")
         assertThat(katalog.items).hasSize(3)
         katalog.items[0].also {
@@ -77,7 +80,7 @@ internal class KatalogContainerTest {
             group(group1, group2)
         }
 
-        val katalog = target.create()
+        val katalog = target.create(DummyExtNavState())
         assertThat(katalog.items).hasSize(2)
         katalog.items[0].also {
             assertThat(it.name).isEqualTo("group1")
@@ -99,13 +102,13 @@ internal class KatalogContainerTest {
         ) {
             // no op
         }
-        val kaalog = target.create()
+        val kaalog = target.create(DummyExtNavState())
         assertThat(kaalog.items).isEmpty()
     }
 
     @Test(expected = NotRegisteredException::class)
     fun create_notRegister() {
-        target.create()
+        target.create(DummyExtNavState())
     }
 
     @Test(expected = AlreadyRegisteredException::class)
