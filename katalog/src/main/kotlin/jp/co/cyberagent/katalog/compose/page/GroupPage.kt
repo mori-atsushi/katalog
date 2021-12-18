@@ -6,22 +6,21 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import jp.co.cyberagent.katalog.compose.KatalogViewModel
 import jp.co.cyberagent.katalog.compose.util.rememberIsTop
 import jp.co.cyberagent.katalog.compose.widget.CatalogItemList
 import jp.co.cyberagent.katalog.domain.CatalogItem
+import jp.co.cyberagent.katalog.domain.Katalog
 
 @Composable
 internal fun GroupPage(
-    viewModel: KatalogViewModel,
+    katalog: Katalog,
     group: CatalogItem.Group,
-    onChangeIsTop: (Boolean) -> Unit = {}
+    onChangeIsTop: (isTop: Boolean) -> Unit = {},
+    onClickItem: (item: CatalogItem) -> Unit
 ) {
-    val katalog by viewModel.katalog.collectAsState()
-    val extensions = katalog?.extensions ?: return
+    val extensions = katalog.extensions
     val lazyListState = rememberLazyListState()
     val isTop by lazyListState.rememberIsTop()
     LaunchedEffect(isTop) {
@@ -34,7 +33,7 @@ internal fun GroupPage(
         CatalogItemList(
             list = group.items,
             extensions = extensions,
-            onClick = viewModel::handleClick,
+            onClick = onClickItem,
             lazyListState = lazyListState
         )
     }

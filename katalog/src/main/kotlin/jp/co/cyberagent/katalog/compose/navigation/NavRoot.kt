@@ -1,27 +1,27 @@
 package jp.co.cyberagent.katalog.compose.navigation
 
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.AnimatedContentScope
 import androidx.compose.animation.ContentTransform
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.animation.slideInHorizontally
-import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.saveable.SaveableStateHolder
 import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 
+@ExperimentalAnimationApi
 @Composable
-internal fun <T> NavRoot(
+internal fun <T : NavDestination> NavRoot(
     navController: NavController<T>,
+    transitionSpec: AnimatedContentScope<NavState<T>>.() -> ContentTransform = NavAnimation.createSlideSpec(),
     component: @Composable (NavState<T>) -> Unit
 ) {
-    val current by navController.current
     val saveableStateHolder = rememberSaveableStateHolder()
 
     AnimatedPage(
-        targetState = current,
+        targetState = navController.current,
+        transitionSpec = transitionSpec,
         onComplete = navController::handleCompleteTransition
     ) {
         NavChild(
@@ -34,7 +34,7 @@ internal fun <T> NavRoot(
 }
 
 @Composable
-private fun <T> NavChild(
+private fun <T : NavDestination> NavChild(
     navController: NavController<T>,
     state: NavState<T>,
     saveableStateHolder: SaveableStateHolder,
@@ -52,30 +52,17 @@ private fun <T> NavChild(
     }
 }
 
-@OptIn(ExperimentalAnimationApi::class)
+@ExperimentalAnimationApi
 @Composable
 private fun <T> AnimatedPage(
     targetState: NavState<T>,
+    transitionSpec: AnimatedContentScope<NavState<T>>.() -> ContentTransform,
     onComplete: () -> Unit = {},
     content: @Composable (state: NavState<T>) -> Unit
 ) {
     AnimatedContent(
         targetState = targetState,
-        transitionSpec = {
-            if (targetState.index > initialState.index) {
-                ContentTransform(
-                    targetContentEnter = slideInHorizontally({ it }),
-                    initialContentExit = slideOutHorizontally({ -it / 5 }),
-                    targetContentZIndex = targetState.index.toFloat()
-                )
-            } else {
-                ContentTransform(
-                    targetContentEnter = slideInHorizontally({ -it / 5 }),
-                    initialContentExit = slideOutHorizontally({ it }),
-                    targetContentZIndex = targetState.index.toFloat()
-                )
-            }
-        }
+        transitionSpec = transitionSpec
     ) {
         LaunchedEffect(transition.currentState) {
             if (transition.currentState == transition.targetState) {

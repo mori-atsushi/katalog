@@ -1,36 +1,39 @@
 package jp.co.cyberagent.katalog.compose.page
 
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import jp.co.cyberagent.katalog.compose.KatalogViewModel
-import jp.co.cyberagent.katalog.compose.navigation.NavDestination
+import jp.co.cyberagent.katalog.compose.navigation.DiscoveryDestination
+import jp.co.cyberagent.katalog.compose.navigation.NavController
 import jp.co.cyberagent.katalog.compose.navigation.NavRoot
 import jp.co.cyberagent.katalog.compose.widget.KatalogTopAppBar
+import jp.co.cyberagent.katalog.domain.CatalogItem
+import jp.co.cyberagent.katalog.domain.Katalog
 
+@OptIn(ExperimentalAnimationApi::class)
 @Composable
 internal fun DiscoveryPage(
-    viewModel: KatalogViewModel
+    katalog: Katalog,
+    navController: NavController<DiscoveryDestination>,
+    onClickItem: (item: CatalogItem) -> Unit
 ) {
-    val katalog by viewModel.katalog.collectAsState()
-    val navController = viewModel.navController
-    val isPageTop by navController.isTop
+    val isPageTop = navController.isTop
     var isScrollTop by remember {
         mutableStateOf(true)
     }
     val title by derivedStateOf {
-        when (val destination = navController.current.value.destination) {
-            is NavDestination.Group -> destination.group.name
-            is NavDestination.Top -> katalog?.title.orEmpty()
+        when (val destination = navController.current.destination) {
+            is DiscoveryDestination.Group -> destination.group.name
+            is DiscoveryDestination.Top -> katalog.title
         }
     }
 
@@ -47,12 +50,13 @@ internal fun DiscoveryPage(
         NavRoot(navController) { state ->
             DiscoveryPageSelector(
                 destination = state.destination,
-                viewModel = viewModel,
+                katalog = katalog,
                 onChangeIsTop = {
-                    if (navController.current.value == state) {
+                    if (navController.current == state) {
                         isScrollTop = it
                     }
-                }
+                },
+                onClickItem = onClickItem
             )
         }
     }
@@ -85,22 +89,25 @@ private fun DiscoveryTopAppBar(
 
 @Composable
 private fun DiscoveryPageSelector(
-    destination: NavDestination,
-    viewModel: KatalogViewModel,
-    onChangeIsTop: (Boolean) -> Unit
+    destination: DiscoveryDestination,
+    katalog: Katalog,
+    onChangeIsTop: (Boolean) -> Unit,
+    onClickItem: (item: CatalogItem) -> Unit
 ) {
     when (destination) {
-        is NavDestination.Top -> {
+        is DiscoveryDestination.Top -> {
             TopPage(
-                viewModel = viewModel,
-                onChangeIsTop = onChangeIsTop
+                katalog = katalog,
+                onChangeIsTop = onChangeIsTop,
+                onClickItem = onClickItem
             )
         }
-        is NavDestination.Group -> {
+        is DiscoveryDestination.Group -> {
             GroupPage(
-                viewModel = viewModel,
+                katalog = katalog,
                 group = destination.group,
-                onChangeIsTop = onChangeIsTop
+                onChangeIsTop = onChangeIsTop,
+                onClickItem = onClickItem
             )
         }
     }

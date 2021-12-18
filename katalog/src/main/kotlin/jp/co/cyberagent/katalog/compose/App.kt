@@ -1,6 +1,7 @@
 package jp.co.cyberagent.katalog.compose
 
 import android.view.Window
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -10,12 +11,9 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
-import jp.co.cyberagent.katalog.compose.page.DiscoveryPage
-import jp.co.cyberagent.katalog.compose.page.PreviewPage
+import jp.co.cyberagent.katalog.compose.page.MainPage
 import jp.co.cyberagent.katalog.compose.res.materialColors
-import jp.co.cyberagent.katalog.compose.util.BackPressedEffect
 import jp.co.cyberagent.katalog.compose.widget.ErrorMessage
-import jp.co.cyberagent.katalog.compose.widget.ModalVisibility
 import jp.co.cyberagent.katalog.ext.ExtRootWrapper
 
 @Composable
@@ -24,10 +22,6 @@ internal fun App(
     viewModel: KatalogViewModel = viewModel()
 ) {
     val darkTheme = isSystemInDarkTheme()
-
-    BackPressedEffect(Unit) {
-        viewModel.handleBackPress()
-    }
 
     MaterialTheme(
         colors = materialColors(darkTheme)
@@ -56,7 +50,6 @@ private fun AppWindow(
 
 @Composable
 private fun MainContent(viewModel: KatalogViewModel) {
-    val selectedComponent by viewModel.selectedComponent.collectAsState()
     val errorMessage by viewModel.errorMessage.collectAsState()
     errorMessage?.let {
         ErrorMessage(text = it)
@@ -65,20 +58,19 @@ private fun MainContent(viewModel: KatalogViewModel) {
 
     val katalog by viewModel.katalog.collectAsState()
     val katalogValue = katalog ?: return
+    val navController = viewModel.navController
     val rootWrappers = katalogValue.extensions.rootWrappers
 
+    BackHandler(!navController.isTop) {
+        navController.back()
+    }
+
     ExtRootWrappers(rootWrappers) {
-        DiscoveryPage(
-            viewModel = viewModel
+        MainPage(
+            katalog = katalogValue,
+            navController = navController,
+            onClickItem = viewModel::handleClick
         )
-        ModalVisibility(
-            value = selectedComponent
-        ) {
-            PreviewPage(
-                viewModel = viewModel,
-                component = it
-            )
-        }
     }
 }
 
