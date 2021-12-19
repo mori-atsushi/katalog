@@ -12,6 +12,7 @@ buildscript {
 
 plugins {
     id("com.vanniktech.maven.publish") version "0.18.0"
+    kotlin("plugin.serialization") version Versions.kotlin
 }
 
 allprojects {

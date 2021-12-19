@@ -3,6 +3,7 @@ object Versions {
 
     object KotlinX {
         const val coroutines = "1.5.2"
+        const val serialization = "1.3.1"
     }
 
     object Androidx {

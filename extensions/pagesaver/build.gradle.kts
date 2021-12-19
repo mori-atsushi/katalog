@@ -23,8 +23,8 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
         freeCompilerArgs = freeCompilerArgs + listOf(
-                "-Xexplicit-api=strict",
-                "-Xopt-in=kotlin.RequiresOptIn"
+            "-Xexplicit-api=strict",
+            "-Xopt-in=kotlin.RequiresOptIn"
         )
     }
     composeOptions {
@@ -41,10 +41,8 @@ dependencies {
     implementation(kotlin("stdlib"))
     implementation(project(":katalog"))
 
-    implementation(Deps.Androidx.Compose.ui)
-    implementation(Deps.Androidx.Compose.uiTooling)
+    implementation(Deps.KotlinX.Serialization.json)
     implementation(Deps.Androidx.Compose.foundation)
-    implementation(Deps.Androidx.Compose.material)
 
     testImplementation(Deps.Androidx.Test.core)
     testImplementation(Deps.Androidx.Test.runner)

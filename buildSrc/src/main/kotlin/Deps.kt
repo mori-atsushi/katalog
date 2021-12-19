@@ -6,6 +6,11 @@ object Deps {
             const val test =
                 "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.KotlinX.coroutines}"
         }
+
+        object Serialization {
+            const val json =
+                "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.KotlinX.serialization}"
+        }
     }
 
     object Androidx {
