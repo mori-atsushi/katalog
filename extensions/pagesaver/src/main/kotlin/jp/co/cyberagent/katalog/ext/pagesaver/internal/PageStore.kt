@@ -1,32 +1,24 @@
 package jp.co.cyberagent.katalog.ext.pagesaver.internal
 
-import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.ui.platform.LocalContext
 import jp.co.cyberagent.katalog.ext.pagesaver.BackStackMapper
-import jp.co.cyberagent.katalog.ext.pagesaver.BuildConfig
 
 internal class PageStore(
-    context: Context
+    private val localStorage: LocalStorage
 ) {
     companion object {
         private const val BACK_STACK_KEY = "back_stack"
     }
 
-    private val sharedPreference =
-        context.getSharedPreferences(BuildConfig.LIBRARY_PACKAGE_NAME, Context.MODE_PRIVATE)
-
     fun update(backStack: List<String>) {
         val string = BackStackMapper.toString(backStack)
-        sharedPreference.edit()
-            .putString(BACK_STACK_KEY, string)
-            .apply()
+        localStorage.putString(BACK_STACK_KEY, string)
     }
 
     fun read(): List<String>? {
         val backStack = try {
-            val string = sharedPreference.getString(BACK_STACK_KEY, null)
+            val string = localStorage.getString(BACK_STACK_KEY)
             if (string != null) {
                 BackStackMapper.fromString(string)
             } else {
@@ -40,10 +32,11 @@ internal class PageStore(
 }
 
 @Composable
-internal fun rememberPageStore(): PageStore {
-    val context = LocalContext.current
-    return remember(context) {
-        PageStore(context)
+internal fun rememberPageStore(
+    localStorage: LocalStorage = rememberLocalStorage()
+): PageStore {
+    return remember(localStorage) {
+        PageStore(localStorage)
     }
 }
 

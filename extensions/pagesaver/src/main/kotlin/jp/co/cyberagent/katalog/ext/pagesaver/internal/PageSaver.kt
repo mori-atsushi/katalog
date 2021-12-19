@@ -10,8 +10,10 @@ import kotlinx.coroutines.flow.onEach
 
 @ExperimentalKatalogExtApi
 @Composable
-internal fun PageSaver(navState: ExtNavState) {
-    val pageStore = rememberPageStore()
+internal fun PageSaver(
+    navState: ExtNavState,
+    pageStore: PageStore = rememberPageStore()
+) {
 
     LaunchedEffect(Unit) {
         val backStack = pageStore.read()
