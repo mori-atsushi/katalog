@@ -39,4 +39,3 @@ internal fun rememberPageStore(
         PageStore(localStorage)
     }
 }
-

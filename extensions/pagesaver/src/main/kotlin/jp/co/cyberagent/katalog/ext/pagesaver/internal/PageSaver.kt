@@ -14,7 +14,6 @@ internal fun PageSaver(
     navState: ExtNavState,
     pageStore: PageStore = rememberPageStore()
 ) {
-
     LaunchedEffect(Unit) {
         val backStack = pageStore.read()
         if (backStack != null && navState.backStack != backStack) {
