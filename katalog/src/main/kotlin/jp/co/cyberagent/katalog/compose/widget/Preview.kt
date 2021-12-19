@@ -13,12 +13,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
+import jp.co.cyberagent.katalog.domain.ExtWrapperScopeImpl
 import jp.co.cyberagent.katalog.domain.Extensions
+import jp.co.cyberagent.katalog.ext.ExperimentalKatalogExtApi
 import jp.co.cyberagent.katalog.ext.ExtComponentWrapper
+import jp.co.cyberagent.katalog.ext.ExtNavState
 
+@ExperimentalKatalogExtApi
 @Composable
 internal fun Preview(
     extensions: Extensions,
+    extNavState: ExtNavState,
     modifier: Modifier = Modifier,
     scale: Float = 1.0F,
     clickable: Boolean = false,
@@ -29,7 +34,10 @@ internal fun Preview(
         modifier = modifier,
         color = MaterialTheme.colors.background
     ) {
-        ExtensionsWrappers(componentWrappers) {
+        ExtensionsWrappers(
+            extNavState = extNavState,
+            componentWrappers = componentWrappers
+        ) {
             Scaler(scale) {
                 definition()
                 ClickMask(!clickable)
@@ -38,8 +46,10 @@ internal fun Preview(
     }
 }
 
+@ExperimentalKatalogExtApi
 @Composable
 private fun ExtensionsWrappers(
+    extNavState: ExtNavState,
     componentWrappers: List<ExtComponentWrapper>,
     content: @Composable () -> Unit
 ) {
@@ -47,8 +57,15 @@ private fun ExtensionsWrappers(
         content()
         return
     }
-    ExtensionsWrappers(componentWrappers.dropLast(1)) {
-        componentWrappers.last().invoke {
+    ExtensionsWrappers(
+        extNavState = extNavState,
+        componentWrappers = componentWrappers.dropLast(1)
+    ) {
+        val target = componentWrappers.last()
+        val scope = ExtWrapperScopeImpl(
+            navState = extNavState
+        )
+        scope.target {
             content()
         }
     }

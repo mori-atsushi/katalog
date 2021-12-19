@@ -8,6 +8,8 @@ internal class NavController<T : NavDestination>(
     startDestination: T
 ) {
     private val _backStack = mutableStateListOf(NavState.of(startDestination, 0))
+    val backStack: List<NavState<T>> = _backStack
+
     val current: NavState<T> by derivedStateOf {
         _backStack.last()
     }
@@ -26,6 +28,14 @@ internal class NavController<T : NavDestination>(
 
         val state = NavState.of(destination, _backStack.size)
         _backStack.add(state)
+    }
+
+    fun restore(backStack: List<T>) {
+        _backStack.clear()
+        backStack.forEach {
+            val state = NavState.of(it, _backStack.size)
+            _backStack.add(state)
+        }
     }
 
     fun back(): Boolean {

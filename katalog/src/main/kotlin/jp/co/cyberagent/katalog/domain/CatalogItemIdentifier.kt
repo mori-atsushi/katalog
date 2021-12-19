@@ -6,6 +6,8 @@ internal class CatalogItemIdentifier(
     val count: Int
 ) {
     companion object {
+        const val rootId = "/"
+
         fun of(
             parent: CatalogItemIdentifier?,
             name: String,

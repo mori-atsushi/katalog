@@ -27,11 +27,15 @@ import androidx.compose.ui.unit.sp
 import jp.co.cyberagent.katalog.compose.res.defaultPadding
 import jp.co.cyberagent.katalog.domain.CatalogItem
 import jp.co.cyberagent.katalog.domain.Extensions
+import jp.co.cyberagent.katalog.ext.ExperimentalKatalogExtApi
+import jp.co.cyberagent.katalog.ext.ExtNavState
 
+@ExperimentalKatalogExtApi
 @Composable
 internal fun CatalogItemRow(
     item: CatalogItem,
     extensions: Extensions,
+    extNavState: ExtNavState,
     onClick: (CatalogItem) -> Unit
 ) {
     val icon = when (item) {
@@ -50,36 +54,43 @@ internal fun CatalogItemRow(
         when (item) {
             is CatalogItem.Component -> ComponentRow(
                 component = item,
-                extensions = extensions
+                extensions = extensions,
+                extNavState = extNavState
             )
             is CatalogItem.Group -> GroupRow(
                 group = item,
                 onClick = onClick,
-                extensions = extensions
+                extensions = extensions,
+                extNavState = extNavState
             )
         }
         ItemDivider()
     }
 }
 
+@ExperimentalKatalogExtApi
 @Composable
 private fun GroupRow(
     group: CatalogItem.Group,
     extensions: Extensions,
+    extNavState: ExtNavState,
     onClick: (CatalogItem) -> Unit
 ) {
     CatalogItemCarousel(
         list = group.items,
         extensions = extensions,
+        extNavState = extNavState,
         onClick = onClick,
         modifier = Modifier.fillMaxWidth()
     )
 }
 
+@OptIn(ExperimentalKatalogExtApi::class)
 @Composable
 private fun ComponentRow(
     component: CatalogItem.Component,
-    extensions: Extensions
+    extensions: Extensions,
+    extNavState: ExtNavState
 ) {
     BoxWithConstraints(
         modifier = Modifier
@@ -97,7 +108,8 @@ private fun ComponentRow(
         ) {
             Preview(
                 definition = component.definition,
-                extensions = extensions
+                extensions = extensions,
+                extNavState = extNavState
             )
         }
     }

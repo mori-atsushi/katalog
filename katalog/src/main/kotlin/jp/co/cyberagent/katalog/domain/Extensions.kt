@@ -9,9 +9,9 @@ import jp.co.cyberagent.katalog.ext.KatalogExt
 internal data class Extensions(
     val list: List<KatalogExt>
 ) {
-    val rootWrappers: List<ExtRootWrapper>
-        get() = list.mapNotNull { it.rootWrapper }
+    val rootWrappers: List<ExtRootWrapper> =
+        list.mapNotNull { it.rootWrapper }
 
-    val componentWrappers: List<ExtComponentWrapper>
-        get() = list.mapNotNull { it.componentWrapper }
+    val componentWrappers: List<ExtComponentWrapper> =
+        list.mapNotNull { it.componentWrapper }
 }

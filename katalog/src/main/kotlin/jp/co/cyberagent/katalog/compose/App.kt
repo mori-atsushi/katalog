@@ -11,9 +11,13 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
+import jp.co.cyberagent.katalog.compose.navigation.rememberExtNavState
 import jp.co.cyberagent.katalog.compose.page.MainPage
 import jp.co.cyberagent.katalog.compose.res.materialColors
 import jp.co.cyberagent.katalog.compose.widget.ErrorMessage
+import jp.co.cyberagent.katalog.domain.ExtWrapperScopeImpl
+import jp.co.cyberagent.katalog.ext.ExperimentalKatalogExtApi
+import jp.co.cyberagent.katalog.ext.ExtNavState
 import jp.co.cyberagent.katalog.ext.ExtRootWrapper
 
 @Composable
@@ -48,6 +52,7 @@ private fun AppWindow(
     controller.isAppearanceLightStatusBars = !darkTheme
 }
 
+@OptIn(ExperimentalKatalogExtApi::class)
 @Composable
 private fun MainContent(viewModel: KatalogViewModel) {
     val errorMessage by viewModel.errorMessage.collectAsState()
@@ -59,23 +64,32 @@ private fun MainContent(viewModel: KatalogViewModel) {
     val katalog by viewModel.katalog.collectAsState()
     val katalogValue = katalog ?: return
     val navController = viewModel.navController
-    val rootWrappers = katalogValue.extensions.rootWrappers
+    val extNavState = rememberExtNavState(
+        navController = navController,
+        katalog = katalogValue
+    )
 
     BackHandler(!navController.isTop) {
         navController.back()
     }
 
-    ExtRootWrappers(rootWrappers) {
+    ExtRootWrappers(
+        extNavState = extNavState,
+        rootWrappers = katalogValue.extensions.rootWrappers
+    ) {
         MainPage(
             katalog = katalogValue,
             navController = navController,
+            extNavState = extNavState,
             onClickItem = viewModel::handleClick
         )
     }
 }
 
+@ExperimentalKatalogExtApi
 @Composable
 private fun ExtRootWrappers(
+    extNavState: ExtNavState,
     rootWrappers: List<ExtRootWrapper>,
     content: @Composable () -> Unit
 ) {
@@ -83,8 +97,15 @@ private fun ExtRootWrappers(
         content()
         return
     }
-    ExtRootWrappers(rootWrappers.dropLast(1)) {
-        rootWrappers.last().invoke {
+    ExtRootWrappers(
+        extNavState = extNavState,
+        rootWrappers = rootWrappers.dropLast(1)
+    ) {
+        val target = rootWrappers.last()
+        val scope = ExtWrapperScopeImpl(
+            navState = extNavState
+        )
+        scope.target {
             content()
         }
     }

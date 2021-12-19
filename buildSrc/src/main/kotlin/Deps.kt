@@ -3,6 +3,8 @@ object Deps {
         object Coroutines {
             const val android =
                 "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.KotlinX.coroutines}"
+            const val test =
+                "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.KotlinX.coroutines}"
         }
     }
 
