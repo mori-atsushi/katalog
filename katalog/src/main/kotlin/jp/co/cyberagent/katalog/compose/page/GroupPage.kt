@@ -12,11 +12,15 @@ import jp.co.cyberagent.katalog.compose.util.rememberIsTop
 import jp.co.cyberagent.katalog.compose.widget.CatalogItemList
 import jp.co.cyberagent.katalog.domain.CatalogItem
 import jp.co.cyberagent.katalog.domain.Katalog
+import jp.co.cyberagent.katalog.ext.ExperimentalKatalogExtApi
+import jp.co.cyberagent.katalog.ext.ExtNavState
 
+@ExperimentalKatalogExtApi
 @Composable
 internal fun GroupPage(
     katalog: Katalog,
     group: CatalogItem.Group,
+    extNavState: ExtNavState,
     onChangeIsTop: (isTop: Boolean) -> Unit = {},
     onClickItem: (item: CatalogItem) -> Unit
 ) {
@@ -33,6 +37,7 @@ internal fun GroupPage(
         CatalogItemList(
             list = group.items,
             extensions = extensions,
+            extNavState = extNavState,
             onClick = onClickItem,
             lazyListState = lazyListState
         )

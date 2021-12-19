@@ -5,6 +5,6 @@ public interface ExtNavState {
     public val current: String
     public val backStack: List<String>
 
-    public suspend fun navigateTo(destination: String): Boolean
-    public suspend fun restore(backStack: List<String>): Boolean
+    public fun navigateTo(destination: String): Boolean
+    public fun restore(backStack: List<String>): Boolean
 }

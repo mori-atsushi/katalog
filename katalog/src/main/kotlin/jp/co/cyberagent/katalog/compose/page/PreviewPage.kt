@@ -14,11 +14,15 @@ import jp.co.cyberagent.katalog.compose.widget.KatalogTopAppBar
 import jp.co.cyberagent.katalog.compose.widget.Preview
 import jp.co.cyberagent.katalog.domain.CatalogItem
 import jp.co.cyberagent.katalog.domain.Extensions
+import jp.co.cyberagent.katalog.ext.ExperimentalKatalogExtApi
+import jp.co.cyberagent.katalog.ext.ExtNavState
 
+@ExperimentalKatalogExtApi
 @Composable
 internal fun PreviewPage(
     component: CatalogItem.Component,
     extensions: Extensions,
+    extNavState: ExtNavState,
     onClickClose: () -> Unit
 ) {
     Column(
@@ -32,6 +36,7 @@ internal fun PreviewPage(
         )
         Preview(
             extensions = extensions,
+            extNavState = extNavState,
             modifier = Modifier.fillMaxSize(),
             clickable = true,
             definition = component.definition

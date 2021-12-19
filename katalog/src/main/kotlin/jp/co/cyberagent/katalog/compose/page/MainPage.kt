@@ -8,12 +8,16 @@ import jp.co.cyberagent.katalog.compose.navigation.NavController
 import jp.co.cyberagent.katalog.compose.navigation.NavRoot
 import jp.co.cyberagent.katalog.domain.CatalogItem
 import jp.co.cyberagent.katalog.domain.Katalog
+import jp.co.cyberagent.katalog.ext.ExperimentalKatalogExtApi
+import jp.co.cyberagent.katalog.ext.ExtNavState
 
+@ExperimentalKatalogExtApi
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 internal fun MainPage(
     katalog: Katalog,
     navController: NavController<MainDestination>,
+    extNavState: ExtNavState,
     onClickItem: (item: CatalogItem) -> Unit
 ) {
     NavRoot(
@@ -25,6 +29,7 @@ internal fun MainPage(
                 DiscoveryPage(
                     katalog = katalog,
                     navController = state.destination.childNavController,
+                    extNavState = extNavState,
                     onClickItem = onClickItem
                 )
             }
@@ -32,6 +37,7 @@ internal fun MainPage(
                 PreviewPage(
                     component = state.destination.component,
                     extensions = katalog.extensions,
+                    extNavState = extNavState,
                     onClickClose = navController::back
                 )
             }

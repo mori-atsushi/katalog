@@ -1,8 +1,6 @@
 package jp.co.cyberagent.katalog.domain
 
 import jp.co.cyberagent.katalog.dsl.GroupDefinition
-import jp.co.cyberagent.katalog.ext.ExperimentalKatalogExtApi
-import jp.co.cyberagent.katalog.ext.ExtNavState
 import jp.co.cyberagent.katalog.ext.KatalogExt
 
 internal class KatalogContainer {
@@ -27,9 +25,8 @@ internal class KatalogContainer {
         )
     }
 
-    @ExperimentalKatalogExtApi
-    fun create(extNavState: ExtNavState): Katalog {
+    fun create(): Katalog {
         val definition = definition ?: throw NotRegisteredException()
-        return definition.build(extNavState)
+        return definition.build()
     }
 }

@@ -12,10 +12,14 @@ import jp.co.cyberagent.katalog.compose.util.rememberIsTop
 import jp.co.cyberagent.katalog.compose.widget.CatalogItemList
 import jp.co.cyberagent.katalog.domain.CatalogItem
 import jp.co.cyberagent.katalog.domain.Katalog
+import jp.co.cyberagent.katalog.ext.ExperimentalKatalogExtApi
+import jp.co.cyberagent.katalog.ext.ExtNavState
 
+@OptIn(ExperimentalKatalogExtApi::class)
 @Composable
 internal fun TopPage(
     katalog: Katalog,
+    extNavState: ExtNavState,
     onChangeIsTop: (isTop: Boolean) -> Unit = {},
     onClickItem: (item: CatalogItem) -> Unit
 ) {
@@ -31,6 +35,7 @@ internal fun TopPage(
         CatalogItemList(
             list = katalog.items,
             extensions = katalog.extensions,
+            extNavState = extNavState,
             onClick = onClickItem,
             lazyListState = lazyListState
         )

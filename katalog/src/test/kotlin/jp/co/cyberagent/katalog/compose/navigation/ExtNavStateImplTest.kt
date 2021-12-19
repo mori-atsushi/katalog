@@ -4,14 +4,15 @@ import androidx.compose.material.Text
 import com.google.common.truth.Truth.assertThat
 import jp.co.cyberagent.katalog.domain.CatalogItem
 import jp.co.cyberagent.katalog.domain.dummyKatalog
+import jp.co.cyberagent.katalog.ext.ExperimentalKatalogExtApi
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 
 @ExperimentalCoroutinesApi
+@ExperimentalKatalogExtApi
 @RunWith(JUnit4::class)
 internal class ExtNavStateImplTest {
     @Test
@@ -26,7 +27,7 @@ internal class ExtNavStateImplTest {
         val navController = createMainNavController()
         val target = ExtNavStateImpl(
             navController = navController,
-            katalog = MutableStateFlow(katalog)
+            katalog = katalog
         )
         assertThat(target.backStack).isEqualTo(listOf("/"))
         assertThat(target.current).isEqualTo("/")
@@ -54,7 +55,7 @@ internal class ExtNavStateImplTest {
         val navController = createMainNavController()
         val target = ExtNavStateImpl(
             navController = navController,
-            katalog = MutableStateFlow(katalog)
+            katalog = katalog
         )
         val actual = target.navigateTo("/Group/Item")
         assertThat(actual).isTrue()
@@ -73,11 +74,30 @@ internal class ExtNavStateImplTest {
         val navController = createMainNavController()
         val target = ExtNavStateImpl(
             navController = navController,
-            katalog = MutableStateFlow(katalog)
+            katalog = katalog
         )
         val actual = target.navigateTo("/invalid")
         assertThat(actual).isFalse()
         assertThat(target.current).isEqualTo("/")
+    }
+
+    @Test
+    fun navigateTo_top() = runBlockingTest {
+        val katalog = dummyKatalog {
+            group("Group") {
+                compose("Item") {
+                    Text(text = "Sample")
+                }
+            }
+        }
+        val navController = createMainNavController()
+        val target = ExtNavStateImpl(
+            navController = navController,
+            katalog = katalog
+        )
+        val actual = target.navigateTo("/")
+        assertThat(actual).isTrue()
+        assertThat(target.backStack).isEqualTo(listOf("/", "/"))
     }
 
     @Test
@@ -92,7 +112,7 @@ internal class ExtNavStateImplTest {
         val navController = createMainNavController()
         val target = ExtNavStateImpl(
             navController = navController,
-            katalog = MutableStateFlow(katalog)
+            katalog = katalog
         )
         val actual = target.restore(listOf("/", "/Group", "/Group/Item"))
         assertThat(actual).isTrue()
@@ -111,7 +131,7 @@ internal class ExtNavStateImplTest {
         val navController = createMainNavController()
         val target = ExtNavStateImpl(
             navController = navController,
-            katalog = MutableStateFlow(katalog)
+            katalog = katalog
         )
         val actual = target.restore(listOf("/", "/invalid", "/Group/Item"))
         assertThat(actual).isFalse()

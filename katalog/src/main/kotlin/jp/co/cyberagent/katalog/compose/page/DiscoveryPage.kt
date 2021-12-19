@@ -18,12 +18,16 @@ import jp.co.cyberagent.katalog.compose.navigation.NavRoot
 import jp.co.cyberagent.katalog.compose.widget.KatalogTopAppBar
 import jp.co.cyberagent.katalog.domain.CatalogItem
 import jp.co.cyberagent.katalog.domain.Katalog
+import jp.co.cyberagent.katalog.ext.ExperimentalKatalogExtApi
+import jp.co.cyberagent.katalog.ext.ExtNavState
 
+@ExperimentalKatalogExtApi
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 internal fun DiscoveryPage(
     katalog: Katalog,
     navController: NavController<DiscoveryDestination>,
+    extNavState: ExtNavState,
     onClickItem: (item: CatalogItem) -> Unit
 ) {
     val isPageTop = navController.isTop
@@ -51,6 +55,7 @@ internal fun DiscoveryPage(
             DiscoveryPageSelector(
                 destination = state.destination,
                 katalog = katalog,
+                extNavState = extNavState,
                 onChangeIsTop = {
                     if (navController.current == state) {
                         isScrollTop = it
@@ -87,10 +92,12 @@ private fun DiscoveryTopAppBar(
     )
 }
 
+@ExperimentalKatalogExtApi
 @Composable
 private fun DiscoveryPageSelector(
     destination: DiscoveryDestination,
     katalog: Katalog,
+    extNavState: ExtNavState,
     onChangeIsTop: (Boolean) -> Unit,
     onClickItem: (item: CatalogItem) -> Unit
 ) {
@@ -98,6 +105,7 @@ private fun DiscoveryPageSelector(
         is DiscoveryDestination.Top -> {
             TopPage(
                 katalog = katalog,
+                extNavState = extNavState,
                 onChangeIsTop = onChangeIsTop,
                 onClickItem = onClickItem
             )
@@ -106,6 +114,7 @@ private fun DiscoveryPageSelector(
             GroupPage(
                 katalog = katalog,
                 group = destination.group,
+                extNavState = extNavState,
                 onChangeIsTop = onChangeIsTop,
                 onClickItem = onClickItem
             )

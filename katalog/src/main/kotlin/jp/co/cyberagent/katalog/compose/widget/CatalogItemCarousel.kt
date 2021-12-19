@@ -30,6 +30,8 @@ import jp.co.cyberagent.katalog.compose.res.defaultCornerRadius
 import jp.co.cyberagent.katalog.compose.res.defaultPadding
 import jp.co.cyberagent.katalog.domain.CatalogItem
 import jp.co.cyberagent.katalog.domain.Extensions
+import jp.co.cyberagent.katalog.ext.ExperimentalKatalogExtApi
+import jp.co.cyberagent.katalog.ext.ExtNavState
 import kotlin.math.ceil
 import kotlin.math.floor
 import kotlin.math.max
@@ -37,10 +39,12 @@ import kotlin.math.max
 private val spacing = 10.dp
 private val cellMinWidth = 200.dp
 
+@ExperimentalKatalogExtApi
 @Composable
 internal fun CatalogItemCarousel(
     list: List<CatalogItem>,
     extensions: Extensions,
+    extNavState: ExtNavState,
     onClick: (CatalogItem) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -67,16 +71,19 @@ internal fun CatalogItemCarousel(
                         .width(cellWidth),
                     item = it,
                     onClick = { onClick(it) },
-                    extensions = extensions
+                    extensions = extensions,
+                    extNavState = extNavState
                 )
             }
         }
     }
 }
 
+@ExperimentalKatalogExtApi
 @Composable
 private fun Cell(
     extensions: Extensions,
+    extNavState: ExtNavState,
     item: CatalogItem,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
@@ -96,6 +103,7 @@ private fun Cell(
                 is CatalogItem.Component -> {
                     ComponentCell(
                         extensions = extensions,
+                        extNavState = extNavState,
                         component = item
                     )
                 }
@@ -136,9 +144,11 @@ private fun GroupCell() {
     }
 }
 
+@ExperimentalKatalogExtApi
 @Composable
 private fun ComponentCell(
     extensions: Extensions,
+    extNavState: ExtNavState,
     component: CatalogItem.Component
 ) {
     CatalogItemWrapper(
@@ -147,7 +157,8 @@ private fun ComponentCell(
         Preview(
             scale = 0.5F,
             definition = component.definition,
-            extensions = extensions
+            extensions = extensions,
+            extNavState = extNavState
         )
     }
 }
