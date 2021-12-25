@@ -4,11 +4,13 @@ import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedContentScope
 import androidx.compose.animation.ContentTransform
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.saveable.SaveableStateHolder
 import androidx.compose.runtime.saveable.rememberSaveableStateHolder
+import androidx.compose.ui.Modifier
+import jp.co.cyberagent.katalog.compose.widget.ClickMask
 
 @ExperimentalAnimationApi
 @Composable
@@ -21,8 +23,7 @@ internal fun <T : NavDestination> NavRoot(
 
     AnimatedPage(
         targetState = navController.current,
-        transitionSpec = transitionSpec,
-        onComplete = navController::handleCompleteTransition
+        transitionSpec = transitionSpec
     ) {
         NavChild(
             navController = navController,
@@ -57,18 +58,16 @@ private fun <T : NavDestination> NavChild(
 private fun <T> AnimatedPage(
     targetState: NavState<T>,
     transitionSpec: AnimatedContentScope<NavState<T>>.() -> ContentTransform,
-    onComplete: () -> Unit = {},
     content: @Composable (state: NavState<T>) -> Unit
 ) {
     AnimatedContent(
         targetState = targetState,
         transitionSpec = transitionSpec
     ) {
-        LaunchedEffect(transition.currentState) {
-            if (transition.currentState == transition.targetState) {
-                onComplete()
-            }
-        }
         content(it)
+        ClickMask(
+            modifier = Modifier.fillMaxSize(),
+            enabled = it != targetState
+        )
     }
 }

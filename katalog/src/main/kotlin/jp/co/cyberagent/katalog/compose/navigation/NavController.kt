@@ -20,12 +20,7 @@ internal class NavController<T : NavDestination>(
         childNavController == null || childNavController.isTop
     }
 
-    private var isTransitioning = false
-
     fun push(destination: T) {
-        if (isTransitioning) return
-        isTransitioning = true
-
         val state = NavState.of(destination, _backStack.size)
         _backStack.add(state)
     }
@@ -54,9 +49,5 @@ internal class NavController<T : NavDestination>(
         return _backStack.any {
             it.key == state.key
         }
-    }
-
-    fun handleCompleteTransition() {
-        isTransitioning = false
     }
 }
