@@ -120,6 +120,27 @@ internal class ExtNavStateImplTest {
     }
 
     @Test
+    fun restore_nested() = runBlockingTest {
+        val katalog = dummyKatalog {
+            group("Group1") {
+                group("Group2") {
+                    compose("Item") {
+                        Text(text = "Sample")
+                    }
+                }
+            }
+        }
+        val navController = createMainNavController()
+        val target = ExtNavStateImpl(
+            navController = navController,
+            katalog = katalog
+        )
+        val actual = target.restore(listOf("/", "/Group1", "/Group1/Group2"))
+        assertThat(actual).isTrue()
+        assertThat(target.backStack).isEqualTo(listOf("/", "/Group1", "/Group1/Group2"))
+    }
+
+    @Test
     fun restore_invalid() = runBlockingTest {
         val katalog = dummyKatalog {
             group("Group") {
