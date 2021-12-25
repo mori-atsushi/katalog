@@ -23,23 +23,6 @@ internal class NavControllerTest {
     }
 
     @Test
-    fun push_whileTransition() {
-        val destination1 = TestDestination.Data(0)
-        val destination2 = TestDestination.Data(1)
-
-        val target = NavController<TestDestination>(TestDestination.Object)
-        target.push(destination1)
-        assertThat(target.current.destination).isEqualTo(destination1)
-
-        target.push(destination2)
-        assertThat(target.current.destination).isEqualTo(destination1)
-
-        target.handleCompleteTransition()
-        target.push(destination2)
-        assertThat(target.current.destination).isEqualTo(destination2)
-    }
-
-    @Test
     fun back() {
         val initialDestination = TestDestination.Object
         val nextDestination = TestDestination.Data(0)
