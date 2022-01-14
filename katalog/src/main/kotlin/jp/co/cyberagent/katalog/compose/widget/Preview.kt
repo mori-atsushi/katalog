@@ -11,7 +11,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
-import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
 import jp.co.cyberagent.katalog.domain.ExtWrapperScopeImpl
 import jp.co.cyberagent.katalog.domain.Extensions
@@ -40,7 +39,10 @@ internal fun Preview(
         ) {
             Scaler(scale) {
                 definition()
-                ClickMask(!clickable)
+                ClickMask(
+                    modifier = Modifier.fillMaxSize(),
+                    enabled = !clickable
+                )
             }
         }
     }
@@ -90,14 +92,4 @@ private fun Scaler(
             content()
         }
     }
-}
-
-@Composable
-private fun ClickMask(enabled: Boolean = false) {
-    if (!enabled) return
-    Box(
-        modifier = Modifier
-            .pointerInput(Unit) { }
-            .fillMaxSize()
-    )
 }
