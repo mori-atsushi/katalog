@@ -18,7 +18,8 @@ internal fun MainPage(
     katalog: Katalog,
     navController: NavController<MainDestination>,
     extNavState: ExtNavState,
-    onClickItem: (item: CatalogItem) -> Unit
+    onClickItem: (item: CatalogItem) -> Unit,
+    onClickBack: () -> Unit
 ) {
     NavRoot(
         navController = navController,
@@ -31,7 +32,8 @@ internal fun MainPage(
                     navController = state.destination.childNavController,
                     extNavState = extNavState,
                     onClickItem = onClickItem,
-                    isTopPage = navController.isTop
+                    isTopPage = navController.isTop,
+                    onClickBack = onClickBack
                 )
             }
             is MainDestination.Preview -> {
@@ -39,7 +41,7 @@ internal fun MainPage(
                     component = state.destination.component,
                     extensions = katalog.extensions,
                     extNavState = extNavState,
-                    onClickClose = navController::back
+                    onClickClose = onClickBack
                 )
             }
         }

@@ -2,6 +2,7 @@ package jp.co.cyberagent.katalog.compose
 
 import android.view.Window
 import androidx.activity.compose.BackHandler
+import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -63,6 +64,8 @@ private fun MainContent(viewModel: KatalogViewModel) {
 
     val katalog by viewModel.katalog.collectAsState()
     val katalogValue = katalog ?: return
+
+    val onBackPressedDispatcherOwner = LocalOnBackPressedDispatcherOwner.current
     val navController = viewModel.navController
     val extNavState = rememberExtNavState(
         navController = navController,
@@ -81,7 +84,10 @@ private fun MainContent(viewModel: KatalogViewModel) {
             katalog = katalogValue,
             navController = navController,
             extNavState = extNavState,
-            onClickItem = viewModel::handleClick
+            onClickItem = viewModel::handleClick,
+            onClickBack = {
+                onBackPressedDispatcherOwner?.onBackPressedDispatcher?.onBackPressed()
+            }
         )
     }
 }
