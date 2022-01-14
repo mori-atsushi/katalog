@@ -1,7 +1,9 @@
 package jp.co.cyberagent.katalog.ext
 
+import androidx.compose.runtime.Stable
 import jp.co.cyberagent.katalog.domain.ExtensionBuilderImpl
 
+@Stable
 public interface KatalogExt {
     public companion object {
         @ExperimentalKatalogExtApi
