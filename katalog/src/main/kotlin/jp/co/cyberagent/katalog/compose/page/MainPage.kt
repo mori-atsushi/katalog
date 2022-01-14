@@ -30,7 +30,8 @@ internal fun MainPage(
                     katalog = katalog,
                     navController = state.destination.childNavController,
                     extNavState = extNavState,
-                    onClickItem = onClickItem
+                    onClickItem = onClickItem,
+                    isTopPage = navController.isTop
                 )
             }
             is MainDestination.Preview -> {

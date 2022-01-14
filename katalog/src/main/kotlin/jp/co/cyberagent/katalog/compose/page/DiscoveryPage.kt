@@ -1,5 +1,6 @@
 package jp.co.cyberagent.katalog.compose.page
 
+import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -26,11 +27,12 @@ import jp.co.cyberagent.katalog.ext.ExtNavState
 @Composable
 internal fun DiscoveryPage(
     katalog: Katalog,
+    isTopPage: Boolean,
     navController: NavController<DiscoveryDestination>,
     extNavState: ExtNavState,
     onClickItem: (item: CatalogItem) -> Unit
 ) {
-    val isPageTop = navController.isTop
+    val onBackPressedDispatcherOwner = LocalOnBackPressedDispatcherOwner.current
     var isScrollTop by remember {
         mutableStateOf(true)
     }
@@ -45,9 +47,11 @@ internal fun DiscoveryPage(
         topBar = {
             DiscoveryTopAppBar(
                 title = title,
-                isPageTop = isPageTop,
+                isPageTop = isTopPage,
                 isScrollTop = isScrollTop,
-                onClickBack = { navController.back() }
+                onClickBack = {
+                    onBackPressedDispatcherOwner?.onBackPressedDispatcher?.onBackPressed()
+                }
             )
         }
     ) {
