@@ -5,7 +5,7 @@ import { Preview } from "/src/widgets/Preview";
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Android Theme
-There is the extension to change the Android Theme for Android View, DataBinding/ViewBinding, Fragment.
+There is a extension to change the Android Theme for Android View, DataBinding/ViewBinding, Fragment.
 
 ## Setup
 Add the `katalog-ext-androidtheme` package.
@@ -37,11 +37,11 @@ The background color will be the value specified by `android:colorBackground`.
     </style>
 </resources>
 ```
-```kotlin
+```kotlin {4}
 registerKatalog(
     title = "Android Sample",
     extensions = listOf(
-        AndroidThemeExt(R.style.MyTheme)
+        AndroidThemeExt(R.style.MyTheme) // append this line
     )
 ) {
     view("Text View") {
