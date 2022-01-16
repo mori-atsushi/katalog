@@ -26,7 +26,7 @@ internal class PageSaverTest {
             PageSaver(
                 navState = navState,
                 pageStore = pageStore
-            )
+            ) {}
         }
         composeTestRule.waitForIdle()
         assertThat(pageStore.read()).isEqualTo(listOf("/"))
@@ -51,7 +51,7 @@ internal class PageSaverTest {
             PageSaver(
                 navState = navState,
                 pageStore = pageStore
-            )
+            ) {}
         }
         composeTestRule.waitForIdle()
         assertThat(navState.backStack).isEqualTo(listOf("/", "/Group", "/Group/Item"))

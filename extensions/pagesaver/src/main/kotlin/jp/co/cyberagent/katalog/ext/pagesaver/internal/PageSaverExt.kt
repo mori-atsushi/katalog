@@ -7,8 +7,10 @@ import jp.co.cyberagent.katalog.ext.KatalogExt
 internal fun createPageSaverExt(): KatalogExt {
     val builder = KatalogExt.Builder("PageSaver")
     builder.setRootWrapper { content ->
-        PageSaver(navState)
-        content()
+        PageSaver(
+            navState = navState,
+            content = content
+        )
     }
     return builder.build()
 }
