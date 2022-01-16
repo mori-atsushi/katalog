@@ -1,7 +1,9 @@
 package jp.co.cyberagent.katalog.compose.navigation
 
+import androidx.compose.runtime.Immutable
 import jp.co.cyberagent.katalog.util.UUIDWrapper
 
+@Immutable
 internal data class NavState<T>(
     val destination: T,
     val index: Int,

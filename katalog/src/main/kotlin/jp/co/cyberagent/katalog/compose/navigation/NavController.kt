@@ -1,9 +1,11 @@
 package jp.co.cyberagent.katalog.compose.navigation
 
+import androidx.compose.runtime.Stable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 
+@Stable
 internal class NavController<T : NavDestination>(
     startDestination: T
 ) {
