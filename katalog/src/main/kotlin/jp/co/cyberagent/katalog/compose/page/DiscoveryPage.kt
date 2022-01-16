@@ -26,11 +26,12 @@ import jp.co.cyberagent.katalog.ext.ExtNavState
 @Composable
 internal fun DiscoveryPage(
     katalog: Katalog,
+    isTopPage: Boolean,
     navController: NavController<DiscoveryDestination>,
     extNavState: ExtNavState,
-    onClickItem: (item: CatalogItem) -> Unit
+    onClickItem: (item: CatalogItem) -> Unit,
+    onClickBack: () -> Unit
 ) {
-    val isPageTop = navController.isTop
     var isScrollTop by remember {
         mutableStateOf(true)
     }
@@ -45,9 +46,9 @@ internal fun DiscoveryPage(
         topBar = {
             DiscoveryTopAppBar(
                 title = title,
-                isPageTop = isPageTop,
+                isPageTop = isTopPage,
                 isScrollTop = isScrollTop,
-                onClickBack = { navController.back() }
+                onClickBack = onClickBack
             )
         }
     ) {
