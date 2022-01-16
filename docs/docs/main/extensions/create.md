@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 1000
 ---
 # Create a Extension
 

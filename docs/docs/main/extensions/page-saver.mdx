@@ -1,0 +1,40 @@
+---
+sidebar_position: 4
+---
+
+import { Preview } from "/src/widgets/Preview";
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# Page Saver
+There is an extension that restores the last opened pages on restart.
+
+## Setup
+Add the `katalog-ext-pagesaver` package.
+
+```kotlin
+dependencies {
+    implementation("jp.co.cyberagent.katalog:katalog:`LATEST_VERSION`")
+    implementation("jp.co.cyberagent.katalog:katalog-ext-pagesaver:`LATEST_VERSION`")
+}
+```
+
+## Usage
+Specify `PageSaverExt` when calling `registerKatalog`.
+
+```kotlin {4}
+registerKatalog(
+    title = "Android Sample",
+    extensions = listOf(
+        PageSaverExt() // append this line
+    )
+) {
+    compose("Text") {
+        Text(text = "Hello, World")
+    }
+}
+```
+
+When you launch the UI Catalog, previously opened pages are automatically restored.
+At the first startup or if the page does not exist, the TOP page will be launched.
+
+This will help you quickly see the UI changes.
