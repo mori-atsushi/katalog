@@ -6,7 +6,7 @@ import jp.co.cyberagent.katalog.domain.CatalogItem
 import jp.co.cyberagent.katalog.domain.dummyKatalog
 import jp.co.cyberagent.katalog.ext.ExperimentalKatalogExtApi
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
@@ -44,7 +44,7 @@ internal class ExtNavStateImplTest {
     }
 
     @Test
-    fun navigateTo() = runBlockingTest {
+    fun navigateTo() = runTest {
         val katalog = dummyKatalog {
             group("Group") {
                 compose("Item") {
@@ -63,7 +63,7 @@ internal class ExtNavStateImplTest {
     }
 
     @Test
-    fun navigateTo_invalid() = runBlockingTest {
+    fun navigateTo_invalid() = runTest {
         val katalog = dummyKatalog {
             group("Group") {
                 compose("Item") {
@@ -82,7 +82,7 @@ internal class ExtNavStateImplTest {
     }
 
     @Test
-    fun navigateTo_top() = runBlockingTest {
+    fun navigateTo_top() = runTest {
         val katalog = dummyKatalog {
             group("Group") {
                 compose("Item") {
@@ -101,7 +101,7 @@ internal class ExtNavStateImplTest {
     }
 
     @Test
-    fun restore() = runBlockingTest {
+    fun restore() = runTest {
         val katalog = dummyKatalog {
             group("Group") {
                 compose("Item") {
@@ -120,7 +120,7 @@ internal class ExtNavStateImplTest {
     }
 
     @Test
-    fun restore_nested() = runBlockingTest {
+    fun restore_nested() = runTest {
         val katalog = dummyKatalog {
             group("Group1") {
                 group("Group2") {
@@ -141,7 +141,7 @@ internal class ExtNavStateImplTest {
     }
 
     @Test
-    fun restore_invalid() = runBlockingTest {
+    fun restore_invalid() = runTest {
         val katalog = dummyKatalog {
             group("Group") {
                 compose("Item") {
