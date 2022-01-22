@@ -6,7 +6,7 @@ import { Preview } from "/src/widgets/Preview";
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Page Saver
-There is an extension that restores the last opened pages on restart.
+There is an extension that restores the previously opened page upon restart.
 
 ## Setup
 Add the `katalog-ext-pagesaver` package.
@@ -25,7 +25,7 @@ Specify `PageSaverExt` when calling `registerKatalog`.
 registerKatalog(
     title = "Android Sample",
     extensions = listOf(
-        PageSaverExt() // append this line
+        PageSaverExt() // add this line
     )
 ) {
     compose("Text") {

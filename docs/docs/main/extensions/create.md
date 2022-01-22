@@ -1,7 +1,7 @@
 ---
 sidebar_position: 1000
 ---
-# Create a Extension
+# Create an extension
 
 :::caution
 The creation of extensions is **experimental**.
@@ -47,7 +47,7 @@ To use the extension, specify it when you call the `registerKatalog` method.
 registerKatalog(
     title = "Android Sample",
     extensions = listOf(
-        createSampleExt() // append this line
+        createSampleExt() // add this line
     )
 ) {
     /* ... */
@@ -90,17 +90,17 @@ val ext = KatalogExt.Builder("Restore screen back stack")
 ### Observe screen transitions
 The `current` variable represents the current page and the `backStack` variable represents the current page and the pages behind it.
 
-It is also possible to convert to Flow and observe them by using `snaphostFlow` method.
+It is also possible to convert to Flow and observe them by using `snapshotFlow` method.
 
 ```kotlin {4,8}
 val ext = KatalogExt.Builder("Observe screen transitions")
     .setRootWrapper { content ->
         LaunchedEffect(Unit) {
-            snaphostFlow { navState.current }
+            snapshotFlow { navState.current }
                 .onEach { Log.d("current", it) }
                 .launchIn(this)
 
-            snaphostFlow { navState.backStack }
+            snapshotFlow { navState.backStack }
                 .onEach { Log.d("back stack", it.toString) }
                 .launchIn(this)
         }
