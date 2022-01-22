@@ -3,6 +3,13 @@ object Deps {
         object Coroutines {
             const val android =
                 "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.KotlinX.coroutines}"
+            const val test =
+                "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.KotlinX.coroutines}"
+        }
+
+        object Serialization {
+            const val json =
+                "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.KotlinX.serialization}"
         }
     }
 
@@ -37,8 +44,10 @@ object Deps {
                 "androidx.compose.material:material-icons-core:${Versions.Androidx.compose}"
             const val materialIconExtended =
                 "androidx.compose.material:material-icons-extended:${Versions.Androidx.compose}"
-            const val activity =
-                "androidx.activity:activity-compose:${Versions.Androidx.activity}"
+            const val uiTest =
+                "androidx.compose.ui:ui-test-junit4:${Versions.Androidx.compose}"
+            const val uiTestManifest =
+                "androidx.compose.ui:ui-test-manifest:${Versions.Androidx.compose}"
         }
 
         object Lifecycle {
@@ -68,4 +77,5 @@ object Deps {
 
     const val material = "com.google.android.material:material:${Versions.material}"
     const val ktlint = "com.pinterest:ktlint:${Versions.ktlint}"
+    const val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"
 }

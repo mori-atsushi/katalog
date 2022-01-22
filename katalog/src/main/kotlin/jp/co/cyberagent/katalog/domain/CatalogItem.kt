@@ -1,7 +1,9 @@
 package jp.co.cyberagent.katalog.domain
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
 
+@Stable
 internal sealed class CatalogItem {
     abstract val identifier: CatalogItemIdentifier
 

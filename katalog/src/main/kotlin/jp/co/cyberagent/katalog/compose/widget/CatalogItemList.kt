@@ -18,11 +18,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import jp.co.cyberagent.katalog.domain.CatalogItem
 import jp.co.cyberagent.katalog.domain.Extensions
+import jp.co.cyberagent.katalog.ext.ExperimentalKatalogExtApi
+import jp.co.cyberagent.katalog.ext.ExtNavState
 
+@ExperimentalKatalogExtApi
 @Composable
 internal fun CatalogItemList(
     list: List<CatalogItem>,
     extensions: Extensions,
+    extNavState: ExtNavState,
     onClick: (item: CatalogItem) -> Unit,
     lazyListState: LazyListState = rememberLazyListState()
 ) {
@@ -38,6 +42,7 @@ internal fun CatalogItemList(
             CatalogItemRow(
                 item = it,
                 extensions = extensions,
+                extNavState = extNavState,
                 onClick = onClick
             )
         }

@@ -1,45 +1,55 @@
 package jp.co.cyberagent.katalog.compose.navigation
 
-import androidx.compose.runtime.State
+import androidx.compose.runtime.Stable
 import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
 
-internal class NavController<T>(startDestination: T) {
-    private val _current = mutableStateOf(
-        NavState.of(startDestination, 0)
-    )
-    private val _backStack = mutableStateListOf(_current.value)
-    val current: State<NavState<T>> = _current
+@Stable
+internal class NavController<T : NavDestination>(
+    startDestination: T
+) {
+    private val _backStack = mutableStateListOf(NavState.of(startDestination, 0))
+    val backStack: List<NavState<T>> = _backStack
 
-    val isTop: State<Boolean> = derivedStateOf {
-        _backStack.size <= 1
+    val current: NavState<T> by derivedStateOf {
+        _backStack.last()
     }
 
-    private var isTransitioning = false
+    val isTop: Boolean by derivedStateOf {
+        if (_backStack.size > 1) return@derivedStateOf false
+        val childNavController = current.destination.childNavController
+        childNavController == null || childNavController.isTop
+    }
 
     fun push(destination: T) {
-        if (isTransitioning) return
-        isTransitioning = true
-
         val state = NavState.of(destination, _backStack.size)
         _backStack.add(state)
-        _current.value = state
+    }
+
+    fun restore(backStack: List<T>) {
+        _backStack.clear()
+        backStack.forEach {
+            val state = NavState.of(it, _backStack.size)
+            _backStack.add(state)
+        }
     }
 
     fun back(): Boolean {
-        if (isTop.value) return false
+        if (isTop) return false
+
+        val childNavController = current.destination.childNavController
+        if (childNavController != null && childNavController.back()) {
+            return true
+        }
 
         _backStack.removeLast()
-        _current.value = _backStack.last()
         return true
     }
 
     fun hasState(state: NavState<T>): Boolean {
-        return state.index <= _backStack.lastIndex
-    }
-
-    fun handleCompleteTransition() {
-        isTransitioning = false
+        return _backStack.any {
+            it.key == state.key
+        }
     }
 }

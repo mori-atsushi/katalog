@@ -51,6 +51,9 @@ android {
 dependencies {
     implementation(project(":katalog"))
     implementation(project(":katalog-androidview"))
+    implementation(project(":extensions:androidtheme"))
+    implementation(project(":extensions:theme"))
+    implementation(project(":extensions:pagesaver"))
 
     implementation(kotlin("stdlib"))
     implementation(Deps.KotlinX.Coroutines.android)

@@ -1,32 +1,29 @@
 package jp.co.cyberagent.katalog.compose.navigation
 
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.AnimatedContentScope
 import androidx.compose.animation.ContentTransform
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.animation.core.Spring
-import androidx.compose.animation.core.VisibilityThreshold
-import androidx.compose.animation.core.spring
-import androidx.compose.animation.slideInHorizontally
-import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.saveable.SaveableStateHolder
 import androidx.compose.runtime.saveable.rememberSaveableStateHolder
-import androidx.compose.ui.unit.IntOffset
+import androidx.compose.ui.Modifier
+import jp.co.cyberagent.katalog.compose.widget.ClickMask
 
+@ExperimentalAnimationApi
 @Composable
-internal fun <T> NavRoot(
+internal fun <T : NavDestination> NavRoot(
     navController: NavController<T>,
+    transitionSpec: AnimatedContentScope<NavState<T>>.() -> ContentTransform = NavAnimation.createSlideSpec(),
     component: @Composable (NavState<T>) -> Unit
 ) {
-    val current by navController.current
     val saveableStateHolder = rememberSaveableStateHolder()
 
     AnimatedPage(
-        targetState = current,
-        onComplete = navController::handleCompleteTransition
+        targetState = navController.current,
+        transitionSpec = transitionSpec
     ) {
         NavChild(
             navController = navController,
@@ -38,7 +35,7 @@ internal fun <T> NavRoot(
 }
 
 @Composable
-private fun <T> NavChild(
+private fun <T : NavDestination> NavChild(
     navController: NavController<T>,
     state: NavState<T>,
     saveableStateHolder: SaveableStateHolder,
@@ -56,52 +53,21 @@ private fun <T> NavChild(
     }
 }
 
-@OptIn(ExperimentalAnimationApi::class)
+@ExperimentalAnimationApi
 @Composable
 private fun <T> AnimatedPage(
     targetState: NavState<T>,
-    onComplete: () -> Unit = {},
+    transitionSpec: AnimatedContentScope<NavState<T>>.() -> ContentTransform,
     content: @Composable (state: NavState<T>) -> Unit
 ) {
-    val animationSpec = spring(
-        stiffness = Spring.StiffnessMedium,
-        visibilityThreshold = IntOffset.VisibilityThreshold
-    )
     AnimatedContent(
         targetState = targetState,
-        transitionSpec = {
-            if (targetState.index > initialState.index) {
-                ContentTransform(
-                    targetContentEnter = slideInHorizontally(
-                        initialOffsetX = { it },
-                        animationSpec = animationSpec
-                    ),
-                    initialContentExit = slideOutHorizontally(
-                        targetOffsetX = { -it / 5 },
-                        animationSpec = animationSpec
-                    ),
-                    targetContentZIndex = targetState.index.toFloat()
-                )
-            } else {
-                ContentTransform(
-                    targetContentEnter = slideInHorizontally(
-                        initialOffsetX = { -it / 5 },
-                        animationSpec = animationSpec
-                    ),
-                    initialContentExit = slideOutHorizontally(
-                        targetOffsetX = { it },
-                        animationSpec = animationSpec
-                    ),
-                    targetContentZIndex = targetState.index.toFloat()
-                )
-            }
-        }
+        transitionSpec = transitionSpec
     ) {
-        LaunchedEffect(transition.currentState) {
-            if (transition.currentState == transition.targetState) {
-                onComplete()
-            }
-        }
         content(it)
+        ClickMask(
+            modifier = Modifier.fillMaxSize(),
+            enabled = it != targetState
+        )
     }
 }

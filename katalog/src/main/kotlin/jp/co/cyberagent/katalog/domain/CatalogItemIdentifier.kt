@@ -1,11 +1,16 @@
 package jp.co.cyberagent.katalog.domain
 
+import androidx.compose.runtime.Immutable
+
+@Immutable
 internal class CatalogItemIdentifier(
     val parents: List<CatalogItemIdentifier>,
     val name: String,
     val count: Int
 ) {
     companion object {
+        const val rootId = "/"
+
         fun of(
             parent: CatalogItemIdentifier?,
             name: String,

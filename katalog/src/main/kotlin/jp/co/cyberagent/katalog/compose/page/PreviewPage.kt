@@ -9,21 +9,22 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import jp.co.cyberagent.katalog.compose.KatalogViewModel
 import jp.co.cyberagent.katalog.compose.widget.KatalogTopAppBar
 import jp.co.cyberagent.katalog.compose.widget.Preview
 import jp.co.cyberagent.katalog.domain.CatalogItem
+import jp.co.cyberagent.katalog.domain.Extensions
+import jp.co.cyberagent.katalog.ext.ExperimentalKatalogExtApi
+import jp.co.cyberagent.katalog.ext.ExtNavState
 
+@ExperimentalKatalogExtApi
 @Composable
 internal fun PreviewPage(
-    viewModel: KatalogViewModel,
-    component: CatalogItem.Component
+    component: CatalogItem.Component,
+    extensions: Extensions,
+    extNavState: ExtNavState,
+    onClickClose: () -> Unit
 ) {
-    val katalog by viewModel.katalog.collectAsState()
-    val extensions = katalog?.extensions ?: return
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -31,10 +32,11 @@ internal fun PreviewPage(
     ) {
         PreviewTopAppBar(
             name = component.name,
-            onClickClose = viewModel::closePreview
+            onClickClose = onClickClose
         )
         Preview(
             extensions = extensions,
+            extNavState = extNavState,
             modifier = Modifier.fillMaxSize(),
             clickable = true,
             definition = component.definition

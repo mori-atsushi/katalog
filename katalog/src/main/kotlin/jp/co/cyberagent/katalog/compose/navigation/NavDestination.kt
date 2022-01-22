@@ -1,11 +1,8 @@
 package jp.co.cyberagent.katalog.compose.navigation
 
-import jp.co.cyberagent.katalog.domain.CatalogItem
+import androidx.compose.runtime.Stable
 
-internal sealed class NavDestination {
-    object Top : NavDestination()
-
-    data class Group(
-        val group: CatalogItem.Group
-    ) : NavDestination()
+@Stable
+internal interface NavDestination {
+    val childNavController: NavController<*>? get() = null
 }
