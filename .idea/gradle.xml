@@ -14,6 +14,7 @@
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/extensions" />
             <option value="$PROJECT_DIR$/extensions/androidtheme" />
+            <option value="$PROJECT_DIR$/extensions/pagesaver" />
             <option value="$PROJECT_DIR$/extensions/theme" />
             <option value="$PROJECT_DIR$/katalog" />
             <option value="$PROJECT_DIR$/katalog-androidview" />

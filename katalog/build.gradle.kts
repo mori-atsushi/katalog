@@ -36,6 +36,11 @@ android {
         getByName("test").java.srcDir("src/test/kotlin")
         getByName("androidTest").java.srcDir("src/androidTest/kotlin")
     }
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
@@ -65,4 +70,9 @@ dependencies {
     testImplementation(Deps.Androidx.Test.rules)
     testImplementation(Deps.Androidx.Test.junit)
     testImplementation(Deps.Androidx.Test.truth)
+
+    testImplementation(Deps.KotlinX.Coroutines.test)
+    testImplementation(Deps.Androidx.Compose.uiTest)
+    testImplementation(Deps.Androidx.Compose.uiTestManifest)
+    testImplementation(Deps.robolectric)
 }
