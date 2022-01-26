@@ -6,7 +6,7 @@ import { Preview } from "/src/widgets/Preview";
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Compose Theme
-There is the extension to change the Compose Theme.
+There is an extension to change the Compose Theme.
 
 ## Setup
 Add the `katalog-ext-theme` package.
@@ -28,7 +28,7 @@ You can set the Material Theme when calling `registerKatalog`.
 The `background` color will be applied automatically.
 Don't forget to set the `content`.
 
-```kotlin
+```kotlin {4-12}
 registerKatalog(
     title = "Android Sample",
     extensions = listOf(
