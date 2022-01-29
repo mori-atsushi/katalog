@@ -31,7 +31,7 @@ android {
         )
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.Androidx.composeCompiler
+        kotlinCompilerExtensionVersion = Versions.Androidx.compose
     }
     sourceSets {
         getByName("main").java.srcDir("src/main/kotlin")
