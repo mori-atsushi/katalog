@@ -17,6 +17,8 @@ import jp.co.cyberagent.katalog.compose.page.MainPage
 import jp.co.cyberagent.katalog.compose.res.materialColors
 import jp.co.cyberagent.katalog.compose.widget.ErrorMessage
 import jp.co.cyberagent.katalog.domain.ExtWrapperScopeImpl
+import jp.co.cyberagent.katalog.domain.DefaultKatalogContainer
+import jp.co.cyberagent.katalog.domain.KatalogContainer
 import jp.co.cyberagent.katalog.ext.ExperimentalKatalogExtApi
 import jp.co.cyberagent.katalog.ext.ExtNavState
 import jp.co.cyberagent.katalog.ext.ExtRootWrapper
@@ -24,8 +26,10 @@ import jp.co.cyberagent.katalog.ext.ExtRootWrapper
 @Composable
 internal fun App(
     window: Window,
-    viewModel: KatalogViewModel = viewModel()
+    container: KatalogContainer = DefaultKatalogContainer.instance
 ) {
+    val viewModelFactory = KatalogViewModel.Factory(container)
+    val viewModel: KatalogViewModel = viewModel(factory = viewModelFactory)
     val darkTheme = isSystemInDarkTheme()
 
     MaterialTheme(

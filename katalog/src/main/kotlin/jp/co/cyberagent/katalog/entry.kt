@@ -1,6 +1,6 @@
 package jp.co.cyberagent.katalog
 
-import jp.co.cyberagent.katalog.domain.KatalogContainer
+import jp.co.cyberagent.katalog.domain.DefaultKatalogContainer
 import jp.co.cyberagent.katalog.dsl.Group
 import jp.co.cyberagent.katalog.dsl.GroupDefinition
 import jp.co.cyberagent.katalog.ext.KatalogExt
@@ -12,7 +12,7 @@ public fun registerKatalog(
     extensions: List<KatalogExt> = emptyList(),
     groupDefinition: GroupDefinition
 ) {
-    KatalogContainer.instance.register(title, extensions, groupDefinition)
+    DefaultKatalogContainer.instance.register(title, extensions, groupDefinition)
 }
 
 public fun group(name: String, definition: GroupDefinition): Group {
