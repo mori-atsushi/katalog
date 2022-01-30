@@ -19,10 +19,7 @@ internal class AppTest {
     @Test
     fun start() {
         composeTest.setContent {
-            App(
-                window = composeTest.activity.window,
-                container = createSimpleContainer()
-            )
+            App(container = createSimpleContainer())
         }
         composeTest.onNodeWithText("Title").assertExists()
         composeTest.onNodeWithText("Group").assertExists()
@@ -33,10 +30,7 @@ internal class AppTest {
     @Test
     fun start_notRegistered() {
         composeTest.setContent {
-            App(
-                window = composeTest.activity.window,
-                container = DefaultKatalogContainer()
-            )
+            App(container = DefaultKatalogContainer())
         }
         composeTest.onNodeWithText("Please call registerKatalog method.").assertExists()
     }
@@ -44,10 +38,7 @@ internal class AppTest {
     @Test
     fun navigateToGroup() {
         composeTest.setContent {
-            App(
-                window = composeTest.activity.window,
-                container = createSimpleContainer()
-            )
+            App(container = createSimpleContainer())
         }
         composeTest.onNodeWithText("Group").performClick()
         composeTest.onNodeWithText("Title").assertDoesNotExist()
@@ -59,10 +50,7 @@ internal class AppTest {
     @Test
     fun navigateToItem() {
         composeTest.setContent {
-            App(
-                window = composeTest.activity.window,
-                container = createSimpleContainer()
-            )
+            App(container = createSimpleContainer())
         }
         composeTest.onNodeWithText("Item").performClick()
         composeTest.onNodeWithText("Title").assertDoesNotExist()

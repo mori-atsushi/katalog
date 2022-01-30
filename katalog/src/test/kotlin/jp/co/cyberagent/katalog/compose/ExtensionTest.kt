@@ -95,10 +95,7 @@ internal class ExtensionTest {
             }
         }
         composeTest.setContent {
-            App(
-                window = composeTest.activity.window,
-                container = container
-            )
+            App(container = container)
         }
         return actual
     }

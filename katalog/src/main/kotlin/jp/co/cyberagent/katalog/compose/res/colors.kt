@@ -8,9 +8,9 @@ import androidx.compose.ui.graphics.Color
 
 @Composable
 internal fun materialColors(
-    darkTheme: Boolean
+    isDarkTheme: Boolean
 ): Colors {
-    return if (darkTheme) darkColor else lightColor
+    return if (isDarkTheme) darkColor else lightColor
 }
 
 private val lightColorBg = Color.White
