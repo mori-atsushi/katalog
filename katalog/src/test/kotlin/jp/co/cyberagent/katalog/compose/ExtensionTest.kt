@@ -6,7 +6,8 @@ import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.common.truth.Truth.assertThat
-import jp.co.cyberagent.katalog.domain.DefaultKatalogContainer
+import jp.co.cyberagent.katalog.domain.KatalogDefinition
+import jp.co.cyberagent.katalog.domain.SimpleKatalogContainer
 import jp.co.cyberagent.katalog.ext.ExperimentalKatalogExtApi
 import jp.co.cyberagent.katalog.ext.KatalogExt
 import org.junit.Rule
@@ -85,8 +86,7 @@ internal class ExtensionTest {
 
     private fun getCurrentLocalString(extensions: List<KatalogExt>): String? {
         var actual: String? = null
-        val container = DefaultKatalogContainer()
-        container.register(
+        val definition = KatalogDefinition(
             title = "Title",
             extensions = extensions
         ) {
@@ -94,6 +94,7 @@ internal class ExtensionTest {
                 actual = LocalString.current
             }
         }
+        val container = SimpleKatalogContainer(definition)
         composeTest.setContent {
             App(container = container)
         }

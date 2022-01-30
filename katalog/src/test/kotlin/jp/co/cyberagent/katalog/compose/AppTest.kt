@@ -7,6 +7,9 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import jp.co.cyberagent.katalog.domain.DefaultKatalogContainer
+import jp.co.cyberagent.katalog.domain.KatalogContainer
+import jp.co.cyberagent.katalog.domain.KatalogDefinition
+import jp.co.cyberagent.katalog.domain.SimpleKatalogContainer
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -59,9 +62,8 @@ internal class AppTest {
         composeTest.onNodeWithText("Sample").assertExists()
     }
 
-    private fun createSimpleContainer(): DefaultKatalogContainer {
-        val container = DefaultKatalogContainer()
-        container.register(
+    private fun createSimpleContainer(): KatalogContainer {
+        val definition = KatalogDefinition(
             title = "Title",
             extensions = listOf()
         ) {
@@ -71,6 +73,6 @@ internal class AppTest {
                 }
             }
         }
-        return container
+        return SimpleKatalogContainer(definition)
     }
 }
