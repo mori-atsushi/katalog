@@ -18,8 +18,8 @@ import jp.co.cyberagent.katalog.compose.page.MainPage
 import jp.co.cyberagent.katalog.compose.res.materialColors
 import jp.co.cyberagent.katalog.compose.util.findActivity
 import jp.co.cyberagent.katalog.compose.widget.ErrorMessage
-import jp.co.cyberagent.katalog.domain.ExtWrapperScopeImpl
 import jp.co.cyberagent.katalog.domain.DefaultKatalogContainer
+import jp.co.cyberagent.katalog.domain.ExtWrapperScopeImpl
 import jp.co.cyberagent.katalog.domain.KatalogContainer
 import jp.co.cyberagent.katalog.ext.ExperimentalKatalogExtApi
 import jp.co.cyberagent.katalog.ext.ExtNavState
