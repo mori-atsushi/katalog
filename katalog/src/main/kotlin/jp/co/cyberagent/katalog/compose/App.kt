@@ -102,6 +102,7 @@ private fun MainContent(viewModel: KatalogViewModel) {
     }
 
     ExtRootWrappers(
+        title = katalogValue.title,
         extNavState = extNavState,
         rootWrappers = katalogValue.extensions.rootWrappers
     ) {
@@ -120,6 +121,7 @@ private fun MainContent(viewModel: KatalogViewModel) {
 @ExperimentalKatalogExtApi
 @Composable
 private fun ExtRootWrappers(
+    title: String,
     extNavState: ExtNavState,
     rootWrappers: List<ExtRootWrapper>,
     content: @Composable () -> Unit
@@ -129,11 +131,13 @@ private fun ExtRootWrappers(
         return
     }
     ExtRootWrappers(
+        title = title,
         extNavState = extNavState,
         rootWrappers = rootWrappers.dropLast(1)
     ) {
         val target = rootWrappers.last()
         val scope = ExtWrapperScopeImpl(
+            title = title,
             navState = extNavState
         )
         scope.target {

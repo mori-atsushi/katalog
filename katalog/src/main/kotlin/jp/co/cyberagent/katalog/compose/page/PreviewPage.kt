@@ -20,6 +20,7 @@ import jp.co.cyberagent.katalog.ext.ExtNavState
 @ExperimentalKatalogExtApi
 @Composable
 internal fun PreviewPage(
+    title: String,
     component: CatalogItem.Component,
     extensions: Extensions,
     extNavState: ExtNavState,
@@ -35,6 +36,7 @@ internal fun PreviewPage(
             onClickClose = onClickClose
         )
         Preview(
+            title = title,
             extensions = extensions,
             extNavState = extNavState,
             modifier = Modifier.fillMaxSize(),

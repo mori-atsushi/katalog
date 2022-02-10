@@ -33,6 +33,7 @@ import jp.co.cyberagent.katalog.ext.ExtNavState
 @ExperimentalKatalogExtApi
 @Composable
 internal fun CatalogItemRow(
+    title: String,
     item: CatalogItem,
     extensions: Extensions,
     extNavState: ExtNavState,
@@ -53,11 +54,13 @@ internal fun CatalogItemRow(
         )
         when (item) {
             is CatalogItem.Component -> ComponentRow(
+                title = title,
                 component = item,
                 extensions = extensions,
                 extNavState = extNavState
             )
             is CatalogItem.Group -> GroupRow(
+                title = title,
                 group = item,
                 onClick = onClick,
                 extensions = extensions,
@@ -71,12 +74,14 @@ internal fun CatalogItemRow(
 @ExperimentalKatalogExtApi
 @Composable
 private fun GroupRow(
+    title: String,
     group: CatalogItem.Group,
     extensions: Extensions,
     extNavState: ExtNavState,
     onClick: (CatalogItem) -> Unit
 ) {
     CatalogItemCarousel(
+        title = title,
         list = group.items,
         extensions = extensions,
         extNavState = extNavState,
@@ -88,6 +93,7 @@ private fun GroupRow(
 @OptIn(ExperimentalKatalogExtApi::class)
 @Composable
 private fun ComponentRow(
+    title: String,
     component: CatalogItem.Component,
     extensions: Extensions,
     extNavState: ExtNavState
@@ -107,6 +113,7 @@ private fun ComponentRow(
                 .aspectRatio(16.0F / 9.0F)
         ) {
             Preview(
+                title = title,
                 definition = component.definition,
                 extensions = extensions,
                 extNavState = extNavState

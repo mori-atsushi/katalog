@@ -33,6 +33,7 @@ internal fun TopPage(
         color = MaterialTheme.colors.background
     ) {
         CatalogItemList(
+            title = katalog.title,
             list = katalog.items,
             extensions = katalog.extensions,
             extNavState = extNavState,

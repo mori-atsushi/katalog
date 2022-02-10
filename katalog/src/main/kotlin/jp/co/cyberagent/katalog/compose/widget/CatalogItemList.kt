@@ -24,6 +24,7 @@ import jp.co.cyberagent.katalog.ext.ExtNavState
 @ExperimentalKatalogExtApi
 @Composable
 internal fun CatalogItemList(
+    title: String,
     list: List<CatalogItem>,
     extensions: Extensions,
     extNavState: ExtNavState,
@@ -40,6 +41,7 @@ internal fun CatalogItemList(
     ) {
         items(list) {
             CatalogItemRow(
+                title = title,
                 item = it,
                 extensions = extensions,
                 extNavState = extNavState,
