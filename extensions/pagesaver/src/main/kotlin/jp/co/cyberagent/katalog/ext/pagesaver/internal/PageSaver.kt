@@ -17,7 +17,7 @@ import kotlinx.coroutines.flow.onEach
 @Composable
 internal fun PageSaver(
     navState: ExtNavState,
-    pageStore: PageStore = rememberPageStore(),
+    pageStore: PageStore,
     content: @Composable () -> Unit
 ) {
     val state = rememberPageSagerState(
