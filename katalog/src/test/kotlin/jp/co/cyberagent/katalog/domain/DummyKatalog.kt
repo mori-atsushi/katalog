@@ -8,11 +8,10 @@ internal fun dummyKatalog(
     extensions: List<KatalogExt> = emptyList(),
     groupDefinition: GroupDefinition = {}
 ): Katalog {
-    val container = KatalogContainer()
-    container.register(
+    val definition = KatalogDefinition(
         title = title,
         extensions = extensions,
         groupDefinition = groupDefinition
     )
-    return container.create()
+    return definition.build()
 }

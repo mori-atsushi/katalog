@@ -8,12 +8,12 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 
 @RunWith(JUnit4::class)
-internal class KatalogContainerTest {
-    private lateinit var target: KatalogContainer
+internal class DefaultKatalogContainerTest {
+    private lateinit var target: DefaultKatalogContainer
 
     @Before
     fun setup() {
-        target = KatalogContainer()
+        target = DefaultKatalogContainer()
     }
 
     @Test

@@ -7,6 +7,8 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.common.truth.Truth.assertThat
+import jp.co.cyberagent.katalog.domain.KatalogDefinition
+import jp.co.cyberagent.katalog.domain.SimpleKatalogContainer
 import jp.co.cyberagent.katalog.ext.ExperimentalKatalogExtApi
 import jp.co.cyberagent.katalog.ext.KatalogExt
 import org.junit.Rule
@@ -85,7 +87,7 @@ internal class ExtNavStateTest {
     private fun setupSimple(
         extensions: List<KatalogExt> = listOf()
     ) {
-        val viewModel = dummyKatalogViewModel(
+        val definition = KatalogDefinition(
             title = "Title",
             extensions = extensions
         ) {
@@ -96,10 +98,7 @@ internal class ExtNavStateTest {
             }
         }
         composeTest.setContent {
-            App(
-                window = composeTest.activity.window,
-                viewModel = viewModel
-            )
+            App(container = SimpleKatalogContainer(definition))
         }
     }
 }

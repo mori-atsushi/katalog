@@ -6,7 +6,10 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import jp.co.cyberagent.katalog.domain.DefaultKatalogContainer
 import jp.co.cyberagent.katalog.domain.KatalogContainer
+import jp.co.cyberagent.katalog.domain.KatalogDefinition
+import jp.co.cyberagent.katalog.domain.SimpleKatalogContainer
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -18,13 +21,8 @@ internal class AppTest {
 
     @Test
     fun start() {
-        val viewModel = createSimpleKatalogViewModel()
-
         composeTest.setContent {
-            App(
-                window = composeTest.activity.window,
-                viewModel = viewModel
-            )
+            App(container = createSimpleContainer())
         }
         composeTest.onNodeWithText("Title").assertExists()
         composeTest.onNodeWithText("Group").assertExists()
@@ -34,27 +32,16 @@ internal class AppTest {
 
     @Test
     fun start_notRegistered() {
-        val container = KatalogContainer()
-        val viewModel = KatalogViewModel(container)
-
         composeTest.setContent {
-            App(
-                window = composeTest.activity.window,
-                viewModel = viewModel
-            )
+            App(container = DefaultKatalogContainer())
         }
         composeTest.onNodeWithText("Please call registerKatalog method.").assertExists()
     }
 
     @Test
     fun navigateToGroup() {
-        val viewModel = createSimpleKatalogViewModel()
-
         composeTest.setContent {
-            App(
-                window = composeTest.activity.window,
-                viewModel = viewModel
-            )
+            App(container = createSimpleContainer())
         }
         composeTest.onNodeWithText("Group").performClick()
         composeTest.onNodeWithText("Title").assertDoesNotExist()
@@ -65,13 +52,8 @@ internal class AppTest {
 
     @Test
     fun navigateToItem() {
-        val viewModel = createSimpleKatalogViewModel()
-
         composeTest.setContent {
-            App(
-                window = composeTest.activity.window,
-                viewModel = viewModel
-            )
+            App(container = createSimpleContainer())
         }
         composeTest.onNodeWithText("Item").performClick()
         composeTest.onNodeWithText("Title").assertDoesNotExist()
@@ -80,8 +62,8 @@ internal class AppTest {
         composeTest.onNodeWithText("Sample").assertExists()
     }
 
-    private fun createSimpleKatalogViewModel(): KatalogViewModel {
-        return dummyKatalogViewModel(
+    private fun createSimpleContainer(): KatalogContainer {
+        val definition = KatalogDefinition(
             title = "Title",
             extensions = listOf()
         ) {
@@ -91,5 +73,6 @@ internal class AppTest {
                 }
             }
         }
+        return SimpleKatalogContainer(definition)
     }
 }
