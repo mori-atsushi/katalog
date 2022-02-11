@@ -60,10 +60,8 @@ dependencies {
 
     implementation(Deps.Androidx.Lifecycle.viewModel)
     implementation(Deps.Androidx.Lifecycle.compose)
-
+    implementation(Deps.Androidx.appCompat)
     implementation(Deps.Androidx.annotation)
-
-    implementation(Deps.material)
 
     testImplementation(Deps.Androidx.Test.core)
     testImplementation(Deps.Androidx.Test.runner)
