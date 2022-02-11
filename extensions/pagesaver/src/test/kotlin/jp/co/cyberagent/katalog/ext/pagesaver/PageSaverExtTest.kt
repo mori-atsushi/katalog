@@ -94,13 +94,54 @@ internal class PageSaverExtTest {
         composeRule.onNodeWithText("OtherSample").assertExists()
     }
 
+    @Test
+    fun multipleLaunches() {
+        val localStorage = DummyLocalStorage()
+        // launch activity
+        val scenario1 = launchActivity<ComponentActivity>()
+        scenario1.onActivity {
+            it.setContent {
+                DummyKatalogApp(
+                    localStorage = localStorage
+                )
+            }
+        }
+        // navigate to /Group/Item
+        composeRule.onNodeWithText("Item").performClick()
+        composeRule.onNodeWithText("Title").assertDoesNotExist()
+        composeRule.onNodeWithText("Group").assertDoesNotExist()
+        composeRule.onNodeWithText("Item").assertExists()
+        composeRule.onNodeWithText("Sample").assertExists()
+
+        // finish activity
+        scenario1.moveToState(Lifecycle.State.DESTROYED)
+
+        // launch other activity
+        val scenario2 = launchActivity<ComponentActivity>()
+        scenario2.onActivity {
+            it.setContent {
+                DummyKatalogApp(
+                    localStorage = localStorage,
+                    title = "Other Title"
+                )
+            }
+        }
+
+        // not restore previous page
+        composeRule.onNodeWithText("Other Title").assertExists()
+        composeRule.onNodeWithText("Group").assertExists()
+        composeRule.onNodeWithText("Item").assertExists()
+        composeRule.onNodeWithText("Sample").assertExists()
+    }
+
     @Composable
     private fun DummyKatalogApp(
-        localStorage: LocalStorage
+        localStorage: LocalStorage,
+        title: String = "Title"
     ) {
         val pageStore = remember { PageStore(localStorage) }
         KatalogApp(
-            title = "Title",
+            title = title,
             extensions = listOf(PageSaverExt(pageStore))
         ) {
             group("Group") {
