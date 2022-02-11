@@ -21,6 +21,7 @@ import jp.co.cyberagent.katalog.ext.ExtNavState
 @ExperimentalKatalogExtApi
 @Composable
 internal fun Preview(
+    title: String,
     extensions: Extensions,
     extNavState: ExtNavState,
     modifier: Modifier = Modifier,
@@ -34,6 +35,7 @@ internal fun Preview(
         color = MaterialTheme.colors.background
     ) {
         ExtensionsWrappers(
+            title = title,
             extNavState = extNavState,
             componentWrappers = componentWrappers
         ) {
@@ -51,6 +53,7 @@ internal fun Preview(
 @ExperimentalKatalogExtApi
 @Composable
 private fun ExtensionsWrappers(
+    title: String,
     extNavState: ExtNavState,
     componentWrappers: List<ExtComponentWrapper>,
     content: @Composable () -> Unit
@@ -60,11 +63,13 @@ private fun ExtensionsWrappers(
         return
     }
     ExtensionsWrappers(
+        title = title,
         extNavState = extNavState,
         componentWrappers = componentWrappers.dropLast(1)
     ) {
         val target = componentWrappers.last()
         val scope = ExtWrapperScopeImpl(
+            title = title,
             navState = extNavState
         )
         scope.target {

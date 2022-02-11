@@ -38,6 +38,7 @@ internal fun MainPage(
             }
             is MainDestination.Preview -> {
                 PreviewPage(
+                    title = katalog.title,
                     component = state.destination.component,
                     extensions = katalog.extensions,
                     extNavState = extNavState,

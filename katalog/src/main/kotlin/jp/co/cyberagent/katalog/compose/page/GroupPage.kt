@@ -35,6 +35,7 @@ internal fun GroupPage(
         color = MaterialTheme.colors.background
     ) {
         CatalogItemList(
+            title = katalog.title,
             list = group.items,
             extensions = extensions,
             extNavState = extNavState,

@@ -42,6 +42,7 @@ private val cellMinWidth = 200.dp
 @ExperimentalKatalogExtApi
 @Composable
 internal fun CatalogItemCarousel(
+    title: String,
     list: List<CatalogItem>,
     extensions: Extensions,
     extNavState: ExtNavState,
@@ -69,6 +70,7 @@ internal fun CatalogItemCarousel(
                     modifier = Modifier
                         .padding(end = paddingEnd)
                         .width(cellWidth),
+                    title = title,
                     item = it,
                     onClick = { onClick(it) },
                     extensions = extensions,
@@ -82,6 +84,7 @@ internal fun CatalogItemCarousel(
 @ExperimentalKatalogExtApi
 @Composable
 private fun Cell(
+    title: String,
     extensions: Extensions,
     extNavState: ExtNavState,
     item: CatalogItem,
@@ -102,6 +105,7 @@ private fun Cell(
             when (item) {
                 is CatalogItem.Component -> {
                     ComponentCell(
+                        title = title,
                         extensions = extensions,
                         extNavState = extNavState,
                         component = item
@@ -147,6 +151,7 @@ private fun GroupCell() {
 @ExperimentalKatalogExtApi
 @Composable
 private fun ComponentCell(
+    title: String,
     extensions: Extensions,
     extNavState: ExtNavState,
     component: CatalogItem.Component
@@ -155,6 +160,7 @@ private fun ComponentCell(
         modifier = Modifier.fillMaxSize()
     ) {
         Preview(
+            title = title,
             scale = 0.5F,
             definition = component.definition,
             extensions = extensions,
