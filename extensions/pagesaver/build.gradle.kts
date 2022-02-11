@@ -58,4 +58,6 @@ dependencies {
     testImplementation(Deps.Androidx.Compose.uiTest)
     testImplementation(Deps.Androidx.Compose.uiTestManifest)
     testImplementation(Deps.robolectric)
+
+    testImplementation(Deps.Androidx.Activity.compose)
 }
