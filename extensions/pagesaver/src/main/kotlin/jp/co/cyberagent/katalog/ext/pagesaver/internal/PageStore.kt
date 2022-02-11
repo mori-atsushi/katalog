@@ -11,14 +11,16 @@ internal class PageStore(
         private const val BACK_STACK_KEY = "back_stack"
     }
 
-    fun update(backStack: List<String>) {
+    fun update(title: String, backStack: List<String>) {
         val string = BackStackMapper.toString(backStack)
-        localStorage.putString(BACK_STACK_KEY, string)
+        val key = createKey(title)
+        localStorage.putString(key, string)
     }
 
-    fun read(): List<String>? {
+    fun read(title: String): List<String>? {
         val backStack = try {
-            val string = localStorage.getString(BACK_STACK_KEY)
+            val key = createKey(title)
+            val string = localStorage.getString(key)
             if (string != null) {
                 BackStackMapper.fromString(string)
             } else {
@@ -28,6 +30,10 @@ internal class PageStore(
             return null
         }
         return backStack
+    }
+
+    private fun createKey(title: String): String {
+        return "$BACK_STACK_KEY:$title"
     }
 }
 

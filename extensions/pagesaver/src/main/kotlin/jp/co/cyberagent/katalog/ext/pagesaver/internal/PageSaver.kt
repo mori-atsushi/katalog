@@ -16,11 +16,13 @@ import kotlinx.coroutines.flow.onEach
 @ExperimentalKatalogExtApi
 @Composable
 internal fun PageSaver(
+    title: String,
     navState: ExtNavState,
     pageStore: PageStore,
     content: @Composable () -> Unit
 ) {
     val state = rememberPageSagerState(
+        title = title,
         navState = navState,
         pageStore = pageStore
     )
@@ -38,19 +40,20 @@ private data class PageSagerState(
 @ExperimentalKatalogExtApi
 @Composable
 private fun rememberPageSagerState(
+    title: String,
     navState: ExtNavState,
     pageStore: PageStore = rememberPageStore(),
 ): PageSagerState {
     var isInitialized by remember { mutableStateOf(false) }
 
     LaunchedEffect(Unit) {
-        val backStack = pageStore.read()
+        val backStack = pageStore.read(title)
         if (backStack != null && navState.backStack != backStack) {
             navState.restore(backStack)
         }
 
         snapshotFlow { navState.backStack }
-            .onEach { pageStore.update(navState.backStack) }
+            .onEach { pageStore.update(title, navState.backStack) }
             .launchIn(this)
 
         isInitialized = true

@@ -20,22 +20,23 @@ internal class PageSaverTest {
         val pageStore = PageStore(
             DummyLocalStorage()
         )
-        assertThat(pageStore.read()).isNull()
+        assertThat(pageStore.read("title")).isNull()
 
         composeTestRule.setContent {
             PageSaver(
+                title = "title",
                 navState = navState,
                 pageStore = pageStore
             ) {}
         }
         composeTestRule.waitForIdle()
-        assertThat(pageStore.read()).isEqualTo(listOf("/"))
+        assertThat(pageStore.read("title")).isEqualTo(listOf("/"))
 
         navState.navigateTo("/Group")
         navState.navigateTo("/Group/Item")
 
         composeTestRule.waitForIdle()
-        assertThat(pageStore.read()).isEqualTo(listOf("/", "/Group", "/Group/Item"))
+        assertThat(pageStore.read("title")).isEqualTo(listOf("/", "/Group", "/Group/Item"))
     }
 
     @Test
@@ -44,11 +45,12 @@ internal class PageSaverTest {
         val pageStore = PageStore(
             DummyLocalStorage()
         )
-        pageStore.update(listOf("/", "/Group", "/Group/Item"))
+        pageStore.update("title", listOf("/", "/Group", "/Group/Item"))
         assertThat(navState.backStack).isEqualTo(listOf("/"))
 
         composeTestRule.setContent {
             PageSaver(
+                title = "title",
                 navState = navState,
                 pageStore = pageStore
             ) {}
