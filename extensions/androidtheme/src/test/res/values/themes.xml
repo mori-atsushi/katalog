@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.AppCompatTestTheme" parent="Theme.AppCompat.DayNight">
+        <item name="colorPrimary">#FF0000</item>
+        <item name="android:colorBackground">#FFFFFF</item>
+    </style>
+</resources>

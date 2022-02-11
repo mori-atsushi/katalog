@@ -7,6 +7,7 @@ object Versions {
     }
 
     object Androidx {
+        const val appCompat = "1.4.1"
         const val ktx = "1.7.0"
         const val activity = "1.4.0"
         const val fragment = "1.4.1"

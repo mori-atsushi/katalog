@@ -14,6 +14,9 @@ object Deps {
     }
 
     object Androidx {
+        const val appCompat =
+            "androidx.appcompat:appcompat:${Versions.Androidx.appCompat}"
+
         object Core {
             const val ktx =
                 "androidx.core:core-ktx:${Versions.Androidx.ktx}"

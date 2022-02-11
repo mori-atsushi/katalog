@@ -30,10 +30,10 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = Versions.Androidx.compose
     }
-    sourceSets {
-        getByName("main").java.srcDir("src/main/kotlin")
-        getByName("test").java.srcDir("src/test/kotlin")
-        getByName("androidTest").java.srcDir("src/androidTest/kotlin")
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
     }
 }
 
@@ -53,4 +53,10 @@ dependencies {
     testImplementation(Deps.Androidx.Test.rules)
     testImplementation(Deps.Androidx.Test.junit)
     testImplementation(Deps.Androidx.Test.truth)
+
+    testImplementation(Deps.Androidx.Compose.uiTest)
+    testImplementation(Deps.Androidx.Compose.uiTestManifest)
+    testImplementation(Deps.robolectric)
+
+    testImplementation(Deps.Androidx.appCompat)
 }
