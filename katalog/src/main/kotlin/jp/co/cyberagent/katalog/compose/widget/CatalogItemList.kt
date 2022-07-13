@@ -66,7 +66,7 @@ private fun LastItem() {
             modifier = Modifier.size(5.dp),
             imageVector = Icons.Filled.Circle,
             contentDescription = null,
-            tint = MaterialTheme.colors.onBackground.copy(alpha = 0.3F),
+            tint = MaterialTheme.colors.onBackground.copy(alpha = 0.3F)
         )
     }
 }

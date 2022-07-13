@@ -39,7 +39,7 @@ internal fun ErrorMessage(text: String) {
             modifier = Modifier
                 .padding(bottom = 16.dp)
                 .size(36.dp),
-            tint = MaterialTheme.colors.onBackground.copy(alpha = 0.6F),
+            tint = MaterialTheme.colors.onBackground.copy(alpha = 0.6F)
         )
         Text(
             text = text,

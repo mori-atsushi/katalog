@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 internal fun KatalogTopAppBar(
     title: String,
     isVisibleDivider: Boolean = true,
-    navigationIcon: @Composable (() -> Unit)? = null,
+    navigationIcon: @Composable (() -> Unit)? = null
 ) {
     Box {
         Dissolve(
@@ -31,7 +31,7 @@ internal fun KatalogTopAppBar(
                     Text(
                         text = title,
                         maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
+                        overflow = TextOverflow.Ellipsis
                     )
                 },
                 elevation = 0.dp,

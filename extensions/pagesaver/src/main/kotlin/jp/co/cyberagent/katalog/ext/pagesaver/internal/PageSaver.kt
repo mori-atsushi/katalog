@@ -42,7 +42,7 @@ private data class PageSagerState(
 private fun rememberPageSagerState(
     title: String,
     navState: ExtNavState,
-    pageStore: PageStore = rememberPageStore(),
+    pageStore: PageStore = rememberPageStore()
 ): PageSagerState {
     var isInitialized by remember { mutableStateOf(false) }
 

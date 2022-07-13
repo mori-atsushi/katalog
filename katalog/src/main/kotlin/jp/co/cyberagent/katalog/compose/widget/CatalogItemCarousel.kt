@@ -100,7 +100,7 @@ private fun Cell(
             Modifier
                 .fillMaxWidth()
                 .aspectRatio(1F)
-                .clip(RoundedCornerShape(defaultCornerRadius)),
+                .clip(RoundedCornerShape(defaultCornerRadius))
         ) {
             when (item) {
                 is CatalogItem.Component -> {

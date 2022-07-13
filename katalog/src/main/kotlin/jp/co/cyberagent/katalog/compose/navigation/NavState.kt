@@ -7,7 +7,7 @@ import jp.co.cyberagent.katalog.util.UUIDWrapper
 internal data class NavState<T>(
     val destination: T,
     val index: Int,
-    private val uuid: String,
+    private val uuid: String
 ) {
     companion object {
         fun <T> of(
