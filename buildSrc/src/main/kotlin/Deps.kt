@@ -19,7 +19,7 @@ object Deps {
 
         object Core {
             const val ktx =
-                "androidx.core:core-ktx:${Versions.Androidx.ktx}"
+                "androidx.core:core-ktx:${Versions.Androidx.core}"
         }
 
         object Activity {
