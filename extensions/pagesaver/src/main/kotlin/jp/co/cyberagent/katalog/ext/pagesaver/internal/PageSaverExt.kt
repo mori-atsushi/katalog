@@ -10,6 +10,7 @@ internal fun createPageSaverExt(
     val builder = KatalogExt.Builder("PageSaver")
     builder.setRootWrapper { content ->
         PageSaver(
+            title = title,
             navState = navState,
             pageStore = pageStore ?: rememberPageStore(),
             content = content
