@@ -9,11 +9,11 @@ object Versions {
     object Androidx {
         const val appCompat = "1.4.2"
         const val core = "1.8.0"
-        const val activity = "1.5.0"
-        const val fragment = "1.5.0"
+        const val activity = "1.5.1"
+        const val fragment = "1.5.1"
         const val composeCompiler = "1.2.0"
-        const val compose = "1.1.0"
-        const val lifecycle = "2.5.0"
+        const val compose = "1.2.0"
+        const val lifecycle = "2.5.1"
         const val annotation = "1.4.0"
 
         object Test {
