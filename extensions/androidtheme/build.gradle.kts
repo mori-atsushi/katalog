@@ -28,7 +28,7 @@ android {
         )
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.Androidx.compose
+        kotlinCompilerExtensionVersion = Versions.Androidx.composeCompiler
     }
     testOptions {
         unitTests {

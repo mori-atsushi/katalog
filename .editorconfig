@@ -1,5 +1,8 @@
 root = true
 
+[*.{kt,kts}]
+disabled_rules = filename
+
 [*]
 charset = utf-8
 trim_trailing_whitespace = true

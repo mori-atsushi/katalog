@@ -39,7 +39,7 @@ android {
         jvmTarget = "1.8"
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.Androidx.compose
+        kotlinCompilerExtensionVersion = Versions.Androidx.composeCompiler
     }
     sourceSets {
         getByName("main").java.srcDir("src/main/kotlin")
