@@ -1,9 +1,15 @@
 package jp.co.cyberagent.katalog.ext.theme
 
 import jp.co.cyberagent.katalog.ext.KatalogExt
-import jp.co.cyberagent.katalog.ext.theme.internal.createThemeExt
 
+@Deprecated(
+    "The package name has changed.",
+    ReplaceWith(
+        "ThemeExt(theme)",
+        "com.moriatsushi.katalog.ext.theme.ThemeExt"
+    ),
+)
 @Suppress("FunctionName")
 public fun ThemeExt(theme: ThemeDefinition): KatalogExt {
-    return createThemeExt(theme)
+    return com.moriatsushi.katalog.ext.theme.ThemeExt(theme)
 }

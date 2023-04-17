@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="jp.co.cyberagent.katalog.androidsample">
+    package="com.moriatsushi.katalog.androidsample">
 
     <application
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:name="jp.co.cyberagent.katalog.androidsample.SampleApp"
+        android:name=".SampleApp"
         android:label="Katalog Sample">
         <activity
-            android:name="jp.co.cyberagent.katalog.KatalogActivity"
+            android:name="com.moriatsushi.katalog.KatalogActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

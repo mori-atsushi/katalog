@@ -1,33 +1,46 @@
 package jp.co.cyberagent.katalog.dsl
 
-import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
-import jp.co.cyberagent.katalog.androidview.mapper.BindingToCompose
-import kotlin.reflect.KClass
+import com.moriatsushi.katalog.dsl.binding as actualBinding
 
-public typealias BindingFactoryDefinition<T> = (LayoutInflater, ViewGroup?, Boolean) -> T
-public typealias BindingUpdateDefinition<T> = ViewDefinitionScope.(T) -> Unit
+@Deprecated(
+    "The package name has changed.",
+    ReplaceWith(
+        "BindingFactoryDefinition<T>",
+        "com.moriatsushi.katalog.dsl.BindingFactoryDefinition"
+    )
+)
+public typealias BindingFactoryDefinition<T> =
+    com.moriatsushi.katalog.dsl.BindingFactoryDefinition<T>
 
+@Deprecated(
+    "The package name has changed.",
+    ReplaceWith(
+        "BindingFactoryDefinition<T>",
+        "com.moriatsushi.katalog.dsl.BindingFactoryDefinition"
+    )
+)
+public typealias BindingUpdateDefinition<T> =
+    com.moriatsushi.katalog.dsl.BindingUpdateDefinition<T>
+
+@Deprecated(
+    "The package name has changed.",
+    ReplaceWith(
+        "binding(factory, name, layoutParams, update)",
+        "com.moriatsushi.katalog.dsl.binding"
+    )
+)
 public inline fun <reified T : ViewBinding> GroupScope.binding(
     noinline factory: BindingFactoryDefinition<T>,
     name: String? = null,
     layoutParams: ViewGroup.LayoutParams = WRAP_WIDTH_WRAP_HEIGHT,
     noinline update: BindingUpdateDefinition<T> = {}
 ) {
-    binding(T::class, factory, name, layoutParams, update)
-}
-
-@PublishedApi
-internal fun <T : ViewBinding> GroupScope.binding(
-    clazz: KClass<T>,
-    factory: BindingFactoryDefinition<T>,
-    name: String?,
-    layoutParams: ViewGroup.LayoutParams = WRAP_WIDTH_WRAP_HEIGHT,
-    update: BindingUpdateDefinition<T> = {}
-) {
-    val displayName = name ?: clazz.simpleName ?: ""
-    compose(displayName) {
-        BindingToCompose(factory, layoutParams, update)
-    }
+    actualBinding(
+        factory = factory,
+        name = name,
+        layoutParams = layoutParams,
+        update = update
+    )
 }

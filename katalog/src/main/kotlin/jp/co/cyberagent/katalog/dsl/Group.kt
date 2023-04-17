@@ -1,6 +1,10 @@
 package jp.co.cyberagent.katalog.dsl
 
-public class Group(
-    internal val name: String,
-    internal val definition: GroupDefinition
+@Deprecated(
+    "The package name has changed.",
+    ReplaceWith(
+        "Group",
+        "com.moriatsushi.katalog.dsl.Group"
+    )
 )
+public typealias Group = com.moriatsushi.katalog.dsl.Group

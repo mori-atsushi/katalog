@@ -2,35 +2,40 @@ package jp.co.cyberagent.katalog.dsl
 
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import jp.co.cyberagent.katalog.androidview.mapper.FragmentToCompose
-import kotlin.reflect.KClass
+import com.moriatsushi.katalog.dsl.fragment as actualFragment
 
-public typealias FragmentDefinition<T> = ViewDefinitionScope.() -> T
-public typealias FragmentOnCreateListener<T> = ViewDefinitionScope.(fragment: T) -> Unit
+@Deprecated(
+    "The package name has changed.",
+    ReplaceWith(
+        "FragmentDefinition<T>",
+        "com.moriatsushi.katalog.dsl.FragmentDefinition"
+    )
+)
+public typealias FragmentDefinition<T> =
+    com.moriatsushi.katalog.dsl.FragmentDefinition<T>
 
+@Deprecated(
+    "The package name has changed.",
+    ReplaceWith(
+        "FragmentOnCreateListener<T>",
+        "com.moriatsushi.katalog.dsl.FragmentOnCreateListener"
+    )
+)
+public typealias FragmentOnCreateListener<T> =
+    com.moriatsushi.katalog.dsl.FragmentOnCreateListener<T>
+
+@Deprecated(
+    "The package name has changed.",
+    ReplaceWith(
+        "fragment(name, layoutParams, onCreateView, definition)",
+        "com.moriatsushi.katalog.dsl.fragment"
+    ),
+)
 public inline fun <reified T : Fragment> GroupScope.fragment(
     name: String? = null,
     layoutParams: ViewGroup.LayoutParams = MATCH_WIDTH_MATCH_HEIGHT,
     noinline onCreateView: FragmentOnCreateListener<T> = {},
     noinline definition: FragmentDefinition<T>
 ) {
-    fragment(T::class, name, layoutParams, onCreateView, definition)
-}
-
-@PublishedApi
-internal fun <T : Fragment> GroupScope.fragment(
-    clazz: KClass<T>,
-    name: String? = null,
-    layoutParams: ViewGroup.LayoutParams = MATCH_WIDTH_MATCH_HEIGHT,
-    onCreateView: FragmentOnCreateListener<T>,
-    definition: FragmentDefinition<T>
-) {
-    val displayName = name ?: clazz.simpleName ?: ""
-    compose(displayName) {
-        FragmentToCompose(
-            layoutParams = layoutParams,
-            onCreateView = onCreateView,
-            definition = definition
-        )
-    }
+    actualFragment(name, layoutParams, onCreateView, definition)
 }

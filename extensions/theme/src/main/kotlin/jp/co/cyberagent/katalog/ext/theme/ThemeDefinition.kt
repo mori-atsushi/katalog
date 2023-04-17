@@ -1,5 +1,11 @@
 package jp.co.cyberagent.katalog.ext.theme
 
-import androidx.compose.runtime.Composable
-
-public typealias ThemeDefinition = @Composable (@Composable () -> Unit) -> Unit
+@Deprecated(
+    "The package name has changed.",
+    ReplaceWith(
+        "ThemeDefinition",
+        "com.moriatsushi.katalog.ext.theme.ThemeDefinition"
+    ),
+)
+public typealias ThemeDefinition =
+    com.moriatsushi.katalog.ext.theme.ThemeDefinition

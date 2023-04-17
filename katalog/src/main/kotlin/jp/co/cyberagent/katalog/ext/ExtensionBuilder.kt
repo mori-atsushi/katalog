@@ -1,8 +1,11 @@
 package jp.co.cyberagent.katalog.ext
 
+@Deprecated(
+    "The package name has changed.",
+    ReplaceWith(
+        "ExtensionBuilder",
+        "com.moriatsushi.katalog.ext.ExtensionBuilder"
+    )
+)
 @ExperimentalKatalogExtApi
-public interface ExtensionBuilder {
-    public fun setComponentWrapper(wrapper: ExtComponentWrapper): ExtensionBuilder
-    public fun setRootWrapper(wrapper: ExtRootWrapper): ExtensionBuilder
-    public fun build(): KatalogExt
-}
+public typealias ExtensionBuilder = com.moriatsushi.katalog.ext.ExtensionBuilder
