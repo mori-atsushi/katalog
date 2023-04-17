@@ -10,8 +10,8 @@ object Versions {
         const val ktx = "1.7.0"
         const val activity = "1.4.0"
         const val fragment = "1.4.0"
-        const val compose = "1.1.0-rc01"
-        const val composeCompiler = "1.1.0-rc02"
+        const val compose = "1.1.0"
+        const val composeCompiler = "1.1.0"
         const val lifecycle = "2.4.0"
         const val annotation = "1.3.0"
 
