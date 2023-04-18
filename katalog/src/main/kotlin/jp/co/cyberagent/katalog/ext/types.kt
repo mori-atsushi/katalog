@@ -1,18 +1,32 @@
 package jp.co.cyberagent.katalog.ext
 
-import androidx.compose.runtime.Composable
-
-@ExperimentalKatalogExtApi
-public typealias ExtComponentWrapper = @Composable ExtWrapperScope.(content: @Composable () -> Unit) -> Unit
-
-@ExperimentalKatalogExtApi
-public typealias ExtRootWrapper = @Composable ExtWrapperScope.(content: @Composable () -> Unit) -> Unit
-
-@RequiresOptIn(message = "This is an experimental animation API.")
-@Target(
-    AnnotationTarget.CLASS,
-    AnnotationTarget.FUNCTION,
-    AnnotationTarget.PROPERTY,
-    AnnotationTarget.TYPEALIAS
+@Deprecated(
+    "The package name has changed.",
+    ReplaceWith(
+        "ExtComponentWrapper",
+        "com.moriatsushi.katalog.ext.ExtComponentWrapper"
+    )
 )
-public annotation class ExperimentalKatalogExtApi
+@ExperimentalKatalogExtApi
+public typealias ExtComponentWrapper = com.moriatsushi.katalog.ext.ExtComponentWrapper
+
+@Deprecated(
+    "The package name has changed.",
+    ReplaceWith(
+        "ExtRootWrapper",
+        "com.moriatsushi.katalog.ext.ExtRootWrapper"
+    )
+)
+@ExperimentalKatalogExtApi
+public typealias ExtRootWrapper = com.moriatsushi.katalog.ext.ExtRootWrapper
+
+@Deprecated(
+    "The package name has changed.",
+    ReplaceWith(
+        "ExperimentalKatalogExtApi",
+        "com.moriatsushi.katalog.ext.ExperimentalKatalogExtApi"
+    )
+)
+// https://youtrack.jetbrains.com/issue/KT-56715
+@Suppress("EXPERIMENTAL_MARKER_CAN_ONLY_BE_USED_AS_ANNOTATION_OR_ARGUMENT_IN_USE_EXPERIMENTAL")
+public typealias ExperimentalKatalogExtApi = com.moriatsushi.katalog.ext.ExperimentalKatalogExtApi

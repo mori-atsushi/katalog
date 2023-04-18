@@ -1,11 +1,10 @@
 package jp.co.cyberagent.katalog.dsl
 
-import android.app.Activity
-import android.content.Context
-import androidx.lifecycle.LifecycleOwner
-
-public interface ViewDefinitionScope {
-    public val context: Context
-    public val activity: Activity
-    public val lifecycleOwner: LifecycleOwner
-}
+@Deprecated(
+    "The package name has changed.",
+    ReplaceWith(
+        "ViewDefinitionScope",
+        "com.moriatsushi.katalog.dsl.ViewDefinitionScope"
+    )
+)
+public typealias ViewDefinitionScope = com.moriatsushi.katalog.dsl.ViewDefinitionScope

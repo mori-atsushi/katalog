@@ -9,7 +9,7 @@ android {
     buildToolsVersion = Constants.buildToolsVersion
 
     defaultConfig {
-        applicationId = "jp.co.cyberagent.katalog.android_sample"
+        applicationId = "com.moriatsushi.katalog.android_sample"
         minSdk = Constants.minSdk
         targetSdk = Constants.targetSdk
         versionCode = 1

@@ -1,8 +1,10 @@
 package jp.co.cyberagent.katalog.dsl
 
-@CatalogDslMarker
-public interface GroupScope {
-    public fun group(name: String, definition: GroupDefinition)
-    public fun group(vararg group: Group)
-    public fun compose(name: String, definition: ComposeDefinition)
-}
+@Deprecated(
+    "The package name has changed.",
+    ReplaceWith(
+        "GroupScope",
+        "com.moriatsushi.katalog.dsl.GroupScope"
+    )
+)
+public typealias GroupScope = com.moriatsushi.katalog.dsl.GroupScope

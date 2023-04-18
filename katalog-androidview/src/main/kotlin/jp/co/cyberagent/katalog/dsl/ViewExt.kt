@@ -2,45 +2,68 @@ package jp.co.cyberagent.katalog.dsl
 
 import android.view.View
 import android.view.ViewGroup
-import jp.co.cyberagent.katalog.androidview.mapper.ViewToCompose
-import kotlin.reflect.KClass
+import com.moriatsushi.katalog.dsl.view as actualView
 
-public typealias ViewDefinition<T> = ViewDefinitionScope.() -> T
+@Deprecated(
+    "The package name has changed.",
+    ReplaceWith(
+        "ViewDefinition<T>",
+        "com.moriatsushi.katalog.dsl.ViewDefinition"
+    )
+)
+public typealias ViewDefinition<T> = com.moriatsushi.katalog.dsl.ViewDefinition<T>
 
-public val WRAP_WIDTH_WRAP_HEIGHT: ViewGroup.LayoutParams = ViewGroup.LayoutParams(
-    ViewGroup.LayoutParams.WRAP_CONTENT,
-    ViewGroup.LayoutParams.WRAP_CONTENT
+@Deprecated(
+    "The package name has changed.",
+    ReplaceWith(
+        "WRAP_WIDTH_WRAP_HEIGHT",
+        "com.moriatsushi.katalog.dsl.WRAP_WIDTH_WRAP_HEIGHT"
+    )
 )
-public val WRAP_WIDTH_MATCH_HEIGHT: ViewGroup.LayoutParams = ViewGroup.LayoutParams(
-    ViewGroup.LayoutParams.WRAP_CONTENT,
-    ViewGroup.LayoutParams.MATCH_PARENT
-)
-public val MATCH_WIDTH_WRAP_HEIGHT: ViewGroup.LayoutParams = ViewGroup.LayoutParams(
-    ViewGroup.LayoutParams.MATCH_PARENT,
-    ViewGroup.LayoutParams.WRAP_CONTENT
-)
-public val MATCH_WIDTH_MATCH_HEIGHT: ViewGroup.LayoutParams = ViewGroup.LayoutParams(
-    ViewGroup.LayoutParams.MATCH_PARENT,
-    ViewGroup.LayoutParams.MATCH_PARENT
-)
+public val WRAP_WIDTH_WRAP_HEIGHT: ViewGroup.LayoutParams =
+    com.moriatsushi.katalog.dsl.WRAP_WIDTH_WRAP_HEIGHT
 
+@Deprecated(
+    "The package name has changed.",
+    ReplaceWith(
+        "WRAP_WIDTH_MATCH_HEIGHT",
+        "com.moriatsushi.katalog.dsl.WRAP_WIDTH_MATCH_HEIGHT"
+    )
+)
+public val WRAP_WIDTH_MATCH_HEIGHT: ViewGroup.LayoutParams =
+    com.moriatsushi.katalog.dsl.WRAP_WIDTH_MATCH_HEIGHT
+
+@Deprecated(
+    "The package name has changed.",
+    ReplaceWith(
+        "MATCH_WIDTH_WRAP_HEIGHT",
+        "com.moriatsushi.katalog.dsl.MATCH_WIDTH_WRAP_HEIGHT"
+    )
+)
+public val MATCH_WIDTH_WRAP_HEIGHT: ViewGroup.LayoutParams =
+    com.moriatsushi.katalog.dsl.MATCH_WIDTH_WRAP_HEIGHT
+
+@Deprecated(
+    "The package name has changed.",
+    ReplaceWith(
+        "MATCH_WIDTH_MATCH_HEIGHT",
+        "com.moriatsushi.katalog.dsl.MATCH_WIDTH_MATCH_HEIGHT"
+    )
+)
+public val MATCH_WIDTH_MATCH_HEIGHT: ViewGroup.LayoutParams =
+    com.moriatsushi.katalog.dsl.MATCH_WIDTH_MATCH_HEIGHT
+
+@Deprecated(
+    "The package name has changed.",
+    ReplaceWith(
+        "view(name, layoutParams, definition)",
+        "com.moriatsushi.katalog.dsl.view"
+    ),
+)
 public inline fun <reified T : View> GroupScope.view(
     name: String? = null,
     layoutParams: ViewGroup.LayoutParams = WRAP_WIDTH_WRAP_HEIGHT,
     noinline definition: ViewDefinition<T>
 ) {
-    view(T::class, name, layoutParams, definition)
-}
-
-@PublishedApi
-internal fun <T : View> GroupScope.view(
-    clazz: KClass<T>,
-    name: String?,
-    layoutParams: ViewGroup.LayoutParams,
-    definition: ViewDefinition<T>
-) {
-    val displayName = name ?: clazz.simpleName ?: ""
-    compose(displayName) {
-        ViewToCompose(layoutParams, definition)
-    }
+    actualView(name, layoutParams, definition)
 }

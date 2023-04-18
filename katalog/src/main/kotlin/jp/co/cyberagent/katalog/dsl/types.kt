@@ -1,9 +1,19 @@
 package jp.co.cyberagent.katalog.dsl
 
-import androidx.compose.runtime.Composable
+@Deprecated(
+    "The package name has changed.",
+    ReplaceWith(
+        "GroupDefinition",
+        "com.moriatsushi.katalog.dsl.GroupDefinition"
+    )
+)
+public typealias GroupDefinition = com.moriatsushi.katalog.dsl.GroupDefinition
 
-public typealias GroupDefinition = GroupScope.() -> Unit
-public typealias ComposeDefinition = @Composable () -> Unit
-
-@DslMarker
-internal annotation class CatalogDslMarker
+@Deprecated(
+    "The package name has changed.",
+    ReplaceWith(
+        "ComposeDefinition",
+        "com.moriatsushi.katalog.dsl.ComposeDefinition"
+    )
+)
+public typealias ComposeDefinition = com.moriatsushi.katalog.dsl.ComposeDefinition
