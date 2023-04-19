@@ -26,5 +26,5 @@ object Versions {
 
     const val material = "1.5.0"
     const val ktlint = "0.43.2"
-    const val robolectric = "4.7.3"
+    const val robolectric = "4.10"
 }
