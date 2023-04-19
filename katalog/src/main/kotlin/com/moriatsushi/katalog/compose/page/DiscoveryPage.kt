@@ -1,6 +1,5 @@
 package com.moriatsushi.katalog.compose.page
 
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
@@ -22,7 +21,6 @@ import com.moriatsushi.katalog.ext.ExperimentalKatalogExtApi
 import com.moriatsushi.katalog.ext.ExtNavState
 
 @ExperimentalKatalogExtApi
-@OptIn(ExperimentalAnimationApi::class)
 @Composable
 internal fun DiscoveryPage(
     katalog: Katalog,

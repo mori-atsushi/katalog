@@ -1,9 +1,8 @@
 package com.moriatsushi.katalog.compose.navigation
 
 import androidx.compose.animation.AnimatedContent
-import androidx.compose.animation.AnimatedContentScope
+import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.ContentTransform
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -12,11 +11,11 @@ import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.compose.ui.Modifier
 import com.moriatsushi.katalog.compose.widget.ClickMask
 
-@ExperimentalAnimationApi
 @Composable
 internal fun <T : NavDestination> NavRoot(
     navController: NavController<T>,
-    transitionSpec: AnimatedContentScope<NavState<T>>.() -> ContentTransform = NavAnimation.createSlideSpec(),
+    transitionSpec: AnimatedContentTransitionScope<NavState<T>>.() -> ContentTransform =
+        NavAnimation.createSlideSpec(),
     component: @Composable (NavState<T>) -> Unit
 ) {
     val saveableStateHolder = rememberSaveableStateHolder()
@@ -53,11 +52,10 @@ private fun <T : NavDestination> NavChild(
     }
 }
 
-@ExperimentalAnimationApi
 @Composable
 private fun <T> AnimatedPage(
     targetState: NavState<T>,
-    transitionSpec: AnimatedContentScope<NavState<T>>.() -> ContentTransform,
+    transitionSpec: AnimatedContentTransitionScope<NavState<T>>.() -> ContentTransform,
     content: @Composable (state: NavState<T>) -> Unit
 ) {
     AnimatedContent(

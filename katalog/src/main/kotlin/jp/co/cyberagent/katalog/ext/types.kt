@@ -28,5 +28,5 @@ public typealias ExtRootWrapper = com.moriatsushi.katalog.ext.ExtRootWrapper
     )
 )
 // https://youtrack.jetbrains.com/issue/KT-56715
-@Suppress("EXPERIMENTAL_MARKER_CAN_ONLY_BE_USED_AS_ANNOTATION_OR_ARGUMENT_IN_USE_EXPERIMENTAL")
+@Suppress("OPT_IN_MARKER_CAN_ONLY_BE_USED_AS_ANNOTATION_OR_ARGUMENT_IN_OPT_IN")
 public typealias ExperimentalKatalogExtApi = com.moriatsushi.katalog.ext.ExperimentalKatalogExtApi

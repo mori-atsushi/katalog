@@ -30,16 +30,15 @@ private class ComposeLifecycleOwner(
     private val registry = LifecycleRegistry(this)
     private var maxLifecycleState = Lifecycle.State.INITIALIZED
 
+    override val lifecycle: Lifecycle
+        get() = registry
+
     init {
         hostLifecycleOwner.lifecycle.addObserver(object : LifecycleEventObserver {
             override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
                 updateState()
             }
         })
-    }
-
-    override fun getLifecycle(): Lifecycle {
-        return registry
     }
 
     private fun updateState() {

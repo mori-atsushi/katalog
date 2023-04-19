@@ -1,6 +1,5 @@
 package com.moriatsushi.katalog.compose.page
 
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
 import com.moriatsushi.katalog.compose.navigation.MainDestination
 import com.moriatsushi.katalog.compose.navigation.NavAnimation
@@ -12,7 +11,6 @@ import com.moriatsushi.katalog.ext.ExperimentalKatalogExtApi
 import com.moriatsushi.katalog.ext.ExtNavState
 
 @ExperimentalKatalogExtApi
-@OptIn(ExperimentalAnimationApi::class)
 @Composable
 internal fun MainPage(
     katalog: Katalog,
