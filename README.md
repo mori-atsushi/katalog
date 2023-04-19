@@ -16,6 +16,45 @@ A UI Catalog Library made with Jetpack Compose
 
 <br clear="all" />
 
+<details>
+<summary>
+⚠ Migration to 1.2.0
+</summary>
+
+Please update the dependency from `jp.co.cyberagent.katalog` to `com.moriatsushi.katalog` as follows.
+
+```diff
+dependencies {
+-    implementation("jp.co.cyberagent.katalog:katalog:1.0.2")
++    implementation("com.moriatsushi.katalog:katalog:1.2.0")
+}
+```
+
+Also, please fix the imports from `jp.co.cyberagent.katalog` to `com.moriatsushi.katalog` as follows.
+
+```diff
+package com.moriatsushi.katalog.androidsample
+
+import android.app.Application
+- import jp.co.cyberagent.katalog.registerKatalog
++ import com.moriatsushi.katalog.registerKatalog
+
+class SampleApp : Application() {
+    override fun onCreate() {
+        super.onCreate()
+        registerKatalog(
+            title = "My App Catalog",
+        ) {
+            compose("UI Component") {
+                Text(text = "Hello, World")
+            }
+        }
+    }
+}
+```
+
+</details>
+
 ## Getting Started
 ### step1: Add the dependency
 
@@ -31,9 +70,9 @@ Add the package dependencies to your `build.gradle`.
 
 ```kotlin
 dependencies {
-    implementation("jp.co.cyberagent.katalog:katalog:1.0.2")
-    // If you are using compose 1.1.0-rc01
-    // implementation("jp.co.cyberagent.katalog:katalog:1.1.0-beta05")
+    implementation("com.moriatsushi.katalog:katalog:1.2.0")
+    // If you are using compose v1.5.0-alpha01 or later
+    // implementation("com.moriatsushi.katalog:katalog:1.2.1")
 }
 ```
 
@@ -100,7 +139,7 @@ KatalogActivity.start(activity)
 ```
 
 ### You want to know more?
-Please check the [Full Documents](https://cyberagent-zemi.github.io/katalog).
+Please check the [Full Documents](https://mori-atsushi.github.io/katalog).
 
 ## Ideas
 * Search function.
