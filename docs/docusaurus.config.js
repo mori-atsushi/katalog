@@ -5,12 +5,12 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 module.exports = {
   title: 'Katalog - A UI Catalog Library made with Jetpack Compose',
   tagline: 'A UI Catalog Library made with Jetpack Compose',
-  url: 'https://cyberagent-zemi.github.io',
+  url: 'https://mori-atsushi.github.io',
   baseUrl: '/katalog/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'cyberagent-zemi',
+  organizationName: 'mori-atsushi',
   projectName: 'katalog',
   trailingSlash: false,
   themeConfig: {
@@ -34,7 +34,7 @@ module.exports = {
           label: 'Documentation',
         },
         {
-          href: 'https://github.com/cyberagent-zemi/katalog',
+          href: 'https://github.com/mori-atsushi/katalog',
           label: 'GitHub',
           position: 'right',
         },
@@ -65,7 +65,7 @@ module.exports = {
           items: [
             {
               label: 'GitHub',
-              href: 'https://github.com/cyberagent-zemi/katalog',
+              href: 'https://github.com/mori-atsushi/katalog',
             },
           ],
         },
@@ -86,7 +86,7 @@ module.exports = {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           editUrl:
-            'https://github.com/cyberagent-zemi/katalog/edit/main/docs/',
+            'https://github.com/mori-atsushi/katalog/edit/main/docs/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),

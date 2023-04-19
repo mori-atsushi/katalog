@@ -36,7 +36,7 @@ Katalog can be used only in debug build by setting as follows:
 ```kotlin title="build.gradle"
 dependencies {
     // Use only in debug build
-    debugImplementation("jp.co.cyberagent.katalog:katalog:`LATEST_VERSION`")
+    debugImplementation("com.moriatsushi.katalog:katalog:`LATEST_VERSION`")
 }
 ```
 ```kotlin title="src/debug/DebugApplication.kt"
@@ -103,7 +103,7 @@ It will be useful if you are using Katalog as an independent application.
 ```xml title=AndroidManifest.xml
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="jp.co.cyberagent.katalog.android_sample">
+    package="com.moriatsushi.katalog.android_sample">
 
     <application
         android:icon="@mipmap/ic_launcher"
@@ -112,7 +112,7 @@ It will be useful if you are using Katalog as an independent application.
         android:label="Katalog Sample">
 
         <activity
-            android:name="jp.co.cyberagent.katalog.KatalogActivity"
+            android:name="com.moriatsushi.katalog.KatalogActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
