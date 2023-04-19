@@ -8,11 +8,12 @@ public typealias ExtComponentWrapper = @Composable ExtWrapperScope.(content: @Co
 @ExperimentalKatalogExtApi
 public typealias ExtRootWrapper = @Composable ExtWrapperScope.(content: @Composable () -> Unit) -> Unit
 
-@RequiresOptIn(message = "This is an experimental animation API.")
+@RequiresOptIn(message = "This is an experimental katalog extension API.")
 @Target(
     AnnotationTarget.CLASS,
     AnnotationTarget.FUNCTION,
     AnnotationTarget.PROPERTY,
     AnnotationTarget.TYPEALIAS
 )
+@Retention(AnnotationRetention.BINARY)
 public annotation class ExperimentalKatalogExtApi
