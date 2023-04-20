@@ -6,7 +6,7 @@ on:
 jobs:
   deploy_docs:
     name: Deploy Docs
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: docs
