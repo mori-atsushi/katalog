@@ -4,7 +4,8 @@ import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
-import com.moriatsushi.katalog.ext.pagesaver.BuildConfig
+
+private const val PACKAGE_NAME = "com.moriatsushi.katalog.ext.pagesaver"
 
 internal interface LocalStorage {
     fun putString(key: String, value: String?)
@@ -15,7 +16,7 @@ private class LocalStorageImpl(
     context: Context
 ) : LocalStorage {
     private val sharedPreference =
-        context.getSharedPreferences(BuildConfig.LIBRARY_PACKAGE_NAME, Context.MODE_PRIVATE)
+        context.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE)
 
     override fun putString(key: String, value: String?) {
         sharedPreference.edit()
