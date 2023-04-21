@@ -8,6 +8,7 @@ import com.moriatsushi.katalog.ext.androidtheme.AndroidThemeExt
 import com.moriatsushi.katalog.ext.pagesaver.PageSaverExt
 import com.moriatsushi.katalog.ext.theme.ThemeExt
 import com.moriatsushi.katalog.registerKatalog
+import com.google.android.material.R as MaterialR
 
 class SampleApp : Application() {
     override fun onCreate() {
@@ -16,7 +17,7 @@ class SampleApp : Application() {
         registerKatalog(
             title = "Android Sample",
             extensions = listOf(
-                AndroidThemeExt(R.style.Theme_MaterialComponents_DayNight_NoActionBar),
+                AndroidThemeExt(MaterialR.style.Theme_MaterialComponents_DayNight_NoActionBar),
                 ThemeExt { SampleTheme(it) },
                 PageSaverExt()
             )
