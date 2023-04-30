@@ -5,13 +5,12 @@ plugins {
 }
 
 android {
-    compileSdk = Constants.compileSdk
-    buildToolsVersion = Constants.buildToolsVersion
+    compileSdk = 33
 
     defaultConfig {
         applicationId = "com.moriatsushi.katalog.android_sample"
-        minSdk = Constants.minSdk
-        targetSdk = Constants.targetSdk
+        minSdk = 21
+        targetSdk = 33
         versionCode = 1
         versionName = "1.0.0"
 
