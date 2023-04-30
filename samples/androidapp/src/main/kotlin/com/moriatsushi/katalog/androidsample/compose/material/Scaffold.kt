@@ -34,18 +34,18 @@ fun SampleScaffold() {
                     IconButton(
                         onClick = {
                             scope.launch { scaffoldState.drawerState.open() }
-                        }
+                        },
                     ) {
                         Icon(Icons.Filled.Menu, contentDescription = "Localized description")
                     }
-                }
+                },
             )
         },
         floatingActionButtonPosition = FabPosition.End,
         floatingActionButton = {
             ExtendedFloatingActionButton(
                 text = { Text("Inc") },
-                onClick = { /* fab click handler */ }
+                onClick = { /* fab click handler */ },
             )
         },
         content = { innerPadding ->
@@ -54,10 +54,10 @@ fun SampleScaffold() {
                     Box(
                         Modifier
                             .fillMaxWidth()
-                            .height(50.dp)
+                            .height(50.dp),
                     )
                 }
             }
-        }
+        },
     )
 }

@@ -6,13 +6,13 @@ import com.moriatsushi.katalog.ext.KatalogExt
 
 @OptIn(ExperimentalKatalogExtApi::class)
 internal fun createAndroidThemeExt(
-    @StyleRes themeResId: Int
+    @StyleRes themeResId: Int,
 ): KatalogExt {
     val builder = KatalogExt.Builder("AndroidTheme")
     builder.setRootWrapper { content ->
         ContextTheme(
             themeResId = themeResId,
-            content = content
+            content = content,
         )
     }
     builder.setComponentWrapper { content ->

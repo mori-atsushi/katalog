@@ -18,14 +18,14 @@ internal class PageSaverTest {
     fun save() {
         val navState = DummyExtNavState()
         val pageStore = PageStore(
-            DummyLocalStorage()
+            DummyLocalStorage(),
         )
         assertThat(pageStore.read()).isNull()
 
         composeTestRule.setContent {
             PageSaver(
                 navState = navState,
-                pageStore = pageStore
+                pageStore = pageStore,
             ) {}
         }
         composeTestRule.waitForIdle()
@@ -42,7 +42,7 @@ internal class PageSaverTest {
     fun restore() {
         val navState = DummyExtNavState()
         val pageStore = PageStore(
-            DummyLocalStorage()
+            DummyLocalStorage(),
         )
         pageStore.update(listOf("/", "/Group", "/Group/Item"))
         assertThat(navState.backStack).isEqualTo(listOf("/"))
@@ -50,7 +50,7 @@ internal class PageSaverTest {
         composeTestRule.setContent {
             PageSaver(
                 navState = navState,
-                pageStore = pageStore
+                pageStore = pageStore,
             ) {}
         }
         composeTestRule.waitForIdle()

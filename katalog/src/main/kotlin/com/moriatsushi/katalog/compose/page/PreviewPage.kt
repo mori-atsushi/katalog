@@ -23,23 +23,23 @@ internal fun PreviewPage(
     component: CatalogItem.Component,
     extensions: Extensions,
     extNavState: ExtNavState,
-    onClickClose: () -> Unit
+    onClickClose: () -> Unit,
 ) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(MaterialTheme.colors.background)
+            .background(MaterialTheme.colors.background),
     ) {
         PreviewTopAppBar(
             name = component.name,
-            onClickClose = onClickClose
+            onClickClose = onClickClose,
         )
         Preview(
             extensions = extensions,
             extNavState = extNavState,
             modifier = Modifier.fillMaxSize(),
             clickable = true,
-            definition = component.definition
+            definition = component.definition,
         )
     }
 }
@@ -47,7 +47,7 @@ internal fun PreviewPage(
 @Composable
 private fun PreviewTopAppBar(
     name: String,
-    onClickClose: () -> Unit
+    onClickClose: () -> Unit,
 ) {
     KatalogTopAppBar(
         title = name,
@@ -55,9 +55,9 @@ private fun PreviewTopAppBar(
             IconButton(onClick = onClickClose) {
                 Icon(
                     imageVector = Icons.Filled.Close,
-                    contentDescription = "close"
+                    contentDescription = "close",
                 )
             }
-        }
+        },
     )
 }

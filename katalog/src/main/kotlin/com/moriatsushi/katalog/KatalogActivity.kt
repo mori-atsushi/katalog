@@ -10,7 +10,7 @@ public class KatalogActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             App(
-                window = window
+                window = window,
             )
         }
     }

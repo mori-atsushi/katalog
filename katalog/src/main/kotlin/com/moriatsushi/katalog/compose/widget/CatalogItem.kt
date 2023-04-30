@@ -13,7 +13,7 @@ import com.moriatsushi.katalog.compose.res.defaultCornerRadius
 @Composable
 internal fun CatalogItemWrapper(
     modifier: Modifier = Modifier,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     val shape = RoundedCornerShape(defaultCornerRadius)
     Box(
@@ -22,8 +22,8 @@ internal fun CatalogItemWrapper(
             .border(
                 width = 1.5.dp,
                 color = MaterialTheme.colors.surface,
-                shape = shape
-            )
+                shape = shape,
+            ),
     ) {
         content()
     }

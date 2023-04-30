@@ -23,7 +23,7 @@ internal class AppTest {
         composeTest.setContent {
             App(
                 window = composeTest.activity.window,
-                viewModel = viewModel
+                viewModel = viewModel,
             )
         }
         composeTest.onNodeWithText("Title").assertExists()
@@ -40,7 +40,7 @@ internal class AppTest {
         composeTest.setContent {
             App(
                 window = composeTest.activity.window,
-                viewModel = viewModel
+                viewModel = viewModel,
             )
         }
         composeTest.onNodeWithText("Please call registerKatalog method.").assertExists()
@@ -53,7 +53,7 @@ internal class AppTest {
         composeTest.setContent {
             App(
                 window = composeTest.activity.window,
-                viewModel = viewModel
+                viewModel = viewModel,
             )
         }
         composeTest.onNodeWithText("Group").performClick()
@@ -70,7 +70,7 @@ internal class AppTest {
         composeTest.setContent {
             App(
                 window = composeTest.activity.window,
-                viewModel = viewModel
+                viewModel = viewModel,
             )
         }
         composeTest.onNodeWithText("Item").performClick()
@@ -83,7 +83,7 @@ internal class AppTest {
     private fun createSimpleKatalogViewModel(): KatalogViewModel {
         return dummyKatalogViewModel(
             title = "Title",
-            extensions = listOf()
+            extensions = listOf(),
         ) {
             group("Group") {
                 compose("Item") {

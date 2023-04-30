@@ -12,7 +12,7 @@ import com.moriatsushi.katalog.dsl.BindingUpdateDefinition
 internal fun <T : ViewBinding> BindingToCompose(
     factory: BindingFactoryDefinition<T>,
     layoutParams: ViewGroup.LayoutParams? = null,
-    update: BindingUpdateDefinition<T> = {}
+    update: BindingUpdateDefinition<T> = {},
 ) {
     ViewToCompose(layoutParams) {
         val inflater = LayoutInflater.from(context)

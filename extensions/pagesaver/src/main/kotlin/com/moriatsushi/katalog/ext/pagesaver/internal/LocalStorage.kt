@@ -13,7 +13,7 @@ internal interface LocalStorage {
 }
 
 private class LocalStorageImpl(
-    context: Context
+    context: Context,
 ) : LocalStorage {
     private val sharedPreference =
         context.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE)
@@ -31,7 +31,7 @@ private class LocalStorageImpl(
 
 @Composable
 internal fun rememberLocalStorage(
-    context: Context = LocalContext.current
+    context: Context = LocalContext.current,
 ): LocalStorage {
     return remember(context) {
         LocalStorageImpl(context)

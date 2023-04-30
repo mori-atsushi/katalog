@@ -6,7 +6,7 @@ import com.moriatsushi.katalog.ext.androidtheme.internal.createAndroidThemeExt
 
 @Suppress("FunctionName")
 public fun AndroidThemeExt(
-    @StyleRes themeResId: Int
+    @StyleRes themeResId: Int,
 ): KatalogExt {
     return createAndroidThemeExt(themeResId)
 }

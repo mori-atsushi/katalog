@@ -26,7 +26,7 @@ internal fun Background(content: @Composable () -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = Color(color))
+            .background(color = Color(color)),
     ) {
         content()
     }

@@ -6,6 +6,6 @@ internal sealed class DiscoveryDestination : NavDestination {
     object Top : DiscoveryDestination()
 
     data class Group(
-        val group: CatalogItem.Group
+        val group: CatalogItem.Group,
     ) : DiscoveryDestination()
 }

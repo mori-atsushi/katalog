@@ -36,7 +36,7 @@ internal fun CatalogItemRow(
     item: CatalogItem,
     extensions: Extensions,
     extNavState: ExtNavState,
-    onClick: (CatalogItem) -> Unit
+    onClick: (CatalogItem) -> Unit,
 ) {
     val icon = when (item) {
         is CatalogItem.Component -> Icons.Filled.Widgets
@@ -45,23 +45,23 @@ internal fun CatalogItemRow(
     Column(
         modifier = Modifier
             .clickable(onClick = { onClick(item) })
-            .fillMaxWidth()
+            .fillMaxWidth(),
     ) {
         ItemTitle(
             name = item.name,
-            icon = icon
+            icon = icon,
         )
         when (item) {
             is CatalogItem.Component -> ComponentRow(
                 component = item,
                 extensions = extensions,
-                extNavState = extNavState
+                extNavState = extNavState,
             )
             is CatalogItem.Group -> GroupRow(
                 group = item,
                 onClick = onClick,
                 extensions = extensions,
-                extNavState = extNavState
+                extNavState = extNavState,
             )
         }
         ItemDivider()
@@ -74,14 +74,14 @@ private fun GroupRow(
     group: CatalogItem.Group,
     extensions: Extensions,
     extNavState: ExtNavState,
-    onClick: (CatalogItem) -> Unit
+    onClick: (CatalogItem) -> Unit,
 ) {
     CatalogItemCarousel(
         list = group.items,
         extensions = extensions,
         extNavState = extNavState,
         onClick = onClick,
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
     )
 }
 
@@ -90,11 +90,11 @@ private fun GroupRow(
 private fun ComponentRow(
     component: CatalogItem.Component,
     extensions: Extensions,
-    extNavState: ExtNavState
+    extNavState: ExtNavState,
 ) {
     BoxWithConstraints(
         modifier = Modifier
-            .padding(horizontal = defaultPadding)
+            .padding(horizontal = defaultPadding),
     ) {
         val width = if (maxWidth > 600.dp) {
             420.dp
@@ -104,12 +104,12 @@ private fun ComponentRow(
         CatalogItemWrapper(
             modifier = Modifier
                 .width(width)
-                .aspectRatio(16.0F / 9.0F)
+                .aspectRatio(16.0F / 9.0F),
         ) {
             Preview(
                 definition = component.definition,
                 extensions = extensions,
-                extNavState = extNavState
+                extNavState = extNavState,
             )
         }
     }
@@ -118,17 +118,17 @@ private fun ComponentRow(
 @Composable
 private fun ItemTitle(
     name: String,
-    icon: ImageVector
+    icon: ImageVector,
 ) {
     Row(
         modifier = Modifier
             .padding(vertical = 14.dp, horizontal = defaultPadding),
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Icon(
             imageVector = icon,
             contentDescription = "More",
-            tint = MaterialTheme.colors.onBackground.copy(alpha = 0.7F)
+            tint = MaterialTheme.colors.onBackground.copy(alpha = 0.7F),
         )
         Text(
             text = name,
@@ -139,12 +139,12 @@ private fun ItemTitle(
             overflow = TextOverflow.Ellipsis,
             color = MaterialTheme.colors.onBackground.copy(alpha = 0.8F),
             fontSize = 16.sp,
-            fontWeight = FontWeight.Medium
+            fontWeight = FontWeight.Medium,
         )
         Icon(
             imageVector = Icons.Filled.ArrowForward,
             contentDescription = "More",
-            tint = MaterialTheme.colors.onBackground.copy(alpha = 0.7F)
+            tint = MaterialTheme.colors.onBackground.copy(alpha = 0.7F),
         )
     }
 }
@@ -153,6 +153,6 @@ private fun ItemTitle(
 private fun ItemDivider() {
     Divider(
         modifier = Modifier.padding(top = defaultPadding),
-        color = MaterialTheme.colors.surface
+        color = MaterialTheme.colors.surface,
     )
 }

@@ -57,7 +57,7 @@ internal class NavControllerTest {
     @Test
     fun back_nested() {
         val hostDestination = TestDestination.Host(
-            NavController(TestDestination.Data(0))
+            NavController(TestDestination.Data(0)),
         )
 
         val target = NavController<TestDestination>(hostDestination)
@@ -91,11 +91,11 @@ internal class NavControllerTest {
         object Object : TestDestination()
 
         data class Data(
-            val value: Int
+            val value: Int,
         ) : TestDestination()
 
         data class Host(
-            override val childNavController: NavController<TestDestination>
+            override val childNavController: NavController<TestDestination>,
         ) : TestDestination()
     }
 }

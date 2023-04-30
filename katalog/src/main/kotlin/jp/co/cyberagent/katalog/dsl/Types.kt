@@ -4,8 +4,8 @@ package jp.co.cyberagent.katalog.dsl
     "The package name has changed.",
     ReplaceWith(
         "GroupDefinition",
-        "com.moriatsushi.katalog.dsl.GroupDefinition"
-    )
+        "com.moriatsushi.katalog.dsl.GroupDefinition",
+    ),
 )
 public typealias GroupDefinition = com.moriatsushi.katalog.dsl.GroupDefinition
 
@@ -13,7 +13,7 @@ public typealias GroupDefinition = com.moriatsushi.katalog.dsl.GroupDefinition
     "The package name has changed.",
     ReplaceWith(
         "ComposeDefinition",
-        "com.moriatsushi.katalog.dsl.ComposeDefinition"
-    )
+        "com.moriatsushi.katalog.dsl.ComposeDefinition",
+    ),
 )
 public typealias ComposeDefinition = com.moriatsushi.katalog.dsl.ComposeDefinition

@@ -22,7 +22,7 @@ internal fun KatalogTopAppBar(
 ) {
     Box {
         Dissolve(
-            targetState = (title to navigationIcon)
+            targetState = (title to navigationIcon),
         ) { (title, navigationIcon) ->
             TopAppBar(
                 title = {
@@ -35,17 +35,17 @@ internal fun KatalogTopAppBar(
                 elevation = 0.dp,
                 backgroundColor = MaterialTheme.colors.background,
                 contentColor = MaterialTheme.colors.onBackground,
-                navigationIcon = navigationIcon
+                navigationIcon = navigationIcon,
             )
         }
         AnimatedVisibility(
             visible = isVisibleDivider,
             modifier = Modifier.align(Alignment.BottomCenter),
             enter = fadeIn(),
-            exit = fadeOut()
+            exit = fadeOut(),
         ) {
             Divider(
-                color = MaterialTheme.colors.surface
+                color = MaterialTheme.colors.surface,
             )
         }
     }

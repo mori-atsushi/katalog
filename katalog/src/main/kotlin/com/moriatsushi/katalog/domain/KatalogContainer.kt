@@ -13,7 +13,7 @@ internal class KatalogContainer {
     fun register(
         title: String,
         extensions: List<KatalogExt>,
-        groupDefinition: GroupDefinition
+        groupDefinition: GroupDefinition,
     ) {
         if (definition != null) {
             throw AlreadyRegisteredException()
@@ -21,7 +21,7 @@ internal class KatalogContainer {
         this.definition = KatalogDefinition(
             title = title,
             extensions = extensions,
-            groupDefinition = groupDefinition
+            groupDefinition = groupDefinition,
         )
     }
 

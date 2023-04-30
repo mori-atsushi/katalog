@@ -28,7 +28,7 @@ internal fun DiscoveryPage(
     navController: NavController<DiscoveryDestination>,
     extNavState: ExtNavState,
     onClickItem: (item: CatalogItem) -> Unit,
-    onClickBack: () -> Unit
+    onClickBack: () -> Unit,
 ) {
     var isScrollTop by remember {
         mutableStateOf(true)
@@ -46,9 +46,9 @@ internal fun DiscoveryPage(
                 title = title,
                 isPageTop = isTopPage,
                 isScrollTop = isScrollTop,
-                onClickBack = onClickBack
+                onClickBack = onClickBack,
             )
-        }
+        },
     ) {
         NavRoot(navController) { state ->
             DiscoveryPageSelector(
@@ -60,7 +60,7 @@ internal fun DiscoveryPage(
                         isScrollTop = it
                     }
                 },
-                onClickItem = onClickItem
+                onClickItem = onClickItem,
             )
         }
     }
@@ -71,7 +71,7 @@ private fun DiscoveryTopAppBar(
     title: String,
     isPageTop: Boolean,
     isScrollTop: Boolean,
-    onClickBack: () -> Unit
+    onClickBack: () -> Unit,
 ) {
     KatalogTopAppBar(
         title = title,
@@ -83,11 +83,11 @@ private fun DiscoveryTopAppBar(
                 IconButton(onClick = onClickBack) {
                     Icon(
                         imageVector = Icons.Filled.ArrowBack,
-                        contentDescription = "back"
+                        contentDescription = "back",
                     )
                 }
             }
-        }
+        },
     )
 }
 
@@ -98,7 +98,7 @@ private fun DiscoveryPageSelector(
     katalog: Katalog,
     extNavState: ExtNavState,
     onChangeIsTop: (Boolean) -> Unit,
-    onClickItem: (item: CatalogItem) -> Unit
+    onClickItem: (item: CatalogItem) -> Unit,
 ) {
     when (destination) {
         is DiscoveryDestination.Top -> {
@@ -106,7 +106,7 @@ private fun DiscoveryPageSelector(
                 katalog = katalog,
                 extNavState = extNavState,
                 onChangeIsTop = onChangeIsTop,
-                onClickItem = onClickItem
+                onClickItem = onClickItem,
             )
         }
         is DiscoveryDestination.Group -> {
@@ -115,7 +115,7 @@ private fun DiscoveryPageSelector(
                 group = destination.group,
                 extNavState = extNavState,
                 onChangeIsTop = onChangeIsTop,
-                onClickItem = onClickItem
+                onClickItem = onClickItem,
             )
         }
     }

@@ -23,7 +23,7 @@ fun SampleBottomNavigation() {
                 icon = { Icon(Icons.Filled.Favorite, contentDescription = null) },
                 label = { Text(item) },
                 selected = selectedItem == index,
-                onClick = { selectedItem = index }
+                onClick = { selectedItem = index },
             )
         }
     }

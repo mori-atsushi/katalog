@@ -32,7 +32,7 @@ fun SampleSliderWithSteps() {
         steps = 5,
         colors = SliderDefaults.colors(
             thumbColor = MaterialTheme.colors.secondary,
-            activeTrackColor = MaterialTheme.colors.secondary
-        )
+            activeTrackColor = MaterialTheme.colors.secondary,
+        ),
     )
 }

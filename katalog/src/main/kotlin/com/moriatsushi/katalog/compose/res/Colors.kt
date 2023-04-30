@@ -8,7 +8,7 @@ import androidx.compose.ui.graphics.Color
 
 @Composable
 internal fun materialColors(
-    darkTheme: Boolean
+    darkTheme: Boolean,
 ): Colors {
     return if (darkTheme) darkColor else lightColor
 }
@@ -24,11 +24,11 @@ private val lightColor = lightColors(
     surface = lightUpperColorBg,
     onSurface = lightColorTxt,
     background = lightColorBg,
-    onBackground = lightColorTxt
+    onBackground = lightColorTxt,
 )
 private val darkColor = darkColors(
     surface = darkUpperColorBg,
     onSurface = darkColorTxt,
     background = darkColorBg,
-    onBackground = darkColorTxt
+    onBackground = darkColorTxt,
 )

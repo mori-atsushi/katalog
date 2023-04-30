@@ -24,7 +24,7 @@ fun ButtonWithIcon() {
         Icon(
             Icons.Filled.Favorite,
             contentDescription = null,
-            modifier = Modifier.size(ButtonDefaults.IconSize)
+            modifier = Modifier.size(ButtonDefaults.IconSize),
         )
         Spacer(Modifier.size(ButtonDefaults.IconSpacing))
         Text("Like")

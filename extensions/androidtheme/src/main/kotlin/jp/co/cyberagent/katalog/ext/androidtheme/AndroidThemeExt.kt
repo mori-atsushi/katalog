@@ -7,12 +7,12 @@ import jp.co.cyberagent.katalog.ext.KatalogExt
     "The package name has changed.",
     ReplaceWith(
         "AndroidThemeExt(themeResId)",
-        "com.moriatsushi.katalog.ext.androidtheme.AndroidThemeExt"
+        "com.moriatsushi.katalog.ext.androidtheme.AndroidThemeExt",
     ),
 )
 @Suppress("FunctionName")
 public fun AndroidThemeExt(
-    @StyleRes themeResId: Int
+    @StyleRes themeResId: Int,
 ): KatalogExt {
     return com.moriatsushi.katalog.ext.androidtheme.AndroidThemeExt(themeResId)
 }

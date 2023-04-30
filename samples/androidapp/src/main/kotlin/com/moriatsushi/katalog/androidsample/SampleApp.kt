@@ -1,6 +1,7 @@
 package com.moriatsushi.katalog.androidsample
 
 import android.app.Application
+import com.google.android.material.R as MaterialR
 import com.moriatsushi.katalog.androidsample.compose.material.composeMaterialGroup
 import com.moriatsushi.katalog.androidsample.fragment.fragmentGroup
 import com.moriatsushi.katalog.androidsample.view.material.viewMaterialGroup
@@ -8,7 +9,6 @@ import com.moriatsushi.katalog.ext.androidtheme.AndroidThemeExt
 import com.moriatsushi.katalog.ext.pagesaver.PageSaverExt
 import com.moriatsushi.katalog.ext.theme.ThemeExt
 import com.moriatsushi.katalog.registerKatalog
-import com.google.android.material.R as MaterialR
 
 class SampleApp : Application() {
     override fun onCreate() {
@@ -19,13 +19,13 @@ class SampleApp : Application() {
             extensions = listOf(
                 AndroidThemeExt(MaterialR.style.Theme_MaterialComponents_DayNight_NoActionBar),
                 ThemeExt { SampleTheme(it) },
-                PageSaverExt()
-            )
+                PageSaverExt(),
+            ),
         ) {
             group(
                 composeMaterialGroup,
                 viewMaterialGroup,
-                fragmentGroup
+                fragmentGroup,
             )
         }
     }

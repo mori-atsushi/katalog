@@ -9,25 +9,25 @@ public typealias ViewDefinition<T> = ViewDefinitionScope.() -> T
 
 public val WRAP_WIDTH_WRAP_HEIGHT: ViewGroup.LayoutParams = ViewGroup.LayoutParams(
     ViewGroup.LayoutParams.WRAP_CONTENT,
-    ViewGroup.LayoutParams.WRAP_CONTENT
+    ViewGroup.LayoutParams.WRAP_CONTENT,
 )
 public val WRAP_WIDTH_MATCH_HEIGHT: ViewGroup.LayoutParams = ViewGroup.LayoutParams(
     ViewGroup.LayoutParams.WRAP_CONTENT,
-    ViewGroup.LayoutParams.MATCH_PARENT
+    ViewGroup.LayoutParams.MATCH_PARENT,
 )
 public val MATCH_WIDTH_WRAP_HEIGHT: ViewGroup.LayoutParams = ViewGroup.LayoutParams(
     ViewGroup.LayoutParams.MATCH_PARENT,
-    ViewGroup.LayoutParams.WRAP_CONTENT
+    ViewGroup.LayoutParams.WRAP_CONTENT,
 )
 public val MATCH_WIDTH_MATCH_HEIGHT: ViewGroup.LayoutParams = ViewGroup.LayoutParams(
     ViewGroup.LayoutParams.MATCH_PARENT,
-    ViewGroup.LayoutParams.MATCH_PARENT
+    ViewGroup.LayoutParams.MATCH_PARENT,
 )
 
 public inline fun <reified T : View> GroupScope.view(
     name: String? = null,
     layoutParams: ViewGroup.LayoutParams = WRAP_WIDTH_WRAP_HEIGHT,
-    noinline definition: ViewDefinition<T>
+    noinline definition: ViewDefinition<T>,
 ) {
     view(T::class, name, layoutParams, definition)
 }
@@ -37,7 +37,7 @@ internal fun <T : View> GroupScope.view(
     clazz: KClass<T>,
     name: String?,
     layoutParams: ViewGroup.LayoutParams,
-    definition: ViewDefinition<T>
+    definition: ViewDefinition<T>,
 ) {
     val displayName = name ?: clazz.simpleName ?: ""
     compose(displayName) {

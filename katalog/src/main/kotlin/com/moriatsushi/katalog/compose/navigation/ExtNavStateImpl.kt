@@ -11,7 +11,7 @@ import com.moriatsushi.katalog.ext.ExtNavState
 @ExperimentalKatalogExtApi
 internal class ExtNavStateImpl(
     private val navController: NavController<MainDestination>,
-    private val katalog: Katalog
+    private val katalog: Katalog,
 ) : ExtNavState {
     override val current: String by derivedStateOf {
         backStack.last()
@@ -33,12 +33,12 @@ internal class ExtNavStateImpl(
 @Composable
 internal fun rememberExtNavState(
     navController: NavController<MainDestination>,
-    katalog: Katalog
+    katalog: Katalog,
 ): ExtNavState {
     return remember(navController, katalog) {
         ExtNavStateImpl(
             navController = navController,
-            katalog = katalog
+            katalog = katalog,
         )
     }
 }

@@ -4,7 +4,7 @@ import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.requiredHeight
-import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.LinearProgressIndicator
 import androidx.compose.material.OutlinedButton
 import androidx.compose.material.ProgressIndicatorDefaults
 import androidx.compose.material.Text
@@ -18,20 +18,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun SampleCircularProgressIndicator() {
+fun SampleLinearProgressIndicator() {
     var progress by remember { mutableStateOf(0.1f) }
     val animatedProgress by animateFloatAsState(
         targetValue = progress,
-        animationSpec = ProgressIndicatorDefaults.ProgressAnimationSpec
+        animationSpec = ProgressIndicatorDefaults.ProgressAnimationSpec,
     )
 
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        CircularProgressIndicator(progress = animatedProgress)
+        LinearProgressIndicator(progress = animatedProgress)
         Spacer(Modifier.requiredHeight(30.dp))
         OutlinedButton(
             onClick = {
                 if (progress < 1f) progress += 0.1f
-            }
+            },
         ) {
             Text("Increase")
         }

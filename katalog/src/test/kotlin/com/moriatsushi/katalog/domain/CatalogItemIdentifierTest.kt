@@ -15,17 +15,17 @@ internal class CatalogItemIdentifierTest {
         val parent1 = CatalogItemIdentifier(
             parents = emptyList(),
             name = "Group1",
-            count = 0
+            count = 0,
         )
         val parent2 = CatalogItemIdentifier(
             parents = listOf(parent1),
             name = "Group2",
-            count = 0
+            count = 0,
         )
         val expected = CatalogItemIdentifier(
             parents = listOf(parent1, parent2),
             name = "Item",
-            count = 0
+            count = 0,
         )
         assertThat(actual).isEqualTo(expected)
     }
@@ -38,17 +38,17 @@ internal class CatalogItemIdentifierTest {
         val parent1 = CatalogItemIdentifier(
             parents = emptyList(),
             name = "Group1",
-            count = 0
+            count = 0,
         )
         val parent2 = CatalogItemIdentifier(
             parents = listOf(parent1),
             name = "Group2",
-            count = 1
+            count = 1,
         )
         val expected = CatalogItemIdentifier(
             parents = listOf(parent1, parent2),
             name = "Item",
-            count = 2
+            count = 2,
         )
         assertThat(actual).isEqualTo(expected)
     }
@@ -61,12 +61,12 @@ internal class CatalogItemIdentifierTest {
         val parent = CatalogItemIdentifier(
             parents = emptyList(),
             name = "",
-            count = 0
+            count = 0,
         )
         val expected = CatalogItemIdentifier(
             parents = listOf(parent),
             name = "",
-            count = 0
+            count = 0,
         )
         assertThat(actual).isEqualTo(expected)
     }
@@ -78,12 +78,12 @@ internal class CatalogItemIdentifierTest {
         val parent = CatalogItemIdentifier(
             parents = emptyList(),
             name = "Group1",
-            count = 0
+            count = 0,
         )
         val expected = CatalogItemIdentifier(
             parents = listOf(parent),
             name = "Group2/Item",
-            count = 0
+            count = 0,
         )
         assertThat(actual).isEqualTo(expected)
     }
@@ -95,12 +95,12 @@ internal class CatalogItemIdentifierTest {
         val parent = CatalogItemIdentifier(
             parents = emptyList(),
             name = "Group",
-            count = 1
+            count = 1,
         )
         val expected = CatalogItemIdentifier(
             parents = listOf(parent),
             name = "Item(2)",
-            count = 0
+            count = 0,
         )
         assertThat(actual).isEqualTo(expected)
     }
@@ -112,7 +112,7 @@ internal class CatalogItemIdentifierTest {
         val expected = CatalogItemIdentifier(
             parents = listOf(),
             name = "Parent%2FItem",
-            count = 0
+            count = 0,
         )
         assertThat(actual).isEqualTo(expected)
     }
@@ -138,17 +138,17 @@ internal class CatalogItemIdentifierTest {
         val parent1 = CatalogItemIdentifier(
             parents = emptyList(),
             name = "Group1",
-            count = 0
+            count = 0,
         )
         val parent2 = CatalogItemIdentifier(
             parents = listOf(parent1),
             name = "Group2",
-            count = 0
+            count = 0,
         )
         val target = CatalogItemIdentifier(
             parents = listOf(parent1, parent2),
             name = "Item",
-            count = 0
+            count = 0,
         )
         val actual = target.id
         val expected = "/Group1/Group2/Item"
@@ -160,17 +160,17 @@ internal class CatalogItemIdentifierTest {
         val parent1 = CatalogItemIdentifier(
             parents = emptyList(),
             name = "Group1",
-            count = 0
+            count = 0,
         )
         val parent2 = CatalogItemIdentifier(
             parents = listOf(parent1),
             name = "Group2",
-            count = 1
+            count = 1,
         )
         val target = CatalogItemIdentifier(
             parents = listOf(parent1, parent2),
             name = "Item",
-            count = 2
+            count = 2,
         )
         val actual = target.id
         val expected = "/Group1/Group2(2)/Item(3)"
@@ -182,12 +182,12 @@ internal class CatalogItemIdentifierTest {
         val parent = CatalogItemIdentifier(
             parents = emptyList(),
             name = "",
-            count = 0
+            count = 0,
         )
         val target = CatalogItemIdentifier(
             parents = listOf(parent),
             name = "",
-            count = 0
+            count = 0,
         )
         val actual = target.id
         val expected = "//"
@@ -199,17 +199,17 @@ internal class CatalogItemIdentifierTest {
         val parent = CatalogItemIdentifier(
             parents = emptyList(),
             name = "Parent",
-            count = 0
+            count = 0,
         )
         val target1 = CatalogItemIdentifier(
             parents = listOf(parent),
             name = "Item",
-            count = 0
+            count = 0,
         )
         val target2 = CatalogItemIdentifier(
             parents = emptyList(),
             name = "Parent/Item",
-            count = 0
+            count = 0,
         )
         assertThat(target1.id).isNotEqualTo(target2.id)
         assertThat(target1.id).isEqualTo("/Parent/Item")
@@ -221,12 +221,12 @@ internal class CatalogItemIdentifierTest {
         val target1 = CatalogItemIdentifier(
             parents = listOf(),
             name = "Item",
-            count = 1
+            count = 1,
         )
         val target2 = CatalogItemIdentifier(
             parents = listOf(),
             name = "Item(2)",
-            count = 0
+            count = 0,
         )
         assertThat(target1.id).isNotEqualTo(target2.id)
         assertThat(target1.id).isEqualTo("/Item(2)")
@@ -238,12 +238,12 @@ internal class CatalogItemIdentifierTest {
         val target1 = CatalogItemIdentifier(
             parents = listOf(),
             name = "Parent/Item",
-            count = 0
+            count = 0,
         )
         val target2 = CatalogItemIdentifier(
             parents = listOf(),
             name = "Parent%2FItem",
-            count = 0
+            count = 0,
         )
         assertThat(target1.id).isNotEqualTo(target2.id)
         assertThat(target1.id).isEqualTo("/Parent%2FItem")
@@ -255,22 +255,22 @@ internal class CatalogItemIdentifierTest {
         val parent1 = CatalogItemIdentifier(
             parents = emptyList(),
             name = "Group1",
-            count = 0
+            count = 0,
         )
         val parent2 = CatalogItemIdentifier(
             parents = listOf(parent1),
             name = "Group2",
-            count = 0
+            count = 0,
         )
         val target1 = CatalogItemIdentifier(
             parents = listOf(parent1, parent2),
             name = "Item",
-            count = 0
+            count = 0,
         )
         val target2 = CatalogItemIdentifier(
             parents = listOf(parent1, parent2),
             name = "Item",
-            count = 0
+            count = 0,
         )
         val actual = target1 == target2
         assertThat(actual).isTrue()
@@ -281,22 +281,22 @@ internal class CatalogItemIdentifierTest {
         val parent1 = CatalogItemIdentifier(
             parents = emptyList(),
             name = "Group1",
-            count = 0
+            count = 0,
         )
         val parent2 = CatalogItemIdentifier(
             parents = listOf(parent1),
             name = "Group2",
-            count = 0
+            count = 0,
         )
         val target1 = CatalogItemIdentifier(
             parents = listOf(parent1, parent2),
             name = "Item",
-            count = 0
+            count = 0,
         )
         val target2 = CatalogItemIdentifier(
             parents = listOf(parent1, parent2),
             name = "Item",
-            count = 1
+            count = 1,
         )
         val actual = target1 == target2
         assertThat(actual).isFalse()

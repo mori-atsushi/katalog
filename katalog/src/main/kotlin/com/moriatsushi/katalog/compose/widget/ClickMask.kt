@@ -8,11 +8,11 @@ import androidx.compose.ui.input.pointer.pointerInput
 @Composable
 internal fun ClickMask(
     modifier: Modifier = Modifier,
-    enabled: Boolean = true
+    enabled: Boolean = true,
 ) {
     if (!enabled) return
     Box(
         modifier = modifier
-            .pointerInput(Unit) { }
+            .pointerInput(Unit) { },
     )
 }

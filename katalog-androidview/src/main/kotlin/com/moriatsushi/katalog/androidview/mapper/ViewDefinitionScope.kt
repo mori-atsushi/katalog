@@ -19,7 +19,7 @@ internal fun rememberViewDefinitionScope(): ViewDefinitionScope {
         ViewDefinitionScopeImpl(
             context = context,
             activity = activity,
-            lifecycleOwner = lifecycleOwner
+            lifecycleOwner = lifecycleOwner,
         )
     }
 }
@@ -27,5 +27,5 @@ internal fun rememberViewDefinitionScope(): ViewDefinitionScope {
 private class ViewDefinitionScopeImpl(
     override val context: Context,
     override val activity: Activity,
-    override val lifecycleOwner: LifecycleOwner
+    override val lifecycleOwner: LifecycleOwner,
 ) : ViewDefinitionScope

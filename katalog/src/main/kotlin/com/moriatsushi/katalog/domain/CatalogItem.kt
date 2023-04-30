@@ -9,12 +9,12 @@ internal sealed class CatalogItem {
 
     data class Group(
         override val identifier: CatalogItemIdentifier,
-        val items: List<CatalogItem>
+        val items: List<CatalogItem>,
     ) : CatalogItem()
 
     data class Component(
         override val identifier: CatalogItemIdentifier,
-        val definition: @Composable () -> Unit
+        val definition: @Composable () -> Unit,
     ) : CatalogItem()
 
     val name: String

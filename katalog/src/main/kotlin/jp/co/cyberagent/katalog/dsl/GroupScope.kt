@@ -4,7 +4,7 @@ package jp.co.cyberagent.katalog.dsl
     "The package name has changed.",
     ReplaceWith(
         "GroupScope",
-        "com.moriatsushi.katalog.dsl.GroupScope"
-    )
+        "com.moriatsushi.katalog.dsl.GroupScope",
+    ),
 )
 public typealias GroupScope = com.moriatsushi.katalog.dsl.GroupScope

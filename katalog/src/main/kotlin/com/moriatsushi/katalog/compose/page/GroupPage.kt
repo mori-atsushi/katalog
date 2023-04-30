@@ -22,7 +22,7 @@ internal fun GroupPage(
     group: CatalogItem.Group,
     extNavState: ExtNavState,
     onChangeIsTop: (isTop: Boolean) -> Unit = {},
-    onClickItem: (item: CatalogItem) -> Unit
+    onClickItem: (item: CatalogItem) -> Unit,
 ) {
     val extensions = katalog.extensions
     val lazyListState = rememberLazyListState()
@@ -32,14 +32,14 @@ internal fun GroupPage(
     }
     Surface(
         modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colors.background
+        color = MaterialTheme.colors.background,
     ) {
         CatalogItemList(
             list = group.items,
             extensions = extensions,
             extNavState = extNavState,
             onClick = onClickItem,
-            lazyListState = lazyListState
+            lazyListState = lazyListState,
         )
     }
 }

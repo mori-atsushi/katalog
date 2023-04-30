@@ -26,6 +26,6 @@ fun SampleTopAppBar() {
             IconButton(onClick = { /* doSomething() */ }) {
                 Icon(Icons.Filled.Favorite, contentDescription = "Localized description")
             }
-        }
+        },
     )
 }

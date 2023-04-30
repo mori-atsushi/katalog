@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 internal class KatalogViewModel(
-    private val container: KatalogContainer = KatalogContainer.instance
+    private val container: KatalogContainer = KatalogContainer.instance,
 ) : ViewModel() {
     private val _katalog = MutableStateFlow<Katalog?>(null)
     val katalog: StateFlow<Katalog?> = _katalog

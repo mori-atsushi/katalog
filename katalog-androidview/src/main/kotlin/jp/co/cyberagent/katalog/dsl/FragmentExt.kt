@@ -8,34 +8,34 @@ import com.moriatsushi.katalog.dsl.fragment as actualFragment
     "The package name has changed.",
     ReplaceWith(
         "FragmentDefinition<T>",
-        "com.moriatsushi.katalog.dsl.FragmentDefinition"
-    )
+        "com.moriatsushi.katalog.dsl.FragmentDefinition",
+    ),
 )
 public typealias FragmentDefinition<T> =
-    com.moriatsushi.katalog.dsl.FragmentDefinition<T>
+com.moriatsushi.katalog.dsl.FragmentDefinition<T>
 
 @Deprecated(
     "The package name has changed.",
     ReplaceWith(
         "FragmentOnCreateListener<T>",
-        "com.moriatsushi.katalog.dsl.FragmentOnCreateListener"
-    )
+        "com.moriatsushi.katalog.dsl.FragmentOnCreateListener",
+    ),
 )
 public typealias FragmentOnCreateListener<T> =
-    com.moriatsushi.katalog.dsl.FragmentOnCreateListener<T>
+com.moriatsushi.katalog.dsl.FragmentOnCreateListener<T>
 
 @Deprecated(
     "The package name has changed.",
     ReplaceWith(
         "fragment(name, layoutParams, onCreateView, definition)",
-        "com.moriatsushi.katalog.dsl.fragment"
+        "com.moriatsushi.katalog.dsl.fragment",
     ),
 )
 public inline fun <reified T : Fragment> GroupScope.fragment(
     name: String? = null,
     layoutParams: ViewGroup.LayoutParams = MATCH_WIDTH_MATCH_HEIGHT,
     noinline onCreateView: FragmentOnCreateListener<T> = {},
-    noinline definition: FragmentDefinition<T>
+    noinline definition: FragmentDefinition<T>,
 ) {
     actualFragment(name, layoutParams, onCreateView, definition)
 }

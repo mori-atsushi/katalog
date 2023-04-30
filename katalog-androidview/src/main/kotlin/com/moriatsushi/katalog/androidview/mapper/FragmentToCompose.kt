@@ -22,16 +22,16 @@ import java.util.UUID
 internal fun <T : Fragment> FragmentToCompose(
     layoutParams: ViewGroup.LayoutParams? = null,
     onCreateView: FragmentOnCreateListener<T>,
-    definition: FragmentDefinition<T>
+    definition: FragmentDefinition<T>,
 ) {
     val view by fragmentViewState(
         definition = definition,
-        onCreateView = onCreateView
+        onCreateView = onCreateView,
     )
     view?.let {
         FragmentContainerView(
             layoutParams = layoutParams,
-            view = it
+            view = it,
         )
     }
 }
@@ -39,7 +39,7 @@ internal fun <T : Fragment> FragmentToCompose(
 @Composable
 private fun <T : Fragment> fragmentViewState(
     definition: FragmentDefinition<T>,
-    onCreateView: FragmentOnCreateListener<T>
+    onCreateView: FragmentOnCreateListener<T>,
 ): State<View?> {
     val context = LocalContext.current
     val fragmentManager = remember(context) {
@@ -67,7 +67,7 @@ private fun <T : Fragment> fragmentViewState(
 @Composable
 private fun FragmentContainerView(
     layoutParams: ViewGroup.LayoutParams? = null,
-    view: View
+    view: View,
 ) {
     AndroidView(
         factory = {
@@ -77,6 +77,6 @@ private fun FragmentContainerView(
             }
             container.addView(view)
             container
-        }
+        },
     )
 }

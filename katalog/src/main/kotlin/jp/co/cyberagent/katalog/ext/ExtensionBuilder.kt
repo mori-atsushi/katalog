@@ -4,8 +4,8 @@ package jp.co.cyberagent.katalog.ext
     "The package name has changed.",
     ReplaceWith(
         "ExtensionBuilder",
-        "com.moriatsushi.katalog.ext.ExtensionBuilder"
-    )
+        "com.moriatsushi.katalog.ext.ExtensionBuilder",
+    ),
 )
 @ExperimentalKatalogExtApi
 public typealias ExtensionBuilder = com.moriatsushi.katalog.ext.ExtensionBuilder

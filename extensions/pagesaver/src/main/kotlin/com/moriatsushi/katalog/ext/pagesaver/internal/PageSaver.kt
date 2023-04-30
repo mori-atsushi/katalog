@@ -18,11 +18,11 @@ import kotlinx.coroutines.flow.onEach
 internal fun PageSaver(
     navState: ExtNavState,
     pageStore: PageStore = rememberPageStore(),
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     val state = rememberPageSagerState(
         navState = navState,
-        pageStore = pageStore
+        pageStore = pageStore,
     )
 
     if (state.isInitialized) {
@@ -32,7 +32,7 @@ internal fun PageSaver(
 
 @Immutable
 private data class PageSagerState(
-    val isInitialized: Boolean
+    val isInitialized: Boolean,
 )
 
 @ExperimentalKatalogExtApi

@@ -83,11 +83,11 @@ internal class ExtNavStateTest {
     }
 
     private fun setupSimple(
-        extensions: List<KatalogExt> = listOf()
+        extensions: List<KatalogExt> = listOf(),
     ) {
         val viewModel = dummyKatalogViewModel(
             title = "Title",
-            extensions = extensions
+            extensions = extensions,
         ) {
             group("Group") {
                 compose("Item") {
@@ -98,7 +98,7 @@ internal class ExtNavStateTest {
         composeTest.setContent {
             App(
                 window = composeTest.activity.window,
-                viewModel = viewModel
+                viewModel = viewModel,
             )
         }
     }

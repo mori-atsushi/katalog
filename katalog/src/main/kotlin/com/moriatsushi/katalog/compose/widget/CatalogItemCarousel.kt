@@ -46,21 +46,21 @@ internal fun CatalogItemCarousel(
     extensions: Extensions,
     extNavState: ExtNavState,
     onClick: (CatalogItem) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     if (list.isEmpty()) {
         Empty()
         return
     }
     BoxWithConstraints(
-        modifier = modifier
+        modifier = modifier,
     ) {
         val layoutWidth = maxWidth - defaultPadding * 2
         val contentNum = max(floor(layoutWidth / cellMinWidth), 2F) + 0.05F
         val spacingNum = (ceil(contentNum).toInt() - 1)
         val cellWidth = (layoutWidth - spacing * spacingNum) / contentNum
         LazyRow(
-            contentPadding = PaddingValues(horizontal = defaultPadding)
+            contentPadding = PaddingValues(horizontal = defaultPadding),
         ) {
             itemsIndexed(list) { index, it ->
                 val isLast = list.lastIndex == index
@@ -72,7 +72,7 @@ internal fun CatalogItemCarousel(
                     item = it,
                     onClick = { onClick(it) },
                     extensions = extensions,
-                    extNavState = extNavState
+                    extNavState = extNavState,
                 )
             }
         }
@@ -86,12 +86,12 @@ private fun Cell(
     extNavState: ExtNavState,
     item: CatalogItem,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier
             .clip(RoundedCornerShape(defaultCornerRadius))
-            .clickable(onClick = onClick)
+            .clickable(onClick = onClick),
     ) {
         Box(
             Modifier
@@ -104,7 +104,7 @@ private fun Cell(
                     ComponentCell(
                         extensions = extensions,
                         extNavState = extNavState,
-                        component = item
+                        component = item,
                     )
                 }
                 is CatalogItem.Group -> {
@@ -119,7 +119,7 @@ private fun Cell(
             fontSize = 12.sp,
             maxLines = 2,
             overflow = TextOverflow.Ellipsis,
-            color = MaterialTheme.colors.onBackground
+            color = MaterialTheme.colors.onBackground,
         )
     }
 }
@@ -127,18 +127,18 @@ private fun Cell(
 @Composable
 private fun GroupCell() {
     CatalogItemWrapper(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize(),
     ) {
         BoxWithConstraints(
             modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
+            contentAlignment = Alignment.Center,
         ) {
             val size = (maxWidth.value / 2.2).dp
             Icon(
                 modifier = Modifier.size(size),
                 imageVector = Icons.Filled.Folder,
                 tint = MaterialTheme.colors.onBackground.copy(alpha = 0.7F),
-                contentDescription = null
+                contentDescription = null,
             )
         }
     }
@@ -149,16 +149,16 @@ private fun GroupCell() {
 private fun ComponentCell(
     extensions: Extensions,
     extNavState: ExtNavState,
-    component: CatalogItem.Component
+    component: CatalogItem.Component,
 ) {
     CatalogItemWrapper(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize(),
     ) {
         Preview(
             scale = 0.5F,
             definition = component.definition,
             extensions = extensions,
-            extNavState = extNavState
+            extNavState = extNavState,
         )
     }
 }

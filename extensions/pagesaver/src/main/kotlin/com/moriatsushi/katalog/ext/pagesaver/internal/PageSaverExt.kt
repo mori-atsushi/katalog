@@ -9,7 +9,7 @@ internal fun createPageSaverExt(): KatalogExt {
     builder.setRootWrapper { content ->
         PageSaver(
             navState = navState,
-            content = content
+            content = content,
         )
     }
     return builder.build()

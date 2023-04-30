@@ -7,7 +7,7 @@ import androidx.compose.runtime.mutableStateListOf
 
 @Stable
 internal class NavController<T : NavDestination>(
-    startDestination: T
+    startDestination: T,
 ) {
     private val _backStack = mutableStateListOf(NavState.of(startDestination, 0))
     val backStack: List<NavState<T>> = _backStack

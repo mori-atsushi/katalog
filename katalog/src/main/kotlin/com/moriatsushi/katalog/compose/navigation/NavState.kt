@@ -12,13 +12,13 @@ internal data class NavState<T>(
     companion object {
         fun <T> of(
             destination: T,
-            index: Int
+            index: Int,
         ): NavState<T> {
             val uuid = UUIDWrapper.getString()
             return NavState(
                 destination,
                 index,
-                uuid
+                uuid,
             )
         }
     }

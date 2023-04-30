@@ -10,18 +10,18 @@ private const val DEFAULT_TITLE = "Katalog"
     "The package name has changed.",
     ReplaceWith(
         "registerKatalog(title, extensions, groupDefinition)",
-        "com.moriatsushi.katalog.registerKatalog"
-    )
+        "com.moriatsushi.katalog.registerKatalog",
+    ),
 )
 public fun registerKatalog(
     title: String = DEFAULT_TITLE,
     extensions: List<KatalogExt> = emptyList(),
-    groupDefinition: GroupDefinition
+    groupDefinition: GroupDefinition,
 ) {
     com.moriatsushi.katalog.registerKatalog(
         title = title,
         extensions = extensions,
-        groupDefinition = groupDefinition
+        groupDefinition = groupDefinition,
     )
 }
 
@@ -29,8 +29,8 @@ public fun registerKatalog(
     "The package name has changed.",
     ReplaceWith(
         "group(name, definition)",
-        "com.moriatsushi.katalog.group"
-    )
+        "com.moriatsushi.katalog.group",
+    ),
 )
 public fun group(name: String, definition: GroupDefinition): Group {
     return com.moriatsushi.katalog.group(

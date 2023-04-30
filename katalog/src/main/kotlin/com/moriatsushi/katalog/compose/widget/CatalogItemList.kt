@@ -28,7 +28,7 @@ internal fun CatalogItemList(
     extensions: Extensions,
     extNavState: ExtNavState,
     onClick: (item: CatalogItem) -> Unit,
-    lazyListState: LazyListState = rememberLazyListState()
+    lazyListState: LazyListState = rememberLazyListState(),
 ) {
     if (list.isEmpty()) {
         Empty()
@@ -36,14 +36,14 @@ internal fun CatalogItemList(
     }
 
     LazyColumn(
-        state = lazyListState
+        state = lazyListState,
     ) {
         items(list) {
             CatalogItemRow(
                 item = it,
                 extensions = extensions,
                 extNavState = extNavState,
-                onClick = onClick
+                onClick = onClick,
             )
         }
         item {
@@ -58,7 +58,7 @@ private fun LastItem() {
         modifier = Modifier
             .fillMaxWidth()
             .padding(top = 16.dp, bottom = 32.dp),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         Icon(
             modifier = Modifier.size(5.dp),

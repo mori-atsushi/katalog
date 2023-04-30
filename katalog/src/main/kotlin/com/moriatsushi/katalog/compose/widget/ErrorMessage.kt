@@ -31,7 +31,7 @@ internal fun ErrorMessage(text: String) {
             .fillMaxSize()
             .padding(horizontal = defaultPadding, vertical = 24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
     ) {
         Icon(
             imageVector = Icons.Filled.Error,
@@ -47,7 +47,7 @@ internal fun ErrorMessage(text: String) {
                 .padding(bottom = 32.dp),
             textAlign = TextAlign.Center,
             color = MaterialTheme.colors.onBackground.copy(alpha = 0.4F),
-            fontSize = 16.sp
+            fontSize = 16.sp,
         )
         Button(onClick = {
             openBrowser(context, Urls.documents)
