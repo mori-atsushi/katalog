@@ -8,14 +8,14 @@ import com.moriatsushi.katalog.ext.theme.ThemeDefinition
 
 @OptIn(ExperimentalKatalogExtApi::class)
 internal fun createThemeExt(
-    theme: ThemeDefinition
+    theme: ThemeDefinition,
 ): KatalogExt {
     val builder = KatalogExt.Builder("Theme")
     builder.setComponentWrapper { content ->
         theme {
             Surface(
                 color = MaterialTheme.colors.background,
-                content = content
+                content = content,
             )
         }
     }

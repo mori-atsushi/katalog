@@ -36,15 +36,15 @@ fun SampleSnackbar() {
                     scope.launch {
                         scaffoldState.snackbarHostState.showSnackbar("Snackbar # ${++clickCount}")
                     }
-                }
+                },
             )
         },
         content = { innerPadding ->
             Text(
                 text = "Body content",
-                modifier = Modifier.padding(innerPadding).fillMaxSize().wrapContentSize()
+                modifier = Modifier.padding(innerPadding).fillMaxSize().wrapContentSize(),
             )
-        }
+        },
     )
 }
 
@@ -60,7 +60,7 @@ fun SampleSnackbarWithSnackbarHost() {
                 // custom snackbar with the custom border
                 Snackbar(
                     modifier = Modifier.border(2.dp, MaterialTheme.colors.secondary),
-                    snackbarData = data
+                    snackbarData = data,
                 )
             }
         },
@@ -72,14 +72,14 @@ fun SampleSnackbarWithSnackbarHost() {
                     scope.launch {
                         scaffoldState.snackbarHostState.showSnackbar("Snackbar # ${++clickCount}")
                     }
-                }
+                },
             )
         },
         content = { innerPadding ->
             Text(
                 text = "Custom Snackbar Demo",
-                modifier = Modifier.padding(innerPadding).fillMaxSize().wrapContentSize()
+                modifier = Modifier.padding(innerPadding).fillMaxSize().wrapContentSize(),
             )
-        }
+        },
     )
 }

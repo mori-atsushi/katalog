@@ -23,14 +23,14 @@ fun SampleTabRow() {
                 Tab(
                     text = { Text(title) },
                     selected = state == index,
-                    onClick = { state = index }
+                    onClick = { state = index },
                 )
             }
         }
         Text(
             modifier = Modifier.align(Alignment.CenterHorizontally),
             text = "Text tab ${state + 1} selected",
-            style = MaterialTheme.typography.body1
+            style = MaterialTheme.typography.body1,
         )
     }
 }

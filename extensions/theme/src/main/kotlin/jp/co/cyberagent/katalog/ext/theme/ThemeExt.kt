@@ -6,7 +6,7 @@ import jp.co.cyberagent.katalog.ext.KatalogExt
     "The package name has changed.",
     ReplaceWith(
         "ThemeExt(theme)",
-        "com.moriatsushi.katalog.ext.theme.ThemeExt"
+        "com.moriatsushi.katalog.ext.theme.ThemeExt",
     ),
 )
 @Suppress("FunctionName")

@@ -9,7 +9,7 @@ import com.moriatsushi.katalog.dsl.ViewDefinition
 @Composable
 internal fun <T : View> ViewToCompose(
     layoutParams: ViewGroup.LayoutParams? = null,
-    definition: ViewDefinition<T>
+    definition: ViewDefinition<T>,
 ) {
     val scope = rememberViewDefinitionScope()
     AndroidView(
@@ -19,6 +19,6 @@ internal fun <T : View> ViewToCompose(
                 view.layoutParams = layoutParams
             }
             view
-        }
+        },
     )
 }

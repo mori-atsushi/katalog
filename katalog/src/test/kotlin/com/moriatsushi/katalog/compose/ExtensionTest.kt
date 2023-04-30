@@ -24,7 +24,7 @@ internal class ExtensionTest {
             .setRootWrapper { content ->
                 CompositionLocalProvider(
                     LocalString provides "Provided",
-                    content = content
+                    content = content,
                 )
             }
             .build()
@@ -38,7 +38,7 @@ internal class ExtensionTest {
             .setRootWrapper { content ->
                 CompositionLocalProvider(
                     LocalString provides "Extension1",
-                    content = content
+                    content = content,
                 )
             }
             .build()
@@ -46,12 +46,12 @@ internal class ExtensionTest {
             .setRootWrapper { content ->
                 CompositionLocalProvider(
                     LocalString provides "Extension2",
-                    content = content
+                    content = content,
                 )
             }
             .build()
         val actual = getCurrentLocalString(
-            listOf(extension1, extension2)
+            listOf(extension1, extension2),
         )
         assertThat(actual).isEqualTo("Extension2")
     }
@@ -62,13 +62,13 @@ internal class ExtensionTest {
             .setRootWrapper { content ->
                 CompositionLocalProvider(
                     LocalString provides "RootWrapper",
-                    content = content
+                    content = content,
                 )
             }
             .setComponentWrapper { content ->
                 CompositionLocalProvider(
                     LocalString provides "ComponentWrapper",
-                    content = content
+                    content = content,
                 )
             }
             .build()
@@ -85,7 +85,7 @@ internal class ExtensionTest {
     private fun getCurrentLocalString(extensions: List<KatalogExt>): String? {
         var actual: String? = null
         val viewModel = dummyKatalogViewModel(
-            extensions = extensions
+            extensions = extensions,
         ) {
             compose("Text") {
                 actual = LocalString.current
@@ -94,7 +94,7 @@ internal class ExtensionTest {
         composeTest.setContent {
             App(
                 window = composeTest.activity.window,
-                viewModel = viewModel
+                viewModel = viewModel,
             )
         }
         return actual

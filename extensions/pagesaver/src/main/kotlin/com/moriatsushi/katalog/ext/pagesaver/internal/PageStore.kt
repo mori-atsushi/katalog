@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 
 internal class PageStore(
-    private val localStorage: LocalStorage
+    private val localStorage: LocalStorage,
 ) {
     companion object {
         private const val BACK_STACK_KEY = "back_stack"
@@ -32,7 +32,7 @@ internal class PageStore(
 
 @Composable
 internal fun rememberPageStore(
-    localStorage: LocalStorage = rememberLocalStorage()
+    localStorage: LocalStorage = rememberLocalStorage(),
 ): PageStore {
     return remember(localStorage) {
         PageStore(localStorage)

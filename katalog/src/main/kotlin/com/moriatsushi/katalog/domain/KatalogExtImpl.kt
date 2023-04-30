@@ -9,5 +9,5 @@ import com.moriatsushi.katalog.ext.KatalogExt
 internal class KatalogExtImpl(
     override val name: String,
     override val componentWrapper: ExtComponentWrapper?,
-    override val rootWrapper: ExtRootWrapper?
+    override val rootWrapper: ExtRootWrapper?,
 ) : KatalogExt

@@ -180,7 +180,7 @@ internal class KatalogTest {
         }
         val actual = target.findItemById(
             "/Group1/Group2/Item(2)",
-            ignoreCount = true
+            ignoreCount = true,
         )
         assertThat(actual?.id).isEqualTo("/Group1/Group2/Item(2)")
     }

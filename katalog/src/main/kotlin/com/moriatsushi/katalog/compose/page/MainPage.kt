@@ -17,11 +17,11 @@ internal fun MainPage(
     navController: NavController<MainDestination>,
     extNavState: ExtNavState,
     onClickItem: (item: CatalogItem) -> Unit,
-    onClickBack: () -> Unit
+    onClickBack: () -> Unit,
 ) {
     NavRoot(
         navController = navController,
-        transitionSpec = NavAnimation.createUpSpec()
+        transitionSpec = NavAnimation.createUpSpec(),
     ) { state ->
         when (state.destination) {
             is MainDestination.Discovery -> {
@@ -31,7 +31,7 @@ internal fun MainPage(
                     extNavState = extNavState,
                     onClickItem = onClickItem,
                     isTopPage = navController.isTop,
-                    onClickBack = onClickBack
+                    onClickBack = onClickBack,
                 )
             }
             is MainDestination.Preview -> {
@@ -39,7 +39,7 @@ internal fun MainPage(
                     component = state.destination.component,
                     extensions = katalog.extensions,
                     extNavState = extNavState,
-                    onClickClose = onClickBack
+                    onClickClose = onClickBack,
                 )
             }
         }

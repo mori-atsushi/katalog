@@ -21,7 +21,7 @@ internal fun TopPage(
     katalog: Katalog,
     extNavState: ExtNavState,
     onChangeIsTop: (isTop: Boolean) -> Unit = {},
-    onClickItem: (item: CatalogItem) -> Unit
+    onClickItem: (item: CatalogItem) -> Unit,
 ) {
     val lazyListState = rememberLazyListState()
     val isTop by lazyListState.rememberIsTop()
@@ -30,14 +30,14 @@ internal fun TopPage(
     }
     Surface(
         modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colors.background
+        color = MaterialTheme.colors.background,
     ) {
         CatalogItemList(
             list = katalog.items,
             extensions = katalog.extensions,
             extNavState = extNavState,
             onClick = onClickItem,
-            lazyListState = lazyListState
+            lazyListState = lazyListState,
         )
     }
 }

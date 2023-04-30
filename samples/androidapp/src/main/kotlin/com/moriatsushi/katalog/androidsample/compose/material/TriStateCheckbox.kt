@@ -22,9 +22,13 @@ fun SampleTriStateCheckbox() {
 
         // TriStateCheckbox state reflects state of dependent checkboxes
         val parentState = remember(state, state2) {
-            if (state && state2) ToggleableState.On
-            else if (!state && !state2) ToggleableState.Off
-            else ToggleableState.Indeterminate
+            if (state && state2) {
+                ToggleableState.On
+            } else if (!state && !state2) {
+                ToggleableState.Off
+            } else {
+                ToggleableState.Indeterminate
+            }
         }
         // click on TriStateCheckbox can set state for dependent checkboxes
         val onParentClick = {
@@ -37,8 +41,8 @@ fun SampleTriStateCheckbox() {
             state = parentState,
             onClick = onParentClick,
             colors = CheckboxDefaults.colors(
-                checkedColor = MaterialTheme.colors.primary
-            )
+                checkedColor = MaterialTheme.colors.primary,
+            ),
         )
         Column(Modifier.padding(10.dp, 0.dp, 0.dp, 0.dp)) {
             Checkbox(state, onStateChange)

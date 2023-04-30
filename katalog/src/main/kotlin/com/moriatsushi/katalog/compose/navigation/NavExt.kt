@@ -6,14 +6,14 @@ import com.moriatsushi.katalog.domain.Katalog
 
 internal fun createMainNavController(): NavController<MainDestination> {
     val initialDestination = MainDestination.Discovery(
-        childNavController = NavController(DiscoveryDestination.Top)
+        childNavController = NavController(DiscoveryDestination.Top),
     )
     return NavController(initialDestination)
 }
 
 internal fun NavController<MainDestination>.navigateTo(
     katalog: Katalog,
-    id: String
+    id: String,
 ): Boolean {
     if (id == CatalogItemIdentifier.rootId) {
         navigateToTop()
@@ -32,7 +32,7 @@ internal fun NavController<MainDestination>.navigateTo(item: CatalogItem) {
         }
         is CatalogItem.Component -> {
             val nextDestination = MainDestination.Preview(
-                component = item
+                component = item,
             )
             push(nextDestination)
         }
@@ -44,14 +44,14 @@ private fun NavController<MainDestination>.navigateToTop() {
 }
 
 private fun NavController<MainDestination>.navigateTo(
-    nextChildDestination: DiscoveryDestination
+    nextChildDestination: DiscoveryDestination,
 ) {
     val currentDestination = current.destination
     if (currentDestination is MainDestination.Discovery) {
         currentDestination.childNavController.push(nextChildDestination)
     } else {
         val nextDestination = MainDestination.Discovery(
-            childNavController = NavController(nextChildDestination)
+            childNavController = NavController(nextChildDestination),
         )
         push(nextDestination)
     }
@@ -59,7 +59,7 @@ private fun NavController<MainDestination>.navigateTo(
 
 internal fun NavController<MainDestination>.restore(
     katalog: Katalog,
-    backStack: List<String>
+    backStack: List<String>,
 ): Boolean {
     val destinations = backStack.fold(listOf<MainDestination>()) { acc, it ->
         if (it == CatalogItemIdentifier.rootId) {
@@ -76,7 +76,7 @@ internal fun NavController<MainDestination>.restore(
 
 private fun createDestinations(
     current: List<MainDestination>,
-    item: CatalogItem
+    item: CatalogItem,
 ): List<MainDestination> {
     return when (item) {
         is CatalogItem.Group -> {
@@ -85,7 +85,7 @@ private fun createDestinations(
         }
         is CatalogItem.Component -> {
             val nextDestination = MainDestination.Preview(
-                component = item
+                component = item,
             )
             current + nextDestination
         }
@@ -94,7 +94,7 @@ private fun createDestinations(
 
 private fun createDestinations(
     current: List<MainDestination>,
-    nextChildDestination: DiscoveryDestination
+    nextChildDestination: DiscoveryDestination,
 ): List<MainDestination> {
     val currentDestination = current.lastOrNull()
     return if (currentDestination is MainDestination.Discovery) {
@@ -102,7 +102,7 @@ private fun createDestinations(
         current
     } else {
         val nextDestination = MainDestination.Discovery(
-            childNavController = NavController(nextChildDestination)
+            childNavController = NavController(nextChildDestination),
         )
         current + nextDestination
     }

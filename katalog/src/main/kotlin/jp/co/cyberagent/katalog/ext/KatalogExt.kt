@@ -4,7 +4,7 @@ package jp.co.cyberagent.katalog.ext
     "The package name has changed.",
     ReplaceWith(
         "KatalogExt",
-        "com.moriatsushi.katalog.ext.KatalogExt"
-    )
+        "com.moriatsushi.katalog.ext.KatalogExt",
+    ),
 )
 public typealias KatalogExt = com.moriatsushi.katalog.ext.KatalogExt

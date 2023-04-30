@@ -6,7 +6,7 @@ import jp.co.cyberagent.katalog.ext.KatalogExt
     "The package name has changed.",
     ReplaceWith(
         "PageSaverExt()",
-        "com.moriatsushi.katalog.ext.pagesaver.PageSaverExt"
+        "com.moriatsushi.katalog.ext.pagesaver.PageSaverExt",
     ),
 )
 @Suppress("FunctionName")

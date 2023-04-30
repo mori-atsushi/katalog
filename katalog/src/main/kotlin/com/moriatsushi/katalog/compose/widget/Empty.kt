@@ -23,7 +23,7 @@ internal fun Empty() {
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = defaultPadding, vertical = 24.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Icon(
             imageVector = Icons.Filled.Construction,
@@ -37,7 +37,7 @@ internal fun Empty() {
             text = "No Component Yet",
             textAlign = TextAlign.Center,
             color = MaterialTheme.colors.onBackground.copy(alpha = 0.4F),
-            fontSize = 16.sp
+            fontSize = 16.sp,
         )
     }
 }

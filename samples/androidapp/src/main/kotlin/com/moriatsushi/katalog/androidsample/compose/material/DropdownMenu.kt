@@ -29,7 +29,7 @@ fun SampleDropdownMenu() {
         }
         DropdownMenu(
             expanded = expanded,
-            onDismissRequest = { expanded = false }
+            onDismissRequest = { expanded = false },
         ) {
             DropdownMenuItem(onClick = { /* Handle refresh! */ }) {
                 Text("Refresh")

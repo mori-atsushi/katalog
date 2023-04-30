@@ -10,7 +10,7 @@ private const val DEFAULT_TITLE = "Katalog"
 public fun registerKatalog(
     title: String = DEFAULT_TITLE,
     extensions: List<KatalogExt> = emptyList(),
-    groupDefinition: GroupDefinition
+    groupDefinition: GroupDefinition,
 ) {
     KatalogContainer.instance.register(title, extensions, groupDefinition)
 }

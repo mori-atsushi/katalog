@@ -6,7 +6,7 @@ import androidx.compose.runtime.Immutable
 internal class CatalogItemIdentifier(
     val parents: List<CatalogItemIdentifier>,
     val name: String,
-    val count: Int
+    val count: Int,
 ) {
     companion object {
         const val rootId = "/"
@@ -14,14 +14,14 @@ internal class CatalogItemIdentifier(
         fun of(
             parent: CatalogItemIdentifier?,
             name: String,
-            count: Int
+            count: Int,
         ): CatalogItemIdentifier {
             return CatalogItemIdentifier(
                 parents = parent?.let {
                     it.parents + it
                 }.orEmpty(),
                 name = name,
-                count = count
+                count = count,
             )
         }
 
@@ -41,7 +41,7 @@ internal class CatalogItemIdentifier(
                 acc + CatalogItemIdentifier(
                     parents = acc,
                     name = name,
-                    count = count
+                    count = count,
                 )
             }
             return list.lastOrNull()
@@ -51,7 +51,7 @@ internal class CatalogItemIdentifier(
             "%" to "%25",
             "(" to "%28",
             ")" to "%29",
-            "/" to "%2F"
+            "/" to "%2F",
         )
 
         private fun encode(value: String): String {

@@ -12,7 +12,7 @@ public inline fun <reified T : Fragment> GroupScope.fragment(
     name: String? = null,
     layoutParams: ViewGroup.LayoutParams = MATCH_WIDTH_MATCH_HEIGHT,
     noinline onCreateView: FragmentOnCreateListener<T> = {},
-    noinline definition: FragmentDefinition<T>
+    noinline definition: FragmentDefinition<T>,
 ) {
     fragment(T::class, name, layoutParams, onCreateView, definition)
 }
@@ -23,14 +23,14 @@ internal fun <T : Fragment> GroupScope.fragment(
     name: String? = null,
     layoutParams: ViewGroup.LayoutParams = MATCH_WIDTH_MATCH_HEIGHT,
     onCreateView: FragmentOnCreateListener<T>,
-    definition: FragmentDefinition<T>
+    definition: FragmentDefinition<T>,
 ) {
     val displayName = name ?: clazz.simpleName ?: ""
     compose(displayName) {
         FragmentToCompose(
             layoutParams = layoutParams,
             onCreateView = onCreateView,
-            definition = definition
+            definition = definition,
         )
     }
 }

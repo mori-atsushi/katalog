@@ -15,6 +15,6 @@ fun SampleOutlinedTextField() {
     OutlinedTextField(
         value = text,
         onValueChange = { text = it },
-        label = { Text("Label") }
+        label = { Text("Label") },
     )
 }

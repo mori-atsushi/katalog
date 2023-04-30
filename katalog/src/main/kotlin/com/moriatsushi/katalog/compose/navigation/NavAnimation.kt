@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.IntOffset
 internal object NavAnimation {
     private val slideAnimationSpec = spring(
         stiffness = Spring.StiffnessMedium,
-        visibilityThreshold = IntOffset.VisibilityThreshold
+        visibilityThreshold = IntOffset.VisibilityThreshold,
     )
 
     fun <T> createSlideSpec(): AnimatedContentTransitionScope<NavState<T>>.() -> ContentTransform =
@@ -30,25 +30,25 @@ internal object NavAnimation {
                 ContentTransform(
                     targetContentEnter = slideInHorizontally(
                         initialOffsetX = { it },
-                        animationSpec = slideAnimationSpec
+                        animationSpec = slideAnimationSpec,
                     ),
                     initialContentExit = slideOutHorizontally(
                         targetOffsetX = { -it / 5 },
-                        animationSpec = slideAnimationSpec
+                        animationSpec = slideAnimationSpec,
                     ),
-                    targetContentZIndex = targetState.index.toFloat()
+                    targetContentZIndex = targetState.index.toFloat(),
                 )
             } else {
                 ContentTransform(
                     targetContentEnter = slideInHorizontally(
                         initialOffsetX = { -it / 5 },
-                        animationSpec = slideAnimationSpec
+                        animationSpec = slideAnimationSpec,
                     ),
                     initialContentExit = slideOutHorizontally(
                         targetOffsetX = { it },
-                        animationSpec = slideAnimationSpec
+                        animationSpec = slideAnimationSpec,
                     ),
-                    targetContentZIndex = targetState.index.toFloat()
+                    targetContentZIndex = targetState.index.toFloat(),
                 )
             }
         }
@@ -62,25 +62,25 @@ internal object NavAnimation {
                 ContentTransform(
                     targetContentEnter = slideInVertically(
                         initialOffsetY = { it / 3 },
-                        animationSpec = tween(upExpandingMills, easing = LinearOutSlowInEasing)
+                        animationSpec = tween(upExpandingMills, easing = LinearOutSlowInEasing),
                     ) + fadeIn(
-                        animationSpec = tween(upExpandingMills, easing = LinearOutSlowInEasing)
+                        animationSpec = tween(upExpandingMills, easing = LinearOutSlowInEasing),
                     ),
                     initialContentExit = fadeOut(
-                        animationSpec = snap(delayMillis = upExpandingMills)
+                        animationSpec = snap(delayMillis = upExpandingMills),
                     ),
-                    targetContentZIndex = targetState.index.toFloat()
+                    targetContentZIndex = targetState.index.toFloat(),
                 )
             } else {
                 ContentTransform(
                     targetContentEnter = EnterTransition.None,
                     initialContentExit = slideOutVertically(
                         targetOffsetY = { it / 3 },
-                        animationSpec = tween(upCollapsingMills, easing = FastOutLinearInEasing)
+                        animationSpec = tween(upCollapsingMills, easing = FastOutLinearInEasing),
                     ) + fadeOut(
-                        animationSpec = tween(upCollapsingMills, easing = FastOutLinearInEasing)
+                        animationSpec = tween(upCollapsingMills, easing = FastOutLinearInEasing),
                     ),
-                    targetContentZIndex = targetState.index.toFloat()
+                    targetContentZIndex = targetState.index.toFloat(),
                 )
             }
         }

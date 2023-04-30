@@ -20,7 +20,7 @@ internal class KatalogContainerTest {
     fun create() {
         target.register(
             title = "title",
-            extensions = emptyList()
+            extensions = emptyList(),
         ) {
             group("group1") {
                 group("group1-1") {
@@ -72,7 +72,7 @@ internal class KatalogContainerTest {
         }
         target.register(
             title = "title",
-            extensions = emptyList()
+            extensions = emptyList(),
         ) {
             group(group1, group2)
         }
@@ -95,7 +95,7 @@ internal class KatalogContainerTest {
     fun create_empty() {
         target.register(
             title = "title",
-            extensions = emptyList()
+            extensions = emptyList(),
         ) {
             // no op
         }
@@ -112,13 +112,13 @@ internal class KatalogContainerTest {
     fun create_duplicated() {
         target.register(
             title = "title1",
-            extensions = emptyList()
+            extensions = emptyList(),
         ) {
             // no op
         }
         target.register(
             title = "title2",
-            extensions = emptyList()
+            extensions = emptyList(),
         ) {
             // no op
         }

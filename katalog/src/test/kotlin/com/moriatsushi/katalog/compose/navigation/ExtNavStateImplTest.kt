@@ -27,7 +27,7 @@ internal class ExtNavStateImplTest {
         val navController = createMainNavController()
         val target = ExtNavStateImpl(
             navController = navController,
-            katalog = katalog
+            katalog = katalog,
         )
         assertThat(target.backStack).isEqualTo(listOf("/"))
         assertThat(target.current).isEqualTo("/")
@@ -55,7 +55,7 @@ internal class ExtNavStateImplTest {
         val navController = createMainNavController()
         val target = ExtNavStateImpl(
             navController = navController,
-            katalog = katalog
+            katalog = katalog,
         )
         val actual = target.navigateTo("/Group/Item")
         assertThat(actual).isTrue()
@@ -74,7 +74,7 @@ internal class ExtNavStateImplTest {
         val navController = createMainNavController()
         val target = ExtNavStateImpl(
             navController = navController,
-            katalog = katalog
+            katalog = katalog,
         )
         val actual = target.navigateTo("/invalid")
         assertThat(actual).isFalse()
@@ -93,7 +93,7 @@ internal class ExtNavStateImplTest {
         val navController = createMainNavController()
         val target = ExtNavStateImpl(
             navController = navController,
-            katalog = katalog
+            katalog = katalog,
         )
         val actual = target.navigateTo("/")
         assertThat(actual).isTrue()
@@ -112,7 +112,7 @@ internal class ExtNavStateImplTest {
         val navController = createMainNavController()
         val target = ExtNavStateImpl(
             navController = navController,
-            katalog = katalog
+            katalog = katalog,
         )
         val actual = target.restore(listOf("/", "/Group", "/Group/Item"))
         assertThat(actual).isTrue()
@@ -133,7 +133,7 @@ internal class ExtNavStateImplTest {
         val navController = createMainNavController()
         val target = ExtNavStateImpl(
             navController = navController,
-            katalog = katalog
+            katalog = katalog,
         )
         val actual = target.restore(listOf("/", "/Group1", "/Group1/Group2"))
         assertThat(actual).isTrue()
@@ -152,7 +152,7 @@ internal class ExtNavStateImplTest {
         val navController = createMainNavController()
         val target = ExtNavStateImpl(
             navController = navController,
-            katalog = katalog
+            katalog = katalog,
         )
         val actual = target.restore(listOf("/", "/invalid", "/Group/Item"))
         assertThat(actual).isFalse()

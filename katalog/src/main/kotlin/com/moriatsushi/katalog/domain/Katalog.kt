@@ -6,7 +6,7 @@ import androidx.compose.runtime.Stable
 internal data class Katalog(
     val title: String,
     val items: List<CatalogItem>,
-    val extensions: Extensions
+    val extensions: Extensions,
 ) {
     fun findItemById(id: String, ignoreCount: Boolean = false): CatalogItem? {
         val identifier = CatalogItemIdentifier.ofOrNull(id) ?: return null
@@ -24,7 +24,7 @@ internal data class Katalog(
     private fun findItem(
         items: List<CatalogItem>,
         identifier: CatalogItemIdentifier,
-        ignoreCount: Boolean
+        ignoreCount: Boolean,
     ): CatalogItem? {
         val result = items.find {
             it.identifier.name == identifier.name && it.identifier.count == identifier.count

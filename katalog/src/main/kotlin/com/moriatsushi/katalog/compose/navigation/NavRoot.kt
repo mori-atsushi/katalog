@@ -16,19 +16,19 @@ internal fun <T : NavDestination> NavRoot(
     navController: NavController<T>,
     transitionSpec: AnimatedContentTransitionScope<NavState<T>>.() -> ContentTransform =
         NavAnimation.createSlideSpec(),
-    component: @Composable (NavState<T>) -> Unit
+    component: @Composable (NavState<T>) -> Unit,
 ) {
     val saveableStateHolder = rememberSaveableStateHolder()
 
     AnimatedPage(
         targetState = navController.current,
-        transitionSpec = transitionSpec
+        transitionSpec = transitionSpec,
     ) {
         NavChild(
             navController = navController,
             state = it,
             saveableStateHolder = saveableStateHolder,
-            component = component
+            component = component,
         )
     }
 }
@@ -38,7 +38,7 @@ private fun <T : NavDestination> NavChild(
     navController: NavController<T>,
     state: NavState<T>,
     saveableStateHolder: SaveableStateHolder,
-    component: @Composable (NavState<T>) -> Unit
+    component: @Composable (NavState<T>) -> Unit,
 ) {
     DisposableEffect(state) {
         onDispose {
@@ -56,16 +56,16 @@ private fun <T : NavDestination> NavChild(
 private fun <T> AnimatedPage(
     targetState: NavState<T>,
     transitionSpec: AnimatedContentTransitionScope<NavState<T>>.() -> ContentTransform,
-    content: @Composable (state: NavState<T>) -> Unit
+    content: @Composable (state: NavState<T>) -> Unit,
 ) {
     AnimatedContent(
         targetState = targetState,
-        transitionSpec = transitionSpec
+        transitionSpec = transitionSpec,
     ) {
         content(it)
         ClickMask(
             modifier = Modifier.fillMaxSize(),
-            enabled = it != targetState
+            enabled = it != targetState,
         )
     }
 }

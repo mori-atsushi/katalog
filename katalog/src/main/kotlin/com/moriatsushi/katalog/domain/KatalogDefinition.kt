@@ -6,7 +6,7 @@ import com.moriatsushi.katalog.ext.KatalogExt
 internal data class KatalogDefinition(
     val title: String,
     val extensions: List<KatalogExt>,
-    val groupDefinition: GroupDefinition
+    val groupDefinition: GroupDefinition,
 ) {
     fun build(): Katalog {
         val groupScope = GroupScopeImpl()
@@ -14,7 +14,7 @@ internal data class KatalogDefinition(
         return Katalog(
             title = title,
             items = groupScope.items,
-            extensions = Extensions(extensions)
+            extensions = Extensions(extensions),
         )
     }
 }

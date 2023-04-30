@@ -25,7 +25,7 @@ internal fun rememberLifecycleOwner(): LifecycleOwner {
 }
 
 private class ComposeLifecycleOwner(
-    private val hostLifecycleOwner: LifecycleOwner
+    private val hostLifecycleOwner: LifecycleOwner,
 ) : LifecycleOwner {
     private val registry = LifecycleRegistry(this)
     private var maxLifecycleState = Lifecycle.State.INITIALIZED

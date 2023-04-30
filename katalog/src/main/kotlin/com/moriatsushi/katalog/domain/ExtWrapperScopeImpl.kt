@@ -6,5 +6,5 @@ import com.moriatsushi.katalog.ext.ExtWrapperScope
 
 @OptIn(ExperimentalKatalogExtApi::class)
 internal class ExtWrapperScopeImpl(
-    override val navState: ExtNavState
+    override val navState: ExtNavState,
 ) : ExtWrapperScope

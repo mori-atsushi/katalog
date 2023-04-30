@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 @Composable
 fun SampleSurface() {
     Surface(
-        color = MaterialTheme.colors.background
+        color = MaterialTheme.colors.background,
     ) {
         Text("Text color is `onBackground`")
     }

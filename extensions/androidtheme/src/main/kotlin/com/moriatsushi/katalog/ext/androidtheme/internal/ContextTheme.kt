@@ -10,7 +10,7 @@ import androidx.compose.ui.platform.LocalContext
 @Composable
 internal fun ContextTheme(
     @StyleRes themeResId: Int,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     val originalContext = LocalContext.current
     val themedContext = remember(originalContext) {
@@ -20,6 +20,6 @@ internal fun ContextTheme(
     }
     CompositionLocalProvider(
         LocalContext provides themedContext,
-        content = content
+        content = content,
     )
 }

@@ -15,7 +15,7 @@ private const val ANIMATION_DURATION = 300
 internal fun <T> Dissolve(
     targetState: T,
     modifier: Modifier = Modifier,
-    content: @Composable (T) -> Unit
+    content: @Composable (T) -> Unit,
 ) {
     AnimatedContent(
         targetState = targetState,
@@ -23,13 +23,13 @@ internal fun <T> Dissolve(
         transitionSpec = {
             ContentTransform(
                 targetContentEnter = fadeIn(
-                    animationSpec = tween(ANIMATION_DURATION)
+                    animationSpec = tween(ANIMATION_DURATION),
                 ),
                 initialContentExit = fadeOut(
-                    animationSpec = snap(ANIMATION_DURATION)
-                )
+                    animationSpec = snap(ANIMATION_DURATION),
+                ),
             )
-        }
+        },
     ) {
         content(it)
     }

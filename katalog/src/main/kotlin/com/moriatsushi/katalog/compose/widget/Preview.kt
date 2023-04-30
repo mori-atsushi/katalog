@@ -26,22 +26,22 @@ internal fun Preview(
     modifier: Modifier = Modifier,
     scale: Float = 1.0F,
     clickable: Boolean = false,
-    definition: @Composable () -> Unit
+    definition: @Composable () -> Unit,
 ) {
     val componentWrappers = extensions.componentWrappers
     Surface(
         modifier = modifier,
-        color = MaterialTheme.colors.background
+        color = MaterialTheme.colors.background,
     ) {
         ExtensionsWrappers(
             extNavState = extNavState,
-            componentWrappers = componentWrappers
+            componentWrappers = componentWrappers,
         ) {
             Scaler(scale) {
                 definition()
                 ClickMask(
                     modifier = Modifier.fillMaxSize(),
-                    enabled = !clickable
+                    enabled = !clickable,
                 )
             }
         }
@@ -53,7 +53,7 @@ internal fun Preview(
 private fun ExtensionsWrappers(
     extNavState: ExtNavState,
     componentWrappers: List<ExtComponentWrapper>,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     if (componentWrappers.isEmpty()) {
         content()
@@ -61,11 +61,11 @@ private fun ExtensionsWrappers(
     }
     ExtensionsWrappers(
         extNavState = extNavState,
-        componentWrappers = componentWrappers.dropLast(1)
+        componentWrappers = componentWrappers.dropLast(1),
     ) {
         val target = componentWrappers.last()
         val scope = ExtWrapperScopeImpl(
-            navState = extNavState
+            navState = extNavState,
         )
         scope.target {
             content()
@@ -76,7 +76,7 @@ private fun ExtensionsWrappers(
 @Composable
 private fun Scaler(
     scale: Float = 1.0F,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     BoxWithConstraints {
         val size = 1.0F / scale
@@ -87,7 +87,7 @@ private fun Scaler(
                 .requiredWidth(width)
                 .requiredHeight(height)
                 .scale(scale),
-            contentAlignment = Alignment.Center
+            contentAlignment = Alignment.Center,
         ) {
             content()
         }

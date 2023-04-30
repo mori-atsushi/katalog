@@ -9,6 +9,6 @@ import androidx.compose.runtime.Composable
 fun SampleIcon() {
     Icon(
         imageVector = Icons.Default.Call,
-        contentDescription = "call"
+        contentDescription = "call",
     )
 }

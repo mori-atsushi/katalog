@@ -9,7 +9,7 @@ import com.moriatsushi.katalog.ext.KatalogExt
 @OptIn(ExperimentalKatalogExtApi::class)
 @Stable
 internal data class Extensions(
-    val list: List<KatalogExt>
+    val list: List<KatalogExt>,
 ) {
     val rootWrappers: List<ExtRootWrapper> =
         list.mapNotNull { it.rootWrapper }

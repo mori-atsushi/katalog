@@ -13,7 +13,7 @@ public inline fun <reified T : ViewBinding> GroupScope.binding(
     noinline factory: BindingFactoryDefinition<T>,
     name: String? = null,
     layoutParams: ViewGroup.LayoutParams = WRAP_WIDTH_WRAP_HEIGHT,
-    noinline update: BindingUpdateDefinition<T> = {}
+    noinline update: BindingUpdateDefinition<T> = {},
 ) {
     binding(T::class, factory, name, layoutParams, update)
 }
@@ -24,7 +24,7 @@ internal fun <T : ViewBinding> GroupScope.binding(
     factory: BindingFactoryDefinition<T>,
     name: String?,
     layoutParams: ViewGroup.LayoutParams = WRAP_WIDTH_WRAP_HEIGHT,
-    update: BindingUpdateDefinition<T> = {}
+    update: BindingUpdateDefinition<T> = {},
 ) {
     val displayName = name ?: clazz.simpleName ?: ""
     compose(displayName) {

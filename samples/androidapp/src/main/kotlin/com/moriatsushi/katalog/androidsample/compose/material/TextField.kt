@@ -35,7 +35,7 @@ fun SampleTextField() {
         value = text,
         onValueChange = { text = it },
         label = { Text("Label") },
-        singleLine = true
+        singleLine = true,
     )
 }
 
@@ -47,7 +47,7 @@ fun SampleTextFieldWithPlaceholder() {
         value = text,
         onValueChange = { text = it },
         label = { Text("Email") },
-        placeholder = { Text("example@gmail.com") }
+        placeholder = { Text("example@gmail.com") },
     )
 }
 
@@ -60,7 +60,7 @@ fun SampleTextFieldWithIcons() {
         onValueChange = { text = it },
         placeholder = { Text("placeholder") },
         leadingIcon = { Icon(Icons.Filled.Favorite, contentDescription = "Localized description") },
-        trailingIcon = { Icon(Icons.Filled.Info, contentDescription = "Localized description") }
+        trailingIcon = { Icon(Icons.Filled.Info, contentDescription = "Localized description") },
     )
 }
 
@@ -86,7 +86,7 @@ fun SampleTextFieldIsError() {
         modifier = Modifier.semantics {
             // Provide localized description of the error
             if (isError) error("Email format is invalid.")
-        }
+        },
     )
 }
 
@@ -98,13 +98,13 @@ fun SampleTextFieldWithMessage() {
         TextField(
             value = text,
             onValueChange = { text = it },
-            label = { Text("Label") }
+            label = { Text("Label") },
         )
         Text(
             text = "Helper message",
             color = MaterialTheme.colors.onSurface.copy(alpha = ContentAlpha.medium),
             style = MaterialTheme.typography.caption,
-            modifier = Modifier.padding(start = 16.dp)
+            modifier = Modifier.padding(start = 16.dp),
         )
     }
 }
@@ -128,6 +128,6 @@ fun SampleTextFieldForPassword() {
                 val description = if (passwordHidden) "Show password" else "Hide password"
                 Icon(imageVector = visibilityIcon, contentDescription = description)
             }
-        }
+        },
     )
 }

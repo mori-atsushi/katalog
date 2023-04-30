@@ -24,19 +24,19 @@ import com.moriatsushi.katalog.ext.ExtRootWrapper
 @Composable
 internal fun App(
     window: Window,
-    viewModel: KatalogViewModel = viewModel()
+    viewModel: KatalogViewModel = viewModel(),
 ) {
     val darkTheme = isSystemInDarkTheme()
 
     MaterialTheme(
-        colors = materialColors(darkTheme)
+        colors = materialColors(darkTheme),
     ) {
         AppWindow(
             window = window,
-            darkTheme = darkTheme
+            darkTheme = darkTheme,
         )
         MainContent(
-            viewModel = viewModel
+            viewModel = viewModel,
         )
     }
 }
@@ -44,7 +44,7 @@ internal fun App(
 @Composable
 private fun AppWindow(
     window: Window,
-    darkTheme: Boolean
+    darkTheme: Boolean,
 ) {
     val view = LocalView.current
     window.statusBarColor = MaterialTheme.colors.background.toArgb()
@@ -69,7 +69,7 @@ private fun MainContent(viewModel: KatalogViewModel) {
     val navController = viewModel.navController
     val extNavState = rememberExtNavState(
         navController = navController,
-        katalog = katalogValue
+        katalog = katalogValue,
     )
 
     BackHandler(!navController.isTop) {
@@ -78,7 +78,7 @@ private fun MainContent(viewModel: KatalogViewModel) {
 
     ExtRootWrappers(
         extNavState = extNavState,
-        rootWrappers = katalogValue.extensions.rootWrappers
+        rootWrappers = katalogValue.extensions.rootWrappers,
     ) {
         MainPage(
             katalog = katalogValue,
@@ -87,7 +87,7 @@ private fun MainContent(viewModel: KatalogViewModel) {
             onClickItem = viewModel::handleClick,
             onClickBack = {
                 onBackPressedDispatcherOwner?.onBackPressedDispatcher?.onBackPressed()
-            }
+            },
         )
     }
 }
@@ -97,7 +97,7 @@ private fun MainContent(viewModel: KatalogViewModel) {
 private fun ExtRootWrappers(
     extNavState: ExtNavState,
     rootWrappers: List<ExtRootWrapper>,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     if (rootWrappers.isEmpty()) {
         content()
@@ -105,11 +105,11 @@ private fun ExtRootWrappers(
     }
     ExtRootWrappers(
         extNavState = extNavState,
-        rootWrappers = rootWrappers.dropLast(1)
+        rootWrappers = rootWrappers.dropLast(1),
     ) {
         val target = rootWrappers.last()
         val scope = ExtWrapperScopeImpl(
-            navState = extNavState
+            navState = extNavState,
         )
         scope.target {
             content()
