@@ -31,7 +31,8 @@ android {
         )
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.Androidx.composeCompiler
+        kotlinCompilerExtensionVersion =
+            libs.versions.androidx.compose.compiler.get()
     }
     sourceSets {
         getByName("main").java.srcDir("src/main/kotlin")
@@ -46,23 +47,23 @@ dependencies {
 
     implementation(kotlin("stdlib"))
 
-    implementation(Deps.Androidx.Core.ktx)
-    implementation(Deps.Androidx.Activity.ktx)
-    implementation(Deps.Androidx.Fragment.ktx)
+    implementation(libs.androidx.core)
+    implementation(libs.androidx.activity)
+    implementation(libs.androidx.fragment)
 
-    implementation(Deps.Androidx.Compose.ui)
-    implementation(Deps.Androidx.Compose.uiTooling)
-    implementation(Deps.Androidx.Compose.foundation)
-    implementation(Deps.Androidx.Compose.material)
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.ui.tooling)
+    implementation(libs.androidx.compose.foundation)
+    implementation(libs.androidx.compose.material)
 
-    implementation(Deps.Androidx.Lifecycle.runtime)
-    implementation(Deps.Androidx.Lifecycle.compose)
+    implementation(libs.androidx.lifecycle.runtime)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
 
-    implementation(Deps.Androidx.annotation)
+    implementation(libs.androidx.annotation)
 
-    testImplementation(Deps.Androidx.Test.core)
-    testImplementation(Deps.Androidx.Test.runner)
-    testImplementation(Deps.Androidx.Test.rules)
-    testImplementation(Deps.Androidx.Test.junit)
-    testImplementation(Deps.Androidx.Test.truth)
+    testImplementation(libs.androidx.test.core)
+    testImplementation(libs.androidx.test.runner)
+    testImplementation(libs.androidx.test.rules)
+    testImplementation(libs.androidx.test.ext.junit)
+    testImplementation(libs.androidx.test.ext.truth)
 }

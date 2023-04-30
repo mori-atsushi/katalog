@@ -1,18 +1,9 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-    }
-    dependencies {
-        classpath("com.android.tools.build:gradle:8.0.0")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}")
-    }
-}
-
 plugins {
-    id("com.vanniktech.maven.publish") version "0.18.0"
-    kotlin("plugin.serialization") version Versions.kotlin
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.kotlin.android) apply false
+    alias(libs.plugins.publish)
+    alias(libs.plugins.kotlinx.serialization)
 }
 
 allprojects {
@@ -24,9 +15,4 @@ allprojects {
 
 subprojects {
     apply(from = "$rootDir/config/ktlint.gradle.kts")
-
-    repositories {
-        google()
-        mavenCentral()
-    }
 }

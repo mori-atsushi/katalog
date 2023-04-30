@@ -1,7 +1,7 @@
 plugins {
-    id("com.android.library")
-    id("kotlin-android")
-    id("com.vanniktech.maven.publish")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.publish)
 }
 
 android {
@@ -29,7 +29,8 @@ android {
         )
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.Androidx.composeCompiler
+        kotlinCompilerExtensionVersion =
+            libs.versions.androidx.compose.compiler.get()
     }
     sourceSets {
         getByName("main").java.srcDir("src/main/kotlin")
@@ -46,34 +47,34 @@ android {
 
 dependencies {
     implementation(kotlin("stdlib"))
-    implementation(Deps.KotlinX.Coroutines.android)
+    implementation(libs.kotlinx.coroutines.android)
 
-    implementation(Deps.Androidx.Core.ktx)
-    implementation(Deps.Androidx.Activity.ktx)
-    implementation(Deps.Androidx.Activity.compose)
+    implementation(libs.androidx.core)
+    implementation(libs.androidx.activity)
+    implementation(libs.androidx.activity.compose)
 
-    implementation(Deps.Androidx.Compose.ui)
-    implementation(Deps.Androidx.Compose.uiTooling)
-    implementation(Deps.Androidx.Compose.foundation)
-    implementation(Deps.Androidx.Compose.material)
-    implementation(Deps.Androidx.Compose.materialIconsCore)
-    implementation(Deps.Androidx.Compose.materialIconExtended)
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.ui.tooling)
+    implementation(libs.androidx.compose.foundation)
+    implementation(libs.androidx.compose.material)
+    implementation(libs.androidx.compose.material.icons.core)
+    implementation(libs.androidx.compose.material.icons.extended)
 
-    implementation(Deps.Androidx.Lifecycle.viewModel)
-    implementation(Deps.Androidx.Lifecycle.compose)
+    implementation(libs.androidx.lifecycle.viewmodel)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
 
-    implementation(Deps.Androidx.annotation)
+    implementation(libs.androidx.annotation)
 
-    implementation(Deps.material)
+    implementation(libs.material)
 
-    testImplementation(Deps.Androidx.Test.core)
-    testImplementation(Deps.Androidx.Test.runner)
-    testImplementation(Deps.Androidx.Test.rules)
-    testImplementation(Deps.Androidx.Test.junit)
-    testImplementation(Deps.Androidx.Test.truth)
+    testImplementation(libs.androidx.test.core)
+    testImplementation(libs.androidx.test.runner)
+    testImplementation(libs.androidx.test.rules)
+    testImplementation(libs.androidx.test.ext.junit)
+    testImplementation(libs.androidx.test.ext.truth)
 
-    testImplementation(Deps.KotlinX.Coroutines.test)
-    testImplementation(Deps.Androidx.Compose.uiTest)
-    testImplementation(Deps.Androidx.Compose.uiTestManifest)
-    testImplementation(Deps.robolectric)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.androidx.compose.ui.test)
+    testImplementation(libs.androidx.compose.ui.test.manifest)
+    testImplementation(libs.robolectric)
 }

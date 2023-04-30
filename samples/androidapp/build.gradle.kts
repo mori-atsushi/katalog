@@ -39,7 +39,8 @@ android {
         jvmTarget = "17"
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.Androidx.composeCompiler
+        kotlinCompilerExtensionVersion =
+            libs.versions.androidx.compose.compiler.get()
     }
     sourceSets {
         getByName("main").java.srcDir("src/main/kotlin")
@@ -57,18 +58,18 @@ dependencies {
     implementation(project(":extensions:pagesaver"))
 
     implementation(kotlin("stdlib"))
-    implementation(Deps.KotlinX.Coroutines.android)
+    implementation(libs.kotlinx.coroutines.android)
 
-    implementation(Deps.Androidx.Activity.ktx)
-    implementation(Deps.Androidx.Activity.compose)
-    implementation(Deps.Androidx.Fragment.ktx)
+    implementation(libs.androidx.activity)
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.fragment)
 
-    implementation(Deps.Androidx.Compose.ui)
-    implementation(Deps.Androidx.Compose.uiTooling)
-    implementation(Deps.Androidx.Compose.foundation)
-    implementation(Deps.Androidx.Compose.material)
-    implementation(Deps.Androidx.Compose.materialIconsCore)
-    implementation(Deps.Androidx.Compose.materialIconExtended)
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.ui.tooling)
+    implementation(libs.androidx.compose.foundation)
+    implementation(libs.androidx.compose.material)
+    implementation(libs.androidx.compose.material.icons.core)
+    implementation(libs.androidx.compose.material.icons.extended)
 
-    implementation(Deps.material)
+    implementation(libs.material)
 }
