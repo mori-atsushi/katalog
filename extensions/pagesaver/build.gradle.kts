@@ -5,11 +5,9 @@ plugins {
 }
 
 android {
-    compileSdk = Constants.compileSdk
-    buildToolsVersion = Constants.buildToolsVersion
+    compileSdk = 33
     defaultConfig {
-        minSdk = Constants.minSdk
-        targetSdk = Constants.targetSdk
+        minSdk = 21
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -28,7 +26,8 @@ android {
         )
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.Androidx.composeCompiler
+        kotlinCompilerExtensionVersion =
+            libs.versions.androidx.compose.compiler.get()
     }
     sourceSets {
         getByName("main").java.srcDir("src/main/kotlin")
@@ -47,16 +46,17 @@ dependencies {
     implementation(kotlin("stdlib"))
     implementation(project(":katalog"))
 
-    implementation(Deps.KotlinX.Serialization.json)
-    implementation(Deps.Androidx.Compose.foundation)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.androidx.compose.foundation)
+    implementation(libs.androidx.compose.foundation)
 
-    testImplementation(Deps.Androidx.Test.core)
-    testImplementation(Deps.Androidx.Test.runner)
-    testImplementation(Deps.Androidx.Test.rules)
-    testImplementation(Deps.Androidx.Test.junit)
-    testImplementation(Deps.Androidx.Test.truth)
+    testImplementation(libs.androidx.test.core)
+    testImplementation(libs.androidx.test.runner)
+    testImplementation(libs.androidx.test.rules)
+    testImplementation(libs.androidx.test.ext.junit)
+    testImplementation(libs.androidx.test.ext.truth)
 
-    testImplementation(Deps.Androidx.Compose.uiTest)
-    testImplementation(Deps.Androidx.Compose.uiTestManifest)
-    testImplementation(Deps.robolectric)
+    testImplementation(libs.androidx.compose.ui.test)
+    testImplementation(libs.androidx.compose.ui.test.manifest)
+    testImplementation(libs.robolectric)
 }
