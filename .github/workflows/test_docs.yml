@@ -1,0 +1,28 @@
+name: "test docs"
+
+on:
+  pull_request:
+    paths:
+      - 'docs/**'
+
+jobs:
+  documentation-test:
+    name: Test deployment
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: yarn
+          cache-dependency-path: docs/yarn.lock
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+        working-directory: ./docs
+
+      - name: Build website
+        run: yarn build
+        working-directory: ./docs

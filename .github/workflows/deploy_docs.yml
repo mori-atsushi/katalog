@@ -11,22 +11,24 @@ jobs:
       run:
         working-directory: docs
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: 18
+          cache: yarn
+          cache-dependency-path: docs/yarn.lock
+
       - name: git config
         run: |
           git config --global user.email "action@github.com"
           git config --global user.name "GitHub Action"
-      - name: cache
-        uses: actions/cache@v2
-        with:
-          path: docs/node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-      - run: yarn install
-      - run: yarn deploy
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Deploy
+        run: yarn deploy
         env:
           GIT_USER: ${{ github.actor }}:${{ github.token }}
