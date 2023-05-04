@@ -20,7 +20,7 @@ kotlinx-serialization = "1.5.0"
 ktlint = "0.48.1"
 material = "1.5.0"
 publish = "0.25.2"
-robolectric = "4.10.1"
+robolectric = "4.10.2"
 spotless = "6.18.0"
 
 [libraries]
