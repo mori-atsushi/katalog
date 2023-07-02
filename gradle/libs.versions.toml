@@ -19,7 +19,7 @@ kotlinx-coroutines = "1.7.2"
 kotlinx-serialization = "1.5.1"
 ktlint = "0.48.1"
 material = "1.5.0"
-publish = "0.25.2"
+publish = "0.25.3"
 robolectric = "4.10.3"
 spotless = "6.19.0"
 
