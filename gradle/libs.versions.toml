@@ -21,7 +21,7 @@ ktlint = "0.48.1"
 material = "1.5.0"
 publish = "0.25.3"
 robolectric = "4.10.3"
-spotless = "6.19.0"
+spotless = "6.20.0"
 
 [libraries]
 androidx-activity = { group = "androidx.activity", name = "activity-ktx", version.ref = "androidx-activity" }
