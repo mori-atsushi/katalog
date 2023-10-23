@@ -70,9 +70,7 @@ Add the package dependencies to your `build.gradle`.
 
 ```kotlin
 dependencies {
-    implementation("com.moriatsushi.katalog:katalog:1.2.0")
-    // If you are using compose v1.5.0-alpha01 or later
-    // implementation("com.moriatsushi.katalog:katalog:1.2.1")
+    implementation("com.moriatsushi.katalog:katalog:1.2.2")
 }
 ```
 
